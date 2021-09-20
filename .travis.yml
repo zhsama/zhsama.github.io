@@ -4,12 +4,10 @@ node_js:
 cache: npm
 branches:
   only:
-    - blog # build master branch only
+    - blog
 script:
   - hexo clean
   - hexo generate
-install: # 解决yarn报错问题
-    - yarn
 deploy:
   provider: pages
   skip-cleanup: true
