@@ -1,12 +1,11 @@
 language: node_js
 node_js:
-  - 14.17.6
+  - 12
 cache: npm
 branches:
   only:
     - blog # build master branch only
 script:
-  - hexo clean
   - hexo generate
 deploy:
   provider: pages
