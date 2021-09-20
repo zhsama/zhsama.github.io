@@ -1,12 +1,15 @@
 language: node_js
 node_js:
-  - 12
+  - 14
 cache: npm
 branches:
   only:
     - blog # build master branch only
 script:
+  - hexo clean
   - hexo generate
+install: # 解决yarn报错问题
+    - yarn
 deploy:
   provider: pages
   skip-cleanup: true
