@@ -2,12 +2,12 @@
 <search>
   <entry>
     <title>Hello World</title>
-    <url>/2021/09/20/hello-world/</url>
+    <url>/2021/09/21/hello-world/</url>
     <content><![CDATA[<h2 id="hexo的初体验"><a href="#hexo的初体验" class="headerlink" title="hexo的初体验"></a>hexo的初体验</h2>]]></content>
   </entry>
   <entry>
     <title>测试travis ci自动构建</title>
-    <url>/2021/09/20/%E6%B5%8B%E8%AF%95travis-ci%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA/</url>
+    <url>/2021/09/21/%E6%B5%8B%E8%AF%95travis-ci%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA/</url>
     <content><![CDATA[<h2 id="后端跑路日记"><a href="#后端跑路日记" class="headerlink" title="后端跑路日记"></a>后端跑路日记</h2><p>看不起咱crud一年的后端仔，狂撸leetcode到排名3w+，写了20多篇算法解题思路，阅读量2w+，但就是简历给你直接筛了你有脾气？</p>
 <p>寄！跑路前端！捏麻麻滴，后端卷王过多，找家wlb的弹性公司干活还是舒服的。虽然但是，为啥前端也要会redis，mongo啊？</p>
 ]]></content>

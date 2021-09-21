@@ -2,44 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zhsama.github.io/2021/09/20/hello-world/</loc>
+    <loc>https://zhsama.github.io/2021/09/21/hello-world/</loc>
     
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zhsama.github.io/2021/09/20/%E6%B5%8B%E8%AF%95travis-ci%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA/</loc>
+    <loc>https://zhsama.github.io/2021/09/21/%E6%B5%8B%E8%AF%95travis-ci%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA/</loc>
     
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     
   </url>
   
   <url>
     <loc>https://zhsama.github.io/about/index.html</loc>
     
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     
   </url>
   
   <url>
     <loc>https://zhsama.github.io/categories/index.html</loc>
     
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     
   </url>
   
   <url>
     <loc>https://zhsama.github.io/tags/index.html</loc>
     
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     
   </url>
   
 
   <url>
     <loc>https://zhsama.github.io/</loc>
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -47,14 +47,14 @@
   
   <url>
     <loc>https://zhsama.github.io/tags/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhsama.github.io/tags/travis/</loc>
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -63,7 +63,7 @@
   
   <url>
     <loc>https://zhsama.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2021-09-20</lastmod>
+    <lastmod>2021-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
