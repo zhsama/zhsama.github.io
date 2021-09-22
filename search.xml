@@ -268,17 +268,10 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>面试八股文（一）—— 计算机网络</title>
     <url>/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<hr>
-<p>title: 面试八股文（一）—— 计算机网络<br>date: 2021-09-22 22:22:04<br>updated: 2021-09-22 23:24:11<br>tags: [‘八股文’, ‘计算机网络’]<br>categories: </p>
-<ul>
-<li>计算机网络</li>
-<li>八股文<br>description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第一篇，也是基础篇之一——计算机网络相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的计网相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《计算机网络自顶向下》。</li>
-</ul>
-<hr>
+ 
 <h1 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h1><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084581427-ad52128d-5d7c-4304-8fb3-8f8c6b59dc15.png"></p>
 <ul>
 <li>Physical, Data Link, Network, Transport, Application</li>
@@ -443,20 +436,20 @@
 <h3 id="什么是NAT-Network-Address-Translation-网络地址转换-？"><a href="#什么是NAT-Network-Address-Translation-网络地址转换-？" class="headerlink" title="什么是NAT (Network Address Translation, 网络地址转换)？"></a>什么是NAT (Network Address Translation, 网络地址转换)？</h3><p>用于解决内网中的主机要和因特网上的主机通信。由NAT路由器将主机的本地IP地址转换为全球IP地址，分为静态转换（转换得到的全球IP地址固定不变）和动态NAT转换。</p>
 <p>文章内容搬运自本人<a href="https://www.yuque.com/docs/share/5b2ba306-5030-4cff-8c82-19ecb35b4f40">语雀</a></p>
 ]]></content>
+      <categories>
+        <category>计算机网络</category>
+        <category>八股文</category>
+      </categories>
+      <tags>
+        <tag>八股文</tag>
+        <tag>计算机网络</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>面试八股文（三）—— 数据库</title>
     <url>/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
-<hr>
-<p>title: 面试八股文（三）—— 数据库<br>date: 2021-09-22 22:48:25<br>updated: 2021-09-22 23:24:26<br>tags: [‘八股文’, ‘数据库’, ‘MySQL’, ‘NoSQL’]<br>categories:</p>
-<ul>
-<li>八股文</li>
-<li>数据库</li>
-<li>NoSQL<br>description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第三篇，也是基础篇之三——计算机网络相关的常见问题。如果文章中有看不懂的知识点，强力推荐极客时间的MySQL45讲相关课程，讲的巨清晰无比。</li>
-</ul>
-<hr>
 <h1 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h1><h3 id="事务的概念和特性？"><a href="#事务的概念和特性？" class="headerlink" title="事务的概念和特性？"></a>事务的概念和特性？</h3><p>概念：事务（Transaction）是一个操作序列，不可分割的工作单位，以BEGIN TRANSACTION开始，以ROLLBACK/COMMIT结束<br>特性（ACID）：</p>
 <ul>
 <li><strong>原子性</strong>（Atomicity）：逻辑上是不可分割的操作单元，事务的所有操作要么全部提交成功，要么全部失败回滚（用回滚日志实现，反向执行日志中的操作）；</li>
@@ -732,19 +725,23 @@
 </ul>
 <p>文章内容搬运自本人<a href="https://www.yuque.com/docs/share/c6097254-4f08-4d0f-b9c0-550c9274e6be">语雀</a></p>
 ]]></content>
+      <categories>
+        <category>八股文</category>
+        <category>数据库</category>
+        <category>NoSQL</category>
+      </categories>
+      <tags>
+        <tag>八股文</tag>
+        <tag>数据库</tag>
+        <tag>MySQL</tag>
+        <tag>NoSQL</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>面试八股文（二）—— 操作系统</title>
     <url>/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
-<hr>
-<p>title: 面试八股文（二）—— 操作系统<br>date: 2021-09-22 22:43:42<br>updated: 2021-09-22 23:24:33<br>tags: [‘八股文’, ‘操作系统’]<br>categories:</p>
-<ul>
-<li>八股文</li>
-<li>操作系统<br>description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第二篇，也是基础篇之二——操作系统相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的OS相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《现代操作系统》。</li>
-</ul>
-<hr>
 <h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><h3 id="进程和线程有什么区别？"><a href="#进程和线程有什么区别？" class="headerlink" title="进程和线程有什么区别？"></a>进程和线程有什么区别？</h3><ul>
 <li>进程（Process）是系统进行资源分配和调度的基本单位，线程（Thread）是CPU调度和分派的基本单位；</li>
 <li>线程依赖于进程而存在，一个进程至少有一个线程；</li>
@@ -1006,6 +1003,14 @@
 </ul>
 <p>文章内容搬运自本人<a href="https://www.yuque.com/docs/share/4137d8f0-4b2e-4a18-a5a3-7a01239affcc">语雀</a></p>
 ]]></content>
+      <categories>
+        <category>八股文</category>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>八股文</tag>
+        <tag>操作系统</tag>
+      </tags>
   </entry>
   <entry>
     <title>MySQL学习笔记</title>
@@ -1304,15 +1309,15 @@
 </ul>
 <p><strong>使用的是index1的执行流程</strong></p>
 <ul>
-<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#122;&#104;&#97;&#110;&#x67;&#x73;&#x73;&#120;&#121;&#x7a;&#x40;&#x78;&#x78;&#x78;&#x2e;&#99;&#x6f;&#109;">&#122;&#104;&#97;&#110;&#x67;&#x73;&#x73;&#120;&#121;&#x7a;&#x40;&#x78;&#x78;&#x78;&#x2e;&#99;&#x6f;&#109;</a>’的这条记录，取得ID2的值；</li>
+<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#122;&#x68;&#97;&#x6e;&#103;&#x73;&#x73;&#120;&#121;&#x7a;&#64;&#x78;&#x78;&#120;&#x2e;&#x63;&#x6f;&#x6d;">&#122;&#x68;&#97;&#x6e;&#103;&#x73;&#x73;&#120;&#121;&#x7a;&#64;&#x78;&#x78;&#120;&#x2e;&#x63;&#x6f;&#x6d;</a>’的这条记录，取得ID2的值；</li>
 <li>到主键上查到主键值是ID2的行，判断email的值是正确的，将这行记录加入结果集；</li>
-<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#x68;&#x61;&#x6e;&#x67;&#115;&#115;&#x78;&#x79;&#122;&#x40;&#x78;&#x78;&#x78;&#x2e;&#x63;&#111;&#109;">&#122;&#x68;&#x61;&#x6e;&#x67;&#115;&#115;&#x78;&#x79;&#122;&#x40;&#x78;&#x78;&#x78;&#x2e;&#x63;&#111;&#109;</a>’的条件了，循环结束</li>
+<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#x68;&#97;&#110;&#103;&#115;&#115;&#120;&#121;&#x7a;&#64;&#x78;&#x78;&#120;&#46;&#99;&#111;&#x6d;">&#122;&#x68;&#97;&#110;&#103;&#115;&#115;&#120;&#121;&#x7a;&#64;&#x78;&#x78;&#120;&#46;&#99;&#111;&#x6d;</a>’的条件了，循环结束</li>
 <li>这个过程中，只需要回主键索引取一次数据，所以系统认为只扫描了一行。</li>
 </ul>
 <p><strong>使用的是index2的执行流程</strong></p>
 <ul>
 <li>从<code>index2</code>索引树找到满足索引值是’zhangs’的记录，找到的第一个是ID1；</li>
-<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#x7a;&#x68;&#x61;&#x6e;&#x67;&#x73;&#x73;&#x78;&#x79;&#x7a;&#x40;&#x78;&#x78;&#x78;&#46;&#x63;&#x6f;&#x6d;">&#x7a;&#x68;&#x61;&#x6e;&#x67;&#x73;&#x73;&#x78;&#x79;&#x7a;&#x40;&#x78;&#x78;&#x78;&#46;&#x63;&#x6f;&#x6d;</a>’，这行记录丢弃；</li>
+<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#x7a;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#120;&#121;&#x7a;&#64;&#120;&#120;&#120;&#x2e;&#x63;&#111;&#109;">&#x7a;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#120;&#121;&#x7a;&#64;&#120;&#120;&#120;&#x2e;&#x63;&#111;&#109;</a>’，这行记录丢弃；</li>
 <li>取index2上刚刚查到的位置的下一条记录，发现仍然是’zhangs’，取出ID2，再到ID索引上取整行然后判断，这次值对了，将这行记录加入结果集；</li>
 <li>重复上一步，直到在idxe2上取到的值不是’zhangs’时，循环结束。</li>
 <li>在这个过程中，要回主键索引取4次数据，也就是扫描了4行。</li>

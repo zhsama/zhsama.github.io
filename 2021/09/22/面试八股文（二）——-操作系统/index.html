@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"zhsama.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="title: 面试八股文（二）—— 操作系统date: 2021-09-22 22:43:42updated: 2021-09-22 23:24:33tags: [‘八股文’, ‘操作系统’]categories:  八股文 操作系统description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第二篇，也是基础篇之二——操作系统相关的常见问题。如果文章中有">
+  <meta name="description" content="根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第二篇，也是基础篇之二——操作系统相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的OS相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《现代操作系统》。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zhsama&#39;s blog">
+<meta property="og:title" content="面试八股文（二）—— 操作系统">
 <meta property="og:url" content="https://zhsama.github.io/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="zhsama&#39;s blog">
-<meta property="og:description" content="title: 面试八股文（二）—— 操作系统date: 2021-09-22 22:43:42updated: 2021-09-22 23:24:33tags: [‘八股文’, ‘操作系统’]categories:  八股文 操作系统description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第二篇，也是基础篇之二——操作系统相关的常见问题。如果文章中有">
+<meta property="og:description" content="根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第二篇，也是基础篇之二——操作系统相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的OS相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《现代操作系统》。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628085394606-49204b73-729e-4f57-97bc-d43ad01ec54b.png">
-<meta property="article:published_time" content="2021-09-22T15:51:36.833Z">
-<meta property="article:modified_time" content="2021-09-22T15:51:36.833Z">
+<meta property="article:published_time" content="2021-09-22T22:43:42.000Z">
+<meta property="article:modified_time" content="2021-09-22T23:24:33.000Z">
 <meta property="article:author" content="zhsama">
+<meta property="article:tag" content="八股文">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628085394606-49204b73-729e-4f57-97bc-d43ad01ec54b.png">
 
@@ -47,7 +49,7 @@
   };
 </script>
 
-  <title> | zhsama's blog</title>
+  <title>面试八股文（二）—— 操作系统 | zhsama's blog</title>
   
 
 
@@ -213,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          面试八股文（二）—— 操作系统
         </h1>
 
         <div class="post-meta">
@@ -222,8 +224,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-09-22 15:51:36" itemprop="dateCreated datePublished" datetime="2021-09-22T15:51:36+00:00">2021-09-22</time>
+              <time title="创建时间：2021-09-22 22:43:42 / 修改时间：23:24:33" itemprop="dateCreated datePublished" datetime="2021-09-22T22:43:42+00:00">2021-09-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%AB%E8%82%A1%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">八股文</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%AB%E8%82%A1%E6%96%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
             </span>
 
           
@@ -246,6 +262,7 @@
               </span>
               <span>11 分钟</span>
             </span>
+            <div class="post-description">根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第二篇，也是基础篇之二——操作系统相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的OS相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《现代操作系统》。</div>
 
         </div>
       </header>
@@ -258,13 +275,6 @@
       
         <meta name="referrer" content="no-referrer" />
 
-<hr>
-<p>title: 面试八股文（二）—— 操作系统<br>date: 2021-09-22 22:43:42<br>updated: 2021-09-22 23:24:33<br>tags: [‘八股文’, ‘操作系统’]<br>categories:</p>
-<ul>
-<li>八股文</li>
-<li>操作系统<br>description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第二篇，也是基础篇之二——操作系统相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的OS相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《现代操作系统》。</li>
-</ul>
-<hr>
 <h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><h3 id="进程和线程有什么区别？"><a href="#进程和线程有什么区别？" class="headerlink" title="进程和线程有什么区别？"></a>进程和线程有什么区别？</h3><ul>
 <li>进程（Process）是系统进行资源分配和调度的基本单位，线程（Thread）是CPU调度和分派的基本单位；</li>
 <li>线程依赖于进程而存在，一个进程至少有一个线程；</li>
@@ -540,7 +550,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://zhsama.github.io/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="">https://zhsama.github.io/2021/09/22/面试八股文（二）——-操作系统/</a>
+    <a href="https://zhsama.github.io/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="面试八股文（二）—— 操作系统">https://zhsama.github.io/2021/09/22/面试八股文（二）——-操作系统/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -550,6 +560,10 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"># 八股文</a>
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
+          </div>
 
         
 
@@ -557,12 +571,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/21/RabbitMQ/" rel="prev" title="八股文系列（四）—— RabbitMQ">
-      <i class="fa fa-chevron-left"></i> 八股文系列（四）—— RabbitMQ
+    <a href="/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="prev" title="面试八股文（一）—— 计算机网络">
+      <i class="fa fa-chevron-left"></i> 面试八股文（一）—— 计算机网络
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="next" title="面试八股文（三）—— 数据库">
+      面试八股文（三）—— 数据库 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -645,13 +659,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
