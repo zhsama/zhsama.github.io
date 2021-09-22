@@ -115,16 +115,15 @@
 <p>本文仅仅列举问题的部分常见解答，详细回答需结合官方文档和日常工作使用经验。😉</p>
 <span id="more"></span>
 
-<h2 id="1-RabbitMQ是什么？"><a href="#1-RabbitMQ是什么？" class="headerlink" title="1.RabbitMQ是什么？"></a>1.RabbitMQ是什么？</h2><p>RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件（亦称面向消息的中间件）。RabbitMQ服务器是用Erlang语言编写的，而群集和故障转移是构建在开放电信平台框架上的。所有主要的编程语言均有与代理接口通讯的客户端库。<br>PS:也可能直接问什么是消息队列？消息队列就是一个使用队列来通信的组件<br>​</p>
-<h2 id="2-RabbitMQ特点"><a href="#2-RabbitMQ特点" class="headerlink" title="2.RabbitMQ特点?"></a>2.RabbitMQ特点?</h2><p>可靠性: RabbitMQ使用一些机制来保证可靠性， 如持久化、传输确认及发布确认等。<br>灵活的路由 : 在消息进入队列之前，通过交换器来路由消息。对于典型的路由功能， RabbitMQ 己经提供了一些内置的交换器来实现。针对更复杂的路由功能，可以将多个 交换器绑定在一起， 也可以通过插件机制来实现自己的交换器。<br>扩展性: 多个RabbitMQ节点可以组成一个集群，也可以根据实际业务情况动态地扩展 集群中节点。<br>高可用性 : 队列可以在集群中的机器上设置镜像，使得在部分节点出现问题的情况下队 列仍然可用。<br>多种协议: RabbitMQ除了原生支持AMQP协议，还支持STOMP， MQTT等多种消息 中间件协议。<br>多语言客户端 :RabbitMQ 几乎支持所有常用语言，比如 Java、 Python、 Ruby、 PHP、 C#、 JavaScript 等。<br>管理界面 : RabbitMQ 提供了一个易用的用户界面，使得用户可以监控和管理消息、集 群中的节点等。<br>令插件机制 : RabbitMQ 提供了许多插件 ， 以实现从多方面进行扩展，当然也可以编写自 己的插件。<br>​</p>
-<h2 id="3-AMQP是什么"><a href="#3-AMQP是什么" class="headerlink" title="3.AMQP是什么?"></a>3.AMQP是什么?</h2><p>RabbitMQ就是 AMQP 协议的 Erlang 的实现(当然 RabbitMQ 还支持 STOMP2、 MQTT3 等协议 ) AMQP 的模型架构 和 RabbitMQ 的模型架构是一样的，生产者将消息发送给交换器，交换器和队列绑定 。<br>RabbitMQ 中的交换器、交换器类型、队列、绑定、路由键等都是遵循的 AMQP 协议中相 应的概念。目前 RabbitMQ 最新版本默认支持的是 AMQP 0-9-1。<br>​</p>
-<h2 id="4-AMQP协议3层？"><a href="#4-AMQP协议3层？" class="headerlink" title="4.AMQP协议3层？"></a>4.AMQP协议3层？</h2><p>Module Layer:协议最高层，主要定义了一些客户端调用的命令，客户端可以用这些命令实现自己的业务逻辑。<br>Session Layer:中间层，主要负责客户端命令发送给服务器，再将服务端应答返回客户端，提供可靠性同步机制和错误处理。<br>TransportLayer:最底层，主要传输二进制数据流，提供帧的处理、信道服用、错误检测和数据表示等。<br>​</p>
+<h2 id="1-RabbitMQ是什么？"><a href="#1-RabbitMQ是什么？" class="headerlink" title="1.RabbitMQ是什么？"></a>1.RabbitMQ是什么？</h2><p>RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件（亦称面向消息的中间件）。RabbitMQ服务器是用Erlang语言编写的，而群集和故障转移是构建在开放电信平台框架上的。所有主要的编程语言均有与代理接口通讯的客户端库。<br>PS:也可能直接问什么是消息队列？消息队列就是一个使用队列来通信的组件</p>
+<h2 id="2-RabbitMQ特点"><a href="#2-RabbitMQ特点" class="headerlink" title="2.RabbitMQ特点?"></a>2.RabbitMQ特点?</h2><p>可靠性: RabbitMQ使用一些机制来保证可靠性， 如持久化、传输确认及发布确认等。<br>灵活的路由 : 在消息进入队列之前，通过交换器来路由消息。对于典型的路由功能， RabbitMQ 己经提供了一些内置的交换器来实现。针对更复杂的路由功能，可以将多个 交换器绑定在一起， 也可以通过插件机制来实现自己的交换器。<br>扩展性: 多个RabbitMQ节点可以组成一个集群，也可以根据实际业务情况动态地扩展 集群中节点。<br>高可用性 : 队列可以在集群中的机器上设置镜像，使得在部分节点出现问题的情况下队 列仍然可用。<br>多种协议: RabbitMQ除了原生支持AMQP协议，还支持STOMP， MQTT等多种消息 中间件协议。<br>多语言客户端 :RabbitMQ 几乎支持所有常用语言，比如 Java、 Python、 Ruby、 PHP、 C#、 JavaScript 等。<br>管理界面 : RabbitMQ 提供了一个易用的用户界面，使得用户可以监控和管理消息、集 群中的节点等。<br>令插件机制 : RabbitMQ 提供了许多插件 ， 以实现从多方面进行扩展，当然也可以编写自 己的插件。</p>
+<h2 id="3-AMQP是什么"><a href="#3-AMQP是什么" class="headerlink" title="3.AMQP是什么?"></a>3.AMQP是什么?</h2><p>RabbitMQ就是 AMQP 协议的 Erlang 的实现(当然 RabbitMQ 还支持 STOMP2、 MQTT3 等协议 ) AMQP 的模型架构 和 RabbitMQ 的模型架构是一样的，生产者将消息发送给交换器，交换器和队列绑定 。<br>RabbitMQ 中的交换器、交换器类型、队列、绑定、路由键等都是遵循的 AMQP 协议中相 应的概念。目前 RabbitMQ 最新版本默认支持的是 AMQP 0-9-1。</p>
+<h2 id="4-AMQP协议3层？"><a href="#4-AMQP协议3层？" class="headerlink" title="4.AMQP协议3层？"></a>4.AMQP协议3层？</h2><p>Module Layer:协议最高层，主要定义了一些客户端调用的命令，客户端可以用这些命令实现自己的业务逻辑。<br>Session Layer:中间层，主要负责客户端命令发送给服务器，再将服务端应答返回客户端，提供可靠性同步机制和错误处理。<br>TransportLayer:最底层，主要传输二进制数据流，提供帧的处理、信道服用、错误检测和数据表示等。</p>
 <h2 id="5-AMQP模型的几大组件？"><a href="#5-AMQP模型的几大组件？" class="headerlink" title="5.AMQP模型的几大组件？"></a>5.AMQP模型的几大组件？</h2><ul>
 <li>交换器 (Exchange)：消息代理服务器中用于把消息路由到队列的组件。</li>
 <li>队列 (Queue)：用来存储消息的数据结构，位于硬盘或内存中。</li>
 <li>绑定 (Binding)：一套规则，告知交换器消息应该将消息投递给哪个队列。</li>
 </ul>
-<p>​</p>
 <h2 id="6-说说生产者Producer和消费者Consumer"><a href="#6-说说生产者Producer和消费者Consumer" class="headerlink" title="6.说说生产者Producer和消费者Consumer?"></a>6.说说生产者Producer和消费者Consumer?</h2><p>生产者</p>
 <ul>
 <li>消息生产者，就是投递消息的一方。</li>
@@ -135,14 +134,12 @@
 <li>消费消息，也就是接收消息的一方。</li>
 <li>消费者连接到RabbitMQ服务器，并订阅到队列上。消费消息时只消费消息体，丢弃标签。</li>
 </ul>
-<p>​</p>
-<h2 id="7-为什么需要消息队列？"><a href="#7-为什么需要消息队列？" class="headerlink" title="7.为什么需要消息队列？"></a>7.为什么需要消息队列？</h2><p>从本质上来说是因为互联网的快速发展，业务不断扩张，促使技术架构需要不断的演进。<br>从以前的单体架构到现在的微服务架构，成百上千的服务之间相互调用和依赖。从互联网初期一个服务器上有 100 个在线用户已经很了不得，到现在坐拥10亿日活的微信。此时，我们需要有一个「工具」来解耦服务之间的关系、控制资源合理合时的使用以及缓冲流量洪峰等等。因此，消息队列就应运而生了。<br>它常用来实现：异步处理、服务解耦、流量控制（削峰）。<br>​</p>
+<h2 id="7-为什么需要消息队列？"><a href="#7-为什么需要消息队列？" class="headerlink" title="7.为什么需要消息队列？"></a>7.为什么需要消息队列？</h2><p>从本质上来说是因为互联网的快速发展，业务不断扩张，促使技术架构需要不断的演进。<br>从以前的单体架构到现在的微服务架构，成百上千的服务之间相互调用和依赖。从互联网初期一个服务器上有 100 个在线用户已经很了不得，到现在坐拥10亿日活的微信。此时，我们需要有一个「工具」来解耦服务之间的关系、控制资源合理合时的使用以及缓冲流量洪峰等等。因此，消息队列就应运而生了。<br>它常用来实现：异步处理、服务解耦、流量控制（削峰）。</p>
 <h2 id="8-说说Broker服务节点、Queue队列、Exchange交换器？"><a href="#8-说说Broker服务节点、Queue队列、Exchange交换器？" class="headerlink" title="8.说说Broker服务节点、Queue队列、Exchange交换器？"></a>8.说说Broker服务节点、Queue队列、Exchange交换器？</h2><ul>
 <li>Broker可以看做RabbitMQ的服务节点。一般请下一个Broker可以看做一个RabbitMQ服务器。</li>
 <li>Queue:RabbitMQ的内部对象，用于存储消息。多个消费者可以订阅同一队列，这时队列中的消息会被平摊（轮询）给多个消费者进行处理。</li>
 <li>Exchange:生产者将消息发送到交换器，由交换器将消息路由到一个或者多个队列中。当路由不到时，或返回给生产者或直接丢弃。</li>
 </ul>
-<p>​</p>
 <h2 id="9-消息队列有什么优缺点"><a href="#9-消息队列有什么优缺点" class="headerlink" title="9.消息队列有什么优缺点"></a>9.消息队列有什么优缺点</h2><p>优点上面已经说了，就是在特殊场景下有其对应的好处，解耦、异步、削峰。缺点有以下几个：</p>
 <ul>
 <li>系统可用性降低 系统引入的外部依赖越多，越容易挂掉。万一 MQ 挂了，MQ 一挂，整套系统崩 溃，你不就完了？</li>
@@ -150,20 +147,21 @@
 <li>怎么保证消息传递的顺序性？问题一大堆。</li>
 <li>一致性问题 A 系统处理完了直接返回成功了，人都以为你这个请求就成功了；但是问题是，要是 BCD 三个系统那里，BD 两个系统写库成功了，结果 C 系统写库失败了，咋整？你这数据就不一致 了。</li>
 </ul>
-<h2 id="10-如何保证消息的可靠性？"><a href="#10-如何保证消息的可靠性？" class="headerlink" title="10.如何保证消息的可靠性？"></a>10.如何保证消息的可靠性？</h2><p>​</p>
-<p>消息到MQ的过程中搞丢，MQ自己搞丢，MQ到消费过程中搞丢。<br>生产者到RabbitMQ：事务机制和Confirm机制，注意：事务机制和 Confirm 机制是互斥的，两者不能共存，会导致 RabbitMQ 报错。<br>RabbitMQ自身：持久化、集群、普通模式、镜像模式。<br>RabbitMQ到消费者：basicAck机制、死信队列、消息补偿机制。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="11-什么是RoutingKey路由键？"><a href="#11-什么是RoutingKey路由键？" class="headerlink" title="11.什么是RoutingKey路由键？"></a>11.什么是RoutingKey路由键？</h2><p>​</p>
-<p>生产者将消息发送给交换器的时候，会指定一个RoutingKey,用来指定这个消息的路由规则，这个RoutingKey需要与交换器类型和绑定键(BindingKey)联合使用才能最终生效。</p>
-<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><h2 id="12-Binding绑定？"><a href="#12-Binding绑定？" class="headerlink" title="12.Binding绑定？"></a>12.Binding绑定？</h2><p>​</p>
-<p>通过绑定将交换器和队列关联起来，一般会指定一个BindingKey,这样RabbitMq就知道如何正确路由消息到队列了。<br>​</p>
+<h2 id="10-如何保证消息的可靠性？"><a href="#10-如何保证消息的可靠性？" class="headerlink" title="10.如何保证消息的可靠性？"></a>10.如何保证消息的可靠性？</h2><p>消息到MQ的过程中搞丢，MQ自己搞丢，MQ到消费过程中搞丢。<br>生产者到RabbitMQ：事务机制和Confirm机制，注意：事务机制和 Confirm 机制是互斥的，两者不能共存，会导致 RabbitMQ 报错。<br>RabbitMQ自身：持久化、集群、普通模式、镜像模式。<br>RabbitMQ到消费者：basicAck机制、死信队列、消息补偿机制。</p>
+<h2 id="11-什么是RoutingKey路由键？"><a href="#11-什么是RoutingKey路由键？" class="headerlink" title="11.什么是RoutingKey路由键？"></a>11.什么是RoutingKey路由键？</h2><p>生产者将消息发送给交换器的时候，会指定一个RoutingKey,用来指定这个消息的路由规则，这个RoutingKey需要与交换器类型和绑定键(BindingKey)联合使用才能最终生效。</p>
+<h2 id="12-Binding绑定？"><a href="#12-Binding绑定？" class="headerlink" title="12.Binding绑定？"></a>12.Binding绑定？</h2><p>通过绑定将交换器和队列关联起来，一般会指定一个BindingKey,这样RabbitMq就知道如何正确路由消息到队列了。</p>
 <h2 id="13-交换器4种类型？"><a href="#13-交换器4种类型？" class="headerlink" title="13.交换器4种类型？"></a>13.交换器4种类型？</h2><p>主要有以下4种。</p>
 <ul>
 <li>fanout:把所有发送到该交换器的消息路由到所有与该交换器绑定的队列中。</li>
 <li>direct:把消息路由到BindingKey和RoutingKey完全匹配的队列中。</li>
 <li>topic:</li>
-<li>匹配规则：</li>
+<li>匹配规则： <ul>
+<li>RoutingKey：为一个 点号’.’: 分隔的字符串。比如: java.xiaoka.show </li>
+<li>BindingKey：和RoutingKey一样也是点号“.“分隔的字符串。BindingKey可使用 * 和 # 用于做模糊匹配，*匹配一个单词，#匹配多个或者0个 </li>
+<li>headers：不依赖路由键匹配规则路由消息。是根据发送消息内容中的headers属性进行匹配。性能差，基本用不到。</li>
 </ul>
-<p>RoutingKey 为一个 点号’.’: 分隔的字符串。比如: java.xiaoka.show<br>BindingKey和RoutingKey一样也是点号“.“分隔的字符串。<br>BindingKey可使用 * 和 # 用于做模糊匹配，*匹配一个单词，#匹配多个或者0个<br>headers:不依赖路由键匹配规则路由消息。是根据发送消息内容中的headers属性进行匹配。性能差，基本用不到。<br>​</p>
+</li>
+</ul>
 <h2 id="14-生产者消息运转？"><a href="#14-生产者消息运转？" class="headerlink" title="14.生产者消息运转？"></a>14.生产者消息运转？</h2><ol>
 <li>Producer先连接到Broker,建立连接Connection,开启一个信道(Channel)。</li>
 <li>Producer声明一个交换器并设置好相关属性。</li>
@@ -175,7 +173,6 @@
 <li>关闭信道。</li>
 <li>管理连接。</li>
 </ol>
-<p>​</p>
 <h2 id="15-消费者接收消息过程？"><a href="#15-消费者接收消息过程？" class="headerlink" title="15.消费者接收消息过程？"></a>15.消费者接收消息过程？</h2><ol>
 <li>Producer先连接到Broker,建立连接Connection,开启一个信道(Channel)。</li>
 <li>向Broker请求消费响应的队列中消息，可能会设置响应的回调函数。</li>
@@ -185,20 +182,17 @@
 <li>关闭信道。</li>
 <li>关闭连接。</li>
 </ol>
-<p>​</p>
 <h2 id="16-交换器无法根据自身类型和路由键找到符合条件队列时，有哪些处理？"><a href="#16-交换器无法根据自身类型和路由键找到符合条件队列时，有哪些处理？" class="headerlink" title="16.交换器无法根据自身类型和路由键找到符合条件队列时，有哪些处理？"></a>16.交换器无法根据自身类型和路由键找到符合条件队列时，有哪些处理？</h2><ul>
-<li>mandatory ：true 返回消息给生产者。</li>
+<li>mandatory：true 返回消息给生产者。</li>
 <li>mandatory: false 直接丢弃。</li>
 </ul>
-<p>​</p>
-<h2 id="17-死信队列？"><a href="#17-死信队列？" class="headerlink" title="17.死信队列？"></a>17.死信队列？</h2><p>DLX，全称为 Dead-Letter-Exchange，死信交换器，死信邮箱。当消息在一个队列中变成死信 (dead message) 之后，它能被重新被发送到另一个交换器中，这个交换器就是 DLX，绑定 DLX 的队列就称之为死信队列。<br>​</p>
+<h2 id="17-死信队列？"><a href="#17-死信队列？" class="headerlink" title="17.死信队列？"></a>17.死信队列？</h2><p>DLX，全称为 Dead-Letter-Exchange，死信交换器，死信邮箱。当消息在一个队列中变成死信 (dead message) 之后，它能被重新被发送到另一个交换器中，这个交换器就是 DLX，绑定 DLX 的队列就称之为死信队列。</p>
 <h2 id="18-导致的死信的几种原因？"><a href="#18-导致的死信的几种原因？" class="headerlink" title="18.导致的死信的几种原因？"></a>18.导致的死信的几种原因？</h2><ul>
 <li>消息被拒（Basic.Reject /Basic.Nack) 且 requeue = false。</li>
 <li>消息TTL过期。</li>
 <li>队列满了，无法再添加。</li>
 </ul>
-<p>​</p>
-<h2 id="19-延迟队列？"><a href="#19-延迟队列？" class="headerlink" title="19.延迟队列？"></a>19.延迟队列？</h2><p>存储对应的延迟消息，指当消息被发送以后，并不想让消费者立刻拿到消息，而是等待特定时间后，消费者才能拿到这个消息进行消费。<br>​</p>
+<h2 id="19-延迟队列？"><a href="#19-延迟队列？" class="headerlink" title="19.延迟队列？"></a>19.延迟队列？</h2><p>存储对应的延迟消息，指当消息被发送以后，并不想让消费者立刻拿到消息，而是等待特定时间后，消费者才能拿到这个消息进行消费。</p>
 <h2 id="20-优先级队列？"><a href="#20-优先级队列？" class="headerlink" title="20.优先级队列？"></a>20.优先级队列？</h2><ul>
 <li>优先级高的队列会先被消费。</li>
 <li>可以通过x-max-priority参数来实现。</li>
@@ -210,15 +204,14 @@
 <li>channel . txCommit 用于提交事务 。</li>
 <li>channel . txRollback 用于事务回滚,如果在事务提交执行之前由于 RabbitMQ 异常崩溃或者其他原因抛出异常,通过txRollback来回滚。</li>
 </ol>
-<p>​</p>
-<h2 id="22-发送确认机制？"><a href="#22-发送确认机制？" class="headerlink" title="22.发送确认机制？"></a>22.发送确认机制？</h2><p>生产者把信道设置为confirm确认模式,设置后，所有再改信道发布的消息都会被指定一个唯一的ID，一旦消息被投递到所有匹配的队列之后，RabbitMQ就会发送一个确认（Basic.Ack)给生产者（包含消息的唯一ID)，这样生产者就知道消息到达对应的目的地了。<br>​</p>
+<h2 id="22-发送确认机制？"><a href="#22-发送确认机制？" class="headerlink" title="22.发送确认机制？"></a>22.发送确认机制？</h2><p>生产者把信道设置为confirm确认模式,设置后，所有再改信道发布的消息都会被指定一个唯一的ID，一旦消息被投递到所有匹配的队列之后，RabbitMQ就会发送一个确认（Basic.Ack)给生产者（包含消息的唯一ID)，这样生产者就知道消息到达对应的目的地了。</p>
 <h2 id="23-消费者获取消息的方式？"><a href="#23-消费者获取消息的方式？" class="headerlink" title="23.消费者获取消息的方式？"></a>23.消费者获取消息的方式？</h2><ul>
 <li>推</li>
 <li>拉</li>
 </ul>
-<h2 id="24-消费者某些原因无法处理当前接受的消息如何来拒绝？"><a href="#24-消费者某些原因无法处理当前接受的消息如何来拒绝？" class="headerlink" title="24.消费者某些原因无法处理当前接受的消息如何来拒绝？"></a>24.消费者某些原因无法处理当前接受的消息如何来拒绝？</h2><p>channel .basicNack channel .basicReject<br>​</p>
-<h2 id="25-消息传输保证层级？"><a href="#25-消息传输保证层级？" class="headerlink" title="25.消息传输保证层级？"></a>25.消息传输保证层级？</h2><p>At most once:最多一次。消息可能会丢失，但不会重复传输。<br>At least once：最少一次。消息绝不会丢失，但可能会重复传输。<br>Exactly once: 恰好一次，每条消息肯定仅传输一次。<br>​</p>
-<h2 id="26-了解Virtual-Host吗"><a href="#26-了解Virtual-Host吗" class="headerlink" title="26.了解Virtual Host吗?"></a>26.了解Virtual Host吗?</h2><p>每一个RabbitMQ服务器都能创建虚拟的消息服务器，也叫虚拟主机(virtual host)，简称vhost。<br>默认为“/”。<br>​</p>
+<h2 id="24-消费者某些原因无法处理当前接受的消息如何来拒绝？"><a href="#24-消费者某些原因无法处理当前接受的消息如何来拒绝？" class="headerlink" title="24.消费者某些原因无法处理当前接受的消息如何来拒绝？"></a>24.消费者某些原因无法处理当前接受的消息如何来拒绝？</h2><p>channel .basicNack channel .basicReject</p>
+<h2 id="25-消息传输保证层级？"><a href="#25-消息传输保证层级？" class="headerlink" title="25.消息传输保证层级？"></a>25.消息传输保证层级？</h2><p>At most once:最多一次。消息可能会丢失，但不会重复传输。<br>At least once：最少一次。消息绝不会丢失，但可能会重复传输。<br>Exactly once: 恰好一次，每条消息肯定仅传输一次。</p>
+<h2 id="26-了解Virtual-Host吗"><a href="#26-了解Virtual-Host吗" class="headerlink" title="26.了解Virtual Host吗?"></a>26.了解Virtual Host吗?</h2><p>每一个RabbitMQ服务器都能创建虚拟的消息服务器，也叫虚拟主机(virtual host)，简称vhost。<br>默认为“/”。</p>
 <h2 id="27-集群中的节点类型？"><a href="#27-集群中的节点类型？" class="headerlink" title="27.集群中的节点类型？"></a>27.集群中的节点类型？</h2><ol>
 <li>内存节点：ram,将变更写入内存。</li>
 <li>磁盘节点：disc,磁盘写入操作。</li>
@@ -228,7 +221,6 @@
 <ol>
 <li>rabbit_amqqueue_process:负责协议相关的消息处理，即接收生产者发布的消息、向消费者交付消息、处理消息的确认(包括生产端的 confirm 和消费端的 ack) 等。</li>
 <li>backing_queue:是消息存储的具体形式和引擎，并向 rabbit amqqueue process提供相关的接口以供调用。</li>
-<li>​</li>
 </ol>
 <h2 id="29-RabbitMQ中消息可能有的几种状态"><a href="#29-RabbitMQ中消息可能有的几种状态" class="headerlink" title="29.RabbitMQ中消息可能有的几种状态?"></a>29.RabbitMQ中消息可能有的几种状态?</h2><ol>
 <li>alpha: 消息内容(包括消息体、属性和 headers) 和消息索引都存储在内存中 。</li>
@@ -252,29 +244,17 @@
 <li>Client发送Ack消息给MQ，通知MQ删除该消息，此处有可能因为网络问题导致Ack失败，那么Client会重复消息，这里就引出消费幂等的问题；</li>
 <li>MQ将已消费的消息删除</li>
 </ol>
-<h2 id="33-如何保证RabbitMQ消息队列的高可用"><a href="#33-如何保证RabbitMQ消息队列的高可用" class="headerlink" title="33.如何保证RabbitMQ消息队列的高可用?"></a>33.如何保证RabbitMQ消息队列的高可用?</h2><p>RabbitMQ 有三种模式：单机模式，普通集群模式，镜像集群模式。<br>​</p>
+<h2 id="33-如何保证RabbitMQ消息队列的高可用"><a href="#33-如何保证RabbitMQ消息队列的高可用" class="headerlink" title="33.如何保证RabbitMQ消息队列的高可用?"></a>33.如何保证RabbitMQ消息队列的高可用?</h2><p>RabbitMQ 有三种模式：单机模式，普通集群模式，镜像集群模式。</p>
 <ol>
 <li>单机模式：就是demo级别的，一般就是你本地启动了玩玩儿的，没人生产用单机模式</li>
-</ol>
-<ol start="2">
 <li>普通集群模式：意思就是在多台机器上启动多个RabbitMQ实例，每个机器启动一个。</li>
-</ol>
-<ol start="3">
 <li>镜像集群模式：这种模式，才是所谓的RabbitMQ的高可用模式，跟普通集群模式不一样的是，你创建的queue，无论元数据(元数据指RabbitMQ的配置数据)还是queue里的消息都会存在于多个实例上，然后每次你写消息到queue的时候，都会自动把消息到多个实例的queue里进行消息同步。</li>
 </ol>
-<h2 id="34-如何快速处理挤压过多的消息？"><a href="#34-如何快速处理挤压过多的消息？" class="headerlink" title="34.如何快速处理挤压过多的消息？"></a>34.如何快速处理挤压过多的消息？</h2><h2 id="-2"><a href="#-2" class="headerlink" title=""></a></h2><p>情景：消费者挂掉后再重启，这时会有很多已经挤压了的消息在MQ中，所以需要快速的处理之前已经挤压了的消息。<br>​</p>
-<p>解决方案：可以将原由的消费者进行修改，不再直接对数据库进行操作，只对MQ的数据进行并将处理得到的数据再发给新的partition（可以创建很多来进行过度），然后再由很多消费者进行同时的消费，并写入数据库。这是处理速度就会很快。因为第一次的消费者处理之后并不用写入数据库就可以给MQ反馈已经消费了；后续的消费者继续处理需要消费的数据并不会影响之前的消费者处理的速度。<br>​</p>
-<h2 id="35-如果消息队列满了怎么处理？"><a href="#35-如果消息队列满了怎么处理？" class="headerlink" title="35.如果消息队列满了怎么处理？"></a>35.如果消息队列满了怎么处理？</h2><p>类似上述问题：修改消费者消费方式（不直接进行消费，转发给另外的MQ），然后再由其他消费者进行消费。<br>​</p>
-<h2 id="36-如果让你开发消息队列中间件，如何来设计？"><a href="#36-如果让你开发消息队列中间件，如何来设计？" class="headerlink" title="36.如果让你开发消息队列中间件，如何来设计？"></a>36.如果让你开发消息队列中间件，如何来设计？</h2><p>​</p>
-<ol>
+<h2 id="34-如何快速处理挤压过多的消息？"><a href="#34-如何快速处理挤压过多的消息？" class="headerlink" title="34.如何快速处理挤压过多的消息？"></a>34.如何快速处理挤压过多的消息？</h2><p>情景：消费者挂掉后再重启，这时会有很多已经挤压了的消息在MQ中，所以需要快速的处理之前已经挤压了的消息。<br>解决方案：可以将原由的消费者进行修改，不再直接对数据库进行操作，只对MQ的数据进行并将处理得到的数据再发给新的partition（可以创建很多来进行过度），然后再由很多消费者进行同时的消费，并写入数据库。这是处理速度就会很快。因为第一次的消费者处理之后并不用写入数据库就可以给MQ反馈已经消费了；后续的消费者继续处理需要消费的数据并不会影响之前的消费者处理的速度。</p>
+<h2 id="35-如果消息队列满了怎么处理？"><a href="#35-如果消息队列满了怎么处理？" class="headerlink" title="35.如果消息队列满了怎么处理？"></a>35.如果消息队列满了怎么处理？</h2><p>类似上述问题：修改消费者消费方式（不直接进行消费，转发给另外的MQ），然后再由其他消费者进行消费。</p>
+<h2 id="36-如果让你开发消息队列中间件，如何来设计？"><a href="#36-如果让你开发消息队列中间件，如何来设计？" class="headerlink" title="36.如果让你开发消息队列中间件，如何来设计？"></a>36.如果让你开发消息队列中间件，如何来设计？</h2><ol>
 <li>考虑mq的伸缩性，就是需要的时候快速扩容，就可以增加吞吐量和容量，那怎么搞？设计个分布式的系统呗，参照一下kafka的设计理念，broker -&gt; topic -&gt; partition，每个partition放一个机器，就存一部分数据。如果现在资源不够了，简单啊，给topic增加partition，然后做数据迁移，增加机器，这样就可以存放更多数据，提供更高的吞吐量了。</li>
-</ol>
-<p>​</p>
-<ol start="2">
 <li>考虑mq数据要不要持久化？需要写入磁盘，这样才能保证挂了之后不会造成数据的丢失。写入时怎么进行写入磁盘？顺序写入，这样既保证了消息的顺序性，还减少了寻址的开销，达到提高性能的目的。</li>
-</ol>
-<p>​</p>
-<ol start="3">
 <li>考虑mq的可用性？参考kafka的高可用的保障机制。多副本–》leader&amp;follwer–》broker挂了重新选举leader即可。</li>
 </ol>
 ]]></content>
@@ -294,7 +274,7 @@
 ---
 title: 面试八股文（一）—— 计算机网络
 date: 2021-09-22 22:22:04
-updated: 2021-09-22 22:22:05
+updated: 2021-09-22 23:24:11
 tags: ['八股文', '计算机网络']
 categories: 
  - 计算机网络
@@ -320,8 +300,7 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>网络层：IP、ARP、NAT、RIP…</li>
 <li>路由器网络层，根据IP地址进行寻址；</li>
 </ul>
-<p>[</p>
-<p>](#%E4%BB%80%E4%B9%88%E6%98%AFNAT-Network-Address-Translation-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2)</p>
+<p><a href="#%E4%BB%80%E4%B9%88%E6%98%AFNAT-Network-Address-Translation-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"></a></p>
 <h1 id="传输层：TCP和UDP"><a href="#传输层：TCP和UDP" class="headerlink" title="传输层：TCP和UDP"></a>传输层：TCP和UDP</h1><h3 id="什么是三次握手-three-way-handshake-？"><a href="#什么是三次握手-three-way-handshake-？" class="headerlink" title="什么是三次握手 (three-way handshake)？"></a>什么是三次握手 (three-way handshake)？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083612400-05353867-b677-449d-bc87-378dc2ac5fbd.png"></p>
 <ul>
 <li>第一次握手：Client将SYN置1，随机产生一个初始序列号seq发送给Server，进入SYN_SENT状态；</li>
@@ -336,7 +315,7 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <h5 id="可以采用四次握手吗？为什么？"><a href="#可以采用四次握手吗？为什么？" class="headerlink" title="可以采用四次握手吗？为什么？"></a>可以采用四次握手吗？为什么？</h5><p>可以。但是会降低传输的效率。<br>四次握手是指：第二次握手：Server只发送ACK和acknowledge number；而Server的SYN和初始序列号在第三次握手时发送；原来协议中的第三次握手变为第四次握手。出于优化目的，四次握手中的二、三可以合并。</p>
 <h5 id="第三次握手中，如果客户端的ACK未送达服务器，会怎样？"><a href="#第三次握手中，如果客户端的ACK未送达服务器，会怎样？" class="headerlink" title="第三次握手中，如果客户端的ACK未送达服务器，会怎样？"></a>第三次握手中，如果客户端的ACK未送达服务器，会怎样？</h5><p>Server端：<br>由于Server没有收到ACK确认，因此会重发之前的SYN+ACK（默认重发五次，之后自动关闭连接进入CLOSED状态），Client收到后会重新传ACK给Server。<br>Client端，两种情况：</p>
 <ol>
-<li>在Server进行超时重发的过程中，如果Client向服务器发送数据，数据头部的ACK是为1的，所以服务器收到数据之后会读取 ACK number，进入 establish 状态</li>
+<li>在Server进行超时重发的过程中，如果Client向服务器发送数据，数据头部的ACK是为1的，所以服务器收到数据之后会读取 ACK number，进入 establish 状态 </li>
 <li>在Server进入CLOSED状态之后，如果Client向服务器发送数据，服务器会以RST包应答。</li>
 </ol>
 <h5 id="如果已经建立了连接，但客户端出现了故障怎么办？"><a href="#如果已经建立了连接，但客户端出现了故障怎么办？" class="headerlink" title="如果已经建立了连接，但客户端出现了故障怎么办？"></a>如果已经建立了连接，但客户端出现了故障怎么办？</h5><p>服务器每收到一次客户端的请求后都会重新复位一个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
@@ -359,9 +338,8 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <h3 id="TCP的拥塞控制是怎么实现的？"><a href="#TCP的拥塞控制是怎么实现的？" class="headerlink" title="TCP的拥塞控制是怎么实现的？"></a>TCP的拥塞控制是怎么实现的？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083709929-6e2bfba1-63ca-4742-a80a-256a93b0f159.png"></p>
 <p>拥塞控制主要由四个算法组成：<strong>慢启动（Slow Start）、拥塞避免（Congestion voidance）、快重传 （Fast Retransmit）、快恢复（Fast Recovery）</strong></p>
 <ol>
-<li>慢启动：刚开始发送数据时，先把拥塞窗口（congestion window）设置为一个最大报文段MSS的数值，每收到一个新的确认报文之后，就把拥塞窗口加1个MSS。这样每经过一个传输轮次（或者说是每经过一个往返时间RTT），拥塞窗口的大小就会加倍</li>
+<li>慢启动：刚开始发送数据时，先把拥塞窗口（congestion window）设置为一个最大报文段MSS的数值，每收到一个新的确认报文之后，就把拥塞窗口加1个MSS。这样每经过一个传输轮次（或者说是每经过一个往返时间RTT），拥塞窗口的大小就会加倍<br><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083774060-71278d40-0b39-4e15-9dd1-22534e2c90d8.png"></li>
 </ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083774060-71278d40-0b39-4e15-9dd1-22534e2c90d8.png"></p>
 <ol start="2">
 <li>拥塞避免：当拥塞窗口的大小达到慢开始门限(slow start threshold)时，开始执行拥塞避免算法，拥塞窗口大小不再指数增加，而是线性增加，即每经过一个传输轮次只增加1MSS.</li>
 </ol>
@@ -373,36 +351,28 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 </ol>
 <p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083866222-2e727029-b6f2-495e-97f2-e4b7b49cd16e.png"></p>
 <ol start="4">
-<li>快恢复：当发送方连续收到三个重复确认时，就把慢开始门限减半，然后执行拥塞避免算法。不执行慢开始算法的原因：因为如果网络出现拥塞的话就不会收到好几个重复的确认，所以发送方认为现在网络可能没有出现拥塞。<br>也有的快重传是把开始时的拥塞窗口cwnd值再增大一点，即等于 ssthresh + 3*MSS 。这样做的理由是：既然发送方收到三个重复的确认，就表明有三个分组已经离开了网络。这三个分组不再消耗网络的资源而是停留在接收方的缓存中。可见现在网络中减少了三个分组。因此可以适当把拥塞窗口扩大些。</li>
+<li>快恢复：当发送方连续收到三个重复确认时，就把慢开始门限减半，然后执行拥塞避免算法。不执行慢开始算法的原因：因为如果网络出现拥塞的话就不会收到好几个重复的确认，所以发送方认为现在网络可能没有出现拥塞。<br>也有的快重传是把开始时的拥塞窗口cwnd值再增大一点，即等于 ssthresh + 3*MSS 。这样做的理由是：既然发送方收到三个重复的确认，就表明有三个分组已经离开了网络。这三个分组不再消耗网络的资源而是停留在接收方的缓存中。可见现在网络中减少了三个分组。因此可以适当把拥塞窗口扩大些。<h3 id="TCP如何最大利用带宽？"><a href="#TCP如何最大利用带宽？" class="headerlink" title="TCP如何最大利用带宽？"></a>TCP如何最大利用带宽？</h3>TCP速率受到三个因素影响</li>
 </ol>
-<h3 id="TCP如何最大利用带宽？"><a href="#TCP如何最大利用带宽？" class="headerlink" title="TCP如何最大利用带宽？"></a>TCP如何最大利用带宽？</h3><p>TCP速率受到三个因素影响</p>
 <ul>
 <li>窗口：即滑动窗口大小，见<a href="#TCP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6">TCP如何实现流量控制？</a></li>
 <li>带宽：这里带宽是指单位时间内从发送端到接收端所能通过的“最高数据率”，是一种硬件限制。TCP发送端和接收端的数据传输数不可能超过两点间的带宽限制。发送端和接收端之间带宽取所通过线路的带宽最小值（如通过互联网连接）。</li>
 <li>RTT：即Round Trip Time，表示从发送端到接收端的一去一回需要的时间，TCP在数据传输过程中会对RTT进行采样（即对发送的数据包及其ACK的时间差进行测量，并根据测量值更新RTT值），TCP根据得到的RTT值更新RTO值，即Retransmission TimeOut，就是重传间隔，发送端对每个发出的数据包进行计时，如果在RTO时间内没有收到所发出的数据包的对应ACK，则任务数据包丢失，将重传数据。一般RTO值都比采样得到的RTT值要大。</li>
 </ul>
-<p>带宽时延乘积=带宽*RTT，实际上等于发送端到接收端单向通道的数据容积的两倍，这里单向通道的数据容积可以这样来理解，单向通道看成是一条单行道马路，带宽就是马路的车道数，路上跑的汽车就是数据（不过这里所有汽车的速率都是一样的，且不会有人想超车，大家齐头并进），那么单向通道的数据容积就是这条单行道上摆满车，一共可以摆多少辆。带宽就是马路的车道数，带宽数乘以单向通道的数据容积就是路面上所能容纳的全部数据量。当路面上已经摆满的时候，就不能再往里面放了。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084389045-9ba4652e-2456-424e-b530-bd95b496004d.png"></p>
+<p>带宽时延乘积=带宽*RTT，实际上等于发送端到接收端单向通道的数据容积的两倍，这里单向通道的数据容积可以这样来理解，单向通道看成是一条单行道马路，带宽就是马路的车道数，路上跑的汽车就是数据（不过这里所有汽车的速率都是一样的，且不会有人想超车，大家齐头并进），那么单向通道的数据容积就是这条单行道上摆满车，一共可以摆多少辆。带宽就是马路的车道数，带宽数乘以单向通道的数据容积就是路面上所能容纳的全部数据量。当路面上已经摆满的时候，就不能再往里面放了。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084389045-9ba4652e-2456-424e-b530-bd95b496004d.png"></p>
 <h3 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h3><ol>
 <li>TCP是面向连接的，UDP是无连接的；</li>
-</ol>
-<p>UDP发送数据之前不需要建立连接</p>
-<ol start="2">
-<li>TCP是可靠的，UDP不可靠；</li>
-</ol>
-<p>UDP接收方收到报文后，不需要给出任何确认</p>
-<ol start="3">
+<li>UDP发送数据之前不需要建立连接</li>
+<li>TCP是可靠的，UDP不可靠； </li>
+<li>UDP接收方收到报文后，不需要给出任何确认</li>
 <li>TCP只支持点对点通信，UDP支持一对一、一对多、多对一、多对多；</li>
-<li>TCP是面向字节流的，UDP是面向报文的；</li>
-</ol>
-<p>面向字节流是指发送数据时以字节为单位，一个数据包可以拆分成若干组进行发送，而UDP一个报文只能一次发完。</p>
-<ol start="5">
+<li>TCP是面向字节流的，UDP是面向报文的； </li>
+<li>面向字节流是指发送数据时以字节为单位，一个数据包可以拆分成若干组进行发送，而UDP一个报文只能一次发完。</li>
 <li>TCP有拥塞控制机制，UDP没有。网络出现的拥塞不会使源主机的发送速率降低，这对某些实时应用是很重要的，比如媒体通信，游戏；</li>
 <li>TCP首部开销（20字节）比UDP首部开销（8字节）要大</li>
 <li>UDP 的主机不需要维持复杂的连接状态表</li>
 </ol>
 <h5 id="什么时候选择TCP，什么时候选UDP？"><a href="#什么时候选择TCP，什么时候选UDP？" class="headerlink" title="什么时候选择TCP，什么时候选UDP？"></a>什么时候选择TCP，什么时候选UDP？</h5><h5 id="HTTP可以使用UDP吗？"><a href="#HTTP可以使用UDP吗？" class="headerlink" title="HTTP可以使用UDP吗？"></a>HTTP可以使用UDP吗？</h5><p>注：<strong>http 3.0 使用udp实现</strong><br><a href="https://zh.wikipedia.org/wiki/HTTP/3">https://zh.wikipedia.org/wiki/HTTP/3</a></p>
-<h5 id="面向连接和无连接的区别"><a href="#面向连接和无连接的区别" class="headerlink" title="面向连接和无连接的区别"></a>面向连接和无连接的区别</h5><p>无连接的网络服务（数据报服务）– 面向连接的网络服务（虚电路服务）<br>虚电路服务：首先建立连接，所有的数据包经过相同的路径，服务质量有较好的保证；<br>数据报服务：每个数据包含目的地址，数据路由相互独立（路径可能变化）；网络尽最大努力交付数据，但不保证不丢失、不保证先后顺序、不保证在时限内交付；网络发生拥塞时，可能会将一些分组丢弃；<br>​</p>
+<h5 id="面向连接和无连接的区别"><a href="#面向连接和无连接的区别" class="headerlink" title="面向连接和无连接的区别"></a>面向连接和无连接的区别</h5><p>无连接的网络服务（数据报服务）– 面向连接的网络服务（虚电路服务）<br>虚电路服务：首先建立连接，所有的数据包经过相同的路径，服务质量有较好的保证；<br>数据报服务：每个数据包含目的地址，数据路由相互独立（路径可能变化）；网络尽最大努力交付数据，但不保证不丢失、不保证先后顺序、不保证在时限内交付；网络发生拥塞时，可能会将一些分组丢弃；</p>
 <p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084520127-fb51536c-1fee-4fa4-a450-684dab556f9e.png#height=494&id=HncLV&originHeight=659&originWidth=769&originalType=binary&ratio=1&status=done&style=none&width=577"></p>
 <h3 id="TCP如何保证传输的可靠性"><a href="#TCP如何保证传输的可靠性" class="headerlink" title="TCP如何保证传输的可靠性"></a>TCP如何保证传输的可靠性</h3><ol>
 <li>数据包校验</li>
@@ -445,8 +415,7 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>GET只允许ASCII字符，POST对数据类型没有要求，也允许二进制数据；</li>
 <li>GET的长度有限制（操作系统或者浏览器），而POST数据大小无限制</li>
 </ol>
-<h3 id="Session与Cookie的区别？"><a href="#Session与Cookie的区别？" class="headerlink" title="Session与Cookie的区别？"></a>Session与Cookie的区别？</h3><p>Session是服务器端保持状态的方案，Cookie是客户端保持状态的方案</p>
-<p>Cookie保存在客户端本地，客户端请求服务器时会将Cookie一起提交；Session保存在服务端，通过检索Sessionid查看状态。保存Sessionid的方式可以采用Cookie，如果禁用了Cookie，可以使用URL重写机制（把会话ID保存在URL中）。</p>
+<h3 id="Session与Cookie的区别？"><a href="#Session与Cookie的区别？" class="headerlink" title="Session与Cookie的区别？"></a>Session与Cookie的区别？</h3><p>Session是服务器端保持状态的方案，Cookie是客户端保持状态的方案<br>Cookie保存在客户端本地，客户端请求服务器时会将Cookie一起提交；Session保存在服务端，通过检索Sessionid查看状态。保存Sessionid的方式可以采用Cookie，如果禁用了Cookie，可以使用URL重写机制（把会话ID保存在URL中）。</p>
 <h3 id="从输入网址到获得页面的过程-越详细越好-？"><a href="#从输入网址到获得页面的过程-越详细越好-？" class="headerlink" title="从输入网址到获得页面的过程 (越详细越好)？"></a>从输入网址到获得页面的过程 (越详细越好)？</h3><ol>
 <li>浏览器查询 DNS，获取域名对应的IP地址:具体过程包括浏览器搜索自身的DNS缓存、搜索操作系统的DNS缓存、读取本地的Host文件和向本地DNS服务器进行查询等。对于向本地DNS服务器进行查询，如果要查询的域名包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析(此解析具有权威性)；如果要查询的域名不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析（此解析不具有权威性）。如果本地域名服务器并未缓存该网址映射关系，那么将根据其设置发起递归查询或者迭代查询；</li>
 <li>浏览器获得域名对应的IP地址以后，浏览器向服务器请求建立链接，发起三次握手；</li>
@@ -480,16 +449,29 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 ]]></content>
   </entry>
   <entry>
-    <title>面试八股文（三）—— 数据库</title>
+    <title></title>
     <url>/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h1 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h1><h3 id="事务的概念和特性？"><a href="#事务的概念和特性？" class="headerlink" title="事务的概念和特性？"></a>事务的概念和特性？</h3><p>概念：事务（Transaction）是一个操作序列，不可分割的工作单位，以BEGIN TRANSACTION开始，以ROLLBACK/COMMIT结束</p>
-<p>特性（ACID）：</p>
-<ul>
-<li><strong>原子性</strong>（Atomicity）：逻辑上是不可分割的操作单元，事务的所有操作要么全部提交成功，要么全部失败回滚（用回滚日志实现，反向执行日志中的操作）；</li>
-<li><strong>一致性</strong>（Consistency）：事务的执行必须使数据库保持一致性状态。在一致性状态下，所有事务对一个数据的读取结果都是相同的；</li>
-<li><strong>隔离性</strong>（Isolation）：一个事务所做的修改在最终提交以前，对其它事务是不可见的（并发执行的事务之间不能相互影响）；</li>
-<li><strong>持久性</strong>（Durability）：一旦事务提交成功，对数据的修改是永久性的</li>
-</ul>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+---
+title: 面试八股文（三）—— 数据库
+date: 2021-09-22 22:48:25
+updated: 2021-09-22 23:24:26
+tags: ['八股文', '数据库', 'MySQL', 'NoSQL']
+categories:
+ - 八股文
+ - 数据库
+ - NoSQL
+description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第三篇，也是基础篇之三——计算机网络相关的常见问题。如果文章中有看不懂的知识点，强力推荐极客时间的MySQL45讲相关课程，讲的巨清晰无比。
+---
+# 数据库基础
+### 事务的概念和特性？
+概念：事务（Transaction）是一个操作序列，不可分割的工作单位，以BEGIN TRANSACTION开始，以ROLLBACK/COMMIT结束
+特性（ACID）：
+- **原子性**（Atomicity）：逻辑上是不可分割的操作单元，事务的所有操作要么全部提交成功，要么全部失败回滚（用回滚日志实现，反向执行日志中的操作）；
+- **一致性**（Consistency）：事务的执行必须使数据库保持一致性状态。在一致性状态下，所有事务对一个数据的读取结果都是相同的；
+- **隔离性**（Isolation）：一个事务所做的修改在最终提交以前，对其它事务是不可见的（并发执行的事务之间不能相互影响）；
+- **持久性**（Durability）：一旦事务提交成功，对数据的修改是永久性的
+
 <h3 id="会出现哪些并发一致性问题？"><a href="#会出现哪些并发一致性问题？" class="headerlink" title="会出现哪些并发一致性问题？"></a>会出现哪些并发一致性问题？</h3><ul>
 <li><strong>丢失修改</strong>：一个事务对数据进行了修改，在事务提交之前，另一个事务对同一个数据进行了修改，覆盖了之前的修改；</li>
 <li><strong>脏读</strong>（Dirty Read）：一个事务读取了被另一个事务修改、但未提交（进行了回滚）的数据，造成两个事务得到的数据不一致；</li>
@@ -530,7 +512,6 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT ... LOCK In SHARE MODE;</span><br><span class="line">SELECT ... FOR UPDATE;</span><br></pre></td></tr></table></figure>
 
-
 <h3 id="什么是三级封锁协议？"><a href="#什么是三级封锁协议？" class="headerlink" title="什么是三级封锁协议？"></a>什么是三级封锁协议？</h3><ul>
 <li>一级封锁协议：事务在修改数据之前必须先对其加X锁，直到事务结束才释放。可以解决丢失修改问题（两个事务不能同时对一个数据加X锁，避免了修改被覆盖）；</li>
 <li>二级封锁协议：在一级的基础上，事务在读取数据之前必须先加S锁，读完后释放。可以解决脏读问题（如果已经有事务在修改数据，就意味着已经加了X锁，此时想要读取数据的事务并不能加S锁，也就无法进行读取，避免了读取脏数据）；</li>
@@ -556,28 +537,30 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <p>当前读读取的是最新的数据，需要加锁。以下第一个语句需要加 S 锁，其它都需要加 X 锁：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from table where ? lock in share mode;</span><br><span class="line">select * from table where ? for update;</span><br><span class="line">insert;</span><br><span class="line">update;</span><br><span class="line">delete;</span><br></pre></td></tr></table></figure>
 
-
 <h3 id="数据库的范式？"><a href="#数据库的范式？" class="headerlink" title="数据库的范式？"></a>数据库的范式？</h3><ul>
-<li><strong>第一范式</strong>（1NF，Normal Form）：<strong>属性不应该是可分的</strong>。举例：如果将“电话”作为一个属性（一列），是不符合1NF的，因为电话这个属性可以分解为家庭电话和移动电话…如果将“移动电话”作为一个属性，就符合1NF；</li>
-<li><strong>第二范式</strong> 2NF：每个非主属性<strong>完全依赖</strong>于主属性集（候选键集）；<ul>
+<li><p><strong>第一范式</strong>（1NF，Normal Form）：<strong>属性不应该是可分的</strong>。举例：如果将“电话”作为一个属性（一列），是不符合1NF的，因为电话这个属性可以分解为家庭电话和移动电话…如果将“移动电话”作为一个属性，就符合1NF；</p>
+</li>
+<li><p><strong>第二范式</strong> 2NF：每个非主属性<strong>完全依赖</strong>于主属性集（候选键集）；</p>
+<ul>
 <li>B完全依赖于A，就是说A中的所有属性唯一决定B，属性少了就不能唯一决定，属性多了则有冗余（叫依赖不叫完全依赖）。举例：（学号，课程名）这个主属性集可以唯一决定成绩，但是对于学生姓名这个属性，（学号，课程名）这个属性集就是冗余的，所以学生姓名不完全依赖于（学号，课程名）这一属性集；</li>
 <li>主属性集/候选码集：某一组属性能够唯一确定其它的属性（主键就是从候选键集中选的一个键），而其子集不能，这样的属性组中的属性就是主属性；不在候选码集中的属性成为非主属性；</li>
 <li>可以通过分解来满足 2NF：将（学号，课程名，成绩）做成一张表；（学号，学生姓名）做成另一张表，避免大量的数据冗余；<br>满足1NF后，要求表中的所有列，都必须依赖于主键，而不能有任何一列与主键没有关系，也就是说一个表只描述一件事情；</li>
 </ul>
 </li>
-</ul>
+<li><p><strong>第三范式</strong> 3NF：在 2NF 的基础上，非主属性<strong>不传递依赖</strong>于主属性</p>
 <ul>
-<li><strong>第三范式</strong> 3NF：在 2NF 的基础上，非主属性<strong>不传递依赖</strong>于主属性<ul>
 <li>传递依赖：如果C依赖于B，B依赖于A，那么C传递依赖于A；</li>
 <li>3NF在2NF的基础上，消除了非主属性之间的依赖；比如一个表中，主属性有（学号），非主属性有（姓名，院系，院长名），可以看到院长名这个非主属性依赖于院系，传递依赖于学号。消除的办法是分解。<br>必须先满足第二范式（2NF），要求：表中的每一列只与主键直接相关而不是间接相关，（表中的每一列只能依赖于主键）；</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>冗余数据：某些同样的数据多次出现（如学生姓名）；</li>
-<li>修改异常：修改了一个记录中的信息，另一个记录中相同的信息却没有修改；</li>
-<li>删除异常：删除一个信息，那么也会丢失其它信息（删除一个课程，丢失了一个学生的信息）；</li>
-<li>插入异常：无法插入（插入一个还没有课程信息的学生）</li>
+<li><p>冗余数据：某些同样的数据多次出现（如学生姓名）；</p>
+</li>
+<li><p>修改异常：修改了一个记录中的信息，另一个记录中相同的信息却没有修改；</p>
+</li>
+<li><p>删除异常：删除一个信息，那么也会丢失其它信息（删除一个课程，丢失了一个学生的信息）；</p>
+</li>
+<li><p>插入异常：无法插入（插入一个还没有课程信息的学生）</p>
+</li>
 </ul>
 <h3 id="列举几种表连接方式？"><a href="#列举几种表连接方式？" class="headerlink" title="列举几种表连接方式？"></a>列举几种表连接方式？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628085012977-cccccdf6-0f16-4343-8cd4-68631fb6b78a.png"></p>
 <ul>
@@ -598,8 +581,7 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <ul>
 <li>交叉连接（Cross Join）：返回两表的笛卡尔积（对于所含数据分别为m、n的表，返回m*n的结果）</li>
 </ul>
-<h3 id="什么是存储过程？有哪些优缺点？"><a href="#什么是存储过程？有哪些优缺点？" class="headerlink" title="什么是存储过程？有哪些优缺点？"></a>什么是存储过程？有哪些优缺点？</h3><p>存储过程是事先经过编译并存储在数据库中的一段SQL语句的集合。想要实现相应的功能时，只需要调用这个存储过程就行了（类似于函数，输入具有输出参数）。</p>
-<p>优点：</p>
+<h3 id="什么是存储过程？有哪些优缺点？"><a href="#什么是存储过程？有哪些优缺点？" class="headerlink" title="什么是存储过程？有哪些优缺点？"></a>什么是存储过程？有哪些优缺点？</h3><p>存储过程是事先经过编译并存储在数据库中的一段SQL语句的集合。想要实现相应的功能时，只需要调用这个存储过程就行了（类似于函数，输入具有输出参数）。<br>优点：</p>
 <ul>
 <li>预先编译，而不需要每次运行时编译，提高了数据库执行<strong>效率</strong>；</li>
 <li>封装了一系列操作，对于一些数据交互比较多的操作，相比于单独执行SQL语句，可以<strong>减少网络通信量</strong>；</li>
@@ -626,11 +608,9 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li><strong>简化</strong>复杂的SQL操作，隐藏数据的复杂性（比如复杂的连接）；</li>
 </ul>
 </li>
+<li>游标（Cursor）：用于定位在查询返回的<strong>结果集的特定行</strong>，以对特定行进行操作。使用游标可以方便地对结果集进行移动遍历，根据需要滚动或对浏览/修改任意行中的数据。主要用于交互式应用。<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="数据库索引的实现原理（B-树）"><a href="#数据库索引的实现原理（B-树）" class="headerlink" title="数据库索引的实现原理（B+树）"></a>数据库索引的实现原理（B+树）</h3></li>
 </ul>
-<ul>
-<li>游标（Cursor）：用于定位在查询返回的<strong>结果集的特定行</strong>，以对特定行进行操作。使用游标可以方便地对结果集进行移动遍历，根据需要滚动或对浏览/修改任意行中的数据。主要用于交互式应用。<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1></li>
-</ul>
-<h3 id="数据库索引的实现原理（B-树）"><a href="#数据库索引的实现原理（B-树）" class="headerlink" title="数据库索引的实现原理（B+树）"></a>数据库索引的实现原理（B+树）</h3><p>见<a href="https://github.com/wolverinn/Iridescent/blob/master/Data%20Structure.md#b%E6%A0%91">数据结构部分：B树，B+树</a></p>
+<p>见<a href="https://github.com/wolverinn/Iridescent/blob/master/Data%20Structure.md#b%E6%A0%91">数据结构部分：B树，B+树</a></p>
 <h5 id="使用B树和B-树的比较"><a href="#使用B树和B-树的比较" class="headerlink" title="使用B树和B+树的比较"></a>使用B树和B+树的比较</h5><p>InnoDB的索引使用的是B+树实现，B+树对比B树的好处：</p>
 <ul>
 <li>IO次数少：B+树的中间结点只存放索引，数据都存在叶结点中，因此中间结点可以存更多的数据，让索引树更加矮胖；</li>
@@ -674,20 +654,26 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>虚拟索引（Virtual）：模拟索引的存在而不用真正创建一个索引，用于快速测试创建索引对执行计划的影响。没有相关的索引段，不增加存储空间的使用</li>
 </ul>
 <h3 id="MySQL的两种存储引擎-InnoDB-和-MyISAM-的区别？"><a href="#MySQL的两种存储引擎-InnoDB-和-MyISAM-的区别？" class="headerlink" title="MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？"></a>MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？</h3><ul>
-<li>InnoDB<strong>支持事务</strong>，可以进行Commit和Rollback；</li>
-<li>MyISAM 只支持表级锁，而 InnoDB 还<strong>支持行级锁</strong>，提高了并发操作的性能；</li>
-<li>InnoDB <strong>支持外键</strong>；</li>
-<li>MyISAM <strong>崩溃</strong>后发生损坏的概率比 InnoDB 高很多，而且<strong>恢复的速度</strong>也更慢；</li>
-<li>MyISAM 支持<strong>压缩</strong>表和空间数据索引，InnoDB需要更多的内存和存储；</li>
-<li>InnoDB 支持在线<strong>热备份</strong></li>
-</ul>
-<ul>
-<li><strong>MyISAM</strong> 管理非事务表。它提供高速存储和检索（MyISAM强调的是性能，每次查询具有原子性，其执行速度比InnoDB更快），以及全文搜索能力。如果表比较小，或者是只读数据（有大量的SELECT），还是可以使用MyISAM；</li>
-<li><strong>InnoDB</strong> 支持事务，并发情况下有很好的性能，基本可以替代MyISAM</li>
-</ul>
-<ul>
-<li>热备份：在数据库运行的情况下备份的方法。优点：可按表或用户备份，备份时数据库仍可使用，可恢复至任一时间点。但是不能出错</li>
-<li>冷备份：数据库正常关闭后，将关键性文件复制到另一位置的备份方式。优点：操作简单快速，恢复简单</li>
+<li><p>InnoDB<strong>支持事务</strong>，可以进行Commit和Rollback；</p>
+</li>
+<li><p>MyISAM 只支持表级锁，而 InnoDB 还<strong>支持行级锁</strong>，提高了并发操作的性能；</p>
+</li>
+<li><p>InnoDB <strong>支持外键</strong>；</p>
+</li>
+<li><p>MyISAM <strong>崩溃</strong>后发生损坏的概率比 InnoDB 高很多，而且<strong>恢复的速度</strong>也更慢；</p>
+</li>
+<li><p>MyISAM 支持<strong>压缩</strong>表和空间数据索引，InnoDB需要更多的内存和存储；</p>
+</li>
+<li><p>InnoDB 支持在线<strong>热备份</strong></p>
+</li>
+<li><p><strong>MyISAM</strong> 管理非事务表。它提供高速存储和检索（MyISAM强调的是性能，每次查询具有原子性，其执行速度比InnoDB更快），以及全文搜索能力。如果表比较小，或者是只读数据（有大量的SELECT），还是可以使用MyISAM；</p>
+</li>
+<li><p><strong>InnoDB</strong> 支持事务，并发情况下有很好的性能，基本可以替代MyISAM</p>
+</li>
+<li><p>热备份：在数据库运行的情况下备份的方法。优点：可按表或用户备份，备份时数据库仍可使用，可恢复至任一时间点。但是不能出错</p>
+</li>
+<li><p>冷备份：数据库正常关闭后，将关键性文件复制到另一位置的备份方式。优点：操作简单快速，恢复简单</p>
+</li>
 </ul>
 <p>更详细的可以参考：<a href="https://imageslr.github.io/2020/db-engine.html">MySQL 数据库的存储引擎与适用场景 - Images</a></p>
 <h3 id="如何优化数据库？"><a href="#如何优化数据库？" class="headerlink" title="如何优化数据库？"></a>如何优化数据库？</h3><blockquote>
@@ -709,19 +695,24 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 </ul>
 <p>注意会引起索引失效的情况，以及在适合的地方建立索引</p>
 <ul>
-<li>设计表时遵循<strong>三大范式</strong>；</li>
-<li>选择合适的<strong>数据类型</strong>：尽可能不要存储NULL字段；使用简单的数据类型（int, varchar/ text）；</li>
-<li>表的<strong>水平切分</strong>（Sharding）：将同一个表中的记录拆分到多个结构相同的表中（策略：哈希取模；根据ID范围来分）。当一个表的数据不断增多时，Sharding 是必然的选择，它可以将数据分布到集群的不同节点上，从而缓解单个数据库的压力；</li>
-<li>表的<strong>垂直切分</strong>：将一张表按列切分成多个表。可以将不常用的字段单独放在同一个表中；把大字段独立放入一个表中；或者把经常使用的字段（关系密切的）放在一张表中。垂直切分之后业务更加清晰，系统之间整合或扩展容易，数据维护简单</li>
-</ul>
-<ul>
-<li>操作系统：增加TCP支持的队列数；</li>
-<li>MySQL配置文件优化：缓存池大小和个数设置</li>
-</ul>
-<ul>
-<li>磁盘性能：固态硬盘；</li>
-<li>CPU：多核且高频；</li>
-<li>内存：增大内存</li>
+<li><p>设计表时遵循<strong>三大范式</strong>；</p>
+</li>
+<li><p>选择合适的<strong>数据类型</strong>：尽可能不要存储NULL字段；使用简单的数据类型（int, varchar/ text）；</p>
+</li>
+<li><p>表的<strong>水平切分</strong>（Sharding）：将同一个表中的记录拆分到多个结构相同的表中（策略：哈希取模；根据ID范围来分）。当一个表的数据不断增多时，Sharding 是必然的选择，它可以将数据分布到集群的不同节点上，从而缓解单个数据库的压力；</p>
+</li>
+<li><p>表的<strong>垂直切分</strong>：将一张表按列切分成多个表。可以将不常用的字段单独放在同一个表中；把大字段独立放入一个表中；或者把经常使用的字段（关系密切的）放在一张表中。垂直切分之后业务更加清晰，系统之间整合或扩展容易，数据维护简单</p>
+</li>
+<li><p>操作系统：增加TCP支持的队列数；</p>
+</li>
+<li><p>MySQL配置文件优化：缓存池大小和个数设置</p>
+</li>
+<li><p>磁盘性能：固态硬盘；</p>
+</li>
+<li><p>CPU：多核且高频；</p>
+</li>
+<li><p>内存：增大内存</p>
+</li>
 </ul>
 <h3 id="什么是主从复制？实现原理是什么？"><a href="#什么是主从复制？实现原理是什么？" class="headerlink" title="什么是主从复制？实现原理是什么？"></a>什么是主从复制？实现原理是什么？</h3><p>主从复制（Replication）是指数据可以从一个MySQL数据库主服务器复制到一个或多个从服务器，从服务器可以复制主服务器中的所有数据库或者特定的数据库，或者特定的表。默认采用异步模式。</p>
 <p>实现原理：</p>
@@ -737,8 +728,6 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>增加冗余，提高可用性</li>
 </ul>
 </li>
-</ul>
-<ul>
 <li>数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换</li>
 <li>降低单个服务器磁盘I/O访问的频率，提高单个机器的I/O性能</li>
 </ul>
@@ -751,30 +740,31 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 </ul>
 <p>文章内容搬运自本人<a href="https://www.yuque.com/docs/share/c6097254-4f08-4d0f-b9c0-550c9274e6be">语雀</a></p>
 ]]></content>
-      <categories>
-        <category>八股文</category>
-        <category>数据库</category>
-        <category>NoSQL</category>
-      </categories>
-      <tags>
-        <tag>八股文</tag>
-        <tag>数据库</tag>
-        <tag>MySQL</tag>
-        <tag>NoSQL</tag>
-      </tags>
   </entry>
   <entry>
-    <title>面试八股文（二）—— 操作系统</title>
+    <title></title>
     <url>/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><h3 id="进程和线程有什么区别？"><a href="#进程和线程有什么区别？" class="headerlink" title="进程和线程有什么区别？"></a>进程和线程有什么区别？</h3><ul>
-<li>进程（Process）是系统进行资源分配和调度的基本单位，线程（Thread）是CPU调度和分派的基本单位；</li>
-<li>线程依赖于进程而存在，一个进程至少有一个线程；</li>
-<li>进程有自己的独立地址空间，线程共享所属进程的地址空间；</li>
-<li>进程是拥有系统资源的一个独立单位，而线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈)，和其他线程共享本进程的相关资源如内存、I/O、cpu等；</li>
-<li>在进程切换时，涉及到整个当前进程CPU环境的保存环境的设置以及新被调度运行的CPU环境的设置，而线程切换只需保存和设置少量的寄存器的内容，并不涉及存储器管理方面的操作，可见，进程切换的开销远大于线程切换的开销；</li>
-<li>线程之间的通信更方便，同一进程下的线程共享全局变量等数据，而进程之间的通信需要以进程间通信(IPC)的方式进行；</li>
-<li>多线程程序只要有一个线程崩溃，整个程序就崩溃了，但多进程程序中一个进程崩溃并不会对其它进程造成影响，因为进程有自己的独立地址空间，因此多进程更加健壮</li>
-</ul>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+---
+title: 面试八股文（二）—— 操作系统
+date: 2021-09-22 22:43:42
+updated: 2021-09-22 23:24:33
+tags: ['八股文', '操作系统']
+categories:
+ - 八股文
+ - 操作系统
+description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第二篇，也是基础篇之二——操作系统相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的OS相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《现代操作系统》。
+---
+# 进程和线程
+### 进程和线程有什么区别？
+- 进程（Process）是系统进行资源分配和调度的基本单位，线程（Thread）是CPU调度和分派的基本单位；
+- 线程依赖于进程而存在，一个进程至少有一个线程；
+- 进程有自己的独立地址空间，线程共享所属进程的地址空间；
+- 进程是拥有系统资源的一个独立单位，而线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈)，和其他线程共享本进程的相关资源如内存、I/O、cpu等；
+- 在进程切换时，涉及到整个当前进程CPU环境的保存环境的设置以及新被调度运行的CPU环境的设置，而线程切换只需保存和设置少量的寄存器的内容，并不涉及存储器管理方面的操作，可见，进程切换的开销远大于线程切换的开销；
+- 线程之间的通信更方便，同一进程下的线程共享全局变量等数据，而进程之间的通信需要以进程间通信(IPC)的方式进行；
+- 多线程程序只要有一个线程崩溃，整个程序就崩溃了，但多进程程序中一个进程崩溃并不会对其它进程造成影响，因为进程有自己的独立地址空间，因此多进程更加健壮
+
 <p>进程操作代码实现，可以参考：<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017628290184064">多进程 - 廖雪峰的官方网站</a></p>
 <h5 id="同一进程中的线程可以共享哪些数据？"><a href="#同一进程中的线程可以共享哪些数据？" class="headerlink" title="同一进程中的线程可以共享哪些数据？"></a>同一进程中的线程可以共享哪些数据？</h5><ul>
 <li>进程代码段</li>
@@ -807,7 +797,7 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>信号量(Semaphore)：初始化操作、P操作、V操作；P操作：信号量-1，检测是否小于0，小于则进程进入阻塞状态；V操作：信号量+1，若小于等于0，则从队列中唤醒一个等待的进程进入就绪态</li>
 <li>套接字(Socket)</li>
 </ol>
-<p>更详细的可以参考（待整理）：</p>
+<p>更详细的可以参考：</p>
 <ul>
 <li><a href="https://imageslr.github.io/2020/02/26/ipc.html">https://imageslr.github.io/2020/02/26/ipc.html</a></li>
 <li><a href="https://www.jianshu.com/p/c1015f5ffa74">https://www.jianshu.com/p/c1015f5ffa74</a></li>
@@ -829,9 +819,6 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <p>代码实现：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 5  <span class="comment">// number of philosopher</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEFT (i + N - 1)%N <span class="comment">// number of i&#x27;s left neighbors</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RIGHT (i + 1)%N <span class="comment">// number of i&#x27;s right neighbors</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> THINKING 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HUNGRY 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EATING 2</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphore;</span><br><span class="line"><span class="keyword">int</span> state[N]; <span class="comment">// array to keep track of everyone&#x27;s state</span></span><br><span class="line">semaphore mutex = <span class="number">1</span>; <span class="comment">// mutual exclusion of critical region</span></span><br><span class="line">semaphore s[N]; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">philosopher</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (TRUE) &#123;</span><br><span class="line">		think();</span><br><span class="line">		take_forks(i);</span><br><span class="line">		eat();</span><br><span class="line">		put_forks(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">take_forks</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	down(&amp;mutex); <span class="comment">// enter critical region</span></span><br><span class="line">	state[i] = HUNGRY; <span class="comment">// record that i is hungry</span></span><br><span class="line">	test_forks(i); <span class="comment">// try to acquire two forks</span></span><br><span class="line">	up(&amp;mutex); <span class="comment">// exit critical region</span></span><br><span class="line">	down(&amp;s[i]); <span class="comment">// block if forks are not acquired</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">put_forks</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	down(&amp;mutex); <span class="comment">// enter critical region</span></span><br><span class="line">	state[i] = THINKING; <span class="comment">// record that has finished eating</span></span><br><span class="line">	test_forks(LEFT); <span class="comment">// see if left neighbor can now eat</span></span><br><span class="line">	test_forks(RIGHT); <span class="comment">// see if right neighbor can now eat</span></span><br><span class="line">	up(&amp;mutex); <span class="comment">// exit critical region</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_forks</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (state[i] == HUNGRY &amp;&amp; state[LEFT] != EATING &amp;&amp; state[RIGHT] != EATING) &#123;</span><br><span class="line">		state[i] = EATING;</span><br><span class="line">		up(&amp;s[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
 <h5 id="临界区的概念？"><a href="#临界区的概念？" class="headerlink" title="临界区的概念？"></a>临界区的概念？</h5><p>各个进程中对临界资源（互斥资源/共享变量，一次只能给一个进程使用）进行操作的程序片段</p>
 <h5 id="同步与互斥的概念？"><a href="#同步与互斥的概念？" class="headerlink" title="同步与互斥的概念？"></a>同步与互斥的概念？</h5><ul>
 <li>同步：多个进程因为合作而使得进程的执行有一定的先后顺序。比如某个进程需要另一个进程提供的消息，获得消息之前进入阻塞态；</li>
@@ -845,9 +832,8 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>阻塞状态： 进程等待某种条件，在条件满足之前无法执行</li>
 </ul>
 <h3 id="进程调度策略有哪些？"><a href="#进程调度策略有哪些？" class="headerlink" title="进程调度策略有哪些？"></a>进程调度策略有哪些？</h3><ol>
-<li><strong>批处理系统</strong>：</li>
+<li><strong>批处理系统</strong>：<br>按照请求的顺序进行调度。非抢占式，开销小，无饥饿问题，响应时间不确定（可能很慢）；<br>对短进程不利，对IO密集型进程不利。</li>
 </ol>
-<p>按照请求的顺序进行调度。非抢占式，开销小，无饥饿问题，响应时间不确定（可能很慢）；<br>对短进程不利，对IO密集型进程不利。</p>
 <p>按估计运行时间最短的顺序进行调度。非抢占式，吞吐量高，开销可能较大，可能导致饥饿问题；<br>对短进程提供好的响应时间，对长进程不利。</p>
 <p>按剩余运行时间的顺序进行调度。(最短作业优先的抢占式版本)。吞吐量高，开销可能较大，提供好的响应时间；<br>可能导致饥饿问题，对长进程不利。</p>
 <p>响应比 = 1+ 等待时间/处理时间。同时考虑了等待时间的长短和估计需要的执行时间长短，很好的平衡了长短进程。非抢占，吞吐量高，开销可能较大，提供好的响应时间，无饥饿问题。</p>
@@ -884,9 +870,9 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <h5 id="互斥量和临界区有什么区别？"><a href="#互斥量和临界区有什么区别？" class="headerlink" title="互斥量和临界区有什么区别？"></a>互斥量和临界区有什么区别？</h5><p>互斥量是可以命名的，可以用于不同进程之间的同步；而临界区只能用于同一进程中线程的同步。创建互斥量需要的资源更多，因此临界区的优势是速度快，节省资源。</p>
 <h3 id="什么是协程？"><a href="#什么是协程？" class="headerlink" title="什么是协程？"></a>什么是协程？</h3><p>协程是一种用户态的轻量级线程，协程的调度完全由用户控制。协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈，直接操作栈则基本没有内核切换的开销，可以不加锁的访问全局变量，所以上下文的切换非常快。</p>
 <h5 id="协程多与线程进行比较？"><a href="#协程多与线程进行比较？" class="headerlink" title="协程多与线程进行比较？"></a>协程多与线程进行比较？</h5><ol>
-<li> 一个线程可以拥有多个协程，一个进程也可以单独拥有多个协程，这样python中则能使用多核CPU。</li>
-<li> 线程进程都是同步机制，而协程则是异步</li>
-<li> 协程能保留上一次调用时的状态，每次过程重入时，就相当于进入上一次调用的状态</li>
+<li>一个线程可以拥有多个协程，一个进程也可以单独拥有多个协程，这样python中则能使用多核CPU。</li>
+<li>线程进程都是同步机制，而协程则是异步</li>
+<li>协程能保留上一次调用时的状态，每次过程重入时，就相当于进入上一次调用的状态</li>
 </ol>
 <h3 id="进程的异常控制流：陷阱、中断、异常和信号"><a href="#进程的异常控制流：陷阱、中断、异常和信号" class="headerlink" title="进程的异常控制流：陷阱、中断、异常和信号"></a>进程的异常控制流：陷阱、中断、异常和信号</h3><p>陷阱是<strong>有意</strong>造成的“异常”，是执行一条指令的结果。陷阱是同步的。陷阱的主要作用是实现<strong>系统调用</strong>。比如，进程可以执行 <code>syscall n</code> 指令向内核请求服务。当进程执行这条指令后，会中断当前的控制流，<strong>陷入</strong>到内核态，执行相应的系统调用。内核的处理程序在执行结束后，会将结果返回给进程，同时退回到用户态。进程此时继续执行<strong>下一条指令</strong>。</p>
 <p>中断由处理器<strong>外部</strong>的<strong>硬件</strong>产生，不是执行某条指令的结果，也无法预测发生时机。由于中断独立于当前执行的程序，因此中断是异步事件。中断包括 I/O 设备发出的 I/O 中断、各种定时器引起的时钟中断、调试程序中设置的断点等引起的调试中断等。</p>
@@ -927,8 +913,7 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>内核态可以访问内存所有数据以及外围设备，也可以进行程序的切换。</li>
 </ul>
 <p>所有用户程序都运行在用户态，但有时需要进行一些内核态的操作，比如从硬盘或者键盘读数据，这时就需要进行系统调用，使用<strong>陷阱指令</strong>，CPU切换到内核态，执行相应的服务，再切换为用户态并返回系统调用的结果。</p>
-<h5 id="为什么要分用户态和内核态？"><a href="#为什么要分用户态和内核态？" class="headerlink" title="为什么要分用户态和内核态？"></a>为什么要分用户态和内核态？</h5><p>（我自己的见解：）</p>
-<ul>
+<h5 id="为什么要分用户态和内核态？"><a href="#为什么要分用户态和内核态？" class="headerlink" title="为什么要分用户态和内核态？"></a>为什么要分用户态和内核态？</h5><ul>
 <li>安全性：防止用户程序恶意或者不小心破坏系统/内存/硬件资源；</li>
 <li>封装性：用户程序不需要实现更加底层的代码；</li>
 <li>利于调度：如果多个用户程序都在等待键盘输入，这时就需要进行调度；统一交给操作系统调度更加方便。</li>
@@ -938,7 +923,7 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>用户程序发生异常时：比如缺页异常</li>
 <li>外围设备的中断：外围设备完成用户请求的操作之后，会向CPU发出中断信号，这时CPU会转去处理对应的中断处理程序</li>
 </ul>
-<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="什么是死锁？"><a href="#什么是死锁？" class="headerlink" title="什么是死锁？"></a>什么是死锁？</h3><p>在两个或者多个并发进程中，每个进程持有某种资源而又等待其它进程释放它们现在保持着的资源，在未改变这种状态之前都不能向前推进，称这一组进程产生了死锁(deadlock)。</p>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><h3 id="什么是死锁？"><a href="#什么是死锁？" class="headerlink" title="什么是死锁？"></a>什么是死锁？</h3><p>在两个或者多个并发进程中，每个进程持有某种资源而又等待其它进程释放它们现在保持着的资源，在未改变这种状态之前都不能向前推进，称这一组进程产生了死锁(deadlock)。</p>
 <h3 id="死锁产生的必要条件？"><a href="#死锁产生的必要条件？" class="headerlink" title="死锁产生的必要条件？"></a>死锁产生的必要条件？</h3><ul>
 <li><strong>互斥</strong>：一个资源一次只能被一个进程使用；</li>
 <li><strong>占有并等待</strong>：一个进程至少占有一个资源，并在等待另一个被其它进程占用的资源；</li>
@@ -955,25 +940,19 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li>缺点：很多时候无法预知一个进程所需的全部资源；同时，会降低资源利用率，降低系统的并发性；</li>
 </ul>
 </li>
-</ul>
-<ul>
 <li>破坏非抢占条件：允许进程强行抢占被其它进程占有的资源。会降低系统性能；</li>
 <li>破坏循环等待条件：对所有资源统一编号，所有进程对资源的请求必须按照序号递增的顺序提出，即只有占有了编号较小的资源才能申请编号较大的资源。这样避免了占有大号资源的进程去申请小号资源。</li>
 </ul>
 <p>动态地检测资源分配状态，以确保系统处于安全状态，只有处于安全状态时才会进行资源的分配。所谓安全状态是指：即使所有进程突然请求需要的所有资源，也能存在某种对进程的资源分配顺序，使得每一个进程运行完毕。</p>
 <blockquote>
-<p>银行家算法</p>
+<p>银行家算法<br>如何检测死锁：检测有向图是否存在环；或者使用类似死锁避免的检测算法。<br>死锁解除的方法：</p>
 </blockquote>
-<blockquote>
-<p>如何检测死锁：检测有向图是否存在环；或者使用类似死锁避免的检测算法。</p>
-</blockquote>
-<p>死锁解除的方法：</p>
 <ul>
 <li>利用抢占：挂起某些进程，并抢占它的资源。但应防止某些进程被长时间挂起而处于饥饿状态；</li>
 <li>利用回滚：让某些进程回退到足以解除死锁的地步，进程回退时自愿释放资源。要求系统保持进程的历史信息，设置还原点；</li>
 <li>利用杀死进程：强制杀死某些进程直到死锁解除为止，可以按照优先级进行。</li>
 </ul>
-<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="分页和分段有什么区别？"><a href="#分页和分段有什么区别？" class="headerlink" title="分页和分段有什么区别？"></a>分页和分段有什么区别？</h3><ul>
+<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><h3 id="分页和分段有什么区别？"><a href="#分页和分段有什么区别？" class="headerlink" title="分页和分段有什么区别？"></a>分页和分段有什么区别？</h3><ul>
 <li>页式存储：用户空间划分为大小相等的部分称为页（page），内存空间划分为同样大小的区域称为页框，分配时以页为单位，按进程需要的页数分配，逻辑上相邻的页物理上不一定相邻；</li>
 <li>段式存储：用户进程地址空间按照自身逻辑关系划分为若干个段（segment）（如代码段，数据段，堆栈段），内存空间被动态划分为长度不同的区域，分配时以段为单位，每段在内存中占据连续空间，各段可以不相邻；</li>
 <li>段页式存储：用户进程先按段划分，段内再按页划分，内存划分和分配按页。</li>
@@ -992,17 +971,24 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <h5 id="如何进行地址空间到物理内存的映射？"><a href="#如何进行地址空间到物理内存的映射？" class="headerlink" title="如何进行地址空间到物理内存的映射？"></a>如何进行地址空间到物理内存的映射？</h5><p><strong>内存管理单元</strong>（MMU）管理着逻辑地址和物理地址的转换，其中的页表（Page table）存储着页（逻辑地址）和页框（物理内存空间）的映射表，页表中还包含包含有效位（是在内存还是磁盘）、访问位（是否被访问过）、修改位（内存中是否被修改过）、保护位（只读还是可读写）。逻辑地址：页号+页内地址（偏移）；每个进程一个页表，放在内存，页表起始地址在PCB/寄存器中。</p>
 <h3 id="有哪些页面置换算法？"><a href="#有哪些页面置换算法？" class="headerlink" title="有哪些页面置换算法？"></a>有哪些页面置换算法？</h3><p>在程序运行过程中，如果要访问的页面不在内存中，就发生缺页中断从而将该页调入内存中。此时如果内存已无空闲空间，系统必须从内存中调出一个页面到磁盘中来腾出空间。页面置换算法的主要目标是使页面置换频率最低（也可以说缺页率最低）。</p>
 <ul>
-<li><strong>最佳页面置换算法</strong>OPT（Optimal replacement algorithm）：置换以后不需要或者最远的将来才需要的页面，是一种理论上的算法，是最优策略；</li>
-<li><strong>先进先出</strong>FIFO：置换在内存中驻留时间最长的页面。缺点：有可能将那些经常被访问的页面也被换出，从而使缺页率升高；</li>
-<li><strong>第二次机会算法</strong>SCR：按FIFO选择某一页面，若其访问位为1，给第二次机会，并将访问位置0；</li>
-<li><strong>时钟算法</strong> Clock：SCR中需要将页面在链表中移动（第二次机会的时候要将这个页面从链表头移到链表尾），时钟算法使用环形链表，再使用一个指针指向最老的页面，避免了移动页面的开销；</li>
-<li><strong>最近未使用算法</strong>NRU（Not Recently Used）：检查访问位R、修改位M，优先置换R=M=0，其次是（R=0, M=1）；</li>
-<li><strong>最近最少使用算法</strong>LRU（Least Recently Used）：置换出未使用时间最长的一页；实现方式：维护时间戳，或者维护一个所有页面的链表。当一个页面被访问时，将这个页面移到链表表头。这样就能保证链表表尾的页面是最近最久未访问的。</li>
-<li><strong>最不经常使用算法</strong>NFU：置换出访问次数最少的页面</li>
-</ul>
-<ul>
-<li>时间上：最近被访问的页在不久的将来还会被访问；</li>
-<li>空间上：内存中被访问的页周围的页也很可能被访问。</li>
+<li><p><strong>最佳页面置换算法</strong>OPT（Optimal replacement algorithm）：置换以后不需要或者最远的将来才需要的页面，是一种理论上的算法，是最优策略；</p>
+</li>
+<li><p><strong>先进先出</strong>FIFO：置换在内存中驻留时间最长的页面。缺点：有可能将那些经常被访问的页面也被换出，从而使缺页率升高；</p>
+</li>
+<li><p><strong>第二次机会算法</strong>SCR：按FIFO选择某一页面，若其访问位为1，给第二次机会，并将访问位置0；</p>
+</li>
+<li><p><strong>时钟算法</strong> Clock：SCR中需要将页面在链表中移动（第二次机会的时候要将这个页面从链表头移到链表尾），时钟算法使用环形链表，再使用一个指针指向最老的页面，避免了移动页面的开销；</p>
+</li>
+<li><p><strong>最近未使用算法</strong>NRU（Not Recently Used）：检查访问位R、修改位M，优先置换R=M=0，其次是（R=0, M=1）；</p>
+</li>
+<li><p><strong>最近最少使用算法</strong>LRU（Least Recently Used）：置换出未使用时间最长的一页；实现方式：维护时间戳，或者维护一个所有页面的链表。当一个页面被访问时，将这个页面移到链表表头。这样就能保证链表表尾的页面是最近最久未访问的。</p>
+</li>
+<li><p><strong>最不经常使用算法</strong>NFU：置换出访问次数最少的页面</p>
+</li>
+<li><p>时间上：最近被访问的页在不久的将来还会被访问；</p>
+</li>
+<li><p>空间上：内存中被访问的页周围的页也很可能被访问。</p>
+</li>
 </ul>
 <p>颠簸本质上是指频繁的页调度行为。进程发生缺页中断时必须置换某一页。然而，其他所有的页都在使用，它置换一个页，但又立刻再次需要这个页。因此会不断产生缺页中断，导致整个系统的效率急剧下降，这种现象称为颠簸。内存颠簸的解决策略包括：</p>
 <ul>
@@ -1029,17 +1015,8 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 <li><a href="http://baijiahao.baidu.com/s?id=1641172494287388070&wfr=spider&for=pc">彻底搞懂epoll高效运行的原理</a></li>
 <li><a href="https://www.cnblogs.com/lirong21/p/4213028.html">用户态与内核态的切换</a></li>
 </ul>
-<p><img src="_v_images/20191202162008435_14938.png&width=540"></p>
 <p>文章内容搬运自本人<a href="https://www.yuque.com/docs/share/4137d8f0-4b2e-4a18-a5a3-7a01239affcc">语雀</a></p>
 ]]></content>
-      <categories>
-        <category>八股文</category>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>八股文</tag>
-        <tag>操作系统</tag>
-      </tags>
   </entry>
   <entry>
     <title>MySQL学习笔记</title>
@@ -1338,15 +1315,15 @@ description: 根据我多年（其实就一年）复习备考408和春招的经�
 </ul>
 <p><strong>使用的是index1的执行流程</strong></p>
 <ul>
-<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#x7a;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#120;&#121;&#122;&#64;&#x78;&#x78;&#x78;&#x2e;&#99;&#111;&#x6d;">&#x7a;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#120;&#121;&#122;&#64;&#x78;&#x78;&#x78;&#x2e;&#99;&#111;&#x6d;</a>’的这条记录，取得ID2的值；</li>
+<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#x7a;&#104;&#97;&#x6e;&#x67;&#x73;&#x73;&#120;&#121;&#x7a;&#64;&#x78;&#120;&#120;&#46;&#x63;&#x6f;&#109;">&#x7a;&#104;&#97;&#x6e;&#x67;&#x73;&#x73;&#120;&#121;&#x7a;&#64;&#x78;&#120;&#120;&#46;&#x63;&#x6f;&#109;</a>’的这条记录，取得ID2的值；</li>
 <li>到主键上查到主键值是ID2的行，判断email的值是正确的，将这行记录加入结果集；</li>
-<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#120;&#x79;&#122;&#64;&#x78;&#x78;&#x78;&#46;&#99;&#x6f;&#109;">&#122;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#120;&#x79;&#122;&#64;&#x78;&#x78;&#x78;&#46;&#99;&#x6f;&#109;</a>’的条件了，循环结束</li>
+<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#x7a;&#x68;&#97;&#110;&#x67;&#115;&#115;&#120;&#x79;&#122;&#x40;&#x78;&#120;&#120;&#46;&#99;&#111;&#109;">&#x7a;&#x68;&#97;&#110;&#x67;&#115;&#115;&#120;&#x79;&#122;&#x40;&#x78;&#120;&#120;&#46;&#99;&#111;&#109;</a>’的条件了，循环结束</li>
 <li>这个过程中，只需要回主键索引取一次数据，所以系统认为只扫描了一行。</li>
 </ul>
 <p><strong>使用的是index2的执行流程</strong></p>
 <ul>
 <li>从<code>index2</code>索引树找到满足索引值是’zhangs’的记录，找到的第一个是ID1；</li>
-<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#122;&#x68;&#x61;&#110;&#103;&#115;&#x73;&#120;&#x79;&#122;&#x40;&#x78;&#120;&#x78;&#x2e;&#99;&#111;&#109;">&#122;&#x68;&#x61;&#110;&#103;&#115;&#x73;&#120;&#x79;&#122;&#x40;&#x78;&#120;&#x78;&#x2e;&#99;&#111;&#109;</a>’，这行记录丢弃；</li>
+<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#x7a;&#104;&#97;&#x6e;&#x67;&#115;&#115;&#120;&#x79;&#x7a;&#64;&#120;&#x78;&#x78;&#x2e;&#99;&#x6f;&#x6d;">&#x7a;&#104;&#97;&#x6e;&#x67;&#115;&#115;&#120;&#x79;&#x7a;&#64;&#120;&#x78;&#x78;&#x2e;&#99;&#x6f;&#x6d;</a>’，这行记录丢弃；</li>
 <li>取index2上刚刚查到的位置的下一条记录，发现仍然是’zhangs’，取出ID2，再到ID索引上取整行然后判断，这次值对了，将这行记录加入结果集；</li>
 <li>重复上一步，直到在idxe2上取到的值不是’zhangs’时，循环结束。</li>
 <li>在这个过程中，要回主键索引取4次数据，也就是扫描了4行。</li>
