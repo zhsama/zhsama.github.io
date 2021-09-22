@@ -20,31 +20,29 @@
     var CONFIG = {"hostname":"zhsama.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第一篇，也是基础篇之一——计算机网络相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的计网相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《计算机网络自顶向下》。（文章内容搬运自本人[语雀](https:&#x2F;&#x2F;www.yuque.com&#x2F;docs&#x2F;share&#x2F;5b2ba306-50">
+  <meta name="description" content="--- title: 面试八股文（一）—— 计算机网络 date: 2021-09-22 22:22:04 updated: 2021-09-22 22:22:05 tags: [&#39;八股文&#39;, &#39;计算机网络&#39;] categories:   - 计算机网络  - 八股文 description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第一篇，也是基础篇之一——计算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试八股文（一）—— 计算机网络">
+<meta property="og:title" content="zhsama&#39;s blog">
 <meta property="og:url" content="https://zhsama.github.io/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="zhsama&#39;s blog">
-<meta property="og:description" content="根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第一篇，也是基础篇之一——计算机网络相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的计网相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《计算机网络自顶向下》。（文章内容搬运自本人[语雀](https:&#x2F;&#x2F;www.yuque.com&#x2F;docs&#x2F;share&#x2F;5b2ba306-50">
+<meta property="og:description" content="--- title: 面试八股文（一）—— 计算机网络 date: 2021-09-22 22:22:04 updated: 2021-09-22 22:22:05 tags: [&#39;八股文&#39;, &#39;计算机网络&#39;] categories:   - 计算机网络  - 八股文 description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第一篇，也是基础篇之一——计算">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084581427-ad52128d-5d7c-4304-8fb3-8f8c6b59dc15.png#id=Qk0hz&originHeight=376&originWidth=583&originalType=binary&ratio=1&status=done&style=none">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083612400-05353867-b677-449d-bc87-378dc2ac5fbd.png#id=SI8Ri&originHeight=255&originWidth=519&originalType=binary&ratio=1&status=done&style=none">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083644967-a1117a3a-ad00-494a-bdf5-f357adfef3b9.png#id=yjLsU&originHeight=305&originWidth=507&originalType=binary&ratio=1&status=done&style=none">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083671501-2d938176-eced-4414-b6aa-fbc32d323ae9.png#id=N7PQN&originHeight=832&originWidth=1100&originalType=binary&ratio=1&status=done&style=none">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/gif/1431305/1628083685654-29996960-ed15-47f4-99bf-246b8ac30214.gif#id=owdnL&originHeight=156&originWidth=543&originalType=binary&ratio=1&status=done&style=none">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083709929-6e2bfba1-63ca-4742-a80a-256a93b0f159.png#id=NhUoC&originHeight=325&originWidth=585&originalType=binary&ratio=1&status=done&style=none">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083774060-71278d40-0b39-4e15-9dd1-22534e2c90d8.png#id=CAJs8&originHeight=305&originWidth=499&originalType=binary&ratio=1&status=done&style=none">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083866222-2e727029-b6f2-495e-97f2-e4b7b49cd16e.png#id=xknL2&originHeight=326&originWidth=554&originalType=binary&ratio=1&status=done&style=none">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084389045-9ba4652e-2456-424e-b530-bd95b496004d.png#id=FgfyL&originHeight=618&originWidth=540&originalType=binary&ratio=1&status=done&style=none">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084581427-ad52128d-5d7c-4304-8fb3-8f8c6b59dc15.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083612400-05353867-b677-449d-bc87-378dc2ac5fbd.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083644967-a1117a3a-ad00-494a-bdf5-f357adfef3b9.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083671501-2d938176-eced-4414-b6aa-fbc32d323ae9.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/gif/1431305/1628083685654-29996960-ed15-47f4-99bf-246b8ac30214.gif">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083709929-6e2bfba1-63ca-4742-a80a-256a93b0f159.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083774060-71278d40-0b39-4e15-9dd1-22534e2c90d8.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083866222-2e727029-b6f2-495e-97f2-e4b7b49cd16e.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084389045-9ba4652e-2456-424e-b530-bd95b496004d.png">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084520127-fb51536c-1fee-4fa4-a450-684dab556f9e.png#height=494&id=HncLV&originHeight=659&originWidth=769&originalType=binary&ratio=1&status=done&style=none&width=577">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084593202-102c8a14-99c6-463c-8bde-866b86d19613.png#id=gFBXy&originHeight=750&originWidth=1015&originalType=binary&ratio=1&status=done&style=none">
-<meta property="article:published_time" content="2021-09-22T22:22:04.000Z">
-<meta property="article:modified_time" content="2021-09-22T22:22:05.000Z">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084593202-102c8a14-99c6-463c-8bde-866b86d19613.png">
+<meta property="article:published_time" content="2021-09-22T15:20:56.017Z">
+<meta property="article:modified_time" content="2021-09-22T15:20:56.017Z">
 <meta property="article:author" content="zhsama">
-<meta property="article:tag" content="八股文">
-<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084581427-ad52128d-5d7c-4304-8fb3-8f8c6b59dc15.png#id=Qk0hz&originHeight=376&originWidth=583&originalType=binary&ratio=1&status=done&style=none">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084581427-ad52128d-5d7c-4304-8fb3-8f8c6b59dc15.png">
 
 <link rel="canonical" href="https://zhsama.github.io/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
 
@@ -59,7 +57,7 @@
   };
 </script>
 
-  <title>面试八股文（一）—— 计算机网络 | zhsama's blog</title>
+  <title> | zhsama's blog</title>
   
 
 
@@ -225,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          面试八股文（一）—— 计算机网络
+          
         </h1>
 
         <div class="post-meta">
@@ -234,22 +232,8 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-09-22 22:22:04 / 修改时间：22:22:05" itemprop="dateCreated datePublished" datetime="2021-09-22T22:22:04+00:00">2021-09-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%85%AB%E8%82%A1%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">八股文</span></a>
-                </span>
+              <time title="创建时间：2021-09-22 15:20:56" itemprop="dateCreated datePublished" datetime="2021-09-22T15:20:56+00:00">2021-09-22</time>
             </span>
 
           
@@ -264,7 +248,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>9k</span>
+              <span>9.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -272,7 +256,6 @@
               </span>
               <span>8 分钟</span>
             </span>
-            <div class="post-description">根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第一篇，也是基础篇之一——计算机网络相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的计网相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《计算机网络自顶向下》。（文章内容搬运自本人[语雀](https://www.yuque.com/docs/share/5b2ba306-5030-4cff-8c82-19ecb35b4f40)）</div>
 
         </div>
       </header>
@@ -283,8 +266,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>​</p>
-<h1 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h1><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084581427-ad52128d-5d7c-4304-8fb3-8f8c6b59dc15.png#id=Qk0hz&originHeight=376&originWidth=583&originalType=binary&ratio=1&status=done&style=none"></p>
+        <meta name="referrer" content="no-referrer" />
+---
+title: 面试八股文（一）—— 计算机网络
+date: 2021-09-22 22:22:04
+updated: 2021-09-22 22:22:05
+tags: ['八股文', '计算机网络']
+categories: 
+ - 计算机网络
+ - 八股文
+description: 根据我多年（其实就一年）复习备考408和春招的经验，总结出来的面试八股文第一篇，也是基础篇之一——计算机网络相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的计网相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《计算机网络自顶向下》。
+---
+
+<p>​</p>
+<h1 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h1><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084581427-ad52128d-5d7c-4304-8fb3-8f8c6b59dc15.png"></p>
 <ul>
 <li>Physical, Data Link, Network, Transport, Application</li>
 <li>应用层：常见协议：<ul>
@@ -303,7 +298,7 @@
 </ul>
 <p>[</p>
 <p>](#%E4%BB%80%E4%B9%88%E6%98%AFNAT-Network-Address-Translation-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2)</p>
-<h1 id="传输层：TCP和UDP"><a href="#传输层：TCP和UDP" class="headerlink" title="传输层：TCP和UDP"></a>传输层：TCP和UDP</h1><h3 id="什么是三次握手-three-way-handshake-？"><a href="#什么是三次握手-three-way-handshake-？" class="headerlink" title="什么是三次握手 (three-way handshake)？"></a>什么是三次握手 (three-way handshake)？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083612400-05353867-b677-449d-bc87-378dc2ac5fbd.png#id=SI8Ri&originHeight=255&originWidth=519&originalType=binary&ratio=1&status=done&style=none"></p>
+<h1 id="传输层：TCP和UDP"><a href="#传输层：TCP和UDP" class="headerlink" title="传输层：TCP和UDP"></a>传输层：TCP和UDP</h1><h3 id="什么是三次握手-three-way-handshake-？"><a href="#什么是三次握手-three-way-handshake-？" class="headerlink" title="什么是三次握手 (three-way handshake)？"></a>什么是三次握手 (three-way handshake)？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083612400-05353867-b677-449d-bc87-378dc2ac5fbd.png"></p>
 <ul>
 <li>第一次握手：Client将SYN置1，随机产生一个初始序列号seq发送给Server，进入SYN_SENT状态；</li>
 <li>第二次握手：Server收到Client的SYN=1之后，知道客户端请求建立连接，将自己的SYN置1，ACK置1，产生一个acknowledge number=sequence number+1，并随机产生一个自己的初始序列号，发送给客户端；进入SYN_RCVD状态；</li>
@@ -322,7 +317,7 @@
 </ol>
 <h5 id="如果已经建立了连接，但客户端出现了故障怎么办？"><a href="#如果已经建立了连接，但客户端出现了故障怎么办？" class="headerlink" title="如果已经建立了连接，但客户端出现了故障怎么办？"></a>如果已经建立了连接，但客户端出现了故障怎么办？</h5><p>服务器每收到一次客户端的请求后都会重新复位一个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
 <h5 id="初始序列号是什么？"><a href="#初始序列号是什么？" class="headerlink" title="初始序列号是什么？"></a>初始序列号是什么？</h5><p>TCP连接的一方A，随机选择一个32位的序列号（Sequence Number）作为发送数据的初始序列号（Initial Sequence Number，ISN），比如为1000，以该序列号为原点，对要传送的数据进行编号：1001、1002…三次握手时，把这个初始序列号传送给另一方B，以便在传输数据时，B可以确认什么样的数据编号是合法的；同时在进行数据传输时，A还可以确认B收到的每一个字节，如果A收到了B的确认编号（acknowledge number）是2001，就说明编号为1001-2000的数据已经被B成功接受。</p>
-<h3 id="什么是四次挥手？"><a href="#什么是四次挥手？" class="headerlink" title="什么是四次挥手？"></a>什么是四次挥手？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083644967-a1117a3a-ad00-494a-bdf5-f357adfef3b9.png#id=yjLsU&originHeight=305&originWidth=507&originalType=binary&ratio=1&status=done&style=none"></p>
+<h3 id="什么是四次挥手？"><a href="#什么是四次挥手？" class="headerlink" title="什么是四次挥手？"></a>什么是四次挥手？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083644967-a1117a3a-ad00-494a-bdf5-f357adfef3b9.png"></p>
 <ul>
 <li>第一次挥手：Client将FIN置为1，发送一个序列号seq给Server；进入FIN_WAIT_1状态；</li>
 <li>第二次挥手：Server收到FIN之后，发送一个ACK=1，acknowledge number=收到的序列号+1；进入CLOSE_WAIT状态。此时客户端已经没有要发送的数据了，但仍可以接受服务器发来的数据。</li>
@@ -332,17 +327,17 @@
 <h5 id="为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE-WAIT状态意义是什么）？"><a href="#为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE-WAIT状态意义是什么）？" class="headerlink" title="为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE_WAIT状态意义是什么）？"></a>为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE_WAIT状态意义是什么）？</h5><p>因为服务器收到客户端断开连接的请求时，可能还有一些数据没有发完，这时先回复ACK，表示接收到了断开连接的请求。等到数据发完之后再发FIN，断开服务器到客户端的数据传送。</p>
 <h5 id="如果第二次挥手时服务器的ACK没有送达客户端，会怎样？"><a href="#如果第二次挥手时服务器的ACK没有送达客户端，会怎样？" class="headerlink" title="如果第二次挥手时服务器的ACK没有送达客户端，会怎样？"></a>如果第二次挥手时服务器的ACK没有送达客户端，会怎样？</h5><p>客户端没有收到ACK确认，会重新发送FIN请求。</p>
 <h5 id="客户端TIME-WAIT状态的意义是什么？"><a href="#客户端TIME-WAIT状态的意义是什么？" class="headerlink" title="客户端TIME_WAIT状态的意义是什么？"></a>客户端TIME_WAIT状态的意义是什么？</h5><p>第四次挥手时，客户端发送给服务器的ACK有可能丢失，TIME_WAIT状态就是用来重发可能丢失的ACK报文。如果Server没有收到ACK，就会重发FIN，如果Client在2*MSL的时间内收到了FIN，就会重新发送ACK并再次等待2MSL，防止Server没有收到ACK而不断重发FIN。<br>MSL(Maximum Segment Lifetime)，指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
-<h3 id="TCP如何实现流量控制？"><a href="#TCP如何实现流量控制？" class="headerlink" title="TCP如何实现流量控制？"></a>TCP如何实现流量控制？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083671501-2d938176-eced-4414-b6aa-fbc32d323ae9.png#id=N7PQN&originHeight=832&originWidth=1100&originalType=binary&ratio=1&status=done&style=none"></p>
+<h3 id="TCP如何实现流量控制？"><a href="#TCP如何实现流量控制？" class="headerlink" title="TCP如何实现流量控制？"></a>TCP如何实现流量控制？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083671501-2d938176-eced-4414-b6aa-fbc32d323ae9.png"></p>
 <p>使用滑动窗口协议实现流量控制。防止发送方发送速率太快，接收方缓存区不够导致溢出。接收方会维护一个接收窗口 receiver window（窗口大小单位是字节），接受窗口的大小是根据自己的资源情况动态调整的，在返回ACK时将接受窗口大小放在TCP报文中的窗口字段告知发送方。发送窗口的大小不能超过接受窗口的大小，只有当发送方发送并收到确认之后，才能将发送窗口右移。</p>
 <p>发送窗口的上限为接受窗口和拥塞窗口中的较小值。接受窗口表明了接收方的接收能力，拥塞窗口表明了网络的传送能力。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/gif/1431305/1628083685654-29996960-ed15-47f4-99bf-246b8ac30214.gif#id=owdnL&originHeight=156&originWidth=543&originalType=binary&ratio=1&status=done&style=none"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/gif/1431305/1628083685654-29996960-ed15-47f4-99bf-246b8ac30214.gif"></p>
 <h5 id="什么是零窗口（接收窗口为0时会怎样）？"><a href="#什么是零窗口（接收窗口为0时会怎样）？" class="headerlink" title="什么是零窗口（接收窗口为0时会怎样）？"></a>什么是零窗口（接收窗口为0时会怎样）？</h5><p>如果接收方没有能力接收数据，就会将接收窗口设置为0，这时发送方必须暂停发送数据，但是会启动一个持续计时器(persistence timer)，到期后发送一个大小为1字节的探测数据包，以查看接收窗口状态。如果接收方能够接收数据，就会在返回的报文中更新接收窗口大小，恢复数据传送。</p>
-<h3 id="TCP的拥塞控制是怎么实现的？"><a href="#TCP的拥塞控制是怎么实现的？" class="headerlink" title="TCP的拥塞控制是怎么实现的？"></a>TCP的拥塞控制是怎么实现的？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083709929-6e2bfba1-63ca-4742-a80a-256a93b0f159.png#id=NhUoC&originHeight=325&originWidth=585&originalType=binary&ratio=1&status=done&style=none"></p>
+<h3 id="TCP的拥塞控制是怎么实现的？"><a href="#TCP的拥塞控制是怎么实现的？" class="headerlink" title="TCP的拥塞控制是怎么实现的？"></a>TCP的拥塞控制是怎么实现的？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083709929-6e2bfba1-63ca-4742-a80a-256a93b0f159.png"></p>
 <p>拥塞控制主要由四个算法组成：<strong>慢启动（Slow Start）、拥塞避免（Congestion voidance）、快重传 （Fast Retransmit）、快恢复（Fast Recovery）</strong></p>
 <ol>
 <li>慢启动：刚开始发送数据时，先把拥塞窗口（congestion window）设置为一个最大报文段MSS的数值，每收到一个新的确认报文之后，就把拥塞窗口加1个MSS。这样每经过一个传输轮次（或者说是每经过一个往返时间RTT），拥塞窗口的大小就会加倍</li>
 </ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083774060-71278d40-0b39-4e15-9dd1-22534e2c90d8.png#id=CAJs8&originHeight=305&originWidth=499&originalType=binary&ratio=1&status=done&style=none"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083774060-71278d40-0b39-4e15-9dd1-22534e2c90d8.png"></p>
 <ol start="2">
 <li>拥塞避免：当拥塞窗口的大小达到慢开始门限(slow start threshold)时，开始执行拥塞避免算法，拥塞窗口大小不再指数增加，而是线性增加，即每经过一个传输轮次只增加1MSS.</li>
 </ol>
@@ -352,7 +347,7 @@
 <ol start="3">
 <li>快重传：快重传要求接收方在收到一个失序的报文段后就立即发出<strong>重复确认</strong>（为的是使发送方及早知道有报文段没有到达对方）而不要等到自己发送数据时捎带确认。快重传算法规定，发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段，而不必继续等待设置的重传计时器时间到期。</li>
 </ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083866222-2e727029-b6f2-495e-97f2-e4b7b49cd16e.png#id=xknL2&originHeight=326&originWidth=554&originalType=binary&ratio=1&status=done&style=none"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083866222-2e727029-b6f2-495e-97f2-e4b7b49cd16e.png"></p>
 <ol start="4">
 <li>快恢复：当发送方连续收到三个重复确认时，就把慢开始门限减半，然后执行拥塞避免算法。不执行慢开始算法的原因：因为如果网络出现拥塞的话就不会收到好几个重复的确认，所以发送方认为现在网络可能没有出现拥塞。<br>也有的快重传是把开始时的拥塞窗口cwnd值再增大一点，即等于 ssthresh + 3*MSS 。这样做的理由是：既然发送方收到三个重复的确认，就表明有三个分组已经离开了网络。这三个分组不再消耗网络的资源而是停留在接收方的缓存中。可见现在网络中减少了三个分组。因此可以适当把拥塞窗口扩大些。</li>
 </ol>
@@ -363,7 +358,7 @@
 <li>RTT：即Round Trip Time，表示从发送端到接收端的一去一回需要的时间，TCP在数据传输过程中会对RTT进行采样（即对发送的数据包及其ACK的时间差进行测量，并根据测量值更新RTT值），TCP根据得到的RTT值更新RTO值，即Retransmission TimeOut，就是重传间隔，发送端对每个发出的数据包进行计时，如果在RTO时间内没有收到所发出的数据包的对应ACK，则任务数据包丢失，将重传数据。一般RTO值都比采样得到的RTT值要大。</li>
 </ul>
 <p>带宽时延乘积=带宽*RTT，实际上等于发送端到接收端单向通道的数据容积的两倍，这里单向通道的数据容积可以这样来理解，单向通道看成是一条单行道马路，带宽就是马路的车道数，路上跑的汽车就是数据（不过这里所有汽车的速率都是一样的，且不会有人想超车，大家齐头并进），那么单向通道的数据容积就是这条单行道上摆满车，一共可以摆多少辆。带宽就是马路的车道数，带宽数乘以单向通道的数据容积就是路面上所能容纳的全部数据量。当路面上已经摆满的时候，就不能再往里面放了。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084389045-9ba4652e-2456-424e-b530-bd95b496004d.png#id=FgfyL&originHeight=618&originWidth=540&originalType=binary&ratio=1&status=done&style=none"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084389045-9ba4652e-2456-424e-b530-bd95b496004d.png"></p>
 <h3 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h3><ol>
 <li>TCP是面向连接的，UDP是无连接的；</li>
 </ol>
@@ -451,12 +446,13 @@
 <li>当网络出现故障时，要经过较长的时间才能将此信息传递到所有路由器</li>
 <li>交换机数据链路层，根据MAC地址进行寻址</li>
 </ul>
-<h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><h3 id="IP地址的分类？"><a href="#IP地址的分类？" class="headerlink" title="IP地址的分类？"></a>IP地址的分类？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084593202-102c8a14-99c6-463c-8bde-866b86d19613.png#id=gFBXy&originHeight=750&originWidth=1015&originalType=binary&ratio=1&status=done&style=none"></p>
+<h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><h3 id="IP地址的分类？"><a href="#IP地址的分类？" class="headerlink" title="IP地址的分类？"></a>IP地址的分类？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084593202-102c8a14-99c6-463c-8bde-866b86d19613.png"></p>
 <p>路由器仅根据网络号net-id来转发分组，当分组到达目的网络的路由器之后，再按照主机号host-id将分组交付给主机；同一网络上的所有主机的网络号相同。</p>
 <h3 id="什么叫划分子网？"><a href="#什么叫划分子网？" class="headerlink" title="什么叫划分子网？"></a>什么叫划分子网？</h3><p>从主机号host-id借用若干个比特作为子网号subnet-id；子网掩码：网络号和子网号都为1，主机号为0；数据报仍然先按照网络号找到目的网络，发送到路由器，路由器再按照网络号和子网号找到目的子网：将子网掩码与目标地址逐比特与操作，若结果为某个子网的网络地址，则送到该子网。</p>
 <h3 id="什么是ARP协议-Address-Resolution-Protocol-？"><a href="#什么是ARP协议-Address-Resolution-Protocol-？" class="headerlink" title="什么是ARP协议 (Address Resolution Protocol)？"></a>什么是ARP协议 (Address Resolution Protocol)？</h3><p><strong>ARP协议完成了IP地址与物理地址的映射</strong>。每一个主机都设有一个 ARP 高速缓存，里面有<strong>所在的局域网</strong>上的各主机和路由器的 IP 地址到硬件地址的映射表。当源主机要发送数据包到目的主机时，会先检查自己的ARP高速缓存中有没有目的主机的MAC地址，如果有，就直接将数据包发到这个MAC地址，如果没有，就向<strong>所在的局域网</strong>发起一个ARP请求的广播包（在发送自己的 ARP 请求时，同时会带上自己的 IP 地址到硬件地址的映射），收到请求的主机检查自己的IP地址和目的主机的IP地址是否一致，如果一致，则先保存源主机的映射到自己的ARP缓存，然后给源主机发送一个ARP响应数据包。源主机收到响应数据包之后，先添加目的主机的IP地址与MAC地址的映射，再进行数据传送。如果源主机一直没有收到响应，表示ARP查询失败。</p>
 <p>如果所要找的主机和源主机不在同一个局域网上，那么就要通过 ARP 找到一个位于本局域网上的某个路由器的硬件地址，然后把分组发送给这个路由器，让这个路由器把分组转发给下一个网络。剩下的工作就由下一个网络来做。</p>
 <h3 id="什么是NAT-Network-Address-Translation-网络地址转换-？"><a href="#什么是NAT-Network-Address-Translation-网络地址转换-？" class="headerlink" title="什么是NAT (Network Address Translation, 网络地址转换)？"></a>什么是NAT (Network Address Translation, 网络地址转换)？</h3><p>用于解决内网中的主机要和因特网上的主机通信。由NAT路由器将主机的本地IP地址转换为全球IP地址，分为静态转换（转换得到的全球IP地址固定不变）和动态NAT转换。</p>
+<p>文章内容搬运自本人<a target="_blank" rel="noopener" href="https://www.yuque.com/docs/share/5b2ba306-5030-4cff-8c82-19ecb35b4f40">语雀</a></p>
 
     </div>
 
@@ -472,7 +468,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://zhsama.github.io/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="面试八股文（一）—— 计算机网络">https://zhsama.github.io/2021/09/22/面试八股文（一）——-计算机网络/</a>
+    <a href="https://zhsama.github.io/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="">https://zhsama.github.io/2021/09/22/面试八股文（一）——-计算机网络/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -482,10 +478,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"># 八股文</a>
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
-          </div>
 
         
 
@@ -493,12 +485,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/" rel="prev" title="LeetCode刷题指南">
-      <i class="fa fa-chevron-left"></i> LeetCode刷题指南
+    <a href="/2021/09/21/RabbitMQ/" rel="prev" title="八股文系列（四）—— RabbitMQ">
+      <i class="fa fa-chevron-left"></i> 八股文系列（四）—— RabbitMQ
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="next" title="面试八股文（二）—— 操作系统">
-      面试八股文（二）—— 操作系统 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/" rel="next" title="LeetCode刷题指南">
+      LeetCode刷题指南 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -581,13 +573,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
