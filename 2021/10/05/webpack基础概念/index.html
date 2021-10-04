@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ayanami.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ayanami.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhsama.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Webpack 有非常多的概念，很多名词长得都差不多。本文旨在将这些分散在文档和教程里的内容总结起来，完成一份 webpack 中的易混淆知识点集合。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack基础及易混淆的概念">
+<meta property="og:url" content="https://zhsama.github.io/2021/10/05/webpack%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="zhsama&#39;s blog">
+<meta property="og:description" content="Webpack 有非常多的概念，很多名词长得都差不多。本文旨在将这些分散在文档和教程里的内容总结起来，完成一份 webpack 中的易混淆知识点集合。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135892008-9f99b7f4-582c-4089-9107-aced8feb8621.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135892433-d8191708-0dc5-4b78-84aa-057fbdf985b2.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135893374-3f5620a6-e9d5-46b6-b65a-0c4afbb3ebb1.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135893745-8d0773ff-65dd-446d-ad7f-eccf25bc76e9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135894219-b65bd09a-b2cf-434c-9847-ecc5821ca342.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135894906-16f58da4-5910-41bb-933d-b58632b5d5f8.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135895496-b3d2e1b7-1a82-4f92-b1a6-946552410ac3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135900665-8bbacb1c-2250-4e35-8807-19dc3ad59f60.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135901307-475f7263-9f07-41ec-9dcc-6a883be5d5d5.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135901840-cbb01f5f-dec9-4d17-b860-d7bedf02975e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135901951-4ed6daed-263a-44eb-a6e0-8f78cd5fda2f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135902268-f0b0b2bd-2efb-4f18-bb5d-2603b375720f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135902274-7afa84b0-5d2f-4654-a9ba-12899bc2bc8e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135902277-535cc6c3-e5cc-4e3b-89d4-e7b3ed1781f5.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135902685-0e8e17f7-4d43-401a-9fa9-eca8961ba0f4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135903295-45c87381-799b-45aa-a79d-460c76e61c40.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135903373-dec99574-7ea9-4493-8a8b-e36a7f42a59e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135903497-64abffc3-551d-41c1-8897-15a531ba0bd9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135903556-9a39d9ad-be3d-469c-8dfc-5809b941593a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/135903552-00a05907-f6d7-4362-9a96-4039a45be86f.png">
+<meta property="article:published_time" content="2021-10-05T00:16:03.000Z">
+<meta property="article:modified_time" content="2021-10-05T02:25:45.000Z">
+<meta property="article:author" content="zhsama">
+<meta property="article:tag" content="八股文">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/33454514/135892008-9f99b7f4-582c-4089-9107-aced8feb8621.png">
+
+<link rel="canonical" href="https://zhsama.github.io/2021/10/05/webpack%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>webpack基础及易混淆的概念 | zhsama's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zhsama's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2021/10/05/webpack%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ayanami2.png">
+      <meta itemprop="name" content="zhsama">
+      <meta itemprop="description" content="我没有敌人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhsama's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          webpack基础及易混淆的概念
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-05 00:16:03 / 修改时间：02:25:45" itemprop="dateCreated datePublished" datetime="2021-10-05T00:16:03+00:00">2021-10-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/%E5%85%AB%E8%82%A1%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">八股文</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/%E5%85%AB%E8%82%A1%E6%96%87/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>8.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Webpack 有非常多的概念，很多名词长得都差不多。本文旨在将这些分散在文档和教程里的内容总结起来，完成一份 webpack 中的易混淆知识点集合。</p>
+<span id="more"></span>
+<h1 id="module，chunk-和-bundle-的区别"><a href="#module，chunk-和-bundle-的区别" class="headerlink" title="module，chunk 和 bundle 的区别"></a>module，chunk 和 bundle 的区别</h1><h2 id="概念说明"><a href="#概念说明" class="headerlink" title="概念说明"></a>概念说明</h2><p>webpack 官网对 chunk 和 bundle 的解释过于抽象。为方便理解，我这里举个例子给大家形象化的解释一下。</p>
+<p>我们在 src 目录下引入 index.js、utils.js、common.js 和 index.css 这 4 个文件，目录结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">├── index.css</span><br><span class="line">├── index.html # HTML 模板代码</span><br><span class="line">├── index.js</span><br><span class="line">├── common.js</span><br><span class="line">└── utils.js</span><br></pre></td></tr></table></figure>
+<p>index.css 的内容：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>utils.js 的内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> n1 = <span class="number">1</span>, n2 = <span class="number">1</span>, sum;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">    sum = n1 + n2</span><br><span class="line">    n1 = n2</span><br><span class="line">    n2 = sum</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>common.js 的内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">log</span>: <span class="function">(<span class="params">msg</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;hello &#x27;</span>, msg)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>index.js 的内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Common <span class="keyword">from</span> <span class="string">&#x27;./common.js&#x27;</span></span><br><span class="line"></span><br><span class="line">Common.log(<span class="string">&#x27;webpack&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>webpack 的配置如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">index</span>: <span class="string">&quot;../src/index.js&quot;</span>,</span><br><span class="line">        <span class="attr">utils</span>: <span class="string">&#x27;../src/utils.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&quot;[name].bundle.js&quot;</span>, <span class="comment">// 输出 index.js 和 utils.js</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">module</span>: &#123;</span><br><span class="line">        <span class="attr">rules</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</span><br><span class="line">                use: [</span><br><span class="line">                    MiniCssExtractPlugin.loader, <span class="comment">// 创建一个 link 标签</span></span><br><span class="line">                    <span class="string">&#x27;css-loader&#x27;</span>, <span class="comment">// css-loader 负责解析 CSS 代码, 处理 CSS 中的依赖</span></span><br><span class="line">                ],</span><br><span class="line">            &#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="comment">// 用 MiniCssExtractPlugin 抽离出 css 文件，以 link 标签的形式引入样式文件</span></span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            <span class="attr">filename</span>: <span class="string">&#x27;index.bundle.css&#x27;</span> <span class="comment">// 输出的 css 文件名为 index.css</span></span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行 webpack后包的结果：<br><img src="https://user-images.githubusercontent.com/33454514/135892008-9f99b7f4-582c-4089-9107-aced8feb8621.png" alt="image"></p>
+<p>由上图可以看出，<code>index.css</code> 和 <code>common.js</code> 在 <code>index.js</code> 中被引入，打包生成的 <code>index.bundle.css</code> 和 <code>index.bundle.js</code> 都属于 <code>chunk 0</code>，<code>utils.js</code> 因为是独立打包的，它生成的 <code>utils.bundle.js</code> 属于 <code>chunk 1</code>。</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135892433-d8191708-0dc5-4b78-84aa-057fbdf985b2.png" alt="image"></p>
+<p>看这个图就很明白了：</p>
+<ol>
+<li>对于一份同逻辑的代码，当我们手写下一个一个的文件，它们无论是 ESM 还是 commonJS 或是 AMD，他们都是 module ；</li>
+<li>当我们写的 module 源文件传到 webpack 进行打包时，webpack 会根据文件引用关系生成 chunk 文件，webpack 会对这个 chunk 文件进行一些操作；</li>
+<li>webpack 处理好 chunk 文件后，最后会输出 bundle 文件，这个 bundle 文件包含了经过加载和编译的最终源文件，所以它可以直接在浏览器中运行。<br>一般来说一个 chunk 对应一个 bundle，比如上图中的 utils.js -&gt; chunks 1 -&gt; utils.bundle.js；但也有例外，比如说上图中，我就用 MiniCssExtractPlugin 从 chunks 0 中抽离出了 index.bundle.css 文件。<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><code>module</code>，<code>chunk</code> 和 <code>bundle</code> 其实就是同一份逻辑代码在不同转换场景下的取了三个名字：</li>
+</ol>
+<p>我们直接写出来的是 <code>module</code>，<code>webpack</code> 处理时是 <code>chunk</code>，最后生成浏览器可以直接运行的 <code>bundle</code>。</p>
+<h1 id="filename-和-chunkFilename-的区别"><a href="#filename-和-chunkFilename-的区别" class="headerlink" title="filename 和 chunkFilename 的区别"></a>filename 和 chunkFilename 的区别</h1><h2 id="filename"><a href="#filename" class="headerlink" title="filename"></a>filename</h2><p><code>filename</code> 是一个很常见的配置，就是对应于 <code>entry</code> 里面的输入文件，<code>经过webpack</code> 打包后输出文件的文件名。比如说经过下面的配置，生成出来的文件名为 <code>index.min.js</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">index</span>: <span class="string">&quot;../src/index.js&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&quot;[name].min.js&quot;</span>, <span class="comment">// index.min.js</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-images.githubusercontent.com/33454514/135893374-3f5620a6-e9d5-46b6-b65a-0c4afbb3ebb1.png" alt="image"></p>
+<h2 id="chunkFilename"><a href="#chunkFilename" class="headerlink" title="chunkFilename"></a>chunkFilename</h2><p><code>chunkFilename</code> 指未被列在 <code>entry</code> 中，却又需要被打包出来的 <code>chunk</code> 文件的名称。一般来说，这个 <code>chunk</code> 文件指的就是要懒加载的代码。</p>
+<p>比如在代码中写了一份懒加载 lodash 的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件：index.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个 button</span></span><br><span class="line"><span class="keyword">let</span> btn = <span class="built_in">document</span>.createElement(<span class="string">&quot;button&quot;</span>);</span><br><span class="line">btn.innerHTML = <span class="string">&quot;click me&quot;</span>;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(btn);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步加载代码</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getAsyncComponent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> &#123; <span class="attr">default</span>: _ &#125; = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">&#x27;lodash&#x27;</span>);</span><br><span class="line">  element.innerHTML = _.join([<span class="string">&#x27;Hello!&#x27;</span>, <span class="string">&#x27;dynamic&#x27;</span>, <span class="string">&#x27;imports&#x27;</span>, <span class="string">&#x27;async&#x27;</span>], <span class="string">&#x27; &#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 点击 button 时，懒加载 lodash，在网页上显示 Hello! dynamic imports async</span></span><br><span class="line">btn.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  getAsyncComponent().then(<span class="function"><span class="params">component</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(component);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>webpack</code> 配置不做任何变动，这时候的打包结果如下：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135893745-8d0773ff-65dd-446d-ad7f-eccf25bc76e9.png" alt="image"><br>这个 <code>1.min.js</code> 就是异步加载的 <code>chunk</code> 文件。官方文档的解释如下：</p>
+<blockquote>
+<p><code>output.chunkFilename</code> 默认使用 <code>[id].js</code> 或从 <code>output.filename</code> 中推断出的值（<code>[name]</code> 会被预先替换为 <code>[id]</code> 或 <code>[id].</code>）</p>
+</blockquote>
+<p>结合上面的例子来看：</p>
+<p><code>output.filename</code> 的输出文件名是 <code>[name].min.js</code>，<code>[name]</code> 根据 <code>entry</code> 的配置推断为 <code>index</code>，所以输出为 <code>index.min.js</code>；</p>
+<p>由于 <code>output.chunkFilename</code> 没有显示指定，就会把 <code>[name]</code> 替换为 <code>chunk</code> 文件的 <code>id</code> 号，这里文件的 <code>id</code> 号是 1，所以文件名就是 <code>1.min.js</code>。</p>
+<p>如果显式地配置 <code>chunkFilename</code>，就会按配置的名字生成文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">entry</span>: &#123;</span><br><span class="line">    <span class="attr">index</span>: <span class="string">&quot;../src/index.js&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;[name].min.js&quot;</span>,  <span class="comment">// index.min.js</span></span><br><span class="line">    <span class="attr">chunkFilename</span>: <span class="string">&#x27;bundle.js&#x27;</span>, <span class="comment">// bundle.js</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打包的结果如下图：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135894219-b65bd09a-b2cf-434c-9847-ecc5821ca342.png" alt="image"></p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p><code>filename</code> 指列在 <code>entry</code> 中，打包后输出的文件的名称。</p>
+<p><code>chunkFilename</code> 指未列在 <code>entry</code> 中，却又需要被打包出来的文件的名称。</p>
+<h1 id="webpackPrefetch、webpackPreload-和-webpackChunkName-的区别"><a href="#webpackPrefetch、webpackPreload-和-webpackChunkName-的区别" class="headerlink" title="webpackPrefetch、webpackPreload 和 webpackChunkName 的区别"></a>webpackPrefetch、webpackPreload 和 webpackChunkName 的区别</h1><p>前面举了个异步加载 <code>lodash</code> 的例子，我们最后把 <code>output.chunkFilename</code> 写死成 <code>bundle.js</code>。在我们的业务代码中，不可能只异步加载一个文件，所以写死肯定是不行的，但是写成 <code>[name].bundle.js</code> 时，打包的文件又是意义不明、辨识度不高的 <code>chunk id</code>。</p>
+<p>这时候 <code>webpackChunkName</code> 就可以派上用场了。我们可以在 <code>import</code> 文件时，在 <code>import</code> 里以注释的形式为 <code>chunk</code> 文件取别名：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getAsyncComponent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 在 import 的括号里 加注释 /* webpackChunkName: &quot;lodash&quot; */ ，为引入的文件取别名</span></span><br><span class="line">  <span class="keyword">const</span> &#123; <span class="attr">default</span>: _ &#125; = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: &quot;lodash&quot; */</span> <span class="string">&#x27;lodash&#x27;</span>);</span><br><span class="line">  element.innerHTML = _.join([<span class="string">&#x27;Hello!&#x27;</span>, <span class="string">&#x27;dynamic&#x27;</span>, <span class="string">&#x27;imports&#x27;</span>, <span class="string">&#x27;async&#x27;</span>], <span class="string">&#x27; &#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候打包生成的文件是这样的：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135894906-16f58da4-5910-41bb-933d-b58632b5d5f8.png" alt="image"></p>
+<p>现在问题来了，<code>lodash</code> 是我们取的名字，按道理来说应该生成 <code>lodash.bundle.js</code> 啊，前面的 <code>vendors~</code> 是什么玩意？</p>
+<p>其实 <code>webpack</code> 懒加载是用内置的一个插件 <a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/split-chunks-plugin/">SplitChunksPlugin</a> 实现的，这个插件里面有些默认 <a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/split-chunks-plugin/#optimization-splitchunks">配置项</a> ，比如说 <code>automaticNameDelimiter</code>，默认的分割符就是 <code>~</code>，所以最后的文件名才会出现这个符号。</p>
+<h2 id="webpackPrefetch-和-webpackPreload"><a href="#webpackPrefetch-和-webpackPreload" class="headerlink" title="webpackPrefetch 和 webpackPreload"></a>webpackPrefetch 和 webpackPreload</h2><p>这两个配置一个叫预拉取（Preload），一个叫预加载（Prefetch），两者有些细微的不同，我们先说说 <code>webpackPreload</code>。</p>
+<p>在上面的懒加载代码里，我们是点击按钮时，才会触发异步加载 lodash 的动作，这时候会动态的生成一个 <code>script</code> 标签，加载到 <code>head</code> 头里：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135895496-b3d2e1b7-1a82-4f92-b1a6-946552410ac3.png" alt="image"></p>
+<p>如果我们 <code>import</code> 的时候添加 <code>webpackPrefetch</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="attr">default</span>: _ &#125; = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: &quot;lodash&quot; */</span> <span class="comment">/* webpackPrefetch: true */</span> <span class="string">&#x27;lodash&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>就会以 <link rel="prefetch" as="script"> 的形式预拉取 lodash 代码：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135900665-8bbacb1c-2250-4e35-8807-19dc3ad59f60.png" alt="image"></p>
+<p>这个异步加载的代码不需要手动点击 button 触发，webpack 会在父 chunk 完成加载后，闲时加载 lodash 文件。</p>
+<p>webpackPreload 是预加载当前导航下可能需要资源，他和 webpackPrefetch 的主要区别是：</p>
+<ul>
+<li><code>preload chunk</code> 会在父 <code>chunk</code> 加载时，以并行方式开始加载。<code>prefetch chunk</code> 会在父 <code>chunk</code> 加载结束后开始加载。</li>
+<li><code>preload chunk</code> 具有中等优先级，并立即下载。<code>prefetch chunk</code> 在浏览器闲置时下载。</li>
+<li><code>preload chunk</code> 会在父 <code>chunk</code> 中立即请求，用于当下时刻。<code>prefetch chunk</code>会用于未来的某个时刻</li>
+</ul>
+<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p><code>webpackChunkName</code> 是为预加载的文件取别名，<code>webpackPrefetch</code> 会在浏览器闲置下载文件，<code>webpackPreload</code> 会在父 <code>chunk</code> 加载时并行下载文件。</p>
+<h1 id="hash、chunkhash、contenthash-的区别"><a href="#hash、chunkhash、contenthash-的区别" class="headerlink" title="hash、chunkhash、contenthash 的区别"></a>hash、chunkhash、contenthash 的区别</h1><h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><p><code>hash</code> 计算是跟整个项目的构建相关，沿用例一中的项目路径。</p>
+<p>修改<code>webpack</code> 的核心配置如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">index</span>: <span class="string">&quot;../src/index.js&quot;</span>,</span><br><span class="line">        <span class="attr">utils</span>: <span class="string">&#x27;../src/utils.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&quot;[name].[hash].js&quot;</span>,  <span class="comment">// 改为 hash</span></span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    ......</span><br><span class="line">    </span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            <span class="attr">filename</span>: <span class="string">&#x27;index.[hash].css&#x27;</span> <span class="comment">// 改为 hash</span></span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打包后生成的文件名如下：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135901307-475f7263-9f07-41ec-9dcc-6a883be5d5d5.png" alt="image"></p>
+<p>不难发现：生成文件的 <code>hash</code> 和项目的构建 <code>hash</code> 都是一模一样的。</p>
+<h2 id="chunkhash"><a href="#chunkhash" class="headerlink" title="chunkhash"></a>chunkhash</h2><p>因为 <code>hash</code> 是项目构建的哈希值，项目中如果有些变动，<code>hash</code> 一定会变，比如修改 <code>utils.js</code> 的代码，<code>index.js</code> 里的代码虽然没有改变，但是大家都是用的同一份 <code>hash</code>。<code>hash</code> 一变，缓存一定失效了，这样子是没办法实现 CDN 和浏览器缓存的。</p>
+<p><code>chunkhash</code> 就是解决这个问题的，它根据不同的入口文件(Entry)进行依赖文件解析、构建对应的 <code>chunk</code>，生成对应的哈希值。</p>
+<p>例如对 <code>utils.js</code> 里文件进行改动：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> n1 = <span class="number">1</span>, n2 = <span class="number">1</span>, sum;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">    sum = n1 + n2</span><br><span class="line">    n1 = n2</span><br><span class="line">    n2 = sum</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cube</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> utils = &#123;</span><br><span class="line">  cube,</span><br><span class="line">  Fibonacci</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> utils;</span><br></pre></td></tr></table></figure>
+
+<p>然后把 <code>webpack</code> 里的所有 <code>hash</code> 改为 <code>chunkhash</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">index</span>: <span class="string">&quot;../src/index.js&quot;</span>,</span><br><span class="line">        <span class="attr">utils</span>: <span class="string">&#x27;../src/utils.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&quot;[name].[chunkhash].js&quot;</span>, <span class="comment">// 改为 chunkhash</span></span><br><span class="line">    &#125;,</span><br><span class="line">          </span><br><span class="line">    ......</span><br><span class="line">    </span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            <span class="attr">filename</span>: <span class="string">&#x27;index.[chunkhash].css&#x27;</span> <span class="comment">// // 改为 chunkhash</span></span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-images.githubusercontent.com/33454514/135901840-cbb01f5f-dec9-4d17-b860-d7bedf02975e.png" alt="image"></p>
+<p>我们可以看出，<code>chunk 0</code> 的 <code>hash</code> 都是一样的，<code>chunk 1</code> 的 <code>hash</code> 和上面的不一样。</p>
+<p>假设我又把 <code>utils.js</code> 里的 <code>cube()</code> 函数去掉，再打包：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135901951-4ed6daed-263a-44eb-a6e0-8f78cd5fda2f.png" alt="image"></p>
+<p>对比可以发现，只有 chunk 1 的 hash 发生变化，chunk 0 的 hash 还是原来的。</p>
+<h2 id="contenthash"><a href="#contenthash" class="headerlink" title="contenthash"></a>contenthash</h2><p>我们更近一步，<code>index.js</code> 和 <code>index.css</code> 同为一个 <code>chunk</code>，如果 <code>index.js</code> 内容发生变化，但是 <code>index.css</code> 没有变化，打包后他们的 <code>hash</code> 都发生变化，这对 <code>css</code> 文件来说是一种浪费。如何解决这个问题呢？</p>
+<p><code>contenthash</code> 将根据资源内容创建出唯一 <code>hash</code>，也就是说文件内容不变，<code>hash</code> 就不变。</p>
+<p>修改 webpack 的配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">index</span>: <span class="string">&quot;../src/index.js&quot;</span>,</span><br><span class="line">        <span class="attr">utils</span>: <span class="string">&#x27;../src/utils.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&quot;[name].[chunkhash].js&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">      </span><br><span class="line">    ......</span><br><span class="line">    </span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            <span class="attr">filename</span>: <span class="string">&#x27;index.[contenthash].css&#x27;</span> <span class="comment">// 这里改为 contenthash</span></span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在对 index.js 文件进行三次修改，打包的结果分别如下图：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135902268-f0b0b2bd-2efb-4f18-bb5d-2603b375720f.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135902274-7afa84b0-5d2f-4654-a9ba-12899bc2bc8e.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135902277-535cc6c3-e5cc-4e3b-89d4-e7b3ed1781f5.png" alt="image"></p>
+<p>不难看出，<code>css</code> 文件的 <code>hash</code> 始终没有发生改变。</p>
+<h2 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h2><p><code>hash</code> 计算与整个项目的构建相关；</p>
+<p><code>chunkhash</code> 计算与同一 <code>chunk</code> 内容相关；</p>
+<p><code>contenthash</code> 计算与文件内容本身相关。</p>
+<h1 id="sourse-map-中-eval、cheap、inline-和-module-的区别"><a href="#sourse-map-中-eval、cheap、inline-和-module-的区别" class="headerlink" title="sourse-map 中 eval、cheap、inline 和 module 的区别"></a>sourse-map 中 eval、cheap、inline 和 module 的区别</h1><p>简单说，Source map就是一个信息文件，里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。</p>
+<p>有了它，出错的时候，除错工具将直接显示原始代码，而不是转换后的代码。这无疑给开发者带来了很大方便。</p>
+<p>官网上的sourcemap种类如下图：<br><img src="https://user-images.githubusercontent.com/33454514/135902685-0e8e17f7-4d43-401a-9fa9-eca8961ba0f4.png" alt="image"></p>
+<p>观察后不难发现大部分都是 eval、cheap、inline 和 module这 4 个词排列组合的，于是可以大致归纳为如下四个种类：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>表头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eval</td>
+<td>打包后的模块都使用 <code>eval()</code> 执行，行映射可能不准；不产生独立的 <code>map</code> 文件</td>
+</tr>
+<tr>
+<td>cheap</td>
+<td>map 映射只显示行不显示列，忽略源自 <code>loader</code> 的 <code>source-map</code></td>
+</tr>
+<tr>
+<td>inline</td>
+<td>映射文件以 <code>base64</code> 格式编码，加在 <code>bundle</code> 文件最后，不产生独立的 <code>map</code> 文件</td>
+</tr>
+<tr>
+<td>module</td>
+<td>增加对 <code>loader</code> <code>source</code> <code>map</code> 和第三方模块的映射</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="source-map"><a href="#source-map" class="headerlink" title="source-map"></a>source-map</h2><p>source-map 是最大而全的，会生成独立 map 文件</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135903295-45c87381-799b-45aa-a79d-460c76e61c40.png" alt="image"></p>
+<p>source-map 会显示报错的行列信息：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135903373-dec99574-7ea9-4493-8a8b-e36a7f42a59e.png" alt="image"></p>
+<h2 id="cheap-sourse-map"><a href="#cheap-sourse-map" class="headerlink" title="cheap-sourse-map"></a>cheap-sourse-map</h2><p><code>cheap</code> 不会产生列映射，相应的体积会小很多，和 <code>sourse-map</code> 的打包结果比一下发现体积只有原来的 1/4 。</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135903497-64abffc3-551d-41c1-8897-15a531ba0bd9.png" alt="image"></p>
+<h2 id="eval-source-map"><a href="#eval-source-map" class="headerlink" title="eval-source-map"></a>eval-source-map</h2><p><code>eval-source-map</code> 会以 <code>eval()</code> 函数打包运行模块，不产生独立的 <code>map</code> 文件，会显示报错的行列信息：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135903556-9a39d9ad-be3d-469c-8dfc-5809b941593a.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/135903552-00a05907-f6d7-4362-9a96-4039a45be86f.png" alt="image"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.bundle.js 文件</span></span><br><span class="line"></span><br><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line">&#125;([<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">module</span>, <span class="built_in">exports</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">&quot;console.lg(&#x27;hello source-map !&#x27;);&quot;</span> +</span><br><span class="line">      <span class="string">&quot;//# sourceURL=[module]\n//# &quot;</span> +</span><br><span class="line">      <span class="string">&quot;sourceMappingURL=data:application/json;&quot;</span> +</span><br><span class="line">      <span class="string">&quot;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJz&quot;</span> +</span><br><span class="line">      <span class="string">&quot;b3VyY2VzIjpbIndlYnBhY2s6Ly8vLi4vc3JjL2luZG&quot;</span> +</span><br><span class="line">      <span class="string">&quot;V4Mi5qcz9mNmJjIl0sIm5hbWVzIjpbImNvbnNvbGUiL&quot;</span> +</span><br><span class="line">      <span class="string">&quot;CJsZyJdLCJtYXBwaW5ncyI6IkFBQUFBLE9BQU8sQ0F&quot;</span> +</span><br><span class="line">      <span class="string">&quot;BQ0MsRUFBUixDQUFXLG9CQUFYIiwiZmlsZSI6IjAua&quot;</span> +</span><br><span class="line">      <span class="string">&quot;nMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zb2xlLmx&quot;</span> +</span><br><span class="line">      <span class="string">&quot;nKCdoZWxsbyBzb3VyY2UtbWFwICEnKSJdLCJzb3VyY2&quot;</span> +</span><br><span class="line">      <span class="string">&quot;VSb290IjoiIn0=\n//&quot;</span> +</span><br><span class="line">      <span class="string">&quot;# sourceURL=webpack-internal:///0\n&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="inline-source-map"><a href="#inline-source-map" class="headerlink" title="inline-source-map"></a>inline-source-map</h2><p>映射文件以 <code>base64</code> 格式编码，加在 <code>bundle</code> 文件最后，不产生独立的 <code>map</code> 文件。</p>
+<p>加入 <code>map</code> 文件后可以明显的看到包体积变大了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.bundle.js 文件</span></span><br><span class="line"></span><br><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;([<span class="function"><span class="keyword">function</span>(<span class="params">e, t</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.lg(<span class="string">&quot;hello source-map !&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3Vy...</span></span><br><span class="line"><span class="comment">// base64编码</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><ol>
+<li>source-map</li>
+</ol>
+<ul>
+<li>大而全，啥都有，会让 webpack 构建时间变长，看情况使用。</li>
+</ul>
+<ol start="2">
+<li>cheap-module-eval-source-map </li>
+</ol>
+<ul>
+<li>这个一般是开发环境（dev）推荐使用，在构建速度报错提醒上做了比较好的均衡。</li>
+</ul>
+<ol start="3">
+<li>cheap-module-source-map</li>
+</ol>
+<ul>
+<li>一般来说，生产环境是不配 <code>source-map</code> 的，如果想捕捉线上的代码报错，我们可以用这个</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>zhsama
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zhsama.github.io/2021/10/05/webpack%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="webpack基础及易混淆的概念">https://zhsama.github.io/2021/10/05/webpack基础概念/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" rel="tag"># 八股文</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/webpack/" rel="tag"># webpack</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="面试八股文（三）—— 数据库">
+      <i class="fa fa-chevron-left"></i> 面试八股文（三）—— 数据库
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#module%EF%BC%8Cchunk-%E5%92%8C-bundle-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">module，chunk 和 bundle 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">概念说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#filename-%E5%92%8C-chunkFilename-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">filename 和 chunkFilename 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#filename"><span class="nav-number">2.1.</span> <span class="nav-text">filename</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chunkFilename"><span class="nav-number">2.2.</span> <span class="nav-text">chunkFilename</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-1"><span class="nav-number">2.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpackPrefetch%E3%80%81webpackPreload-%E5%92%8C-webpackChunkName-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">webpackPrefetch、webpackPreload 和 webpackChunkName 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpackPrefetch-%E5%92%8C-webpackPreload"><span class="nav-number">3.1.</span> <span class="nav-text">webpackPrefetch 和 webpackPreload</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-2"><span class="nav-number">3.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hash%E3%80%81chunkhash%E3%80%81contenthash-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">hash、chunkhash、contenthash 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">4.1.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chunkhash"><span class="nav-number">4.2.</span> <span class="nav-text">chunkhash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contenthash"><span class="nav-number">4.3.</span> <span class="nav-text">contenthash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-3"><span class="nav-number">4.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sourse-map-%E4%B8%AD-eval%E3%80%81cheap%E3%80%81inline-%E5%92%8C-module-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">sourse-map 中 eval、cheap、inline 和 module 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#source-map"><span class="nav-number">5.1.</span> <span class="nav-text">source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cheap-sourse-map"><span class="nav-number">5.2.</span> <span class="nav-text">cheap-sourse-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eval-source-map"><span class="nav-number">5.3.</span> <span class="nav-text">eval-source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline-source-map"><span class="nav-number">5.4.</span> <span class="nav-text">inline-source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">5.5.</span> <span class="nav-text">常用配置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zhsama"
+      src="/images/ayanami2.png">
+  <p class="site-author-name" itemprop="name">zhsama</p>
+  <div class="site-description" itemprop="description">我没有敌人</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhsama" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhsama" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:a602693793@gmail.com" title="E-Mail → mailto:a602693793@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhsama</span>
+</div>
+
+<br />
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("09/20/2021 10:54:40");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
