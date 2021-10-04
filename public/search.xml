@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/09/20/hello-world/</url>
-    <content><![CDATA[<h2 id="hexo的初体验"><a href="#hexo的初体验" class="headerlink" title="hexo的初体验"></a>hexo的初体验</h2>]]></content>
-  </entry>
-  <entry>
-    <title>测试travis ci自动构建</title>
-    <url>/2021/09/21/%E6%B5%8B%E8%AF%95travis-ci%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA/</url>
-    <content><![CDATA[<h2 id="后端跑路日记"><a href="#后端跑路日记" class="headerlink" title="后端跑路日记"></a>后端跑路日记</h2><p>看不起咱crud一年的后端仔，狂撸leetcode到排名3w+，写了20多篇算法解题思路，阅读量2w+，但就是简历给你直接筛了你有脾气？</p>
-<p>寄！跑路前端！捏麻麻滴，后端卷王过多，找家wlb的弹性公司干活还是舒服的。虽然但是，为啥前端也要会redis，mongo啊？</p>
-]]></content>
-      <categories>
-        <category>测试</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-        <tag>travis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL学习笔记</title>
     <url>/2021/09/21/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h3 id="一条SQL查询语句是如何执行的"><a href="#一条SQL查询语句是如何执行的" class="headerlink" title="一条SQL查询语句是如何执行的"></a>一条SQL查询语句是如何执行的</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> T <span class="keyword">where</span> ID<span class="operator">=</span><span class="number">10</span>；</span><br></pre></td></tr></table></figure>
@@ -660,16 +641,15 @@
 <p>本文仅仅列举问题的部分常见解答，详细回答需结合官方文档和日常工作使用经验。😉</p>
 <span id="more"></span>
 
-<h2 id="1-RabbitMQ是什么？"><a href="#1-RabbitMQ是什么？" class="headerlink" title="1.RabbitMQ是什么？"></a>1.RabbitMQ是什么？</h2><p>RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件（亦称面向消息的中间件）。RabbitMQ服务器是用Erlang语言编写的，而群集和故障转移是构建在开放电信平台框架上的。所有主要的编程语言均有与代理接口通讯的客户端库。<br>PS:也可能直接问什么是消息队列？消息队列就是一个使用队列来通信的组件<br>​</p>
-<h2 id="2-RabbitMQ特点"><a href="#2-RabbitMQ特点" class="headerlink" title="2.RabbitMQ特点?"></a>2.RabbitMQ特点?</h2><p>可靠性: RabbitMQ使用一些机制来保证可靠性， 如持久化、传输确认及发布确认等。<br>灵活的路由 : 在消息进入队列之前，通过交换器来路由消息。对于典型的路由功能， RabbitMQ 己经提供了一些内置的交换器来实现。针对更复杂的路由功能，可以将多个 交换器绑定在一起， 也可以通过插件机制来实现自己的交换器。<br>扩展性: 多个RabbitMQ节点可以组成一个集群，也可以根据实际业务情况动态地扩展 集群中节点。<br>高可用性 : 队列可以在集群中的机器上设置镜像，使得在部分节点出现问题的情况下队 列仍然可用。<br>多种协议: RabbitMQ除了原生支持AMQP协议，还支持STOMP， MQTT等多种消息 中间件协议。<br>多语言客户端 :RabbitMQ 几乎支持所有常用语言，比如 Java、 Python、 Ruby、 PHP、 C#、 JavaScript 等。<br>管理界面 : RabbitMQ 提供了一个易用的用户界面，使得用户可以监控和管理消息、集 群中的节点等。<br>令插件机制 : RabbitMQ 提供了许多插件 ， 以实现从多方面进行扩展，当然也可以编写自 己的插件。<br>​</p>
-<h2 id="3-AMQP是什么"><a href="#3-AMQP是什么" class="headerlink" title="3.AMQP是什么?"></a>3.AMQP是什么?</h2><p>RabbitMQ就是 AMQP 协议的 Erlang 的实现(当然 RabbitMQ 还支持 STOMP2、 MQTT3 等协议 ) AMQP 的模型架构 和 RabbitMQ 的模型架构是一样的，生产者将消息发送给交换器，交换器和队列绑定 。<br>RabbitMQ 中的交换器、交换器类型、队列、绑定、路由键等都是遵循的 AMQP 协议中相 应的概念。目前 RabbitMQ 最新版本默认支持的是 AMQP 0-9-1。<br>​</p>
-<h2 id="4-AMQP协议3层？"><a href="#4-AMQP协议3层？" class="headerlink" title="4.AMQP协议3层？"></a>4.AMQP协议3层？</h2><p>Module Layer:协议最高层，主要定义了一些客户端调用的命令，客户端可以用这些命令实现自己的业务逻辑。<br>Session Layer:中间层，主要负责客户端命令发送给服务器，再将服务端应答返回客户端，提供可靠性同步机制和错误处理。<br>TransportLayer:最底层，主要传输二进制数据流，提供帧的处理、信道服用、错误检测和数据表示等。<br>​</p>
+<h2 id="1-RabbitMQ是什么？"><a href="#1-RabbitMQ是什么？" class="headerlink" title="1.RabbitMQ是什么？"></a>1.RabbitMQ是什么？</h2><p>RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件（亦称面向消息的中间件）。RabbitMQ服务器是用Erlang语言编写的，而群集和故障转移是构建在开放电信平台框架上的。所有主要的编程语言均有与代理接口通讯的客户端库。<br>PS:也可能直接问什么是消息队列？消息队列就是一个使用队列来通信的组件</p>
+<h2 id="2-RabbitMQ特点"><a href="#2-RabbitMQ特点" class="headerlink" title="2.RabbitMQ特点?"></a>2.RabbitMQ特点?</h2><p>可靠性: RabbitMQ使用一些机制来保证可靠性， 如持久化、传输确认及发布确认等。<br>灵活的路由 : 在消息进入队列之前，通过交换器来路由消息。对于典型的路由功能， RabbitMQ 己经提供了一些内置的交换器来实现。针对更复杂的路由功能，可以将多个 交换器绑定在一起， 也可以通过插件机制来实现自己的交换器。<br>扩展性: 多个RabbitMQ节点可以组成一个集群，也可以根据实际业务情况动态地扩展 集群中节点。<br>高可用性 : 队列可以在集群中的机器上设置镜像，使得在部分节点出现问题的情况下队 列仍然可用。<br>多种协议: RabbitMQ除了原生支持AMQP协议，还支持STOMP， MQTT等多种消息 中间件协议。<br>多语言客户端 :RabbitMQ 几乎支持所有常用语言，比如 Java、 Python、 Ruby、 PHP、 C#、 JavaScript 等。<br>管理界面 : RabbitMQ 提供了一个易用的用户界面，使得用户可以监控和管理消息、集 群中的节点等。<br>令插件机制 : RabbitMQ 提供了许多插件 ， 以实现从多方面进行扩展，当然也可以编写自 己的插件。</p>
+<h2 id="3-AMQP是什么"><a href="#3-AMQP是什么" class="headerlink" title="3.AMQP是什么?"></a>3.AMQP是什么?</h2><p>RabbitMQ就是 AMQP 协议的 Erlang 的实现(当然 RabbitMQ 还支持 STOMP2、 MQTT3 等协议 ) AMQP 的模型架构 和 RabbitMQ 的模型架构是一样的，生产者将消息发送给交换器，交换器和队列绑定 。<br>RabbitMQ 中的交换器、交换器类型、队列、绑定、路由键等都是遵循的 AMQP 协议中相 应的概念。目前 RabbitMQ 最新版本默认支持的是 AMQP 0-9-1。</p>
+<h2 id="4-AMQP协议3层？"><a href="#4-AMQP协议3层？" class="headerlink" title="4.AMQP协议3层？"></a>4.AMQP协议3层？</h2><p>Module Layer:协议最高层，主要定义了一些客户端调用的命令，客户端可以用这些命令实现自己的业务逻辑。<br>Session Layer:中间层，主要负责客户端命令发送给服务器，再将服务端应答返回客户端，提供可靠性同步机制和错误处理。<br>TransportLayer:最底层，主要传输二进制数据流，提供帧的处理、信道服用、错误检测和数据表示等。</p>
 <h2 id="5-AMQP模型的几大组件？"><a href="#5-AMQP模型的几大组件？" class="headerlink" title="5.AMQP模型的几大组件？"></a>5.AMQP模型的几大组件？</h2><ul>
 <li>交换器 (Exchange)：消息代理服务器中用于把消息路由到队列的组件。</li>
 <li>队列 (Queue)：用来存储消息的数据结构，位于硬盘或内存中。</li>
 <li>绑定 (Binding)：一套规则，告知交换器消息应该将消息投递给哪个队列。</li>
 </ul>
-<p>​</p>
 <h2 id="6-说说生产者Producer和消费者Consumer"><a href="#6-说说生产者Producer和消费者Consumer" class="headerlink" title="6.说说生产者Producer和消费者Consumer?"></a>6.说说生产者Producer和消费者Consumer?</h2><p>生产者</p>
 <ul>
 <li>消息生产者，就是投递消息的一方。</li>
@@ -680,14 +660,12 @@
 <li>消费消息，也就是接收消息的一方。</li>
 <li>消费者连接到RabbitMQ服务器，并订阅到队列上。消费消息时只消费消息体，丢弃标签。</li>
 </ul>
-<p>​</p>
-<h2 id="7-为什么需要消息队列？"><a href="#7-为什么需要消息队列？" class="headerlink" title="7.为什么需要消息队列？"></a>7.为什么需要消息队列？</h2><p>从本质上来说是因为互联网的快速发展，业务不断扩张，促使技术架构需要不断的演进。<br>从以前的单体架构到现在的微服务架构，成百上千的服务之间相互调用和依赖。从互联网初期一个服务器上有 100 个在线用户已经很了不得，到现在坐拥10亿日活的微信。此时，我们需要有一个「工具」来解耦服务之间的关系、控制资源合理合时的使用以及缓冲流量洪峰等等。因此，消息队列就应运而生了。<br>它常用来实现：异步处理、服务解耦、流量控制（削峰）。<br>​</p>
+<h2 id="7-为什么需要消息队列？"><a href="#7-为什么需要消息队列？" class="headerlink" title="7.为什么需要消息队列？"></a>7.为什么需要消息队列？</h2><p>从本质上来说是因为互联网的快速发展，业务不断扩张，促使技术架构需要不断的演进。<br>从以前的单体架构到现在的微服务架构，成百上千的服务之间相互调用和依赖。从互联网初期一个服务器上有 100 个在线用户已经很了不得，到现在坐拥10亿日活的微信。此时，我们需要有一个「工具」来解耦服务之间的关系、控制资源合理合时的使用以及缓冲流量洪峰等等。因此，消息队列就应运而生了。<br>它常用来实现：异步处理、服务解耦、流量控制（削峰）。</p>
 <h2 id="8-说说Broker服务节点、Queue队列、Exchange交换器？"><a href="#8-说说Broker服务节点、Queue队列、Exchange交换器？" class="headerlink" title="8.说说Broker服务节点、Queue队列、Exchange交换器？"></a>8.说说Broker服务节点、Queue队列、Exchange交换器？</h2><ul>
 <li>Broker可以看做RabbitMQ的服务节点。一般请下一个Broker可以看做一个RabbitMQ服务器。</li>
 <li>Queue:RabbitMQ的内部对象，用于存储消息。多个消费者可以订阅同一队列，这时队列中的消息会被平摊（轮询）给多个消费者进行处理。</li>
 <li>Exchange:生产者将消息发送到交换器，由交换器将消息路由到一个或者多个队列中。当路由不到时，或返回给生产者或直接丢弃。</li>
 </ul>
-<p>​</p>
 <h2 id="9-消息队列有什么优缺点"><a href="#9-消息队列有什么优缺点" class="headerlink" title="9.消息队列有什么优缺点"></a>9.消息队列有什么优缺点</h2><p>优点上面已经说了，就是在特殊场景下有其对应的好处，解耦、异步、削峰。缺点有以下几个：</p>
 <ul>
 <li>系统可用性降低 系统引入的外部依赖越多，越容易挂掉。万一 MQ 挂了，MQ 一挂，整套系统崩 溃，你不就完了？</li>
@@ -695,20 +673,21 @@
 <li>怎么保证消息传递的顺序性？问题一大堆。</li>
 <li>一致性问题 A 系统处理完了直接返回成功了，人都以为你这个请求就成功了；但是问题是，要是 BCD 三个系统那里，BD 两个系统写库成功了，结果 C 系统写库失败了，咋整？你这数据就不一致 了。</li>
 </ul>
-<h2 id="10-如何保证消息的可靠性？"><a href="#10-如何保证消息的可靠性？" class="headerlink" title="10.如何保证消息的可靠性？"></a>10.如何保证消息的可靠性？</h2><p>​</p>
-<p>消息到MQ的过程中搞丢，MQ自己搞丢，MQ到消费过程中搞丢。<br>生产者到RabbitMQ：事务机制和Confirm机制，注意：事务机制和 Confirm 机制是互斥的，两者不能共存，会导致 RabbitMQ 报错。<br>RabbitMQ自身：持久化、集群、普通模式、镜像模式。<br>RabbitMQ到消费者：basicAck机制、死信队列、消息补偿机制。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="11-什么是RoutingKey路由键？"><a href="#11-什么是RoutingKey路由键？" class="headerlink" title="11.什么是RoutingKey路由键？"></a>11.什么是RoutingKey路由键？</h2><p>​</p>
-<p>生产者将消息发送给交换器的时候，会指定一个RoutingKey,用来指定这个消息的路由规则，这个RoutingKey需要与交换器类型和绑定键(BindingKey)联合使用才能最终生效。</p>
-<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><h2 id="12-Binding绑定？"><a href="#12-Binding绑定？" class="headerlink" title="12.Binding绑定？"></a>12.Binding绑定？</h2><p>​</p>
-<p>通过绑定将交换器和队列关联起来，一般会指定一个BindingKey,这样RabbitMq就知道如何正确路由消息到队列了。<br>​</p>
+<h2 id="10-如何保证消息的可靠性？"><a href="#10-如何保证消息的可靠性？" class="headerlink" title="10.如何保证消息的可靠性？"></a>10.如何保证消息的可靠性？</h2><p>消息到MQ的过程中搞丢，MQ自己搞丢，MQ到消费过程中搞丢。<br>生产者到RabbitMQ：事务机制和Confirm机制，注意：事务机制和 Confirm 机制是互斥的，两者不能共存，会导致 RabbitMQ 报错。<br>RabbitMQ自身：持久化、集群、普通模式、镜像模式。<br>RabbitMQ到消费者：basicAck机制、死信队列、消息补偿机制。</p>
+<h2 id="11-什么是RoutingKey路由键？"><a href="#11-什么是RoutingKey路由键？" class="headerlink" title="11.什么是RoutingKey路由键？"></a>11.什么是RoutingKey路由键？</h2><p>生产者将消息发送给交换器的时候，会指定一个RoutingKey,用来指定这个消息的路由规则，这个RoutingKey需要与交换器类型和绑定键(BindingKey)联合使用才能最终生效。</p>
+<h2 id="12-Binding绑定？"><a href="#12-Binding绑定？" class="headerlink" title="12.Binding绑定？"></a>12.Binding绑定？</h2><p>通过绑定将交换器和队列关联起来，一般会指定一个BindingKey,这样RabbitMq就知道如何正确路由消息到队列了。</p>
 <h2 id="13-交换器4种类型？"><a href="#13-交换器4种类型？" class="headerlink" title="13.交换器4种类型？"></a>13.交换器4种类型？</h2><p>主要有以下4种。</p>
 <ul>
 <li>fanout:把所有发送到该交换器的消息路由到所有与该交换器绑定的队列中。</li>
 <li>direct:把消息路由到BindingKey和RoutingKey完全匹配的队列中。</li>
 <li>topic:</li>
-<li>匹配规则：</li>
+<li>匹配规则： <ul>
+<li>RoutingKey：为一个 点号’.’: 分隔的字符串。比如: java.xiaoka.show </li>
+<li>BindingKey：和RoutingKey一样也是点号“.“分隔的字符串。BindingKey可使用 * 和 # 用于做模糊匹配，*匹配一个单词，#匹配多个或者0个 </li>
+<li>headers：不依赖路由键匹配规则路由消息。是根据发送消息内容中的headers属性进行匹配。性能差，基本用不到。</li>
 </ul>
-<p>RoutingKey 为一个 点号’.’: 分隔的字符串。比如: java.xiaoka.show<br>BindingKey和RoutingKey一样也是点号“.“分隔的字符串。<br>BindingKey可使用 * 和 # 用于做模糊匹配，*匹配一个单词，#匹配多个或者0个<br>headers:不依赖路由键匹配规则路由消息。是根据发送消息内容中的headers属性进行匹配。性能差，基本用不到。<br>​</p>
+</li>
+</ul>
 <h2 id="14-生产者消息运转？"><a href="#14-生产者消息运转？" class="headerlink" title="14.生产者消息运转？"></a>14.生产者消息运转？</h2><ol>
 <li>Producer先连接到Broker,建立连接Connection,开启一个信道(Channel)。</li>
 <li>Producer声明一个交换器并设置好相关属性。</li>
@@ -720,7 +699,6 @@
 <li>关闭信道。</li>
 <li>管理连接。</li>
 </ol>
-<p>​</p>
 <h2 id="15-消费者接收消息过程？"><a href="#15-消费者接收消息过程？" class="headerlink" title="15.消费者接收消息过程？"></a>15.消费者接收消息过程？</h2><ol>
 <li>Producer先连接到Broker,建立连接Connection,开启一个信道(Channel)。</li>
 <li>向Broker请求消费响应的队列中消息，可能会设置响应的回调函数。</li>
@@ -730,20 +708,17 @@
 <li>关闭信道。</li>
 <li>关闭连接。</li>
 </ol>
-<p>​</p>
 <h2 id="16-交换器无法根据自身类型和路由键找到符合条件队列时，有哪些处理？"><a href="#16-交换器无法根据自身类型和路由键找到符合条件队列时，有哪些处理？" class="headerlink" title="16.交换器无法根据自身类型和路由键找到符合条件队列时，有哪些处理？"></a>16.交换器无法根据自身类型和路由键找到符合条件队列时，有哪些处理？</h2><ul>
-<li>mandatory ：true 返回消息给生产者。</li>
+<li>mandatory：true 返回消息给生产者。</li>
 <li>mandatory: false 直接丢弃。</li>
 </ul>
-<p>​</p>
-<h2 id="17-死信队列？"><a href="#17-死信队列？" class="headerlink" title="17.死信队列？"></a>17.死信队列？</h2><p>DLX，全称为 Dead-Letter-Exchange，死信交换器，死信邮箱。当消息在一个队列中变成死信 (dead message) 之后，它能被重新被发送到另一个交换器中，这个交换器就是 DLX，绑定 DLX 的队列就称之为死信队列。<br>​</p>
+<h2 id="17-死信队列？"><a href="#17-死信队列？" class="headerlink" title="17.死信队列？"></a>17.死信队列？</h2><p>DLX，全称为 Dead-Letter-Exchange，死信交换器，死信邮箱。当消息在一个队列中变成死信 (dead message) 之后，它能被重新被发送到另一个交换器中，这个交换器就是 DLX，绑定 DLX 的队列就称之为死信队列。</p>
 <h2 id="18-导致的死信的几种原因？"><a href="#18-导致的死信的几种原因？" class="headerlink" title="18.导致的死信的几种原因？"></a>18.导致的死信的几种原因？</h2><ul>
 <li>消息被拒（Basic.Reject /Basic.Nack) 且 requeue = false。</li>
 <li>消息TTL过期。</li>
 <li>队列满了，无法再添加。</li>
 </ul>
-<p>​</p>
-<h2 id="19-延迟队列？"><a href="#19-延迟队列？" class="headerlink" title="19.延迟队列？"></a>19.延迟队列？</h2><p>存储对应的延迟消息，指当消息被发送以后，并不想让消费者立刻拿到消息，而是等待特定时间后，消费者才能拿到这个消息进行消费。<br>​</p>
+<h2 id="19-延迟队列？"><a href="#19-延迟队列？" class="headerlink" title="19.延迟队列？"></a>19.延迟队列？</h2><p>存储对应的延迟消息，指当消息被发送以后，并不想让消费者立刻拿到消息，而是等待特定时间后，消费者才能拿到这个消息进行消费。</p>
 <h2 id="20-优先级队列？"><a href="#20-优先级队列？" class="headerlink" title="20.优先级队列？"></a>20.优先级队列？</h2><ul>
 <li>优先级高的队列会先被消费。</li>
 <li>可以通过x-max-priority参数来实现。</li>
@@ -755,15 +730,14 @@
 <li>channel . txCommit 用于提交事务 。</li>
 <li>channel . txRollback 用于事务回滚,如果在事务提交执行之前由于 RabbitMQ 异常崩溃或者其他原因抛出异常,通过txRollback来回滚。</li>
 </ol>
-<p>​</p>
-<h2 id="22-发送确认机制？"><a href="#22-发送确认机制？" class="headerlink" title="22.发送确认机制？"></a>22.发送确认机制？</h2><p>生产者把信道设置为confirm确认模式,设置后，所有再改信道发布的消息都会被指定一个唯一的ID，一旦消息被投递到所有匹配的队列之后，RabbitMQ就会发送一个确认（Basic.Ack)给生产者（包含消息的唯一ID)，这样生产者就知道消息到达对应的目的地了。<br>​</p>
+<h2 id="22-发送确认机制？"><a href="#22-发送确认机制？" class="headerlink" title="22.发送确认机制？"></a>22.发送确认机制？</h2><p>生产者把信道设置为confirm确认模式,设置后，所有再改信道发布的消息都会被指定一个唯一的ID，一旦消息被投递到所有匹配的队列之后，RabbitMQ就会发送一个确认（Basic.Ack)给生产者（包含消息的唯一ID)，这样生产者就知道消息到达对应的目的地了。</p>
 <h2 id="23-消费者获取消息的方式？"><a href="#23-消费者获取消息的方式？" class="headerlink" title="23.消费者获取消息的方式？"></a>23.消费者获取消息的方式？</h2><ul>
 <li>推</li>
 <li>拉</li>
 </ul>
-<h2 id="24-消费者某些原因无法处理当前接受的消息如何来拒绝？"><a href="#24-消费者某些原因无法处理当前接受的消息如何来拒绝？" class="headerlink" title="24.消费者某些原因无法处理当前接受的消息如何来拒绝？"></a>24.消费者某些原因无法处理当前接受的消息如何来拒绝？</h2><p>channel .basicNack channel .basicReject<br>​</p>
-<h2 id="25-消息传输保证层级？"><a href="#25-消息传输保证层级？" class="headerlink" title="25.消息传输保证层级？"></a>25.消息传输保证层级？</h2><p>At most once:最多一次。消息可能会丢失，但不会重复传输。<br>At least once：最少一次。消息绝不会丢失，但可能会重复传输。<br>Exactly once: 恰好一次，每条消息肯定仅传输一次。<br>​</p>
-<h2 id="26-了解Virtual-Host吗"><a href="#26-了解Virtual-Host吗" class="headerlink" title="26.了解Virtual Host吗?"></a>26.了解Virtual Host吗?</h2><p>每一个RabbitMQ服务器都能创建虚拟的消息服务器，也叫虚拟主机(virtual host)，简称vhost。<br>默认为“/”。<br>​</p>
+<h2 id="24-消费者某些原因无法处理当前接受的消息如何来拒绝？"><a href="#24-消费者某些原因无法处理当前接受的消息如何来拒绝？" class="headerlink" title="24.消费者某些原因无法处理当前接受的消息如何来拒绝？"></a>24.消费者某些原因无法处理当前接受的消息如何来拒绝？</h2><p>channel .basicNack channel .basicReject</p>
+<h2 id="25-消息传输保证层级？"><a href="#25-消息传输保证层级？" class="headerlink" title="25.消息传输保证层级？"></a>25.消息传输保证层级？</h2><p>At most once:最多一次。消息可能会丢失，但不会重复传输。<br>At least once：最少一次。消息绝不会丢失，但可能会重复传输。<br>Exactly once: 恰好一次，每条消息肯定仅传输一次。</p>
+<h2 id="26-了解Virtual-Host吗"><a href="#26-了解Virtual-Host吗" class="headerlink" title="26.了解Virtual Host吗?"></a>26.了解Virtual Host吗?</h2><p>每一个RabbitMQ服务器都能创建虚拟的消息服务器，也叫虚拟主机(virtual host)，简称vhost。<br>默认为“/”。</p>
 <h2 id="27-集群中的节点类型？"><a href="#27-集群中的节点类型？" class="headerlink" title="27.集群中的节点类型？"></a>27.集群中的节点类型？</h2><ol>
 <li>内存节点：ram,将变更写入内存。</li>
 <li>磁盘节点：disc,磁盘写入操作。</li>
@@ -773,7 +747,6 @@
 <ol>
 <li>rabbit_amqqueue_process:负责协议相关的消息处理，即接收生产者发布的消息、向消费者交付消息、处理消息的确认(包括生产端的 confirm 和消费端的 ack) 等。</li>
 <li>backing_queue:是消息存储的具体形式和引擎，并向 rabbit amqqueue process提供相关的接口以供调用。</li>
-<li>​</li>
 </ol>
 <h2 id="29-RabbitMQ中消息可能有的几种状态"><a href="#29-RabbitMQ中消息可能有的几种状态" class="headerlink" title="29.RabbitMQ中消息可能有的几种状态?"></a>29.RabbitMQ中消息可能有的几种状态?</h2><ol>
 <li>alpha: 消息内容(包括消息体、属性和 headers) 和消息索引都存储在内存中 。</li>
@@ -797,29 +770,17 @@
 <li>Client发送Ack消息给MQ，通知MQ删除该消息，此处有可能因为网络问题导致Ack失败，那么Client会重复消息，这里就引出消费幂等的问题；</li>
 <li>MQ将已消费的消息删除</li>
 </ol>
-<h2 id="33-如何保证RabbitMQ消息队列的高可用"><a href="#33-如何保证RabbitMQ消息队列的高可用" class="headerlink" title="33.如何保证RabbitMQ消息队列的高可用?"></a>33.如何保证RabbitMQ消息队列的高可用?</h2><p>RabbitMQ 有三种模式：单机模式，普通集群模式，镜像集群模式。<br>​</p>
+<h2 id="33-如何保证RabbitMQ消息队列的高可用"><a href="#33-如何保证RabbitMQ消息队列的高可用" class="headerlink" title="33.如何保证RabbitMQ消息队列的高可用?"></a>33.如何保证RabbitMQ消息队列的高可用?</h2><p>RabbitMQ 有三种模式：单机模式，普通集群模式，镜像集群模式。</p>
 <ol>
 <li>单机模式：就是demo级别的，一般就是你本地启动了玩玩儿的，没人生产用单机模式</li>
-</ol>
-<ol start="2">
 <li>普通集群模式：意思就是在多台机器上启动多个RabbitMQ实例，每个机器启动一个。</li>
-</ol>
-<ol start="3">
 <li>镜像集群模式：这种模式，才是所谓的RabbitMQ的高可用模式，跟普通集群模式不一样的是，你创建的queue，无论元数据(元数据指RabbitMQ的配置数据)还是queue里的消息都会存在于多个实例上，然后每次你写消息到queue的时候，都会自动把消息到多个实例的queue里进行消息同步。</li>
 </ol>
-<h2 id="34-如何快速处理挤压过多的消息？"><a href="#34-如何快速处理挤压过多的消息？" class="headerlink" title="34.如何快速处理挤压过多的消息？"></a>34.如何快速处理挤压过多的消息？</h2><h2 id="-2"><a href="#-2" class="headerlink" title=""></a></h2><p>情景：消费者挂掉后再重启，这时会有很多已经挤压了的消息在MQ中，所以需要快速的处理之前已经挤压了的消息。<br>​</p>
-<p>解决方案：可以将原由的消费者进行修改，不再直接对数据库进行操作，只对MQ的数据进行并将处理得到的数据再发给新的partition（可以创建很多来进行过度），然后再由很多消费者进行同时的消费，并写入数据库。这是处理速度就会很快。因为第一次的消费者处理之后并不用写入数据库就可以给MQ反馈已经消费了；后续的消费者继续处理需要消费的数据并不会影响之前的消费者处理的速度。<br>​</p>
-<h2 id="35-如果消息队列满了怎么处理？"><a href="#35-如果消息队列满了怎么处理？" class="headerlink" title="35.如果消息队列满了怎么处理？"></a>35.如果消息队列满了怎么处理？</h2><p>类似上述问题：修改消费者消费方式（不直接进行消费，转发给另外的MQ），然后再由其他消费者进行消费。<br>​</p>
-<h2 id="36-如果让你开发消息队列中间件，如何来设计？"><a href="#36-如果让你开发消息队列中间件，如何来设计？" class="headerlink" title="36.如果让你开发消息队列中间件，如何来设计？"></a>36.如果让你开发消息队列中间件，如何来设计？</h2><p>​</p>
-<ol>
+<h2 id="34-如何快速处理挤压过多的消息？"><a href="#34-如何快速处理挤压过多的消息？" class="headerlink" title="34.如何快速处理挤压过多的消息？"></a>34.如何快速处理挤压过多的消息？</h2><p>情景：消费者挂掉后再重启，这时会有很多已经挤压了的消息在MQ中，所以需要快速的处理之前已经挤压了的消息。<br>解决方案：可以将原由的消费者进行修改，不再直接对数据库进行操作，只对MQ的数据进行并将处理得到的数据再发给新的partition（可以创建很多来进行过度），然后再由很多消费者进行同时的消费，并写入数据库。这是处理速度就会很快。因为第一次的消费者处理之后并不用写入数据库就可以给MQ反馈已经消费了；后续的消费者继续处理需要消费的数据并不会影响之前的消费者处理的速度。</p>
+<h2 id="35-如果消息队列满了怎么处理？"><a href="#35-如果消息队列满了怎么处理？" class="headerlink" title="35.如果消息队列满了怎么处理？"></a>35.如果消息队列满了怎么处理？</h2><p>类似上述问题：修改消费者消费方式（不直接进行消费，转发给另外的MQ），然后再由其他消费者进行消费。</p>
+<h2 id="36-如果让你开发消息队列中间件，如何来设计？"><a href="#36-如果让你开发消息队列中间件，如何来设计？" class="headerlink" title="36.如果让你开发消息队列中间件，如何来设计？"></a>36.如果让你开发消息队列中间件，如何来设计？</h2><ol>
 <li>考虑mq的伸缩性，就是需要的时候快速扩容，就可以增加吞吐量和容量，那怎么搞？设计个分布式的系统呗，参照一下kafka的设计理念，broker -&gt; topic -&gt; partition，每个partition放一个机器，就存一部分数据。如果现在资源不够了，简单啊，给topic增加partition，然后做数据迁移，增加机器，这样就可以存放更多数据，提供更高的吞吐量了。</li>
-</ol>
-<p>​</p>
-<ol start="2">
 <li>考虑mq数据要不要持久化？需要写入磁盘，这样才能保证挂了之后不会造成数据的丢失。写入时怎么进行写入磁盘？顺序写入，这样既保证了消息的顺序性，还减少了寻址的开销，达到提高性能的目的。</li>
-</ol>
-<p>​</p>
-<ol start="3">
 <li>考虑mq的可用性？参考kafka的高可用的保障机制。多副本–》leader&amp;follwer–》broker挂了重新选举leader即可。</li>
 </ol>
 ]]></content>
@@ -830,6 +791,859 @@
         <tag>八股文</tag>
         <tag>rabbitmq</tag>
         <tag>mq</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode刷题指南</title>
+    <url>/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h1 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h1><p>如何判断该使用回溯：感觉如果不穷举一下就没法知道答案。</p>
+<p>一般回溯的问题有三种：</p>
+<ol>
+<li> Find a path to success 有没有解</li>
+<li> Find all paths to success 求所有解</li>
+<li> 求所有解的个数</li>
+<li> 求所有解的具体信息</li>
+<li> Find the best path to success 求最优解</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backtrack</span>(<span class="params">新区域, res, path</span>):</span></span><br><span class="line">    <span class="keyword">if</span> 结束:<span class="comment"># 一般是最小值最大值</span></span><br><span class="line">        res.add(path) <span class="comment"># </span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">for</span> 选择 <span class="keyword">in</span> 新区域:</span><br><span class="line">        <span class="keyword">if</span> 符合要求:</span><br><span class="line">            path.add(当前选择)</span><br><span class="line">            backtrack(新区域, res, path)</span><br><span class="line">            path.pop()</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h1><h3 id="思路1："><a href="#思路1：" class="headerlink" title="思路1："></a>思路1：</h3><ol>
+<li> 定义两个指针 left 和 right 分别指向区间的开头和结尾，注意是闭区间；定义 sums 用来统计该区间内的各个字符出现次数；</li>
+<li> 第一重 while 循环是为了判断 right 指针的位置是否超出了数组边界；当 right 每次到了新位置，需要增加 right 指针的求和/计数；</li>
+<li>第二重 while 循环是让 left 指针向右移动到 [left, right] 区间符合题意的位置；<br> 当 left 每次移动到了新位置，需要减少 left 指针的求和/计数；</li>
+<li>在第二重 while 循环之后，成功找到了一个符合题意的 [left, right] 区间，题目要求<br> 最大的区间长度，因此更新 res 为 max(res, 当前区间的长度) 。</li>
+<li> right 指针每次向右移动一步，开始探索新的区间。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findSubArray</span>(<span class="params">nums</span>):</span></span><br><span class="line">    N = <span class="built_in">len</span>(nums) <span class="comment"># 数组/字符串长度</span></span><br><span class="line">    left, right = <span class="number">0</span>, <span class="number">0</span> <span class="comment"># 双指针，表示当前遍历的区间[left, right]，闭区间</span></span><br><span class="line">    sums = <span class="number">0</span> <span class="comment"># 用于统计 子数组/子区间 是否有效，根据题目可能会改成求和/计数</span></span><br><span class="line">    res = <span class="number">0</span> <span class="comment"># 保存最大的满足题目要求的 子数组/子串 长度</span></span><br><span class="line">    <span class="keyword">while</span> right &lt; N: <span class="comment"># 当右边的指针没有搜索到 数组/字符串 的结尾</span></span><br><span class="line">        sums += nums[right] <span class="comment"># 增加当前右边指针的数字/字符的求和/计数</span></span><br><span class="line">        <span class="keyword">while</span> 区间[left, right]不符合题意：<span class="comment"># 此时需要一直移动左指针，直至找到一个符合题意的区间</span></span><br><span class="line">            sums -= nums[left] <span class="comment"># 移动左指针前需要从counter中减少left位置字符的求和/计数</span></span><br><span class="line">            left += <span class="number">1</span> <span class="comment"># 真正的移动左指针，注意不能跟上面一行代码写反</span></span><br><span class="line">        <span class="comment"># 到 while 结束时，我们找到了一个符合题意要求的 子数组/子串</span></span><br><span class="line">        res = <span class="built_in">max</span>(res, right - left + <span class="number">1</span>) <span class="comment"># 需要更新结果</span></span><br><span class="line">        right += <span class="number">1</span> <span class="comment"># 移动右指针，去探索新的区间</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="思路2："><a href="#思路2：" class="headerlink" title="思路2："></a>思路2：</h3><ol>
+<li> 当移动 right 扩大窗口，即加入字符时，应该更新哪些数据？</li>
+<li> 什么条件下，窗口应该暂停扩大，开始移动 left 缩小窗口？</li>
+<li> 当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？</li>
+<li> 我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># s为匹配串，t为模式串</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">slideWindow</span>(<span class="params">s, t</span>):</span></span><br><span class="line">    needs, window = collections.defaultdict(<span class="built_in">int</span>), collections.defaultdict(<span class="built_in">int</span>)</span><br><span class="line">    <span class="comment"># 计录模式串中每个字符分别有多少个</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> t:</span><br><span class="line">        needs[i] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    left, right = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="comment"># 记录窗口中满足模式串字符的个数</span></span><br><span class="line">    valid = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> right &lt; <span class="built_in">len</span>(s):</span><br><span class="line">        <span class="comment"># 进入窗口的字符</span></span><br><span class="line">        c = s[right]</span><br><span class="line">        <span class="comment"># 更新窗口内数据</span></span><br><span class="line">        do something</span><br><span class="line"></span><br><span class="line">        <span class="comment"># debug 位置</span></span><br><span class="line">        <span class="built_in">print</span>(left, right)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 窗口收缩操作</span></span><br><span class="line">        <span class="keyword">while</span> left need to shrink:</span><br><span class="line">            d = s[left]</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 更新窗口内数据</span></span><br><span class="line">            do something</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 窗口右移</span></span><br><span class="line">        right += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h1><p>问题的本质就是让你在一幅「图」中找到从起点 <em>start</em> 到终点 <em>target</em> 的最近距离</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bfs</span>(<span class="params">start, target</span>):</span></span><br><span class="line">    queue = collections.deque()</span><br><span class="line">    <span class="comment"># 记录是否经过该节点</span></span><br><span class="line">    visited = <span class="built_in">set</span>()</span><br><span class="line">    step = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 初始化第一个节点</span></span><br><span class="line">    queue.apped(start)</span><br><span class="line">    visited.add(start)</span><br><span class="line">    <span class="keyword">while</span> queue:</span><br><span class="line">        <span class="comment"># 从当前节点向四周扩散</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(queue)):</span><br><span class="line">            temp = queue.popleft()</span><br><span class="line">            <span class="comment"># 是否到达终点</span></span><br><span class="line">            <span class="keyword">if</span> temp == target:</span><br><span class="line">                <span class="keyword">return</span> step</span><br><span class="line">            <span class="comment"># 添加相邻节点</span></span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> temp.相邻节点:</span><br><span class="line">                <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                    queue.apped(node)</span><br><span class="line">                    visited.add(node)</span><br><span class="line">        step += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><p>二分查找场景：寻找一个数、寻找左侧边界、寻找右侧边界。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binarySeaech</span>(<span class="params">nums</span>):</span></span><br><span class="line">    left, right = <span class="number">0</span>, <span class="built_in">len</span>(nums)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> condition:</span><br><span class="line">        mid = lefg + (right -left) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">            do something</span><br><span class="line">        <span class="keyword">elif</span> nums[mid] &lt; target:</span><br><span class="line">            left = something</span><br><span class="line">        <span class="keyword">elif</span> nums[mid] &gt; target:</span><br><span class="line">            right = something</span><br><span class="line">    <span class="keyword">return</span> something</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="背包问题："><a href="#背包问题：" class="headerlink" title="背包问题："></a>背包问题：</h1><p>定义 dp 数组的作用十分关键！！！</p>
+<p>必须明确dp[i][j]，i，j，分别代表什么，并为dp数组正确初始化。</p>
+<p>然后是定义状态转移方程，之后就可以愉快地套模板了~</p>
+<h3 id="通用转移方程"><a href="#通用转移方程" class="headerlink" title="通用转移方程"></a>通用转移方程</h3><ol>
+<li>最值问题:</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dp[i] = <span class="built_in">max</span>/<span class="built_in">min</span>(dp[i], dp[i - nums] + <span class="number">1</span>) 或者 dp[i] = <span class="built_in">max</span>/<span class="built_in">min</span>(dp[i], dp[i - num] + num)</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>存在问题(bool)：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dp[i] = dp[i] <span class="keyword">or</span> dp[i - num]</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>组合问题：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dp[i] += dp[i - num]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="二维dp"><a href="#二维dp" class="headerlink" title="二维dp"></a>二维dp</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bags</span>(<span class="params">nums, target</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [[<span class="number">0</span>] * (target + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n + <span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 设定所需的初始状态</span></span><br><span class="line">        dp[i][<span class="number">0</span>] = [<span class="number">1</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(target + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> condition:</span><br><span class="line">                转移方程<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                转移方程<span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp[-<span class="number">1</span>][-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="一维dp"><a href="#一维dp" class="headerlink" title="一维dp"></a>一维dp</h3><ol>
+<li>如果是0-1背包，即数组中的元素不可重复使用，nums放在外循环，target在内循环，且内循环倒序；</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(target, num - <span class="number">1</span>, -<span class="number">1</span>):</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>如果是完全背包，即数组中的元素可重复使用，nums放在外循环，target在内循环。且内循环正序。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num, target + <span class="number">1</span>):</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>如果组合问题需考虑元素之间的顺序，需将target放在外循环，将nums放在内循环。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, target+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br></pre></td></tr></table></figure>
+
+
+<p>整体代码如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bags</span>(<span class="params">nums, target</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [<span class="number">0</span>] * (target + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设定所需的初始状态</span></span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(target, num - <span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            转移方程</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="手撸LRU"><a href="#手撸LRU" class="headerlink" title="手撸LRU"></a>手撸LRU</h1><ol>
+<li>新加入的节点放在链表末尾，<code>addNodeToLast(node)</code></li>
+<li>若容量达到上限，去除最久未使用的数据，<code>removeHeadNode(head.next)</code></li>
+<li>若数据新被访问过，比如被<code>get</code>了或被<code>put</code>了新值，把该节点挪到链表末尾，<code>moveNodeToLast(node)</code></li>
+</ol>
+<p>下图为lru的基本数据结构，用hashmap存储<code>&#123;value: node&#125;</code></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1431305/1628497262413-769ddb04-b2b2-4d59-95ad-2e79bcc8d57f.jpeg#height=256&id=LiL9J&originHeight=511&originWidth=997&originalType=binary&ratio=1&status=done&style=none&width=499"></p>
+<p><code>put</code>操作的逻辑</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1431305/1628497265751-aa1e3cc8-aefa-49ef-914b-d4094dd429a9.jpeg#height=406&id=BFC0S&originHeight=811&originWidth=955&originalType=binary&ratio=1&status=done&style=none&width=478"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, key=<span class="number">0</span>, val=<span class="number">0</span></span>):</span></span><br><span class="line">        self.pre = <span class="literal">None</span></span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line">        self.key = key</span><br><span class="line">        self.val = val</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span></span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.hashmap = &#123;&#125;</span><br><span class="line">        self.head = TreeNode()</span><br><span class="line">        self.tail = TreeNode()</span><br><span class="line">        self.head.<span class="built_in">next</span> = self.tail</span><br><span class="line">        self.tail.pre = self.head</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove_node</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        node.pre.<span class="built_in">next</span> = node.<span class="built_in">next</span></span><br><span class="line">        node.<span class="built_in">next</span>.pre = node.pre</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_node</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        self.tail.pre.<span class="built_in">next</span> = node</span><br><span class="line">        node.pre = self.tail.pre</span><br><span class="line">        node.<span class="built_in">next</span> = self.tail</span><br><span class="line">        self.tail.pre = node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">move_node_to_last</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        self.remove_node(node)</span><br><span class="line">        self.add_node(node)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.hashmap:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        node = self.hashmap[key]</span><br><span class="line">        self.move_node_to_last(node)</span><br><span class="line">        <span class="keyword">return</span> node.val</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.hashmap:</span><br><span class="line">            node = self.hashmap[key]</span><br><span class="line">            node.val = value</span><br><span class="line">            self.move_node_to_last(node)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.hashmap) == self.capacity:</span><br><span class="line">            self.hashmap.pop(self.head.<span class="built_in">next</span>.key)</span><br><span class="line">            self.remove_node(self.head.<span class="built_in">next</span>)</span><br><span class="line">        node = TreeNode(key, value)</span><br><span class="line">        self.add_node(node)</span><br><span class="line">        self.hashmap[key] = node</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试八股文（一）—— 计算机网络</title>
+    <url>/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+ 
+<h1 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h1><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084581427-ad52128d-5d7c-4304-8fb3-8f8c6b59dc15.png"></p>
+<ul>
+<li>Physical, Data Link, Network, Transport, Application</li>
+<li>应用层：常见协议：<ul>
+<li>FTP(21端口)：文件传输协议</li>
+<li>SSH(22端口)：远程登陆</li>
+<li>TELNET(23端口)：远程登录</li>
+<li>SMTP(25端口)：发送邮件</li>
+<li>POP3(110端口)：接收邮件</li>
+<li>HTTP(80端口)：超文本传输协议</li>
+<li>DNS(53端口)：运行在UDP上，域名解析服务</li>
+</ul>
+</li>
+<li>传输层：TCP/UDP</li>
+<li>网络层：IP、ARP、NAT、RIP…</li>
+<li>路由器网络层，根据IP地址进行寻址；</li>
+</ul>
+<p><a href="#%E4%BB%80%E4%B9%88%E6%98%AFNAT-Network-Address-Translation-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"></a></p>
+<h1 id="传输层：TCP和UDP"><a href="#传输层：TCP和UDP" class="headerlink" title="传输层：TCP和UDP"></a>传输层：TCP和UDP</h1><h3 id="什么是三次握手-three-way-handshake-？"><a href="#什么是三次握手-three-way-handshake-？" class="headerlink" title="什么是三次握手 (three-way handshake)？"></a>什么是三次握手 (three-way handshake)？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083612400-05353867-b677-449d-bc87-378dc2ac5fbd.png"></p>
+<ul>
+<li>第一次握手：Client将SYN置1，随机产生一个初始序列号seq发送给Server，进入SYN_SENT状态；</li>
+<li>第二次握手：Server收到Client的SYN=1之后，知道客户端请求建立连接，将自己的SYN置1，ACK置1，产生一个acknowledge number=sequence number+1，并随机产生一个自己的初始序列号，发送给客户端；进入SYN_RCVD状态；</li>
+<li>第三次握手：客户端检查acknowledge number是否为序列号+1，ACK是否为1，检查正确之后将自己的ACK置为1，产生一个acknowledge number=服务器发的序列号+1，发送给服务器；进入ESTABLISHED状态；服务器检查ACK为1和acknowledge number为序列号+1之后，也进入ESTABLISHED状态；完成三次握手，连接建立。</li>
+</ul>
+<h5 id="TCP建立连接可以两次握手吗？为什么"><a href="#TCP建立连接可以两次握手吗？为什么" class="headerlink" title="TCP建立连接可以两次握手吗？为什么?"></a>TCP建立连接可以两次握手吗？为什么?</h5><p>不可以。有两个原因：<br>首先，可能会出现<strong>已失效的连接请求报文段又传到了服务器端</strong>。</p>
+<blockquote>
+<p>client 发出的第一个连接请求报文段并没有丢失，而是在某个网络结点长时间的滞留了，以致延误到连接释放以后的某个时间才到达 server。本来这是一个早已失效的报文段。但 server 收到此失效的连接请求报文段后，就误认为是 client 再次发出的一个新的连接请求。于是就向 client 发出确认报文段，同意建立连接。假设不采用 “三次握手”，那么只要 server 发出确认，新的连接就建立了。由于现在 client 并没有发出建立连接的请求，因此不会理睬 server 的确认，也不会向 server 发送数据。但 server 却以为新的运输连接已经建立，并一直等待 client 发来数据。这样，server 的很多资源就白白浪费掉了。采用 “三次握手” 的办法可以防止上述现象发生。例如刚才那种情况，client 不会向 server 的确认发出确认。server 由于收不到确认，就知道 client 并没有要求建立连接。</p>
+</blockquote>
+<p>其次，两次握手无法保证Client正确接收第二次握手的报文（Server无法确认Client是否收到），也无法保证Client和Server之间成功互换初始序列号。</p>
+<h5 id="可以采用四次握手吗？为什么？"><a href="#可以采用四次握手吗？为什么？" class="headerlink" title="可以采用四次握手吗？为什么？"></a>可以采用四次握手吗？为什么？</h5><p>可以。但是会降低传输的效率。<br>四次握手是指：第二次握手：Server只发送ACK和acknowledge number；而Server的SYN和初始序列号在第三次握手时发送；原来协议中的第三次握手变为第四次握手。出于优化目的，四次握手中的二、三可以合并。</p>
+<h5 id="第三次握手中，如果客户端的ACK未送达服务器，会怎样？"><a href="#第三次握手中，如果客户端的ACK未送达服务器，会怎样？" class="headerlink" title="第三次握手中，如果客户端的ACK未送达服务器，会怎样？"></a>第三次握手中，如果客户端的ACK未送达服务器，会怎样？</h5><p>Server端：<br>由于Server没有收到ACK确认，因此会重发之前的SYN+ACK（默认重发五次，之后自动关闭连接进入CLOSED状态），Client收到后会重新传ACK给Server。<br>Client端，两种情况：</p>
+<ol>
+<li>在Server进行超时重发的过程中，如果Client向服务器发送数据，数据头部的ACK是为1的，所以服务器收到数据之后会读取 ACK number，进入 establish 状态 </li>
+<li>在Server进入CLOSED状态之后，如果Client向服务器发送数据，服务器会以RST包应答。</li>
+</ol>
+<h5 id="如果已经建立了连接，但客户端出现了故障怎么办？"><a href="#如果已经建立了连接，但客户端出现了故障怎么办？" class="headerlink" title="如果已经建立了连接，但客户端出现了故障怎么办？"></a>如果已经建立了连接，但客户端出现了故障怎么办？</h5><p>服务器每收到一次客户端的请求后都会重新复位一个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
+<h5 id="初始序列号是什么？"><a href="#初始序列号是什么？" class="headerlink" title="初始序列号是什么？"></a>初始序列号是什么？</h5><p>TCP连接的一方A，随机选择一个32位的序列号（Sequence Number）作为发送数据的初始序列号（Initial Sequence Number，ISN），比如为1000，以该序列号为原点，对要传送的数据进行编号：1001、1002…三次握手时，把这个初始序列号传送给另一方B，以便在传输数据时，B可以确认什么样的数据编号是合法的；同时在进行数据传输时，A还可以确认B收到的每一个字节，如果A收到了B的确认编号（acknowledge number）是2001，就说明编号为1001-2000的数据已经被B成功接受。</p>
+<h3 id="什么是四次挥手？"><a href="#什么是四次挥手？" class="headerlink" title="什么是四次挥手？"></a>什么是四次挥手？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083644967-a1117a3a-ad00-494a-bdf5-f357adfef3b9.png"></p>
+<ul>
+<li>第一次挥手：Client将FIN置为1，发送一个序列号seq给Server；进入FIN_WAIT_1状态；</li>
+<li>第二次挥手：Server收到FIN之后，发送一个ACK=1，acknowledge number=收到的序列号+1；进入CLOSE_WAIT状态。此时客户端已经没有要发送的数据了，但仍可以接受服务器发来的数据。</li>
+<li>第三次挥手：Server将FIN置1，发送一个序列号给Client；进入LAST_ACK状态；</li>
+<li>第四次挥手：Client收到服务器的FIN后，进入TIME_WAIT状态；接着将ACK置1，发送一个acknowledge number=序列号+1给服务器；服务器收到后，确认acknowledge number后，变为CLOSED状态，不再向客户端发送数据。客户端等待2*MSL（报文段最长寿命）时间后，也进入CLOSED状态。完成四次挥手。</li>
+</ul>
+<h5 id="为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE-WAIT状态意义是什么）？"><a href="#为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE-WAIT状态意义是什么）？" class="headerlink" title="为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE_WAIT状态意义是什么）？"></a>为什么不能把服务器发送的ACK和FIN合并起来，变成三次挥手（CLOSE_WAIT状态意义是什么）？</h5><p>因为服务器收到客户端断开连接的请求时，可能还有一些数据没有发完，这时先回复ACK，表示接收到了断开连接的请求。等到数据发完之后再发FIN，断开服务器到客户端的数据传送。</p>
+<h5 id="如果第二次挥手时服务器的ACK没有送达客户端，会怎样？"><a href="#如果第二次挥手时服务器的ACK没有送达客户端，会怎样？" class="headerlink" title="如果第二次挥手时服务器的ACK没有送达客户端，会怎样？"></a>如果第二次挥手时服务器的ACK没有送达客户端，会怎样？</h5><p>客户端没有收到ACK确认，会重新发送FIN请求。</p>
+<h5 id="客户端TIME-WAIT状态的意义是什么？"><a href="#客户端TIME-WAIT状态的意义是什么？" class="headerlink" title="客户端TIME_WAIT状态的意义是什么？"></a>客户端TIME_WAIT状态的意义是什么？</h5><p>第四次挥手时，客户端发送给服务器的ACK有可能丢失，TIME_WAIT状态就是用来重发可能丢失的ACK报文。如果Server没有收到ACK，就会重发FIN，如果Client在2*MSL的时间内收到了FIN，就会重新发送ACK并再次等待2MSL，防止Server没有收到ACK而不断重发FIN。<br>MSL(Maximum Segment Lifetime)，指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
+<h3 id="TCP如何实现流量控制？"><a href="#TCP如何实现流量控制？" class="headerlink" title="TCP如何实现流量控制？"></a>TCP如何实现流量控制？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083671501-2d938176-eced-4414-b6aa-fbc32d323ae9.png"></p>
+<p>使用滑动窗口协议实现流量控制。防止发送方发送速率太快，接收方缓存区不够导致溢出。接收方会维护一个接收窗口 receiver window（窗口大小单位是字节），接受窗口的大小是根据自己的资源情况动态调整的，在返回ACK时将接受窗口大小放在TCP报文中的窗口字段告知发送方。发送窗口的大小不能超过接受窗口的大小，只有当发送方发送并收到确认之后，才能将发送窗口右移。</p>
+<p>发送窗口的上限为接受窗口和拥塞窗口中的较小值。接受窗口表明了接收方的接收能力，拥塞窗口表明了网络的传送能力。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/gif/1431305/1628083685654-29996960-ed15-47f4-99bf-246b8ac30214.gif"></p>
+<h5 id="什么是零窗口（接收窗口为0时会怎样）？"><a href="#什么是零窗口（接收窗口为0时会怎样）？" class="headerlink" title="什么是零窗口（接收窗口为0时会怎样）？"></a>什么是零窗口（接收窗口为0时会怎样）？</h5><p>如果接收方没有能力接收数据，就会将接收窗口设置为0，这时发送方必须暂停发送数据，但是会启动一个持续计时器(persistence timer)，到期后发送一个大小为1字节的探测数据包，以查看接收窗口状态。如果接收方能够接收数据，就会在返回的报文中更新接收窗口大小，恢复数据传送。</p>
+<h3 id="TCP的拥塞控制是怎么实现的？"><a href="#TCP的拥塞控制是怎么实现的？" class="headerlink" title="TCP的拥塞控制是怎么实现的？"></a>TCP的拥塞控制是怎么实现的？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083709929-6e2bfba1-63ca-4742-a80a-256a93b0f159.png"></p>
+<p>拥塞控制主要由四个算法组成：<strong>慢启动（Slow Start）、拥塞避免（Congestion voidance）、快重传 （Fast Retransmit）、快恢复（Fast Recovery）</strong></p>
+<ol>
+<li>慢启动：刚开始发送数据时，先把拥塞窗口（congestion window）设置为一个最大报文段MSS的数值，每收到一个新的确认报文之后，就把拥塞窗口加1个MSS。这样每经过一个传输轮次（或者说是每经过一个往返时间RTT），拥塞窗口的大小就会加倍<br><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083774060-71278d40-0b39-4e15-9dd1-22534e2c90d8.png"></li>
+</ol>
+<ol start="2">
+<li>拥塞避免：当拥塞窗口的大小达到慢开始门限(slow start threshold)时，开始执行拥塞避免算法，拥塞窗口大小不再指数增加，而是线性增加，即每经过一个传输轮次只增加1MSS.</li>
+</ol>
+<blockquote>
+<p>无论在慢开始阶段还是在拥塞避免阶段，只要发送方判断网络出现拥塞（其根据就是没有收到确认），就要把慢开始门限ssthresh设置为出现拥塞时的发送方窗口值的一半（但不能小于2）。然后把拥塞窗口cwnd重新设置为1，执行慢开始算法。<strong>（这是不使用快重传的情况）</strong></p>
+</blockquote>
+<ol start="3">
+<li>快重传：快重传要求接收方在收到一个失序的报文段后就立即发出<strong>重复确认</strong>（为的是使发送方及早知道有报文段没有到达对方）而不要等到自己发送数据时捎带确认。快重传算法规定，发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段，而不必继续等待设置的重传计时器时间到期。</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628083866222-2e727029-b6f2-495e-97f2-e4b7b49cd16e.png"></p>
+<ol start="4">
+<li>快恢复：当发送方连续收到三个重复确认时，就把慢开始门限减半，然后执行拥塞避免算法。不执行慢开始算法的原因：因为如果网络出现拥塞的话就不会收到好几个重复的确认，所以发送方认为现在网络可能没有出现拥塞。<br>也有的快重传是把开始时的拥塞窗口cwnd值再增大一点，即等于 ssthresh + 3*MSS 。这样做的理由是：既然发送方收到三个重复的确认，就表明有三个分组已经离开了网络。这三个分组不再消耗网络的资源而是停留在接收方的缓存中。可见现在网络中减少了三个分组。因此可以适当把拥塞窗口扩大些。<h3 id="TCP如何最大利用带宽？"><a href="#TCP如何最大利用带宽？" class="headerlink" title="TCP如何最大利用带宽？"></a>TCP如何最大利用带宽？</h3>TCP速率受到三个因素影响</li>
+</ol>
+<ul>
+<li>窗口：即滑动窗口大小，见<a href="#TCP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6">TCP如何实现流量控制？</a></li>
+<li>带宽：这里带宽是指单位时间内从发送端到接收端所能通过的“最高数据率”，是一种硬件限制。TCP发送端和接收端的数据传输数不可能超过两点间的带宽限制。发送端和接收端之间带宽取所通过线路的带宽最小值（如通过互联网连接）。</li>
+<li>RTT：即Round Trip Time，表示从发送端到接收端的一去一回需要的时间，TCP在数据传输过程中会对RTT进行采样（即对发送的数据包及其ACK的时间差进行测量，并根据测量值更新RTT值），TCP根据得到的RTT值更新RTO值，即Retransmission TimeOut，就是重传间隔，发送端对每个发出的数据包进行计时，如果在RTO时间内没有收到所发出的数据包的对应ACK，则任务数据包丢失，将重传数据。一般RTO值都比采样得到的RTT值要大。</li>
+</ul>
+<p>带宽时延乘积=带宽*RTT，实际上等于发送端到接收端单向通道的数据容积的两倍，这里单向通道的数据容积可以这样来理解，单向通道看成是一条单行道马路，带宽就是马路的车道数，路上跑的汽车就是数据（不过这里所有汽车的速率都是一样的，且不会有人想超车，大家齐头并进），那么单向通道的数据容积就是这条单行道上摆满车，一共可以摆多少辆。带宽就是马路的车道数，带宽数乘以单向通道的数据容积就是路面上所能容纳的全部数据量。当路面上已经摆满的时候，就不能再往里面放了。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084389045-9ba4652e-2456-424e-b530-bd95b496004d.png"></p>
+<h3 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h3><ol>
+<li>TCP是面向连接的，UDP是无连接的；</li>
+<li>UDP发送数据之前不需要建立连接</li>
+<li>TCP是可靠的，UDP不可靠； </li>
+<li>UDP接收方收到报文后，不需要给出任何确认</li>
+<li>TCP只支持点对点通信，UDP支持一对一、一对多、多对一、多对多；</li>
+<li>TCP是面向字节流的，UDP是面向报文的； </li>
+<li>面向字节流是指发送数据时以字节为单位，一个数据包可以拆分成若干组进行发送，而UDP一个报文只能一次发完。</li>
+<li>TCP有拥塞控制机制，UDP没有。网络出现的拥塞不会使源主机的发送速率降低，这对某些实时应用是很重要的，比如媒体通信，游戏；</li>
+<li>TCP首部开销（20字节）比UDP首部开销（8字节）要大</li>
+<li>UDP 的主机不需要维持复杂的连接状态表</li>
+</ol>
+<h5 id="什么时候选择TCP，什么时候选UDP？"><a href="#什么时候选择TCP，什么时候选UDP？" class="headerlink" title="什么时候选择TCP，什么时候选UDP？"></a>什么时候选择TCP，什么时候选UDP？</h5><h5 id="HTTP可以使用UDP吗？"><a href="#HTTP可以使用UDP吗？" class="headerlink" title="HTTP可以使用UDP吗？"></a>HTTP可以使用UDP吗？</h5><p>注：<strong>http 3.0 使用udp实现</strong><br><a href="https://zh.wikipedia.org/wiki/HTTP/3">https://zh.wikipedia.org/wiki/HTTP/3</a></p>
+<h5 id="面向连接和无连接的区别"><a href="#面向连接和无连接的区别" class="headerlink" title="面向连接和无连接的区别"></a>面向连接和无连接的区别</h5><p>无连接的网络服务（数据报服务）– 面向连接的网络服务（虚电路服务）<br>虚电路服务：首先建立连接，所有的数据包经过相同的路径，服务质量有较好的保证；<br>数据报服务：每个数据包含目的地址，数据路由相互独立（路径可能变化）；网络尽最大努力交付数据，但不保证不丢失、不保证先后顺序、不保证在时限内交付；网络发生拥塞时，可能会将一些分组丢弃；</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084520127-fb51536c-1fee-4fa4-a450-684dab556f9e.png#height=494&id=HncLV&originHeight=659&originWidth=769&originalType=binary&ratio=1&status=done&style=none&width=577"></p>
+<h3 id="TCP如何保证传输的可靠性"><a href="#TCP如何保证传输的可靠性" class="headerlink" title="TCP如何保证传输的可靠性"></a>TCP如何保证传输的可靠性</h3><ol>
+<li>数据包校验</li>
+<li>对失序数据包重新排序（TCP报文具有序列号）</li>
+<li>丢弃重复数据</li>
+<li>应答机制：接收方收到数据之后，会发送一个确认（通常延迟几分之一秒）；</li>
+<li>超时重发：发送方发出数据之后，启动一个定时器，超时未收到接收方的确认，则重新发送这个数据；</li>
+<li>流量控制：确保接收端能够接收发送方的数据而不会缓冲区溢出<h1 id="应用层：HTTP和HTTPS"><a href="#应用层：HTTP和HTTPS" class="headerlink" title="应用层：HTTP和HTTPS"></a>应用层：HTTP和HTTPS</h1></li>
+</ol>
+<h3 id="HTTP和HTTPS有什么区别？"><a href="#HTTP和HTTPS有什么区别？" class="headerlink" title="HTTP和HTTPS有什么区别？"></a>HTTP和HTTPS有什么区别？</h3><ol>
+<li>端口不同：HTTP使用的是80端口，HTTPS使用443端口；</li>
+<li>HTTP（超文本传输协议）信息是明文传输，HTTPS运行在SSL(Secure Socket Layer)之上，添加了加密和认证机制，更加安全；</li>
+<li>HTTPS由于加密解密会带来更大的CPU和内存开销；</li>
+<li>HTTPS通信需要证书，一般需要向证书颁发机构（CA）购买</li>
+</ol>
+<h5 id="Https的连接过程？"><a href="#Https的连接过程？" class="headerlink" title="Https的连接过程？"></a>Https的连接过程？</h5><ol>
+<li>客户端向服务器发送请求，同时发送客户端支持的一套加密规则（包括对称加密、非对称加密、摘要算法）；</li>
+<li>服务器从中选出一组加密算法与HASH算法，并将自己的身份信息以证书的形式发回给浏览器。证书里面包含了网站地址，<strong>加密公钥</strong>（用于非对称加密），以及证书的颁发机构等信息（证书中的私钥只能用于服务器端进行解密）；</li>
+<li>客户端验证服务器的合法性，包括：证书是否过期，CA 是否可靠，发行者证书的公钥能否正确解开服务器证书的“发行者的数字签名”，服务器证书上的域名是否和服务器的实际域名相匹配；</li>
+<li>如果证书受信任，或者用户接收了不受信任的证书，浏览器会生成一个<strong>随机密钥</strong>（用于对称算法），并用服务器提供的公钥加密（采用非对称算法对密钥加密）；使用Hash算法对握手消息进行<strong>摘要</strong>计算，并对摘要使用之前产生的密钥加密（对称算法）；将加密后的随机密钥和摘要一起发送给服务器；</li>
+<li>服务器使用自己的私钥解密，得到对称加密的密钥，用这个密钥解密出Hash摘要值，并验证握手消息是否一致；如果一致，服务器使用对称加密的密钥加密握手消息发给浏览器；</li>
+<li>浏览器解密并验证摘要，若一致，则握手结束。之后的数据传送都使用对称加密的密钥进行加密</li>
+</ol>
+<p>总结：非对称加密算法用于在握手过程中加密生成的密码；对称加密算法用于对真正传输的数据进行加密；HASH算法用于验证数据的完整性。</p>
+<h5 id="输入-www-baidu-com，怎么变成-https-www-baidu-com-的，怎么确定用HTTP还是HTTPS？"><a href="#输入-www-baidu-com，怎么变成-https-www-baidu-com-的，怎么确定用HTTP还是HTTPS？" class="headerlink" title="输入 www.baidu.com，怎么变成 https://www.baidu.com 的，怎么确定用HTTP还是HTTPS？"></a>输入 <a href="http://www.baidu.com,怎么变成/">www.baidu.com，怎么变成</a> <a href="https://www.baidu.com/">https://www.baidu.com</a> 的，怎么确定用HTTP还是HTTPS？</h5><p><a href="https://www.sohu.com/a/136637876_487516">你访问的网站是如何自动切换到 HTTPS 的？</a><br>一种是原始的302跳转，服务器把所有的HTTp流量跳转到HTTPS。但这样有一个漏洞，就是中间人可能在第一次访问站点的时候就劫持。<br>解决方法是引入HSTS机制，用户浏览器在访问站点的时候强制使用HTTPS。</p>
+<h5 id="HTTPS连接的时候，怎么确定收到的包是服务器发来的（中间人攻击）？"><a href="#HTTPS连接的时候，怎么确定收到的包是服务器发来的（中间人攻击）？" class="headerlink" title="HTTPS连接的时候，怎么确定收到的包是服务器发来的（中间人攻击）？"></a>HTTPS连接的时候，怎么确定收到的包是服务器发来的（中间人攻击）？</h5><h5 id="什么是对称加密、非对称加密？区别是什么？"><a href="#什么是对称加密、非对称加密？区别是什么？" class="headerlink" title="什么是对称加密、非对称加密？区别是什么？"></a>什么是对称加密、非对称加密？区别是什么？</h5><ul>
+<li>对称加密：加密和解密采用相同的密钥。如：DES、RC2、RC4</li>
+<li>非对称加密：需要两个密钥：公钥和私钥。如果用公钥加密，需要用私钥才能解密。如：RSA</li>
+<li>区别：对称加密速度更快，通常用于大量数据的加密；非对称加密安全性更高（不需要传送私钥）</li>
+</ul>
+<h5 id="数字签名、报文摘要的原理"><a href="#数字签名、报文摘要的原理" class="headerlink" title="数字签名、报文摘要的原理"></a>数字签名、报文摘要的原理</h5><ul>
+<li>发送者A用私钥进行签名，接收者B用公钥验证签名。因为除A外没有人有私钥，所以B相信签名是来自A。A不可抵赖，B也不能伪造报文。</li>
+<li>摘要算法:MD5、SHA</li>
+</ul>
+<h3 id="GET与POST的区别？"><a href="#GET与POST的区别？" class="headerlink" title="GET与POST的区别？"></a>GET与POST的区别？</h3><ol>
+<li>GET是幂等的，即读取同一个资源，总是得到相同的数据，POST不是幂等的；</li>
+<li>GET一般用于从服务器获取资源，而POST有可能改变服务器上的资源；</li>
+<li>请求形式上：GET请求的数据附在URL之后，在HTTP请求头中；POST请求的数据在请求体中；</li>
+<li>安全性：GET请求可被缓存、收藏、保留到历史记录，且其请求数据明文出现在URL中。POST的参数不会被保存，安全性相对较高；</li>
+<li>GET只允许ASCII字符，POST对数据类型没有要求，也允许二进制数据；</li>
+<li>GET的长度有限制（操作系统或者浏览器），而POST数据大小无限制</li>
+</ol>
+<h3 id="Session与Cookie的区别？"><a href="#Session与Cookie的区别？" class="headerlink" title="Session与Cookie的区别？"></a>Session与Cookie的区别？</h3><p>Session是服务器端保持状态的方案，Cookie是客户端保持状态的方案<br>Cookie保存在客户端本地，客户端请求服务器时会将Cookie一起提交；Session保存在服务端，通过检索Sessionid查看状态。保存Sessionid的方式可以采用Cookie，如果禁用了Cookie，可以使用URL重写机制（把会话ID保存在URL中）。</p>
+<h3 id="从输入网址到获得页面的过程-越详细越好-？"><a href="#从输入网址到获得页面的过程-越详细越好-？" class="headerlink" title="从输入网址到获得页面的过程 (越详细越好)？"></a>从输入网址到获得页面的过程 (越详细越好)？</h3><ol>
+<li>浏览器查询 DNS，获取域名对应的IP地址:具体过程包括浏览器搜索自身的DNS缓存、搜索操作系统的DNS缓存、读取本地的Host文件和向本地DNS服务器进行查询等。对于向本地DNS服务器进行查询，如果要查询的域名包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析(此解析具有权威性)；如果要查询的域名不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析（此解析不具有权威性）。如果本地域名服务器并未缓存该网址映射关系，那么将根据其设置发起递归查询或者迭代查询；</li>
+<li>浏览器获得域名对应的IP地址以后，浏览器向服务器请求建立链接，发起三次握手；</li>
+<li>TCP/IP链接建立起来后，浏览器向服务器发送HTTP请求；</li>
+<li>服务器接收到这个请求，并根据路径参数映射到特定的请求处理器进行处理，并将处理结果及相应的视图返回给浏览器；</li>
+<li>浏览器解析并渲染视图，若遇到对js文件、css文件及图片等静态资源的引用，则重复上述步骤并向服务器请求这些资源；</li>
+<li>浏览器根据其请求到的资源、数据渲染页面，最终向用户呈现一个完整的页面。</li>
+</ol>
+<h3 id="HTTP请求有哪些常见状态码？"><a href="#HTTP请求有哪些常见状态码？" class="headerlink" title="HTTP请求有哪些常见状态码？"></a>HTTP请求有哪些常见状态码？</h3><ol>
+<li>2xx状态码：操作成功。200 OK</li>
+<li>3xx状态码：重定向。301 永久重定向；302暂时重定向</li>
+<li>4xx状态码：客户端错误。400 Bad Request；401 Unauthorized；403 Forbidden；404 Not Found；</li>
+<li>5xx状态码：服务端错误。500服务器内部错误；501服务不可用</li>
+</ol>
+<h3 id="什么是RIP-Routing-Information-Protocol-距离矢量路由协议-算法是什么？"><a href="#什么是RIP-Routing-Information-Protocol-距离矢量路由协议-算法是什么？" class="headerlink" title="什么是RIP (Routing Information Protocol, 距离矢量路由协议)? 算法是什么？"></a>什么是RIP (Routing Information Protocol, 距离矢量路由协议)? 算法是什么？</h3><p>每个路由器维护一张表，记录该路由器到其它网络的”跳数“，路由器到与其直接连接的网络的跳数是1，每多经过一个路由器跳数就加1；更新该表时和相邻路由器交换路由信息；路由器允许一个路径最多包含15个路由器，如果跳数为16，则不可达。交付数据报时优先选取距离最短的路径。</p>
+<p>（PS：RIP是应用层协议：<a href="https://www.zhihu.com/question/19645407">https://www.zhihu.com/question/19645407</a>）</p>
+<ul>
+<li>实现简单，开销小</li>
+<li>随着网络规模扩大开销也会增大；</li>
+<li>最大距离为15，限制了网络的规模；</li>
+<li>当网络出现故障时，要经过较长的时间才能将此信息传递到所有路由器</li>
+<li>交换机数据链路层，根据MAC地址进行寻址</li>
+</ul>
+<h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><h3 id="IP地址的分类？"><a href="#IP地址的分类？" class="headerlink" title="IP地址的分类？"></a>IP地址的分类？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628084593202-102c8a14-99c6-463c-8bde-866b86d19613.png"></p>
+<p>路由器仅根据网络号net-id来转发分组，当分组到达目的网络的路由器之后，再按照主机号host-id将分组交付给主机；同一网络上的所有主机的网络号相同。</p>
+<h3 id="什么叫划分子网？"><a href="#什么叫划分子网？" class="headerlink" title="什么叫划分子网？"></a>什么叫划分子网？</h3><p>从主机号host-id借用若干个比特作为子网号subnet-id；子网掩码：网络号和子网号都为1，主机号为0；数据报仍然先按照网络号找到目的网络，发送到路由器，路由器再按照网络号和子网号找到目的子网：将子网掩码与目标地址逐比特与操作，若结果为某个子网的网络地址，则送到该子网。</p>
+<h3 id="什么是ARP协议-Address-Resolution-Protocol-？"><a href="#什么是ARP协议-Address-Resolution-Protocol-？" class="headerlink" title="什么是ARP协议 (Address Resolution Protocol)？"></a>什么是ARP协议 (Address Resolution Protocol)？</h3><p><strong>ARP协议完成了IP地址与物理地址的映射</strong>。每一个主机都设有一个 ARP 高速缓存，里面有<strong>所在的局域网</strong>上的各主机和路由器的 IP 地址到硬件地址的映射表。当源主机要发送数据包到目的主机时，会先检查自己的ARP高速缓存中有没有目的主机的MAC地址，如果有，就直接将数据包发到这个MAC地址，如果没有，就向<strong>所在的局域网</strong>发起一个ARP请求的广播包（在发送自己的 ARP 请求时，同时会带上自己的 IP 地址到硬件地址的映射），收到请求的主机检查自己的IP地址和目的主机的IP地址是否一致，如果一致，则先保存源主机的映射到自己的ARP缓存，然后给源主机发送一个ARP响应数据包。源主机收到响应数据包之后，先添加目的主机的IP地址与MAC地址的映射，再进行数据传送。如果源主机一直没有收到响应，表示ARP查询失败。</p>
+<p>如果所要找的主机和源主机不在同一个局域网上，那么就要通过 ARP 找到一个位于本局域网上的某个路由器的硬件地址，然后把分组发送给这个路由器，让这个路由器把分组转发给下一个网络。剩下的工作就由下一个网络来做。</p>
+<h3 id="什么是NAT-Network-Address-Translation-网络地址转换-？"><a href="#什么是NAT-Network-Address-Translation-网络地址转换-？" class="headerlink" title="什么是NAT (Network Address Translation, 网络地址转换)？"></a>什么是NAT (Network Address Translation, 网络地址转换)？</h3><p>用于解决内网中的主机要和因特网上的主机通信。由NAT路由器将主机的本地IP地址转换为全球IP地址，分为静态转换（转换得到的全球IP地址固定不变）和动态NAT转换。</p>
+<p>文章内容搬运自本人<a href="https://www.yuque.com/docs/share/5b2ba306-5030-4cff-8c82-19ecb35b4f40">语雀</a></p>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+        <category>八股文</category>
+      </categories>
+      <tags>
+        <tag>八股文</tag>
+        <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试八股文（三）—— 数据库</title>
+    <url>/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<h1 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h1><h3 id="事务的概念和特性？"><a href="#事务的概念和特性？" class="headerlink" title="事务的概念和特性？"></a>事务的概念和特性？</h3><p>概念：事务（Transaction）是一个操作序列，不可分割的工作单位，以BEGIN TRANSACTION开始，以ROLLBACK/COMMIT结束<br>特性（ACID）：</p>
+<ul>
+<li><strong>原子性</strong>（Atomicity）：逻辑上是不可分割的操作单元，事务的所有操作要么全部提交成功，要么全部失败回滚（用回滚日志实现，反向执行日志中的操作）；</li>
+<li><strong>一致性</strong>（Consistency）：事务的执行必须使数据库保持一致性状态。在一致性状态下，所有事务对一个数据的读取结果都是相同的；</li>
+<li><strong>隔离性</strong>（Isolation）：一个事务所做的修改在最终提交以前，对其它事务是不可见的（并发执行的事务之间不能相互影响）；</li>
+<li><strong>持久性</strong>（Durability）：一旦事务提交成功，对数据的修改是永久性的</li>
+</ul>
+<h3 id="会出现哪些并发一致性问题？"><a href="#会出现哪些并发一致性问题？" class="headerlink" title="会出现哪些并发一致性问题？"></a>会出现哪些并发一致性问题？</h3><ul>
+<li><strong>丢失修改</strong>：一个事务对数据进行了修改，在事务提交之前，另一个事务对同一个数据进行了修改，覆盖了之前的修改；</li>
+<li><strong>脏读</strong>（Dirty Read）：一个事务读取了被另一个事务修改、但未提交（进行了回滚）的数据，造成两个事务得到的数据不一致；</li>
+<li><strong>不可重复读</strong>（Nonrepeatable Read）：在同一个事务中，某查询操作在一个时间读取某一行数据和之后一个时间读取该行数据，发现数据已经发生修改（针对<strong>update</strong>操作）；</li>
+<li><strong>幻读</strong>（Phantom Read）：当同一查询多次执行时，由于其它事务在这个数据范围内执行了插入操作，会导致每次返回不同的结果集（和不可重复读的区别：针对的是一个数据整体/范围；并且针对<strong>insert/delete</strong>操作）</li>
+</ul>
+<h3 id="数据库的四种隔离级别？"><a href="#数据库的四种隔离级别？" class="headerlink" title="数据库的四种隔离级别？"></a>数据库的四种隔离级别？</h3><ul>
+<li><strong>未提交读</strong>（Read Uncommited）：在一个事务提交之前，它的执行结果对其它事务也是可见的。会导致脏读、不可重复读、幻读；</li>
+<li><strong>提交读</strong>（Read Commited）：一个事务只能看见已经提交的事务所作的改变。可避免脏读问题；</li>
+<li><strong>可重复读</strong>（Repeatable Read）：可以确保同一个事务在多次读取同样的数据时得到相同的结果。（MySQL的默认隔离级别）。可避免不可重复读；</li>
+<li><strong>可串行化</strong>（Serializable）：强制事务串行执行，使之不可能相互冲突，从而解决幻读问题。可能导致大量的超时现象和锁竞争，实际很少使用。</li>
+</ul>
+<h3 id="什么是乐观锁和悲观锁？"><a href="#什么是乐观锁和悲观锁？" class="headerlink" title="什么是乐观锁和悲观锁？"></a>什么是乐观锁和悲观锁？</h3><ul>
+<li>悲观锁：认为数据随时会被修改，因此每次读取数据之前都会上锁，防止其它事务读取或修改数据；应用于<strong>数据更新比较频繁</strong>的场景；</li>
+<li>乐观锁：操作数据时不会上锁，但是更新时会判断在此期间有没有别的事务更新这个数据，若被更新过，则失败重试；适用于<strong>读多写少</strong>的场景。乐观锁的实现方式有：<ul>
+<li>加一个版本号或者时间戳字段，每次数据更新时同时更新这个字段；</li>
+<li>先读取想要更新的字段或者所有字段，更新的时候比较一下，只有字段没有变化才进行更新</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见的封锁类型？"><a href="#常见的封锁类型？" class="headerlink" title="常见的封锁类型？"></a>常见的封锁类型？</h3><p>意向锁是 InnoDB 自动加的， 不需用户干预。<br>对于 UPDATE、 DELETE 和 INSERT 语句， InnoDB<br>会自动给涉及数据集加排他锁（X)；<br>对于普通 SELECT 语句，InnoDB 不会加任何锁；<br>事务可以通过以下语句显式给记录集加共享锁或排他锁：<br>共享锁（S）：SELECT * FROM table_name WHERE … LOCK IN SHARE MODE。 其他 session 仍然可以查询记录，并也可以对该记录加 share mode 的共享锁。但是如果当前事务需要对该记录进行更新操作，则很有可能造成死锁。<br>排他锁（X)：SELECT * FROM table_name WHERE … FOR UPDATE。其他 session 可以查询该记录，但是不能对该记录加共享锁或排他锁，而是等待获得锁</p>
+<ul>
+<li><strong>排它锁</strong>（Exclusive Lock）/ X锁：事务对数据加上X锁时，只允许此事务读取和修改此数据，并且其它事务不能对该数据加任何锁；</li>
+<li><strong>共享锁</strong>（Shared Lock）/ S锁：加了S锁后，该事务只能对数据进行读取而不能修改，并且其它事务只能加S锁，不能加X锁</li>
+<li><strong>意向锁</strong>（Intention Locks）：<ul>
+<li>一个事务在获得某个<strong>数据行</strong>对象的 S 锁之前，必须先获得<strong>整个表</strong>的 IS 锁或更强的锁；</li>
+<li>一个事务在获得某个数据行对象的 X 锁之前，必须先获得整个表的 IX 锁；</li>
+<li>IS/IX 锁之间都是兼容的；</li>
+<li>好处：如果一个事务想要对整个表加X锁，就需要先检测是否有其它事务对该表或者该表中的某一行加了锁，这种检测非常耗时。有了意向锁之后，只需要检测整个表是否存在IX/IS/X/S锁就行了</li>
+</ul>
+</li>
+</ul>
+<p>锁的作用：用于管理对共享资源的并发访问，保证数据库的完整性和一致性</p>
+<p>MySQL 中提供了两种封锁粒度：<strong>行级锁</strong>以及<strong>表级锁</strong>。<br>封锁粒度小：</p>
+<ul>
+<li>好处：锁定的数据量越少，发生锁争用的可能就越小，系统的<strong>并发程度</strong>就越高；</li>
+<li>坏处：<strong>系统开销</strong>大（加锁、释放锁、检查锁的状态都需要消耗资源）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT ... LOCK In SHARE MODE;</span><br><span class="line">SELECT ... FOR UPDATE;</span><br></pre></td></tr></table></figure>
+
+<h3 id="什么是三级封锁协议？"><a href="#什么是三级封锁协议？" class="headerlink" title="什么是三级封锁协议？"></a>什么是三级封锁协议？</h3><ul>
+<li>一级封锁协议：事务在修改数据之前必须先对其加X锁，直到事务结束才释放。可以解决丢失修改问题（两个事务不能同时对一个数据加X锁，避免了修改被覆盖）；</li>
+<li>二级封锁协议：在一级的基础上，事务在读取数据之前必须先加S锁，读完后释放。可以解决脏读问题（如果已经有事务在修改数据，就意味着已经加了X锁，此时想要读取数据的事务并不能加S锁，也就无法进行读取，避免了读取脏数据）；</li>
+<li>三级封锁协议：在二级的基础上，事务在读取数据之前必须先加S锁，直到事务结束才能释放。可以解决不可重复读问题（避免了在事务结束前其它事务对数据加X锁进行修改，保证了事务期间数据不会被其它事务更新）</li>
+</ul>
+<h3 id="什么是两段锁协议？"><a href="#什么是两段锁协议？" class="headerlink" title="什么是两段锁协议？"></a>什么是两段锁协议？</h3><p>事务必须严格分为两个阶段对数据进行<strong>加锁和解锁</strong>的操作，第一阶段加锁，第二阶段解锁。也就是说一个事务中一旦释放了锁，就不能再申请新锁了。</p>
+<p><strong>可串行化调度</strong>是指，通过并发控制，使得并发执行的事务结果与某个串行执行的事务结果相同。事务遵循两段锁协议是保证可串行化调度的充分条件。</p>
+<h3 id="什么是-MVCC？"><a href="#什么是-MVCC？" class="headerlink" title="什么是 MVCC？"></a>什么是 MVCC？</h3><p>多版本并发控制（Multi-Version Concurrency Control, MVCC），MVCC在每行记录后面都保存有两个隐藏的列，用来存储<strong>创建版本号</strong>和<strong>删除版本号</strong>。</p>
+<ul>
+<li>创建版本号：创建一个数据行时的事务版本号（<strong>事务版本号</strong>：事务开始时的系统版本号；系统版本号：每开始一个新的事务，系统版本号就会自动递增）；</li>
+<li>删除版本号：删除操作时的事务版本号；</li>
+<li>各种操作：<ul>
+<li>插入操作时，记录创建版本号；</li>
+<li>删除操作时，记录删除版本号；</li>
+<li>更新操作时，先记录删除版本号，再新增一行记录创建版本号；</li>
+<li>查询操作时，要符合以下条件才能被查询出来：删除版本号未定义或大于当前事务版本号（删除操作是在当前事务启动之后做的）；创建版本号小于或等于当前事务版本号（创建操作是事务完成或者在事务启动之前完成）</li>
+</ul>
+</li>
+</ul>
+<p>通过版本号减少了锁的争用，<strong>提高了系统性能</strong>；可以实现<strong>提交读</strong>和<strong>可重复读</strong>两种隔离级别，未提交读无需使用MVCC</p>
+<p>使用 MVCC 读取的是快照中的数据，这样可以减少加锁所带来的开销：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from table ...;</span><br></pre></td></tr></table></figure>
+<p>当前读读取的是最新的数据，需要加锁。以下第一个语句需要加 S 锁，其它都需要加 X 锁：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from table where ? lock in share mode;</span><br><span class="line">select * from table where ? for update;</span><br><span class="line">insert;</span><br><span class="line">update;</span><br><span class="line">delete;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据库的范式？"><a href="#数据库的范式？" class="headerlink" title="数据库的范式？"></a>数据库的范式？</h3><ul>
+<li><p><strong>第一范式</strong>（1NF，Normal Form）：<strong>属性不应该是可分的</strong>。举例：如果将“电话”作为一个属性（一列），是不符合1NF的，因为电话这个属性可以分解为家庭电话和移动电话…如果将“移动电话”作为一个属性，就符合1NF；</p>
+</li>
+<li><p><strong>第二范式</strong> 2NF：每个非主属性<strong>完全依赖</strong>于主属性集（候选键集）；</p>
+<ul>
+<li>B完全依赖于A，就是说A中的所有属性唯一决定B，属性少了就不能唯一决定，属性多了则有冗余（叫依赖不叫完全依赖）。举例：（学号，课程名）这个主属性集可以唯一决定成绩，但是对于学生姓名这个属性，（学号，课程名）这个属性集就是冗余的，所以学生姓名不完全依赖于（学号，课程名）这一属性集；</li>
+<li>主属性集/候选码集：某一组属性能够唯一确定其它的属性（主键就是从候选键集中选的一个键），而其子集不能，这样的属性组中的属性就是主属性；不在候选码集中的属性成为非主属性；</li>
+<li>可以通过分解来满足 2NF：将（学号，课程名，成绩）做成一张表；（学号，学生姓名）做成另一张表，避免大量的数据冗余；<br>满足1NF后，要求表中的所有列，都必须依赖于主键，而不能有任何一列与主键没有关系，也就是说一个表只描述一件事情；</li>
+</ul>
+</li>
+<li><p><strong>第三范式</strong> 3NF：在 2NF 的基础上，非主属性<strong>不传递依赖</strong>于主属性</p>
+<ul>
+<li>传递依赖：如果C依赖于B，B依赖于A，那么C传递依赖于A；</li>
+<li>3NF在2NF的基础上，消除了非主属性之间的依赖；比如一个表中，主属性有（学号），非主属性有（姓名，院系，院长名），可以看到院长名这个非主属性依赖于院系，传递依赖于学号。消除的办法是分解。<br>必须先满足第二范式（2NF），要求：表中的每一列只与主键直接相关而不是间接相关，（表中的每一列只能依赖于主键）；</li>
+</ul>
+</li>
+<li><p>冗余数据：某些同样的数据多次出现（如学生姓名）；</p>
+</li>
+<li><p>修改异常：修改了一个记录中的信息，另一个记录中相同的信息却没有修改；</p>
+</li>
+<li><p>删除异常：删除一个信息，那么也会丢失其它信息（删除一个课程，丢失了一个学生的信息）；</p>
+</li>
+<li><p>插入异常：无法插入（插入一个还没有课程信息的学生）</p>
+</li>
+</ul>
+<h3 id="列举几种表连接方式？"><a href="#列举几种表连接方式？" class="headerlink" title="列举几种表连接方式？"></a>列举几种表连接方式？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628085012977-cccccdf6-0f16-4343-8cd4-68631fb6b78a.png"></p>
+<ul>
+<li>内连接（Inner Join）：仅将两个表中满足连接条件的行组合起来作为结果集<ul>
+<li>自然连接：只考虑属性相同的元组对；</li>
+<li>等值连接：给定条件进行查询</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>外连接（Outer Join）<ul>
+<li>左连接：左边表的所有数据都有显示出来，右边的表数据只显示共同有的那部分，没有对应的部分补NULL；</li>
+<li>右连接：和左连接相反；</li>
+<li>全外连接（Full Outer Join）：查询出左表和右表所有数据，但是去除两表的重复数据</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>交叉连接（Cross Join）：返回两表的笛卡尔积（对于所含数据分别为m、n的表，返回m*n的结果）</li>
+</ul>
+<h3 id="什么是存储过程？有哪些优缺点？"><a href="#什么是存储过程？有哪些优缺点？" class="headerlink" title="什么是存储过程？有哪些优缺点？"></a>什么是存储过程？有哪些优缺点？</h3><p>存储过程是事先经过编译并存储在数据库中的一段SQL语句的集合。想要实现相应的功能时，只需要调用这个存储过程就行了（类似于函数，输入具有输出参数）。<br>优点：</p>
+<ul>
+<li>预先编译，而不需要每次运行时编译，提高了数据库执行<strong>效率</strong>；</li>
+<li>封装了一系列操作，对于一些数据交互比较多的操作，相比于单独执行SQL语句，可以<strong>减少网络通信量</strong>；</li>
+<li>具有<strong>可复用性</strong>，减少了数据库开发的工作量；</li>
+<li><strong>安全性高</strong>，可以让没有权限的用户通过存储过程间接操作数据库；</li>
+<li>更<strong>易于维护</strong></li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>可移植性差</strong>，存储过程将应用程序绑定到了数据库上；</li>
+<li><strong>开发调试复杂</strong>：没有好的IDE；</li>
+<li><strong>修改复杂</strong>，需要重新编译，有时还需要更新程序中的代码以更新调用</li>
+</ul>
+<h3 id="Drop-Delete-Truncate的区别？"><a href="#Drop-Delete-Truncate的区别？" class="headerlink" title="Drop/Delete/Truncate的区别？"></a>Drop/Delete/Truncate的区别？</h3><ul>
+<li><strong>Delete</strong>用来删除表的全部或者<strong>部分数据</strong>，执行delete之后，用户<strong>需要提交</strong>之后才会执行，会触发表上的DELETE<strong>触发器</strong>（包含一个OLD的虚拟表，可以只读访问被删除的数据），DELETE之后表结构还在，删除很慢，一行一行地删，因为会记录日志，可以利用日志还原数据；</li>
+<li><strong>Truncate</strong>删除表中的所有数据，这个操作<strong>不能回滚</strong>，也不会触发这个表上的触发器。操作比DELETE快很多（直接把表drop掉，再创建一个新表，删除的数据不能找回）。如果表中有自增（AUTO_INCREMENT）列，则重置为1；</li>
+<li><strong>Drop</strong>命令从数据库中<strong>删除表</strong>，所有的数据行，索引和约束都会被删除；不能回滚，不会触发触发器；</li>
+</ul>
+<p>触发器（TRIGGER）是由事件（比如INSERT/UPDATE/DELETE）来触发运行的操作（不能被直接调用，不能接收参数）。在数据库里以独立的对象存储，用于<strong>保证数据完整性</strong>（比如可以检验或转换数据）。</p>
+<p>约束（Constraint）类型：主键（Primary Key）约束，唯一约束（Unique），检查约束，非空约束，外键（Foreign Key）约束。</p>
+<h3 id="什么是视图？什么是游标？"><a href="#什么是视图？什么是游标？" class="headerlink" title="什么是视图？什么是游标？"></a>什么是视图？什么是游标？</h3><ul>
+<li>视图：从数据库的基本表中通过查询选取出来的数据组成的<strong>虚拟表</strong>（数据库中存放视图的定义）。可以对其进行增/删/改/查等操作。视图是对若干张基本表的引用，一张虚表，查询语句执行的结果，不存储具体的数据（基本表数据发生了改变，视图也会跟着改变）；可以跟基本表一样，进行增删改查操作(ps:增删改操作有条件限制)；如连表查询产生的视图无法进行，对视图的增删改会影响原表的数据。好处：<ul>
+<li>通过只给用户访问视图的权限，保证数据的<strong>安全性</strong>；</li>
+<li><strong>简化</strong>复杂的SQL操作，隐藏数据的复杂性（比如复杂的连接）；</li>
+</ul>
+</li>
+<li>游标（Cursor）：用于定位在查询返回的<strong>结果集的特定行</strong>，以对特定行进行操作。使用游标可以方便地对结果集进行移动遍历，根据需要滚动或对浏览/修改任意行中的数据。主要用于交互式应用。<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="数据库索引的实现原理（B-树）"><a href="#数据库索引的实现原理（B-树）" class="headerlink" title="数据库索引的实现原理（B+树）"></a>数据库索引的实现原理（B+树）</h3></li>
+</ul>
+<p>见<a href="https://github.com/wolverinn/Iridescent/blob/master/Data%20Structure.md#b%E6%A0%91">数据结构部分：B树，B+树</a></p>
+<h5 id="使用B树和B-树的比较"><a href="#使用B树和B-树的比较" class="headerlink" title="使用B树和B+树的比较"></a>使用B树和B+树的比较</h5><p>InnoDB的索引使用的是B+树实现，B+树对比B树的好处：</p>
+<ul>
+<li>IO次数少：B+树的中间结点只存放索引，数据都存在叶结点中，因此中间结点可以存更多的数据，让索引树更加矮胖；</li>
+<li>范围查询效率更高：B树需要中序遍历整个树，只B+树需要遍历叶结点中的链表；</li>
+<li>查询效率更加稳定：每次查询都需要从根结点到叶结点，路径长度相同，所以每次查询的效率都差不多</li>
+</ul>
+<h5 id="使用B树索引和哈希索引的比较"><a href="#使用B树索引和哈希索引的比较" class="headerlink" title="使用B树索引和哈希索引的比较"></a>使用B树索引和哈希索引的比较</h5><p>哈希索引能以 O(1) 时间进行查找，但是只支持精确查找，无法用于部分查找和范围查找，无法用于排序与分组；B树索引支持大于小于等于查找，范围查找。哈希索引遇到大量哈希值相等的情况后查找效率会降低。哈希索引不支持数据的排序。</p>
+<h3 id="使用索引的优点"><a href="#使用索引的优点" class="headerlink" title="使用索引的优点"></a>使用索引的优点</h3><ul>
+<li>大大加快了数据的<strong>检索速度</strong>；</li>
+<li>可以显著减少查询中<strong>分组和排序</strong>的时间；</li>
+<li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性；</li>
+<li>将随机 I/O 变为<strong>顺序 I/O</strong>（B+Tree 索引是有序的，会将相邻的数据都存储在一起）</li>
+</ul>
+<p>缺点：建立和维护索引耗费时间空间，更新索引很慢。</p>
+<h3 id="哪些情况下索引会失效？"><a href="#哪些情况下索引会失效？" class="headerlink" title="哪些情况下索引会失效？"></a>哪些情况下索引会失效？</h3><ul>
+<li>以“%(表示任意0个或多个字符)”开头的LIKE语句；</li>
+<li>OR语句前后没有同时使用索引；</li>
+<li>数据类型出现隐式转化（如varchar不加单引号的话可能会自动转换为int型）；</li>
+<li>对于多列索引，必须满足 <strong>最左匹配原则</strong>/最左前缀原则 (最左优先，eg：多列索引col1、col2和col3，则 索引生效的情形包括 col1或col1，col2或col1，col2，col3)；</li>
+<li>如果MySQL估计全表扫描比索引快，则不使用索引（比如非常小的表）</li>
+</ul>
+<h3 id="在哪些地方适合创建索引？"><a href="#在哪些地方适合创建索引？" class="headerlink" title="在哪些地方适合创建索引？"></a>在哪些地方适合创建索引？</h3><ul>
+<li>某列经常作为最大最小值；</li>
+<li>经常被查询的字段；</li>
+<li>经常用作表连接的字段；</li>
+<li>经常出现在ORDER BY/GROUP BY/DISDINCT后面的字段</li>
+</ul>
+<h5 id="创建索引时需要注意什么？"><a href="#创建索引时需要注意什么？" class="headerlink" title="创建索引时需要注意什么？"></a>创建索引时需要注意什么？</h5><ul>
+<li>只应建立在<strong>小字段</strong>上，而不要对大文本或图片建立索引（一页存储的数据越多一次IO操作获取的数据越大效率越高）；</li>
+<li>建立索引的字段应该<strong>非空</strong>，在MySQL中，含有空值的列很难进行查询优化，因为它们使得索引、索引的统计信息以及比较运算更加复杂。应该用0、一个特殊的值或者一个空串代替NULL；</li>
+<li>选择<strong>数据密度大</strong>（唯一值占总数的百分比很大）的字段作索引</li>
+</ul>
+<h3 id="索引的分类？"><a href="#索引的分类？" class="headerlink" title="索引的分类？"></a>索引的分类？</h3><ul>
+<li>普通索引</li>
+<li>唯一索引 UNIQUE：索引列的值必须唯一，但允许有空值；</li>
+<li>主键索引 PRIMARY KEY：必须唯一，不允许空值（是一种特殊的唯一索引；MySQL创建主键时默认为聚集索引，但主键也可以是非聚集索引）；</li>
+<li>单列索引和多列索引/复合索引（Composite）：索引的列数；</li>
+<li>覆盖（Covering）索引：索引包含了所有满足查询所需要的数据，查询的时候只需要读取索引而不需要回表读取数据；</li>
+<li>聚集（Clustered）索引/非聚集索引：对磁盘上存放数据的物理地址重新组织以使这些数据按照指定规则排序的一种索引（数据的物理排列顺序和索引排列顺序一致）。因此每张表只能创建一个聚集索引（因为要改变物理存储顺序）。优点是查询速度快，因为可以直接按照顺序得到需要数据的物理地址。缺点是进行修改的速度较慢。对于需要经常搜索范围的值很有效。非聚集索引只记录逻辑顺序，并不改变物理顺序；</li>
+<li>分区索引（？）</li>
+<li>虚拟索引（Virtual）：模拟索引的存在而不用真正创建一个索引，用于快速测试创建索引对执行计划的影响。没有相关的索引段，不增加存储空间的使用</li>
+</ul>
+<h3 id="MySQL的两种存储引擎-InnoDB-和-MyISAM-的区别？"><a href="#MySQL的两种存储引擎-InnoDB-和-MyISAM-的区别？" class="headerlink" title="MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？"></a>MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？</h3><ul>
+<li><p>InnoDB<strong>支持事务</strong>，可以进行Commit和Rollback；</p>
+</li>
+<li><p>MyISAM 只支持表级锁，而 InnoDB 还<strong>支持行级锁</strong>，提高了并发操作的性能；</p>
+</li>
+<li><p>InnoDB <strong>支持外键</strong>；</p>
+</li>
+<li><p>MyISAM <strong>崩溃</strong>后发生损坏的概率比 InnoDB 高很多，而且<strong>恢复的速度</strong>也更慢；</p>
+</li>
+<li><p>MyISAM 支持<strong>压缩</strong>表和空间数据索引，InnoDB需要更多的内存和存储；</p>
+</li>
+<li><p>InnoDB 支持在线<strong>热备份</strong></p>
+</li>
+<li><p><strong>MyISAM</strong> 管理非事务表。它提供高速存储和检索（MyISAM强调的是性能，每次查询具有原子性，其执行速度比InnoDB更快），以及全文搜索能力。如果表比较小，或者是只读数据（有大量的SELECT），还是可以使用MyISAM；</p>
+</li>
+<li><p><strong>InnoDB</strong> 支持事务，并发情况下有很好的性能，基本可以替代MyISAM</p>
+</li>
+<li><p>热备份：在数据库运行的情况下备份的方法。优点：可按表或用户备份，备份时数据库仍可使用，可恢复至任一时间点。但是不能出错</p>
+</li>
+<li><p>冷备份：数据库正常关闭后，将关键性文件复制到另一位置的备份方式。优点：操作简单快速，恢复简单</p>
+</li>
+</ul>
+<p>更详细的可以参考：<a href="https://imageslr.github.io/2020/db-engine.html">MySQL 数据库的存储引擎与适用场景 - Images</a></p>
+<h3 id="如何优化数据库？"><a href="#如何优化数据库？" class="headerlink" title="如何优化数据库？"></a>如何优化数据库？</h3><blockquote>
+<p>分析慢查询日志：记录了在MySQL中响应时间超过阀值long_query_time的SQL语句，通过日志去找出IO大的SQL以及发现未命中索引的SQL</p>
+</blockquote>
+<blockquote>
+<p>使用 Explain 进行分析：通过explain命令可以得到表的读取顺序、数据读取操作的操作类型、哪些索引可以使用、<strong>哪些索引被实际使用</strong>、表之间的引用以及<strong>被扫描的行数</strong>等问题；</p>
+</blockquote>
+<ul>
+<li>应尽量避免在 where 子句中使用<code>!=</code>、<code>&lt;</code>、<code>&gt;</code>操作符或对字段进行null值判断，否则将引擎放弃使用索引而进行全表扫描；</li>
+<li>只返回必要的列：最好不要使用 SELECT * 语句；</li>
+<li>只返回必要的行：使用 LIMIT 语句来限制返回的数据；</li>
+<li>将一个大连接查询分解成对每一个表进行一次单表查询，然后在应用程序中进行关联，这样做的好处有：<ul>
+<li>让缓存更高效。对于连接查询，如果其中一个表发生变化，那么整个查询缓存就无法使用。而分解后的多个查询，即使其中一个表发生变化，对其它表的查询缓存依然可以使用；</li>
+<li>分解成多个单表查询，这些单表查询的缓存结果更可能被其它查询使用到，从而减少冗余的查询；</li>
+<li>减少锁竞争</li>
+</ul>
+</li>
+</ul>
+<p>注意会引起索引失效的情况，以及在适合的地方建立索引</p>
+<ul>
+<li><p>设计表时遵循<strong>三大范式</strong>；</p>
+</li>
+<li><p>选择合适的<strong>数据类型</strong>：尽可能不要存储NULL字段；使用简单的数据类型（int, varchar/ text）；</p>
+</li>
+<li><p>表的<strong>水平切分</strong>（Sharding）：将同一个表中的记录拆分到多个结构相同的表中（策略：哈希取模；根据ID范围来分）。当一个表的数据不断增多时，Sharding 是必然的选择，它可以将数据分布到集群的不同节点上，从而缓解单个数据库的压力；</p>
+</li>
+<li><p>表的<strong>垂直切分</strong>：将一张表按列切分成多个表。可以将不常用的字段单独放在同一个表中；把大字段独立放入一个表中；或者把经常使用的字段（关系密切的）放在一张表中。垂直切分之后业务更加清晰，系统之间整合或扩展容易，数据维护简单</p>
+</li>
+<li><p>操作系统：增加TCP支持的队列数；</p>
+</li>
+<li><p>MySQL配置文件优化：缓存池大小和个数设置</p>
+</li>
+<li><p>磁盘性能：固态硬盘；</p>
+</li>
+<li><p>CPU：多核且高频；</p>
+</li>
+<li><p>内存：增大内存</p>
+</li>
+</ul>
+<h3 id="什么是主从复制？实现原理是什么？"><a href="#什么是主从复制？实现原理是什么？" class="headerlink" title="什么是主从复制？实现原理是什么？"></a>什么是主从复制？实现原理是什么？</h3><p>主从复制（Replication）是指数据可以从一个MySQL数据库主服务器复制到一个或多个从服务器，从服务器可以复制主服务器中的所有数据库或者特定的数据库，或者特定的表。默认采用异步模式。</p>
+<p>实现原理：</p>
+<ul>
+<li>主服务器 <strong>binary log dump 线程</strong>：将主服务器中的数据更改（增删改）日志写入 Binary log 中；</li>
+<li>从服务器 <strong>I/O 线程</strong>：负责从主服务器读取binary log，并写入本地的 Relay log；</li>
+<li>从服务器 <strong>SQL 线程</strong>：负责读取 Relay log，解析出主服务器已经执行的数据更改，并在从服务器中重新执行（Replay），保证主从数据的一致性</li>
+</ul>
+<h5 id="为什么要主从复制？"><a href="#为什么要主从复制？" class="headerlink" title="为什么要主从复制？"></a>为什么要主从复制？</h5><ul>
+<li>读写分离：主服务器负责写，从服务器负责读<ul>
+<li>缓解了锁的争用，即使主服务器中加了锁，依然可以进行读操作；</li>
+<li>从服务器可以使用 MyISAM，提升查询性能以及节约系统开销；</li>
+<li>增加冗余，提高可用性</li>
+</ul>
+</li>
+<li>数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换</li>
+<li>降低单个服务器磁盘I/O访问的频率，提高单个机器的I/O性能</li>
+</ul>
+<h1 id="NoSQL-Redis"><a href="#NoSQL-Redis" class="headerlink" title="NoSQL/Redis"></a>NoSQL/Redis</h1><ul>
+<li><a href="https://blog.csdn.net/Butterfly_resting/article/details/89668661">几率大的Redis面试题（含答案） - CSDN</a></li>
+<li><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Redis.md">CyC2018</a></li>
+<li><a href="https://www.jianshu.com/p/65765dd10671">Redis面试题总结 - 简书</a></li>
+<li><a href="https://www.cnblogs.com/jasontec/p/9699242.html">Redis常见面试题 - 博客园</a></li>
+<li><a href="https://github.com/0voice/interview_internal_reference#10">0voice/interview_internal_reference</a></li>
+</ul>
+<p>文章内容搬运自本人<a href="https://www.yuque.com/docs/share/c6097254-4f08-4d0f-b9c0-550c9274e6be">语雀</a></p>
+]]></content>
+      <categories>
+        <category>八股文</category>
+        <category>数据库</category>
+        <category>NoSQL</category>
+      </categories>
+      <tags>
+        <tag>八股文</tag>
+        <tag>数据库</tag>
+        <tag>MySQL</tag>
+        <tag>NoSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试八股文（二）—— 操作系统</title>
+    <url>/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><h3 id="进程和线程有什么区别？"><a href="#进程和线程有什么区别？" class="headerlink" title="进程和线程有什么区别？"></a>进程和线程有什么区别？</h3><ul>
+<li>进程（Process）是系统进行资源分配和调度的基本单位，线程（Thread）是CPU调度和分派的基本单位；</li>
+<li>线程依赖于进程而存在，一个进程至少有一个线程；</li>
+<li>进程有自己的独立地址空间，线程共享所属进程的地址空间；</li>
+<li>进程是拥有系统资源的一个独立单位，而线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈)，和其他线程共享本进程的相关资源如内存、I/O、cpu等；</li>
+<li>在进程切换时，涉及到整个当前进程CPU环境的保存环境的设置以及新被调度运行的CPU环境的设置，而线程切换只需保存和设置少量的寄存器的内容，并不涉及存储器管理方面的操作，可见，进程切换的开销远大于线程切换的开销；</li>
+<li>线程之间的通信更方便，同一进程下的线程共享全局变量等数据，而进程之间的通信需要以进程间通信(IPC)的方式进行；</li>
+<li>多线程程序只要有一个线程崩溃，整个程序就崩溃了，但多进程程序中一个进程崩溃并不会对其它进程造成影响，因为进程有自己的独立地址空间，因此多进程更加健壮</li>
+</ul>
+<p>进程操作代码实现，可以参考：<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017628290184064">多进程 - 廖雪峰的官方网站</a></p>
+<h5 id="同一进程中的线程可以共享哪些数据？"><a href="#同一进程中的线程可以共享哪些数据？" class="headerlink" title="同一进程中的线程可以共享哪些数据？"></a>同一进程中的线程可以共享哪些数据？</h5><ul>
+<li>进程代码段</li>
+<li>进程的公有数据（全局变量、静态变量…）</li>
+<li>进程打开的文件描述符</li>
+<li>进程的当前目录</li>
+<li>信号处理器/信号处理函数：对收到的信号的处理方式</li>
+<li>进程ID与进程组ID</li>
+</ul>
+<h5 id="线程独占哪些资源？"><a href="#线程独占哪些资源？" class="headerlink" title="线程独占哪些资源？"></a>线程独占哪些资源？</h5><ul>
+<li>线程ID</li>
+<li>一组寄存器的值</li>
+<li>线程自身的栈（堆是共享的）</li>
+<li>错误返回码：线程可能会产生不同的错误返回码，一个线程的错误返回码不应该被其它线程修改；</li>
+<li>信号掩码/信号屏蔽字(Signal mask)：表示是否屏蔽/阻塞相应的信号（SIGKILL,SIGSTOP除外）</li>
+</ul>
+<h3 id="进程间通信有哪些方式？"><a href="#进程间通信有哪些方式？" class="headerlink" title="进程间通信有哪些方式？"></a>进程间通信有哪些方式？</h3><ol>
+<li>管道(Pipe)</li>
+</ol>
+<ul>
+<li>管道是半双工的，数据只能向一个方向流动；需要双方通信时，需要建立起两个管道；</li>
+<li>一个进程向管道中写的内容被管道另一端的进程读出。写入的内容每次都添加在管道缓冲区的末尾，并且每次都是从缓冲区的头部读出数据；</li>
+<li>只能用于父子进程或者兄弟进程之间(具有亲缘关系的进程)</li>
+</ul>
+<ol start="2">
+<li>命名管道</li>
+<li>消息队列</li>
+<li>信号(Signal)</li>
+<li>共享内存</li>
+<li>信号量(Semaphore)：初始化操作、P操作、V操作；P操作：信号量-1，检测是否小于0，小于则进程进入阻塞状态；V操作：信号量+1，若小于等于0，则从队列中唤醒一个等待的进程进入就绪态</li>
+<li>套接字(Socket)</li>
+</ol>
+<p>更详细的可以参考：</p>
+<ul>
+<li><a href="https://imageslr.github.io/2020/02/26/ipc.html">https://imageslr.github.io/2020/02/26/ipc.html</a></li>
+<li><a href="https://www.jianshu.com/p/c1015f5ffa74">https://www.jianshu.com/p/c1015f5ffa74</a></li>
+</ul>
+<h3 id="进程同步问题"><a href="#进程同步问题" class="headerlink" title="进程同步问题"></a>进程同步问题</h3><blockquote>
+<p>进程的同步是目的，而进程间通信是实现进程同步的手段</p>
+</blockquote>
+<p>管程将共享变量以及对这些共享变量的操作封装起来，形成一个具有一定接口的功能模块，这样只能通过管程提供的某个过程才能访问管程中的资源。进程只能互斥地使用管程，使用完之后必须释放管程并唤醒入口等待队列中的进程。<br>当一个进程试图进入管程时，在<strong>入口等待队列</strong>等待。若P进程唤醒了Q进程，则Q进程先执行，P在<strong>紧急等待队列</strong>中等待。（<strong>HOARE管程</strong>）<br>wait操作：执行wait操作的进程进入条件变量链末尾，唤醒紧急等待队列或者入口队列中的进程；signal操作：唤醒条件变量链中的进程，自己进入紧急等待队列，若条件变量链为空，则继续执行。（<strong>HOARE管程</strong>）<br><strong>MESA管程</strong>：将HOARE中的signal换成了notify（或者broadcast通知所有满足条件的），进行通知而不是立马交换管程的使用权，在合适的时候，条件队列首位的进程可以进入，进入之前必须用while检查条件是否合适。优点：没有额外的进程切换</p>
+<blockquote>
+<p>问题描述：使用一个缓冲区来存放数据，只有缓冲区没有满，生产者才可以写入数据；只有缓冲区不为空，消费者才可以读出数据</p>
+</blockquote>
+<p>代码实现：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 伪代码描述 </span></span><br><span class="line"><span class="comment">// 定义信号量 full记录缓冲区物品数量 empty代表缓冲区空位数量 mutex为互斥量</span></span><br><span class="line">semaphore full = <span class="number">0</span>, empty = n, mutex = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生产者进程</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">do</span>&#123;</span><br><span class="line">   	  P(empty);</span><br><span class="line">	  P(mutex);</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 生产者进行生产</span></span><br><span class="line">   	</span><br><span class="line">   	  V(mutex);</span><br><span class="line">   	  V(full);</span><br><span class="line"> 	&#125; <span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">consumer</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">do</span>&#123;</span><br><span class="line">	  P(full);</span><br><span class="line">	  P(mutex);</span><br><span class="line"></span><br><span class="line">    	<span class="comment">// 消费者进行消费</span></span><br><span class="line"></span><br><span class="line">	  V(mutex);</span><br><span class="line">	  V(empty);</span><br><span class="line"> 	&#125; <span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>问题描述：有五位哲学家围绕着餐桌坐，每一位哲学家要么思考，要么吃饭。为了吃饭，哲学家必须拿起两双筷子（分别放于左右两端）不幸的是，筷子的数量和哲学家相等，所以每只筷子必须由两位哲学家共享。</p>
+</blockquote>
+<p>代码实现：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 5  <span class="comment">// number of philosopher</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEFT (i + N - 1)%N <span class="comment">// number of i&#x27;s left neighbors</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RIGHT (i + 1)%N <span class="comment">// number of i&#x27;s right neighbors</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> THINKING 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HUNGRY 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EATING 2</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphore;</span><br><span class="line"><span class="keyword">int</span> state[N]; <span class="comment">// array to keep track of everyone&#x27;s state</span></span><br><span class="line">semaphore mutex = <span class="number">1</span>; <span class="comment">// mutual exclusion of critical region</span></span><br><span class="line">semaphore s[N]; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">philosopher</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (TRUE) &#123;</span><br><span class="line">		think();</span><br><span class="line">		take_forks(i);</span><br><span class="line">		eat();</span><br><span class="line">		put_forks(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">take_forks</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	down(&amp;mutex); <span class="comment">// enter critical region</span></span><br><span class="line">	state[i] = HUNGRY; <span class="comment">// record that i is hungry</span></span><br><span class="line">	test_forks(i); <span class="comment">// try to acquire two forks</span></span><br><span class="line">	up(&amp;mutex); <span class="comment">// exit critical region</span></span><br><span class="line">	down(&amp;s[i]); <span class="comment">// block if forks are not acquired</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">put_forks</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	down(&amp;mutex); <span class="comment">// enter critical region</span></span><br><span class="line">	state[i] = THINKING; <span class="comment">// record that has finished eating</span></span><br><span class="line">	test_forks(LEFT); <span class="comment">// see if left neighbor can now eat</span></span><br><span class="line">	test_forks(RIGHT); <span class="comment">// see if right neighbor can now eat</span></span><br><span class="line">	up(&amp;mutex); <span class="comment">// exit critical region</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_forks</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (state[i] == HUNGRY &amp;&amp; state[LEFT] != EATING &amp;&amp; state[RIGHT] != EATING) &#123;</span><br><span class="line">		state[i] = EATING;</span><br><span class="line">		up(&amp;s[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="临界区的概念？"><a href="#临界区的概念？" class="headerlink" title="临界区的概念？"></a>临界区的概念？</h5><p>各个进程中对临界资源（互斥资源/共享变量，一次只能给一个进程使用）进行操作的程序片段</p>
+<h5 id="同步与互斥的概念？"><a href="#同步与互斥的概念？" class="headerlink" title="同步与互斥的概念？"></a>同步与互斥的概念？</h5><ul>
+<li>同步：多个进程因为合作而使得进程的执行有一定的先后顺序。比如某个进程需要另一个进程提供的消息，获得消息之前进入阻塞态；</li>
+<li>互斥：多个进程在同一时刻只有一个进程能进入临界区</li>
+</ul>
+<h5 id="并发、并行、异步的区别？"><a href="#并发、并行、异步的区别？" class="headerlink" title="并发、并行、异步的区别？"></a>并发、并行、异步的区别？</h5><p>并发：在一个时间段中同时有多个程序在运行，但其实任一时刻，只有一个程序在CPU上运行，宏观上的并发是通过不断的切换实现的；<br>多线程：并发运行的一段代码。是实现异步的手段<br>并行（和串行相比）：在多CPU系统中，多个程序无论宏观还是微观上都是同时执行的<br>异步（和同步相比）：同步是顺序执行，异步是在等待某个资源的时候继续做自己的事</p>
+<h3 id="进程有哪几种状态？"><a href="#进程有哪几种状态？" class="headerlink" title="进程有哪几种状态？"></a>进程有哪几种状态？</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1431305/1628085394606-49204b73-729e-4f57-97bc-d43ad01ec54b.png"></p>
+<ul>
+<li>就绪状态：进程已获得除处理机以外的所需资源，等待分配处理机资源</li>
+<li>运行状态：占用处理机资源运行，处于此状态的进程数小于等于CPU数</li>
+<li>阻塞状态： 进程等待某种条件，在条件满足之前无法执行</li>
+</ul>
+<h3 id="进程调度策略有哪些？"><a href="#进程调度策略有哪些？" class="headerlink" title="进程调度策略有哪些？"></a>进程调度策略有哪些？</h3><ol>
+<li><strong>批处理系统</strong>：<br>按照请求的顺序进行调度。非抢占式，开销小，无饥饿问题，响应时间不确定（可能很慢）；<br>对短进程不利，对IO密集型进程不利。</li>
+</ol>
+<p>按估计运行时间最短的顺序进行调度。非抢占式，吞吐量高，开销可能较大，可能导致饥饿问题；<br>对短进程提供好的响应时间，对长进程不利。</p>
+<p>按剩余运行时间的顺序进行调度。(最短作业优先的抢占式版本)。吞吐量高，开销可能较大，提供好的响应时间；<br>可能导致饥饿问题，对长进程不利。</p>
+<p>响应比 = 1+ 等待时间/处理时间。同时考虑了等待时间的长短和估计需要的执行时间长短，很好的平衡了长短进程。非抢占，吞吐量高，开销可能较大，提供好的响应时间，无饥饿问题。</p>
+<ol start="2">
+<li><strong>交互式系统</strong><br>交互式系统有大量的用户交互操作，在该系统中调度算法的目标是快速地进行响应。</li>
+</ol>
+<p>将所有就绪进程按 FCFS 的原则排成一个队列，用完时间片的进程排到队列最后。抢占式（时间片用完时），开销小，无饥饿问题，为短进程提供好的响应时间；<br>若时间片小，进程切换频繁，吞吐量低；若时间片太长，实时性得不到保证。</p>
+<p>为每个进程分配一个优先级，按优先级进行调度。为了防止低优先级的进程永远等不到调度，可以随着时间的推移增加等待进程的优先级。</p>
+<p>设置多个就绪队列1、2、3…，优先级递减，时间片递增。只有等到优先级更高的队列为空时才会调度当前队列中的进程。如果进程用完了当前队列的时间片还未执行完，则会被移到下一队列。<br>抢占式（时间片用完时），开销可能较大，对IO型进程有利，可能会出现饥饿问题。</p>
+<h5 id="什么叫优先级反转？如何解决？"><a href="#什么叫优先级反转？如何解决？" class="headerlink" title="什么叫优先级反转？如何解决？"></a>什么叫优先级反转？如何解决？</h5><p>高优先级的进程等待被一个低优先级进程占用的资源时，就会出现优先级反转，即优先级较低的进程比优先级较高的进程先执行。此处详细解释优先级反转带来的问题：如果有一个中等优先级的进程将低优先级的进程抢占，那么此时低优先级的进程无法正常进行并在后续释放被占用的资源，导致高优先级的任务一直被挂起，直到中等优先级的进程完成后，低优先级的进程才可以继续并在后续释放占用的资源，最后高优先级的进程才可以执行。导致的问题就是高优先级的进程在中等优先级的进程调度之后。<br>解决方法：</p>
+<ul>
+<li>优先级天花板(priority ceiling)：当任务申请某资源时，把该任务的优先级提升到可访问这个资源的所有任务中的最高优先级，这个优先级称为该资源的优先级天花板。简单易行。</li>
+<li>优先级继承(priority inheritance)：当任务A申请共享资源S时，如果S正在被任务C使用，通过比较任务C与自身的优先级，如发现任务C的优先级小于自身的优先级，则将任务C的优先级提升到自身的优先级，任务C释放资源S后，再恢复任务C的原优先级。</li>
+</ul>
+<h3 id="什么是僵尸进程？"><a href="#什么是僵尸进程？" class="headerlink" title="什么是僵尸进程？"></a>什么是僵尸进程？</h3><p>一个子进程结束后，它的父进程并没有等待它（调用wait或者waitpid），那么这个子进程将成为一个僵尸进程。僵尸进程是一个已经死亡的进程，但是并没有真正被销毁。它已经放弃了几乎所有内存空间，没有任何可执行代码，也不能被调度，仅仅在进程表中保留一个位置，记载该进程的进程ID、终止状态以及资源利用信息(CPU时间，内存使用量等等)供父进程收集，除此之外，僵尸进程不再占有任何内存空间。这个僵尸进程可能会一直留在系统中直到系统重启。</p>
+<p>危害：占用进程号，而系统所能使用的进程号是有限的；占用内存。</p>
+<p>以下情况不会产生僵尸进程：</p>
+<ul>
+<li>该进程的父进程先结束了。每个进程结束的时候，系统都会扫描是否存在子进程，如果有则用Init进程接管，成为该进程的父进程，并且会调用wait等待其结束。</li>
+<li>父进程调用wait或者waitpid等待子进程结束（需要每隔一段时间查询子进程是否结束）。wait系统调用会使父进程暂停执行，直到它的一个子进程结束为止。waitpid则可以加入<code>WNOHANG</code>(wait-no-hang)选项，如果没有发现结束的子进程，就会立即返回，不会将调用waitpid的进程阻塞。同时，waitpid还可以选择是等待任一子进程（同wait），还是等待指定pid的子进程，还是等待同一进程组下的任一子进程，还是等待组ID等于pid的任一子进程；</li>
+<li>子进程结束时，系统会产生<code>SIGCHLD</code>(signal-child)信号，可以注册一个信号处理函数，在该函数中调用waitpid，等待所有结束的子进程（注意：一般都需要循环调用waitpid，因为在信号处理函数开始执行之前，可能已经有多个子进程结束了，而信号处理函数只执行一次，所以要循环调用将所有结束的子进程回收）；</li>
+<li>也可以用<code>signal(SIGCLD, SIG_IGN)</code>(signal-ignore)通知内核，表示忽略<code>SIGCHLD</code>信号，那么子进程结束后，内核会进行回收。</li>
+</ul>
+<h5 id="什么是孤儿进程？"><a href="#什么是孤儿进程？" class="headerlink" title="什么是孤儿进程？"></a>什么是孤儿进程？</h5><p>一个父进程已经结束了，但是它的子进程还在运行，那么这些子进程将成为孤儿进程。孤儿进程会被Init（进程ID为1）接管，当这些孤儿进程结束时由Init完成状态收集工作。</p>
+<h3 id="线程同步有哪些方式？"><a href="#线程同步有哪些方式？" class="headerlink" title="线程同步有哪些方式？"></a>线程同步有哪些方式？</h3><blockquote>
+<p>为什么需要线程同步：线程有时候会和其他线程共享一些资源，比如内存、数据库等。当多个线程同时读写同一份共享资源的时候，可能会发生冲突。因此需要线程的同步，多个线程按顺序访问资源。</p>
+</blockquote>
+<ul>
+<li><strong>互斥量</strong> Mutex：互斥量是内核对象，只有拥有互斥对象的线程才有访问互斥资源的权限。因为互斥对象只有一个，所以可以保证互斥资源不会被多个线程同时访问；当前拥有互斥对象的线程处理完任务后必须将互斥对象交出，以便其他线程访问该资源；</li>
+<li><strong>信号量</strong> Semaphore：信号量是内核对象，它允许同一时刻多个线程访问同一资源，但是需要控制同一时刻访问此资源的最大线程数量。信号量对象保存了<strong>最大资源计数</strong>和<strong>当前可用资源计数</strong>，每增加一个线程对共享资源的访问，当前可用资源计数就减1，只要当前可用资源计数大于0，就可以发出信号量信号，如果为0，则将线程放入一个队列中等待。线程处理完共享资源后，应在离开的同时通过<code>ReleaseSemaphore</code>函数将当前可用资源数加1。如果信号量的取值只能为0或1，那么信号量就成为了互斥量；</li>
+<li><strong>事件</strong> Event：允许一个线程在处理完一个任务后，主动唤醒另外一个线程执行任务。事件分为手动重置事件和自动重置事件。手动重置事件被设置为激发状态后，会唤醒所有等待的线程，而且一直保持为激发状态，直到程序重新把它设置为未激发状态。自动重置事件被设置为激发状态后，会唤醒<strong>一个</strong>等待中的线程，然后自动恢复为未激发状态。</li>
+<li><strong>临界区</strong> Critical Section：任意时刻只允许一个线程对临界资源进行访问。拥有临界区对象的线程可以访问该临界资源，其它试图访问该资源的线程将被挂起，直到临界区对象被释放。</li>
+</ul>
+<h5 id="互斥量和临界区有什么区别？"><a href="#互斥量和临界区有什么区别？" class="headerlink" title="互斥量和临界区有什么区别？"></a>互斥量和临界区有什么区别？</h5><p>互斥量是可以命名的，可以用于不同进程之间的同步；而临界区只能用于同一进程中线程的同步。创建互斥量需要的资源更多，因此临界区的优势是速度快，节省资源。</p>
+<h3 id="什么是协程？"><a href="#什么是协程？" class="headerlink" title="什么是协程？"></a>什么是协程？</h3><p>协程是一种用户态的轻量级线程，协程的调度完全由用户控制。协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈，直接操作栈则基本没有内核切换的开销，可以不加锁的访问全局变量，所以上下文的切换非常快。</p>
+<h5 id="协程多与线程进行比较？"><a href="#协程多与线程进行比较？" class="headerlink" title="协程多与线程进行比较？"></a>协程多与线程进行比较？</h5><ol>
+<li>一个线程可以拥有多个协程，一个进程也可以单独拥有多个协程，这样python中则能使用多核CPU。</li>
+<li>线程进程都是同步机制，而协程则是异步</li>
+<li>协程能保留上一次调用时的状态，每次过程重入时，就相当于进入上一次调用的状态</li>
+</ol>
+<h3 id="进程的异常控制流：陷阱、中断、异常和信号"><a href="#进程的异常控制流：陷阱、中断、异常和信号" class="headerlink" title="进程的异常控制流：陷阱、中断、异常和信号"></a>进程的异常控制流：陷阱、中断、异常和信号</h3><p>陷阱是<strong>有意</strong>造成的“异常”，是执行一条指令的结果。陷阱是同步的。陷阱的主要作用是实现<strong>系统调用</strong>。比如，进程可以执行 <code>syscall n</code> 指令向内核请求服务。当进程执行这条指令后，会中断当前的控制流，<strong>陷入</strong>到内核态，执行相应的系统调用。内核的处理程序在执行结束后，会将结果返回给进程，同时退回到用户态。进程此时继续执行<strong>下一条指令</strong>。</p>
+<p>中断由处理器<strong>外部</strong>的<strong>硬件</strong>产生，不是执行某条指令的结果，也无法预测发生时机。由于中断独立于当前执行的程序，因此中断是异步事件。中断包括 I/O 设备发出的 I/O 中断、各种定时器引起的时钟中断、调试程序中设置的断点等引起的调试中断等。</p>
+<p>异常是一种错误情况，是执行当前指令的结果，可能被错误处理程序修正，也可能直接终止应用程序。异常是同步的。这里特指因为执行当前指令而产生的<strong>错误情况</strong>，比如除法异常、缺页异常等。有些书上为了区分，也将这类“异常”称为<strong>“故障”</strong>。</p>
+<p>信号是一种<strong>更高层的</strong>软件形式的异常，同样会中断进程的控制流，可以由进程进行处理。一个信号代表了一个消息。信号的作用是用来<strong>通知进程</strong>发生了某种系统事件。</p>
+<p>更详细的可以参考：<a href="https://imageslr.github.io/2020/07/09/trap-interrupt-exception.html">https://imageslr.github.io/2020/07/09/trap-interrupt-exception.html</a></p>
+<h3 id="什么是IO多路复用？怎么实现？"><a href="#什么是IO多路复用？怎么实现？" class="headerlink" title="什么是IO多路复用？怎么实现？"></a>什么是IO多路复用？怎么实现？</h3><p>IO多路复用（IO Multiplexing）是指单个进程/线程就可以同时处理多个IO请求。</p>
+<p>实现原理：用户将想要监视的文件描述符（File Descriptor）添加到select/poll/epoll函数中，由内核监视，函数阻塞。一旦有文件描述符就绪（读就绪或写就绪），或者超时（设置timeout），函数就会返回，然后该进程可以进行相应的读/写操作。</p>
+<ul>
+<li><code>select</code>：将文件描述符放入一个集合中，调用select时，将这个集合从用户空间拷贝到内核空间（缺点1：每次都要复制，<strong>开销大</strong>），由内核根据就绪状态修改该集合的内容。（缺点2）<strong>集合大小有限制</strong>，32位机默认是1024（64位：2048）；采用水平触发机制。select函数返回后，需要通过遍历这个集合，找到就绪的文件描述符（缺点3：<strong>轮询的方式效率较低</strong>），当文件描述符的数量增加时，效率会线性下降；</li>
+<li><code>poll</code>：和select几乎没有区别，区别在于文件描述符的存储方式不同，poll采用链表的方式存储，没有最大存储数量的限制；</li>
+<li><code>epoll</code>：通过内核和用户空间共享内存，避免了不断复制的问题；支持的同时连接数上限很高（1G左右的内存支持10W左右的连接数）；文件描述符就绪时，采用回调机制，避免了轮询（回调函数将就绪的描述符添加到一个链表中，执行epoll_wait时，返回这个链表）；支持水平触发和边缘触发，采用边缘触发机制时，只有活跃的描述符才会触发回调函数。</li>
+</ul>
+<p>总结，区别主要在于：</p>
+<ul>
+<li>一个线程/进程所能打开的最大连接数</li>
+<li>文件描述符传递方式（是否复制）</li>
+<li>水平触发 or 边缘触发</li>
+<li>查询就绪的描述符时的效率（是否轮询）</li>
+</ul>
+<p>当连接数较多并且有很多的不活跃连接时，epoll的效率比其它两者高很多；但是当连接数较少并且都十分活跃的情况下，由于epoll需要很多回调，因此性能可能低于其它两者。</p>
+<p>文件描述符在形式上是一个非负整数。实际上，它是一个索引值，指向内核为每一个进程所维护的该进程打开文件的记录表。当程序打开一个现有文件或者创建一个新文件时，内核向进程返回一个文件描述符。<br>内核通过文件描述符来访问文件。文件描述符指向一个文件。</p>
+<h5 id="什么是水平触发？什么是边缘触发？"><a href="#什么是水平触发？什么是边缘触发？" class="headerlink" title="什么是水平触发？什么是边缘触发？"></a>什么是水平触发？什么是边缘触发？</h5><ul>
+<li>水平触发（LT，Level Trigger）模式下，只要一个文件描述符就绪，就会触发通知，如果用户程序没有一次性把数据读写完，下次还会通知；</li>
+<li>边缘触发（ET，Edge Trigger）模式下，当描述符从未就绪变为就绪时通知一次，之后不会再通知，直到再次从未就绪变为就绪（缓冲区从不可读/写变为可读/写）。</li>
+<li>区别：边缘触发效率更高，减少了被重复触发的次数，函数不会返回大量用户程序可能不需要的文件描述符。</li>
+<li>为什么边缘触发一定要用非阻塞（non-block）IO：避免由于一个描述符的阻塞读/阻塞写操作让处理其它描述符的任务出现饥饿状态。</li>
+</ul>
+<h5 id="有哪些常见的IO模型？"><a href="#有哪些常见的IO模型？" class="headerlink" title="有哪些常见的IO模型？"></a>有哪些常见的IO模型？</h5><ul>
+<li>同步阻塞IO（Blocking IO）：用户线程发起IO读/写操作之后，线程阻塞，直到可以开始处理数据；对CPU资源的利用率不够；</li>
+<li>同步非阻塞IO（Non-blocking IO）：发起IO请求之后可以立即返回，如果没有就绪的数据，需要不断地发起IO请求直到数据就绪；不断重复请求消耗了大量的CPU资源；</li>
+<li>IO多路复用</li>
+<li>异步IO（Asynchronous IO）：用户线程发出IO请求之后，继续执行，由内核进行数据的读取并放在用户指定的缓冲区内，在IO完成之后通知用户线程直接使用。</li>
+</ul>
+<h3 id="什么是用户态和内核态？"><a href="#什么是用户态和内核态？" class="headerlink" title="什么是用户态和内核态？"></a>什么是用户态和内核态？</h3><p>为了限制不同程序的访问能力，防止一些程序访问其它程序的内存数据，CPU划分了用户态和内核态两个权限等级。</p>
+<ul>
+<li>用户态只能受限地访问内存，且不允许访问外围设备，没有占用CPU的能力，CPU资源可以被其它程序获取；</li>
+<li>内核态可以访问内存所有数据以及外围设备，也可以进行程序的切换。</li>
+</ul>
+<p>所有用户程序都运行在用户态，但有时需要进行一些内核态的操作，比如从硬盘或者键盘读数据，这时就需要进行系统调用，使用<strong>陷阱指令</strong>，CPU切换到内核态，执行相应的服务，再切换为用户态并返回系统调用的结果。</p>
+<h5 id="为什么要分用户态和内核态？"><a href="#为什么要分用户态和内核态？" class="headerlink" title="为什么要分用户态和内核态？"></a>为什么要分用户态和内核态？</h5><ul>
+<li>安全性：防止用户程序恶意或者不小心破坏系统/内存/硬件资源；</li>
+<li>封装性：用户程序不需要实现更加底层的代码；</li>
+<li>利于调度：如果多个用户程序都在等待键盘输入，这时就需要进行调度；统一交给操作系统调度更加方便。</li>
+</ul>
+<h5 id="如何从用户态切换到内核态？"><a href="#如何从用户态切换到内核态？" class="headerlink" title="如何从用户态切换到内核态？"></a>如何从用户态切换到内核态？</h5><ul>
+<li>系统调用：比如读取命令行输入。本质上还是通过中断实现</li>
+<li>用户程序发生异常时：比如缺页异常</li>
+<li>外围设备的中断：外围设备完成用户请求的操作之后，会向CPU发出中断信号，这时CPU会转去处理对应的中断处理程序</li>
+</ul>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><h3 id="什么是死锁？"><a href="#什么是死锁？" class="headerlink" title="什么是死锁？"></a>什么是死锁？</h3><p>在两个或者多个并发进程中，每个进程持有某种资源而又等待其它进程释放它们现在保持着的资源，在未改变这种状态之前都不能向前推进，称这一组进程产生了死锁(deadlock)。</p>
+<h3 id="死锁产生的必要条件？"><a href="#死锁产生的必要条件？" class="headerlink" title="死锁产生的必要条件？"></a>死锁产生的必要条件？</h3><ul>
+<li><strong>互斥</strong>：一个资源一次只能被一个进程使用；</li>
+<li><strong>占有并等待</strong>：一个进程至少占有一个资源，并在等待另一个被其它进程占用的资源；</li>
+<li><strong>非抢占</strong>：已经分配给一个进程的资源不能被强制性抢占，只能由进程完成任务之后自愿释放；</li>
+<li><strong>循环等待</strong>：若干进程之间形成一种头尾相接的环形等待资源关系，该环路中的每个进程都在等待下一个进程所占有的资源。</li>
+</ul>
+<h3 id="死锁有哪些处理方法？"><a href="#死锁有哪些处理方法？" class="headerlink" title="死锁有哪些处理方法？"></a>死锁有哪些处理方法？</h3><p>直接忽略死锁。因为解决死锁问题的代价很高，因此鸵鸟策略这种不采取任务措施的方案会获得更高的性能。当发生死锁时不会对用户造成多大影响，或发生死锁的概率很低，可以采用鸵鸟策略。</p>
+<p>基本思想是破坏形成死锁的四个必要条件：</p>
+<ul>
+<li>破坏互斥条件：允许某些资源同时被多个进程访问。但是有些资源本身并不具有这种属性，因此这种方案实用性有限；</li>
+<li>破坏占有并等待条件：<ul>
+<li>实行资源预先分配策略（当一个进程开始运行之前，必须一次性向系统申请它所需要的全部资源，否则不运行）；</li>
+<li>或者只允许进程在没有占用资源的时候才能申请资源（申请资源前先释放占有的资源）；</li>
+<li>缺点：很多时候无法预知一个进程所需的全部资源；同时，会降低资源利用率，降低系统的并发性；</li>
+</ul>
+</li>
+<li>破坏非抢占条件：允许进程强行抢占被其它进程占有的资源。会降低系统性能；</li>
+<li>破坏循环等待条件：对所有资源统一编号，所有进程对资源的请求必须按照序号递增的顺序提出，即只有占有了编号较小的资源才能申请编号较大的资源。这样避免了占有大号资源的进程去申请小号资源。</li>
+</ul>
+<p>动态地检测资源分配状态，以确保系统处于安全状态，只有处于安全状态时才会进行资源的分配。所谓安全状态是指：即使所有进程突然请求需要的所有资源，也能存在某种对进程的资源分配顺序，使得每一个进程运行完毕。</p>
+<blockquote>
+<p>银行家算法<br>如何检测死锁：检测有向图是否存在环；或者使用类似死锁避免的检测算法。<br>死锁解除的方法：</p>
+</blockquote>
+<ul>
+<li>利用抢占：挂起某些进程，并抢占它的资源。但应防止某些进程被长时间挂起而处于饥饿状态；</li>
+<li>利用回滚：让某些进程回退到足以解除死锁的地步，进程回退时自愿释放资源。要求系统保持进程的历史信息，设置还原点；</li>
+<li>利用杀死进程：强制杀死某些进程直到死锁解除为止，可以按照优先级进行。</li>
+</ul>
+<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><h3 id="分页和分段有什么区别？"><a href="#分页和分段有什么区别？" class="headerlink" title="分页和分段有什么区别？"></a>分页和分段有什么区别？</h3><ul>
+<li>页式存储：用户空间划分为大小相等的部分称为页（page），内存空间划分为同样大小的区域称为页框，分配时以页为单位，按进程需要的页数分配，逻辑上相邻的页物理上不一定相邻；</li>
+<li>段式存储：用户进程地址空间按照自身逻辑关系划分为若干个段（segment）（如代码段，数据段，堆栈段），内存空间被动态划分为长度不同的区域，分配时以段为单位，每段在内存中占据连续空间，各段可以不相邻；</li>
+<li>段页式存储：用户进程先按段划分，段内再按页划分，内存划分和分配按页。</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>目的不同：分页的目的是管理内存，用于虚拟内存以获得更大的地址空间；分段的目的是满足用户的需要，使程序和数据可以被划分为逻辑上独立的地址空间；</li>
+<li>大小不同：段的大小不固定，由其所完成的功能决定；页的大小固定，由系统决定；</li>
+<li>地址空间维度不同：分段是二维地址空间（段号+段内偏移），分页是一维地址空间（每个进程一个页表/多级页表，通过一个逻辑地址就能找到对应的物理地址）；</li>
+<li>分段便于信息的保护和共享；分页的共享收到限制；</li>
+<li>碎片：分段没有内碎片，但会产生外碎片；分页没有外碎片，但会产生内碎片（一个页填不满）</li>
+</ul>
+<h3 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h3><p>每个程序都拥有自己的地址空间，这个地址空间被分成大小相等的页，这些页被映射到物理内存；但不需要所有的页都在物理内存中，当程序引用到不在物理内存中的页时，由操作系统将缺失的部分装入物理内存。这样，对于程序来说，逻辑上似乎有很大的内存空间，只是实际上有一部分是存储在磁盘上，因此叫做虚拟内存。</p>
+<p>虚拟内存的优点是让程序可以获得更多的可用内存。</p>
+<p>虚拟内存的实现方式、页表/多级页表、缺页中断、不同的页面淘汰算法：<a href="https://imageslr.github.io/2020/07/08/tech-interview.html#virtual-memory">答案</a>。</p>
+<h5 id="如何进行地址空间到物理内存的映射？"><a href="#如何进行地址空间到物理内存的映射？" class="headerlink" title="如何进行地址空间到物理内存的映射？"></a>如何进行地址空间到物理内存的映射？</h5><p><strong>内存管理单元</strong>（MMU）管理着逻辑地址和物理地址的转换，其中的页表（Page table）存储着页（逻辑地址）和页框（物理内存空间）的映射表，页表中还包含包含有效位（是在内存还是磁盘）、访问位（是否被访问过）、修改位（内存中是否被修改过）、保护位（只读还是可读写）。逻辑地址：页号+页内地址（偏移）；每个进程一个页表，放在内存，页表起始地址在PCB/寄存器中。</p>
+<h3 id="有哪些页面置换算法？"><a href="#有哪些页面置换算法？" class="headerlink" title="有哪些页面置换算法？"></a>有哪些页面置换算法？</h3><p>在程序运行过程中，如果要访问的页面不在内存中，就发生缺页中断从而将该页调入内存中。此时如果内存已无空闲空间，系统必须从内存中调出一个页面到磁盘中来腾出空间。页面置换算法的主要目标是使页面置换频率最低（也可以说缺页率最低）。</p>
+<ul>
+<li><p><strong>最佳页面置换算法</strong>OPT（Optimal replacement algorithm）：置换以后不需要或者最远的将来才需要的页面，是一种理论上的算法，是最优策略；</p>
+</li>
+<li><p><strong>先进先出</strong>FIFO：置换在内存中驻留时间最长的页面。缺点：有可能将那些经常被访问的页面也被换出，从而使缺页率升高；</p>
+</li>
+<li><p><strong>第二次机会算法</strong>SCR：按FIFO选择某一页面，若其访问位为1，给第二次机会，并将访问位置0；</p>
+</li>
+<li><p><strong>时钟算法</strong> Clock：SCR中需要将页面在链表中移动（第二次机会的时候要将这个页面从链表头移到链表尾），时钟算法使用环形链表，再使用一个指针指向最老的页面，避免了移动页面的开销；</p>
+</li>
+<li><p><strong>最近未使用算法</strong>NRU（Not Recently Used）：检查访问位R、修改位M，优先置换R=M=0，其次是（R=0, M=1）；</p>
+</li>
+<li><p><strong>最近最少使用算法</strong>LRU（Least Recently Used）：置换出未使用时间最长的一页；实现方式：维护时间戳，或者维护一个所有页面的链表。当一个页面被访问时，将这个页面移到链表表头。这样就能保证链表表尾的页面是最近最久未访问的。</p>
+</li>
+<li><p><strong>最不经常使用算法</strong>NFU：置换出访问次数最少的页面</p>
+</li>
+<li><p>时间上：最近被访问的页在不久的将来还会被访问；</p>
+</li>
+<li><p>空间上：内存中被访问的页周围的页也很可能被访问。</p>
+</li>
+</ul>
+<p>颠簸本质上是指频繁的页调度行为。进程发生缺页中断时必须置换某一页。然而，其他所有的页都在使用，它置换一个页，但又立刻再次需要这个页。因此会不断产生缺页中断，导致整个系统的效率急剧下降，这种现象称为颠簸。内存颠簸的解决策略包括：</p>
+<ul>
+<li>修改页面置换算法；</li>
+<li>降低同时运行的程序的数量；</li>
+<li>终止该进程或增加物理内存容量。</li>
+</ul>
+<h3 id="缓冲区溢出问题"><a href="#缓冲区溢出问题" class="headerlink" title="缓冲区溢出问题"></a>缓冲区溢出问题</h3><p>防范缓冲区溢出攻击的机制有三种：随机化、栈保护和限制可执行代码区域。</p>
+<ul>
+<li>随机化：包括栈随机化（程序开始时在栈上分配一段随机大小的空间）和地址空间布局随机化（Address-Space Layout Randomization，ASLR，即每次运行时程序的不同部分，包括代码段、数据段、栈、堆等都会被加载到内存空间的不同区域），但只能增加攻击一个系统的难度，不能完全保证安全。</li>
+<li>栈保护：在每个函数的栈帧的局部变量和栈状态之间存储一个<strong>随机产生的</strong>特殊的值，称为金丝雀值（canary）。在恢复寄存器状态和函数返回之前，程序检测这个金丝雀值是否被改变了，如果是，那么程序异常终止。</li>
+<li>限制可执行代码区域：内存页的访问形式有三种：可读、可写、可执行，只有编译器产生的那部分代码所处的内存才是可执行的，其他页限制为只允许读和写。</li>
+</ul>
+<p>更详细的可以参考：<a href="https://imageslr.github.io/2020/07/08/tech-interview.html#stackoverflow">https://imageslr.github.io/2020/07/08/tech-interview.html#stackoverflow</a></p>
+<h1 id="磁盘调度"><a href="#磁盘调度" class="headerlink" title="磁盘调度"></a>磁盘调度</h1><p>过程：磁头（找到对应的盘面）；磁道（一个盘面上的同心圆环，寻道时间）；扇区（旋转时间）。为减小寻道时间的调度算法：</p>
+<ul>
+<li>先来先服务</li>
+<li>最短寻道时间优先</li>
+<li>电梯算法：电梯总是保持一个方向运行，直到该方向没有请求为止，然后改变运行方向。</li>
+</ul>
+<h1 id="进程间通信IPC"><a href="#进程间通信IPC" class="headerlink" title="进程间通信IPC"></a><a href="https://www.jianshu.com/p/c1015f5ffa74">进程间通信IPC</a></h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://blog.csdn.net/justloveyou_/article/details/78304294">面试/笔试第二弹 —— 操作系统面试问题集锦 - CSDN博客</a></li>
+<li><a href="https://segmentfault.com/a/1190000018970361">线程同步与并发 - - SegmentFault</a></li>
+<li><a href="http://baijiahao.baidu.com/s?id=1641172494287388070&wfr=spider&for=pc">彻底搞懂epoll高效运行的原理</a></li>
+<li><a href="https://www.cnblogs.com/lirong21/p/4213028.html">用户态与内核态的切换</a></li>
+</ul>
+<p>文章内容搬运自本人<a href="https://www.yuque.com/docs/share/4137d8f0-4b2e-4a18-a5a3-7a01239affcc">语雀</a></p>
+]]></content>
+      <categories>
+        <category>八股文</category>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>八股文</tag>
+        <tag>操作系统</tag>
       </tags>
   </entry>
 </search>
