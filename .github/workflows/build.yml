@@ -8,7 +8,7 @@ env:
   GIT_EMAIL: a602693793@gmail.com
   DEPLOY_REPO: zhsama/zhsama.github.io
   DEPLOY_BRANCH: main
-  THEME_REPO: git@github.com:theme-next/hexo-theme-next.git
+  THEME_REPO: next-theme/hexo-theme-next
   THEME_BRANCH: master
 
 jobs:
@@ -55,7 +55,6 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.name $GIT_USER
           git config --global user.email $GIT_EMAIL
-          cp _config.theme.yml themes/next/_config.yml
 
       - name: Install dependencies
         run: |
