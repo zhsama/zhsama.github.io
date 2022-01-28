@@ -8,8 +8,6 @@ env:
   GIT_EMAIL: a602693793@gmail.com
   DEPLOY_REPO: zhsama/zhsama.github.io
   DEPLOY_BRANCH: main
-  THEME_REPO: next-theme/hexo-theme-next
-  THEME_BRANCH: master
 
 jobs:
   build:
@@ -23,13 +21,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Checkout theme repo
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ env.THEME_REPO }}
-          ref: ${{ env.THEME_BRANCH }}
-          path: themes/next
 
       - name: Checkout deploy repo
         uses: actions/checkout@v2
