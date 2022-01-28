@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhsama.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="本人LeetCode刷题近400道后，总结出来的算法小抄。包括了回溯、双指针，滑动窗口和动态规划等常见算法的做题思路和模板。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode刷题指南">
+<meta property="og:url" content="https://zhsama.github.io/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="zhsama&#39;s blog">
+<meta property="og:description" content="本人LeetCode刷题近400道后，总结出来的算法小抄。包括了回溯、双指针，滑动窗口和动态规划等常见算法的做题思路和模板。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/jpeg/1431305/1628497262413-769ddb04-b2b2-4d59-95ad-2e79bcc8d57f.jpeg#height=256&id=LiL9J&originHeight=511&originWidth=997&originalType=binary&ratio=1&status=done&style=none&width=499">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/jpeg/1431305/1628497265751-aa1e3cc8-aefa-49ef-914b-d4094dd429a9.jpeg#height=406&id=BFC0S&originHeight=811&originWidth=955&originalType=binary&ratio=1&status=done&style=none&width=478">
+<meta property="article:published_time" content="2021-09-22T14:09:54.000Z">
+<meta property="article:modified_time" content="2021-09-22T14:09:56.000Z">
+<meta property="article:author" content="zhsama">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/jpeg/1431305/1628497262413-769ddb04-b2b2-4d59-95ad-2e79bcc8d57f.jpeg#height=256&id=LiL9J&originHeight=511&originWidth=997&originalType=binary&ratio=1&status=done&style=none&width=499">
+
+
+<link rel="canonical" href="https://zhsama.github.io/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhsama.github.io/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/","path":"2021/09/22/LeetCode刷题指南/","title":"LeetCode刷题指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>LeetCode刷题指南 | zhsama's blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhsama's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="nav-number">2.</span> <span class="nav-text">滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF1%EF%BC%9A"><span class="nav-number">2.0.1.</span> <span class="nav-text">思路1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF2%EF%BC%9A"><span class="nav-number">2.0.2.</span> <span class="nav-text">思路2：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BFS"><span class="nav-number">3.</span> <span class="nav-text">BFS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">4.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">背包问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="nav-number">5.0.1.</span> <span class="nav-text">通用转移方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4dp"><span class="nav-number">5.0.2.</span> <span class="nav-text">二维dp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4dp"><span class="nav-number">5.0.3.</span> <span class="nav-text">一维dp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E6%92%B8LRU"><span class="nav-number">6.</span> <span class="nav-text">手撸LRU</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhsama</p>
+  <div class="site-description" itemprop="description">我没有敌人</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhsama">
+      <meta itemprop="description" content="我没有敌人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhsama's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LeetCode刷题指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-22 22:09:54 / 修改时间：22:09:56" itemprop="dateCreated datePublished" datetime="2021-09-22T22:09:54+08:00">2021-09-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">本人LeetCode刷题近400道后，总结出来的算法小抄。包括了回溯、双指针，滑动窗口和动态规划等常见算法的做题思路和模板。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h1><p>如何判断该使用回溯：感觉如果不穷举一下就没法知道答案。</p>
+<p>一般回溯的问题有三种：</p>
+<ol>
+<li> Find a path to success 有没有解</li>
+<li> Find all paths to success 求所有解</li>
+<li> 求所有解的个数</li>
+<li> 求所有解的具体信息</li>
+<li> Find the best path to success 求最优解</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backtrack</span>(<span class="params">新区域, res, path</span>):</span></span><br><span class="line">    <span class="keyword">if</span> 结束:<span class="comment"># 一般是最小值最大值</span></span><br><span class="line">        res.add(path) <span class="comment"># </span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">for</span> 选择 <span class="keyword">in</span> 新区域:</span><br><span class="line">        <span class="keyword">if</span> 符合要求:</span><br><span class="line">            path.add(当前选择)</span><br><span class="line">            backtrack(新区域, res, path)</span><br><span class="line">            path.pop()</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h1><h3 id="思路1："><a href="#思路1：" class="headerlink" title="思路1："></a>思路1：</h3><ol>
+<li> 定义两个指针 left 和 right 分别指向区间的开头和结尾，注意是闭区间；定义 sums 用来统计该区间内的各个字符出现次数；</li>
+<li> 第一重 while 循环是为了判断 right 指针的位置是否超出了数组边界；当 right 每次到了新位置，需要增加 right 指针的求和/计数；</li>
+<li>第二重 while 循环是让 left 指针向右移动到 [left, right] 区间符合题意的位置；<br> 当 left 每次移动到了新位置，需要减少 left 指针的求和/计数；</li>
+<li>在第二重 while 循环之后，成功找到了一个符合题意的 [left, right] 区间，题目要求<br> 最大的区间长度，因此更新 res 为 max(res, 当前区间的长度) 。</li>
+<li> right 指针每次向右移动一步，开始探索新的区间。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findSubArray</span>(<span class="params">nums</span>):</span></span><br><span class="line">    N = <span class="built_in">len</span>(nums) <span class="comment"># 数组/字符串长度</span></span><br><span class="line">    left, right = <span class="number">0</span>, <span class="number">0</span> <span class="comment"># 双指针，表示当前遍历的区间[left, right]，闭区间</span></span><br><span class="line">    sums = <span class="number">0</span> <span class="comment"># 用于统计 子数组/子区间 是否有效，根据题目可能会改成求和/计数</span></span><br><span class="line">    res = <span class="number">0</span> <span class="comment"># 保存最大的满足题目要求的 子数组/子串 长度</span></span><br><span class="line">    <span class="keyword">while</span> right &lt; N: <span class="comment"># 当右边的指针没有搜索到 数组/字符串 的结尾</span></span><br><span class="line">        sums += nums[right] <span class="comment"># 增加当前右边指针的数字/字符的求和/计数</span></span><br><span class="line">        <span class="keyword">while</span> 区间[left, right]不符合题意：<span class="comment"># 此时需要一直移动左指针，直至找到一个符合题意的区间</span></span><br><span class="line">            sums -= nums[left] <span class="comment"># 移动左指针前需要从counter中减少left位置字符的求和/计数</span></span><br><span class="line">            left += <span class="number">1</span> <span class="comment"># 真正的移动左指针，注意不能跟上面一行代码写反</span></span><br><span class="line">        <span class="comment"># 到 while 结束时，我们找到了一个符合题意要求的 子数组/子串</span></span><br><span class="line">        res = <span class="built_in">max</span>(res, right - left + <span class="number">1</span>) <span class="comment"># 需要更新结果</span></span><br><span class="line">        right += <span class="number">1</span> <span class="comment"># 移动右指针，去探索新的区间</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="思路2："><a href="#思路2：" class="headerlink" title="思路2："></a>思路2：</h3><ol>
+<li> 当移动 right 扩大窗口，即加入字符时，应该更新哪些数据？</li>
+<li> 什么条件下，窗口应该暂停扩大，开始移动 left 缩小窗口？</li>
+<li> 当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？</li>
+<li> 我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># s为匹配串，t为模式串</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">slideWindow</span>(<span class="params">s, t</span>):</span></span><br><span class="line">    needs, window = collections.defaultdict(<span class="built_in">int</span>), collections.defaultdict(<span class="built_in">int</span>)</span><br><span class="line">    <span class="comment"># 计录模式串中每个字符分别有多少个</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> t:</span><br><span class="line">        needs[i] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    left, right = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="comment"># 记录窗口中满足模式串字符的个数</span></span><br><span class="line">    valid = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> right &lt; <span class="built_in">len</span>(s):</span><br><span class="line">        <span class="comment"># 进入窗口的字符</span></span><br><span class="line">        c = s[right]</span><br><span class="line">        <span class="comment"># 更新窗口内数据</span></span><br><span class="line">        do something</span><br><span class="line"></span><br><span class="line">        <span class="comment"># debug 位置</span></span><br><span class="line">        <span class="built_in">print</span>(left, right)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 窗口收缩操作</span></span><br><span class="line">        <span class="keyword">while</span> left need to shrink:</span><br><span class="line">            d = s[left]</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 更新窗口内数据</span></span><br><span class="line">            do something</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 窗口右移</span></span><br><span class="line">        right += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h1><p>问题的本质就是让你在一幅「图」中找到从起点 <em>start</em> 到终点 <em>target</em> 的最近距离</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bfs</span>(<span class="params">start, target</span>):</span></span><br><span class="line">    queue = collections.deque()</span><br><span class="line">    <span class="comment"># 记录是否经过该节点</span></span><br><span class="line">    visited = <span class="built_in">set</span>()</span><br><span class="line">    step = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 初始化第一个节点</span></span><br><span class="line">    queue.apped(start)</span><br><span class="line">    visited.add(start)</span><br><span class="line">    <span class="keyword">while</span> queue:</span><br><span class="line">        <span class="comment"># 从当前节点向四周扩散</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(queue)):</span><br><span class="line">            temp = queue.popleft()</span><br><span class="line">            <span class="comment"># 是否到达终点</span></span><br><span class="line">            <span class="keyword">if</span> temp == target:</span><br><span class="line">                <span class="keyword">return</span> step</span><br><span class="line">            <span class="comment"># 添加相邻节点</span></span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> temp.相邻节点:</span><br><span class="line">                <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                    queue.apped(node)</span><br><span class="line">                    visited.add(node)</span><br><span class="line">        step += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><p>二分查找场景：寻找一个数、寻找左侧边界、寻找右侧边界。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binarySeaech</span>(<span class="params">nums</span>):</span></span><br><span class="line">    left, right = <span class="number">0</span>, <span class="built_in">len</span>(nums)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> condition:</span><br><span class="line">        mid = lefg + (right -left) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">            do something</span><br><span class="line">        <span class="keyword">elif</span> nums[mid] &lt; target:</span><br><span class="line">            left = something</span><br><span class="line">        <span class="keyword">elif</span> nums[mid] &gt; target:</span><br><span class="line">            right = something</span><br><span class="line">    <span class="keyword">return</span> something</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="背包问题："><a href="#背包问题：" class="headerlink" title="背包问题："></a>背包问题：</h1><p>定义 dp 数组的作用十分关键！！！</p>
+<p>必须明确dp[i][j]，i，j，分别代表什么，并为dp数组正确初始化。</p>
+<p>然后是定义状态转移方程，之后就可以愉快地套模板了~</p>
+<h3 id="通用转移方程"><a href="#通用转移方程" class="headerlink" title="通用转移方程"></a>通用转移方程</h3><ol>
+<li>最值问题:</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i] = <span class="built_in">max</span>/<span class="built_in">min</span>(dp[i], dp[i - nums] + <span class="number">1</span>) 或者 dp[i] = <span class="built_in">max</span>/<span class="built_in">min</span>(dp[i], dp[i - num] + num)</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>存在问题(bool)：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i] = dp[i] <span class="keyword">or</span> dp[i - num]</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>组合问题：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i] += dp[i - num]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="二维dp"><a href="#二维dp" class="headerlink" title="二维dp"></a>二维dp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bags</span>(<span class="params">nums, target</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [[<span class="number">0</span>] * (target + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n + <span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 设定所需的初始状态</span></span><br><span class="line">        dp[i][<span class="number">0</span>] = [<span class="number">1</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(target + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> condition:</span><br><span class="line">                转移方程<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                转移方程<span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp[-<span class="number">1</span>][-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="一维dp"><a href="#一维dp" class="headerlink" title="一维dp"></a>一维dp</h3><ol>
+<li>如果是0-1背包，即数组中的元素不可重复使用，nums放在外循环，target在内循环，且内循环倒序；</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(target, num - <span class="number">1</span>, -<span class="number">1</span>):</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>如果是完全背包，即数组中的元素可重复使用，nums放在外循环，target在内循环。且内循环正序。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num, target + <span class="number">1</span>):</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>如果组合问题需考虑元素之间的顺序，需将target放在外循环，将nums放在内循环。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, target+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br></pre></td></tr></table></figure>
+
+
+<p>整体代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bags</span>(<span class="params">nums, target</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [<span class="number">0</span>] * (target + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设定所需的初始状态</span></span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(target, num - <span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            转移方程</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="手撸LRU"><a href="#手撸LRU" class="headerlink" title="手撸LRU"></a>手撸LRU</h1><ol>
+<li>新加入的节点放在链表末尾，<code>addNodeToLast(node)</code></li>
+<li>若容量达到上限，去除最久未使用的数据，<code>removeHeadNode(head.next)</code></li>
+<li>若数据新被访问过，比如被<code>get</code>了或被<code>put</code>了新值，把该节点挪到链表末尾，<code>moveNodeToLast(node)</code></li>
+</ol>
+<p>下图为lru的基本数据结构，用hashmap存储<code>&#123;value: node&#125;</code></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1431305/1628497262413-769ddb04-b2b2-4d59-95ad-2e79bcc8d57f.jpeg#height=256&id=LiL9J&originHeight=511&originWidth=997&originalType=binary&ratio=1&status=done&style=none&width=499"></p>
+<p><code>put</code>操作的逻辑</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1431305/1628497265751-aa1e3cc8-aefa-49ef-914b-d4094dd429a9.jpeg#height=406&id=BFC0S&originHeight=811&originWidth=955&originalType=binary&ratio=1&status=done&style=none&width=478"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, key=<span class="number">0</span>, val=<span class="number">0</span></span>):</span></span><br><span class="line">        self.pre = <span class="literal">None</span></span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line">        self.key = key</span><br><span class="line">        self.val = val</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span></span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.hashmap = &#123;&#125;</span><br><span class="line">        self.head = TreeNode()</span><br><span class="line">        self.tail = TreeNode()</span><br><span class="line">        self.head.<span class="built_in">next</span> = self.tail</span><br><span class="line">        self.tail.pre = self.head</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove_node</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        node.pre.<span class="built_in">next</span> = node.<span class="built_in">next</span></span><br><span class="line">        node.<span class="built_in">next</span>.pre = node.pre</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_node</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        self.tail.pre.<span class="built_in">next</span> = node</span><br><span class="line">        node.pre = self.tail.pre</span><br><span class="line">        node.<span class="built_in">next</span> = self.tail</span><br><span class="line">        self.tail.pre = node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">move_node_to_last</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        self.remove_node(node)</span><br><span class="line">        self.add_node(node)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.hashmap:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        node = self.hashmap[key]</span><br><span class="line">        self.move_node_to_last(node)</span><br><span class="line">        <span class="keyword">return</span> node.val</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.hashmap:</span><br><span class="line">            node = self.hashmap[key]</span><br><span class="line">            node.val = value</span><br><span class="line">            self.move_node_to_last(node)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.hashmap) == self.capacity:</span><br><span class="line">            self.hashmap.pop(self.head.<span class="built_in">next</span>.key)</span><br><span class="line">            self.remove_node(self.head.<span class="built_in">next</span>)</span><br><span class="line">        node = TreeNode(key, value)</span><br><span class="line">        self.add_node(node)</span><br><span class="line">        self.hashmap[key] = node</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/21/RabbitMQ/" rel="prev" title="八股文系列（四）—— RabbitMQ">
+                  <i class="fa fa-chevron-left"></i> 八股文系列（四）—— RabbitMQ
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="next" title="面试八股文（一）—— 计算机网络">
+                  面试八股文（一）—— 计算机网络 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhsama</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

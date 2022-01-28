@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhsama.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="好久没有更新博客了，其实文章一直有在写，只是都没发表（拖延症晚期），没有能逼着自己发文的理由，文章写的也慢，经常一个月写一两篇，属实是人快废了。正在最近拜读了朴灵大大的《深入浅出Node.js》，是一个不错的发文理由，就把这篇磨洋工的文章发了吧~希望大🔥在新的一年里人均不摆烂！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="V8引擎的垃圾回收机制">
+<meta property="og:url" content="https://zhsama.github.io/2022/01/26/v8%E7%9A%84gc%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="zhsama&#39;s blog">
+<meta property="og:description" content="好久没有更新博客了，其实文章一直有在写，只是都没发表（拖延症晚期），没有能逼着自己发文的理由，文章写的也慢，经常一个月写一两篇，属实是人快废了。正在最近拜读了朴灵大大的《深入浅出Node.js》，是一个不错的发文理由，就把这篇磨洋工的文章发了吧~希望大🔥在新的一年里人均不摆烂！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/9CB21A9D10A25B2CFCEF8A2693141818.jpg">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/2D88EADBC1C1C35E1005637CCE49D949.jpg">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/BDDC2A2EDC0D87EFD594C41B20A5FCEC.jpg">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/A4BD5AEEF4FF19858B823BDFB82E879B.jpg">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/1F8C55A87A1DAAED998BFE1729BF604C.jpg">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/9AFA85C62E23E5BFE7BCC02989E14FDF.jpg">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/932E7BB81521530505384FF56A59DF48.jpg">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/F03806EE24DA9A564E0BC3ECAD500DFD.jpg">
+<meta property="og:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/97A76334ACE67AC1FC3022376EDCC27E.jpg">
+<meta property="article:published_time" content="2022-01-26T10:21:51.000Z">
+<meta property="article:modified_time" content="2022-01-28T03:11:56.000Z">
+<meta property="article:author" content="zhsama">
+<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="V8">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/9CB21A9D10A25B2CFCEF8A2693141818.jpg">
+
+
+<link rel="canonical" href="https://zhsama.github.io/2022/01/26/v8%E7%9A%84gc%E6%9C%BA%E5%88%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhsama.github.io/2022/01/26/v8%E7%9A%84gc%E6%9C%BA%E5%88%B6/","path":"2022/01/26/v8的gc机制/","title":"V8引擎的垃圾回收机制"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>V8引擎的垃圾回收机制 | zhsama's blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zhsama's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#V8%E5%BC%95%E6%93%8E%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">V8引擎的垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%9E%83%E5%9C%BE%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.</span> <span class="nav-text">一、什么是垃圾数据?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量的生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">二、垃圾回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%A0%87%E8%AE%B0%E7%A9%BA%E9%97%B4%E4%B8%AD%E3%80%8C%E5%8F%AF%E8%BE%BE%E3%80%8D%E5%80%BC%E3%80%82"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、标记空间中「可达」值。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%9B%9E%E6%94%B6%E3%80%8C%E4%B8%8D%E5%8F%AF%E8%BE%BE%E3%80%8D%E7%9A%84%E5%80%BC%E6%89%80%E5%8D%A0%E6%8D%AE%E7%9A%84%E5%86%85%E5%AD%98%E3%80%82"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、回收「不可达」的值所占据的内存。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%81%9A%E5%86%85%E5%AD%98%E6%95%B4%E7%90%86%E3%80%82"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、做内存整理。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">三、什么时候垃圾回收？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86"><span class="nav-number">1.4.</span> <span class="nav-text">四、分代收集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">1.4.1.</span> <span class="nav-text">主垃圾回收器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AF%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">1.4.2.</span> <span class="nav-text">副垃圾回收器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86"><span class="nav-number">1.4.3.</span> <span class="nav-text">分代收集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%A2%9E%E9%87%8F%E6%94%B6%E9%9B%86"><span class="nav-number">1.5.</span> <span class="nav-text">五、增量收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%97%B2%E6%97%B6%E6%94%B6%E9%9B%86"><span class="nav-number">1.6.</span> <span class="nav-text">六、闲时收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981%EF%BC%9AV8%E6%80%8E%E4%B9%88%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%9F"><span class="nav-number">1.7.</span> <span class="nav-text">问题1：V8怎么进行垃圾回收？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982%EF%BC%9AV8%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E5%86%85%E5%AD%98%E9%83%BD%E6%98%AF%E4%BD%95%E6%97%B6%E9%87%8A%E6%94%BE%EF%BC%9F"><span class="nav-number">1.8.</span> <span class="nav-text">问题2：V8中不同类型变量的内存都是何时释放？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983%EF%BC%9A%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%EF%BC%9F"><span class="nav-number">1.9.</span> <span class="nav-text">问题3：哪些情况会导致内存泄露？如何避免？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%90%97%EF%BC%9F"><span class="nav-number">1.9.1.</span> <span class="nav-text">闭包会导致内存泄露吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984%EF%BC%9AweakMap-weakSet-%E5%92%8C-Map-Set-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.10.</span> <span class="nav-text">问题4：weakMap weakSet 和 Map Set 有什么区别？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zhsama</p>
+  <div class="site-description" itemprop="description">我没有敌人</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/01/26/v8%E7%9A%84gc%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zhsama">
+      <meta itemprop="description" content="我没有敌人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhsama's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          V8引擎的垃圾回收机制
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-26 18:21:51" itemprop="dateCreated datePublished" datetime="2022-01-26T18:21:51+08:00">2022-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-01-28 11:11:56" itemprop="dateModified" datetime="2022-01-28T11:11:56+08:00">2022-01-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/V8/" itemprop="url" rel="index"><span itemprop="name">V8</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">好久没有更新博客了，其实文章一直有在写，只是都没发表（拖延症晚期），没有能逼着自己发文的理由，文章写的也慢，经常一个月写一两篇，属实是人快废了。正在最近拜读了朴灵大大的《深入浅出Node.js》，是一个不错的发文理由，就把这篇磨洋工的文章发了吧~希望大🔥在新的一年里人均不摆烂！</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[toc]</p>
+<h1 id="V8引擎的垃圾回收机制"><a href="#V8引擎的垃圾回收机制" class="headerlink" title="V8引擎的垃圾回收机制"></a>V8引擎的垃圾回收机制</h1><p>我们首先带着这 4 个问题，来了解V8垃圾回收的过程，后面会逐一解答：</p>
+<ol>
+<li>V8怎么进行垃圾回收？</li>
+<li>V8中不同类型变量的内存都是何时释放？</li>
+<li>哪些情况会导致内存泄露？如何避免？</li>
+<li><code>weakMap</code> <code>weakSet</code> 和 <code>Map</code> <code>Set</code> 有什么区别？</li>
+</ol>
+<h2 id="一、什么是垃圾数据"><a href="#一、什么是垃圾数据" class="headerlink" title="一、什么是垃圾数据?"></a>一、什么是垃圾数据?</h2><p>在一些变量不再被需要的时候，它就是垃圾数据，垃圾数据占用的内存就应该被回收。</p>
+<h3 id="变量的生命周期"><a href="#变量的生命周期" class="headerlink" title="变量的生命周期"></a>变量的生命周期</h3><p>比如这么一段代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="keyword">let</span> dog.a = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>当 JavaScript 执行这段代码的时候，</p>
+<p>会先在全局作用域中添加一个<code>dog</code> 属性，并在堆中创建了一个空对象，将该对象的地址指向了 <code>dog</code>。</p>
+<p>随后又创建一个大小为 1 的数组，并将属性地址指向了 <code>dog.a</code>。此时的内存布局图如下所示:</p>
+<p><img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/9CB21A9D10A25B2CFCEF8A2693141818.jpg" alt="img">如果此时，我将另外一个对象赋给了 <code>a</code> 属性，代码如下所示:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dog.a = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br></pre></td></tr></table></figure>
+
+<p>此时的内存布局图：<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/2D88EADBC1C1C35E1005637CCE49D949.jpg" alt="img"></p>
+<p><code>a</code> 的指向改变了， 此时堆中的数组对象就成为了不被使用的数据，专业名词叫「不可达」的数据。</p>
+<p>这就是需要回收的垃圾数据。</p>
+<h2 id="二、垃圾回收算法"><a href="#二、垃圾回收算法" class="headerlink" title="二、垃圾回收算法"></a>二、垃圾回收算法</h2><p>可以将这个过程想象成从根溢出一个巨大的油漆桶，它从一个根节点出发将可到达的对象标记染色， 然后移除未标记的。</p>
+<h3 id="1、标记空间中「可达」值。"><a href="#1、标记空间中「可达」值。" class="headerlink" title="1、标记空间中「可达」值。"></a>1、标记空间中「可达」值。</h3><p>V8 采用的是可达性 (reachability) 算法来判断堆中的对象应不应该被回收。</p>
+<p>这个算法的思路是这样的：</p>
+<ul>
+<li>从根节点（Root）出发，遍历所有的对象。</li>
+<li>可以遍历到的对象，是可达的（reachable）。</li>
+<li>没有被遍历到的对象，不可达的（unreachable）。</li>
+</ul>
+<p>在浏览器环境下，根节点有很多，主要包括这几种：</p>
+<ul>
+<li>全局变量 <code>window</code>，位于每个 <code>iframe</code> 中</li>
+<li>文档 <code>DOM</code> 树</li>
+<li>存放在栈上的变量</li>
+<li>…</li>
+</ul>
+<p>这些根节点不是垃圾，不可能被回收。</p>
+<h3 id="2、回收「不可达」的值所占据的内存。"><a href="#2、回收「不可达」的值所占据的内存。" class="headerlink" title="2、回收「不可达」的值所占据的内存。"></a>2、回收「不可达」的值所占据的内存。</h3><p>在所有的标记完成之后，统一清理内存中所有不可达的对象。</p>
+<h3 id="3、做内存整理。"><a href="#3、做内存整理。" class="headerlink" title="3、做内存整理。"></a>3、做内存整理。</h3><ul>
+<li>在频繁回收对象后，内存中就会存在大量不连续空间，专业名词叫「内存碎片」。</li>
+<li>当内存中出现了大量的内存碎片，如果需要分配较大的连续内存时，就有可能出现内存不足的情况。</li>
+<li>所以最后一步是整理内存碎片。(但这步其实是可选的，因为有的垃圾回收器不会产生内存碎片，比如接下来我们要介绍的副垃圾回收器。)</li>
+</ul>
+<h2 id="三、什么时候垃圾回收？"><a href="#三、什么时候垃圾回收？" class="headerlink" title="三、什么时候垃圾回收？"></a>三、什么时候垃圾回收？</h2><p>V8进行垃圾回收的时候，会暂停 JavaScript 脚本，等垃圾回收完毕再继续执行。</p>
+<p>对于普通应用这样没什么问题，但对于 JS 游戏、动画对连贯性要求比较高的应用，如果暂停时间很长就会造成页面卡顿。</p>
+<p>这就是我们接下来谈的关于垃圾回收的问题：什么时候进行垃圾回收，可以避免长时间暂停。</p>
+<h2 id="四、分代收集"><a href="#四、分代收集" class="headerlink" title="四、分代收集"></a>四、分代收集</h2><p>V8将数据分为两种，一种是「临时」对象，一种是「长久」对象。</p>
+<ul>
+<li><p>临时对象：</p>
+</li>
+<li><ul>
+<li>大部分对象在内存中存活的时间很短。</li>
+<li>比如函数内部声明的变量，或者块级作用域中的变量。当函数或者代码块执行结束时，作用域中定义的变量就会被销毁。</li>
+<li>这类对象很快就变得不可访问，应该快点回收。</li>
+</ul>
+</li>
+<li><p>长久对象：</p>
+</li>
+<li><ul>
+<li>生命周期很长的对象，比如全局的 <code>window、DOM、Web API</code> 等等。</li>
+<li>这类对象可以慢点回收。</li>
+</ul>
+</li>
+</ul>
+<p>这两种对象对应不同的回收策略，所以，V8 把堆分为新生代和老生代两个区域， 新生代中存放临时对象，老生代中存放持久对象。</p>
+<p>并且让副垃圾回收器、主垃圾回收器，分别负责新生代、老生代的垃圾回收。</p>
+<p>这样就可以实现高效的垃圾回收啦。</p>
+<p>一般来说，面试回答到这就够了。如果想和面试官深入交流，可以继续聊聊两个垃圾回收器。</p>
+<h3 id="主垃圾回收器"><a href="#主垃圾回收器" class="headerlink" title="主垃圾回收器"></a>主垃圾回收器</h3><p>负责老生代的垃圾回收，有两个特点：</p>
+<ol>
+<li>对象占用空间大。</li>
+<li>对象存活时间长。</li>
+</ol>
+<p>它使用「标记-清除」的算法执行垃圾回收。</p>
+<ol>
+<li>首先是标记。</li>
+</ol>
+<ul>
+<li>从一组根元素开始，递归遍历这组根元素。</li>
+<li>在这个遍历过程中，能到达的元素称为活动对象，没有到达的元素就可以判断为垃圾数据。</li>
+</ul>
+<p>然后是垃圾清除。<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/BDDC2A2EDC0D87EFD594C41B20A5FCEC.jpg" alt="img">直接将标记为垃圾的数据清理掉。</p>
+<p>多次标记-清除后，会产生大量不连续的内存碎片，需要进行内存整理。<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/A4BD5AEEF4FF19858B823BDFB82E879B.jpg" alt="img"></p>
+<h3 id="副垃圾回收器"><a href="#副垃圾回收器" class="headerlink" title="副垃圾回收器"></a>副垃圾回收器</h3><p>负责新生代的垃圾回收，通常只支持 1~8 M 的容量。</p>
+<p>新生代被分为两个区域：一般是对象区域，一半是空闲区域。<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/1F8C55A87A1DAAED998BFE1729BF604C.jpg" alt="img">新加入的对象都被放入对象区域，等对象区域快满的时候，会执行一次垃圾清理。</p>
+<ol>
+<li>先给对象区域所有垃圾做标记。</li>
+<li>标记完成后，存活的对象被复制到空闲区域，并且将他们有序的排列一遍。<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/9AFA85C62E23E5BFE7BCC02989E14FDF.jpg" alt="img">这就回到我们前面留下的问题 – 副垃圾回收器没有碎片整理。因为空闲区域里此时是有序的，没有碎片，也就不需要整理了。</li>
+<li>复制完成后，对象区域会和空闲区域进行对调。将空闲区域中存活的对象放入对象区域里。<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/932E7BB81521530505384FF56A59DF48.jpg" alt="img">这样，就完成了垃圾回收。</li>
+</ol>
+<p>因为副垃圾回收器操作比较频繁，所以为了执行效率，一般新生区的空间会被设置得比较小。</p>
+<p>一旦检测到空间装满了，就执行垃圾回收。</p>
+<h3 id="分代收集"><a href="#分代收集" class="headerlink" title="分代收集"></a>分代收集</h3><p>一句话总结分代回收就是：将堆分为新生代与老生代，多回收新生代，少回收老生代。</p>
+<p>这样就减少了每次需遍历的对象，从而减少每次垃圾回收的耗时。<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/F03806EE24DA9A564E0BC3ECAD500DFD.jpg" alt="img"></p>
+<h2 id="五、增量收集"><a href="#五、增量收集" class="headerlink" title="五、增量收集"></a>五、增量收集</h2><p>如果脚本中有许多对象，引擎一次性遍历整个对象，会造成一个长时间暂停。</p>
+<p>所以引擎将垃圾收集工作分成更小的块，每次处理一部分，多次处理。</p>
+<p>这样就解决了长时间停顿的问题。<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/97A76334ACE67AC1FC3022376EDCC27E.jpg" alt="img"></p>
+<h2 id="六、闲时收集"><a href="#六、闲时收集" class="headerlink" title="六、闲时收集"></a>六、闲时收集</h2><p>垃圾收集器只会在 CPU 空闲时尝试运行，以减少可能对代码执行的影响。</p>
+<h2 id="问题1：V8怎么进行垃圾回收？"><a href="#问题1：V8怎么进行垃圾回收？" class="headerlink" title="问题1：V8怎么进行垃圾回收？"></a>问题1：V8怎么进行垃圾回收？</h2><p>从三个点来回答什么是垃圾、如何捡垃圾、什么时候捡垃圾。</p>
+<ol>
+<li>什么是垃圾</li>
+</ol>
+<ul>
+<li>不再需要，即为垃圾</li>
+<li>全局变量随时可能用到，所以一定不是垃圾</li>
+</ul>
+<p>如何捡垃圾（遍历算法）</p>
+<ul>
+<li><p>标记空间中「可达」值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 从根节点（Root）出发，遍历所有的对象。</span><br><span class="line">- 可以遍历到的对象，是可达的（reachable）。</span><br><span class="line">- 没有被遍历到的对象，不可达的（unreachable）</span><br></pre></td></tr></table></figure></li>
+<li><p>回收「不可达」的值所占据的内存。</p>
+</li>
+<li><p>做内存整理。</p>
+</li>
+</ul>
+<p>什么时候捡垃圾</p>
+<ul>
+<li>前端有其特殊性，垃圾回收的时候会造成页面卡顿。</li>
+<li>分代收集、增量收集、闲时收集。</li>
+</ul>
+<h2 id="问题2：V8中不同类型变量的内存都是何时释放？"><a href="#问题2：V8中不同类型变量的内存都是何时释放？" class="headerlink" title="问题2：V8中不同类型变量的内存都是何时释放？"></a>问题2：V8中不同类型变量的内存都是何时释放？</h2><p>Javascritp 中类型：值类型，引用类型。</p>
+<ul>
+<li><p>引用类型</p>
+<ul>
+<li>在没有引用之后，通过 V8 自动回收。</li>
+</ul>
+</li>
+<li><p>值类型</p>
+<ul>
+<li>如果处于闭包的情况下，要等闭包没有引用才会被 V8 回收。</li>
+</ul>
+<ul>
+<li>非闭包的情况下，等待 V8 的新生代切换的时候回收。</li>
+</ul>
+</li>
+</ul>
+<h2 id="问题3：哪些情况会导致内存泄露？如何避免？"><a href="#问题3：哪些情况会导致内存泄露？如何避免？" class="headerlink" title="问题3：哪些情况会导致内存泄露？如何避免？"></a>问题3：哪些情况会导致内存泄露？如何避免？</h2><blockquote>
+<p>内存泄露是指你「用不到」（访问不到）的变量，依然占居着内存空间，不能被再次利用起来。</p>
+</blockquote>
+<p>以 Vue 为例，通常有这些情况：</p>
+<ul>
+<li>监听在 <code>window/body</code> 等事件没有解绑</li>
+<li>绑在 <code>EventBus</code> 的事件没有解绑</li>
+<li><code>Vuex</code> 的 <code>$store</code>，<code>watch</code> 了之后没有 <code>unwatch</code></li>
+<li>使用第三方库创建，没有调用正确的销毁函数</li>
+</ul>
+<p>解决办法：<code>beforeDestroy</code> 中及时销毁</p>
+<ul>
+<li>绑定了 <code>DOM/BOM</code> 对象中的事件 <code>addEventListener</code> ，<code>removeEventListener</code>。</li>
+<li>观察者模式 <code>$on</code>，<code>$off</code>处理。</li>
+<li>如果组件中使用了定时器，应销毁处理。</li>
+<li>如果在 <code>mounted/created</code> 钩子中使用了第三方库初始化，对应的销毁。</li>
+<li>使用弱引用 <code>weakMap</code>、<code>weakSet</code>。</li>
+</ul>
+<h3 id="闭包会导致内存泄露吗？"><a href="#闭包会导致内存泄露吗？" class="headerlink" title="闭包会导致内存泄露吗？"></a>闭包会导致内存泄露吗？</h3><p>顺便说一个我在了解垃圾回收之前对闭包的误解。</p>
+<p>闭包会导致内存泄露吗？正确的答案是不会。</p>
+<p>内存泄露是指你「用不到」（访问不到）的变量，依然占居着内存空间，不能被再次利用起来。</p>
+<p>闭包里面的变量就是我们需要的变量，不能说是内存泄露。</p>
+<blockquote>
+<p>这个误解是如何来的？因为 IE。IE 有 bug，IE 在我们使用完闭包之后，依然回收不了闭包里面引用的变量。这是 IE 的问题，不是闭包的问题。</p>
+</blockquote>
+<h2 id="问题4：weakMap-weakSet-和-Map-Set-有什么区别？"><a href="#问题4：weakMap-weakSet-和-Map-Set-有什么区别？" class="headerlink" title="问题4：weakMap weakSet 和 Map Set 有什么区别？"></a>问题4：<code>weakMap</code> <code>weakSet</code> 和 <code>Map</code> <code>Set</code> 有什么区别？</h2><p>在 ES6 中为我们新增了两个数据结构 <code>WeakMap</code>和<code>WeakSet</code>就是为了解决内存泄漏的问题。</p>
+<p>它的键名所引用的对象都是弱引用，就是垃圾回收机制遍历的时候不考虑该引用。只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存。也就是说，一旦不再需要， <code>WeakMap</code>里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>现在我们简单了解了V8的垃圾回收机制，还记得最初的 4 个问题吗？</p>
+<ol>
+<li>V8怎么进行垃圾回收？</li>
+</ol>
+<p>答题思路：什么是垃圾、怎么收垃圾、什么时候收垃圾。</p>
+<ol start="2">
+<li>V8中不同类型变量的内存都是何时释放？</li>
+</ol>
+<p>答题思路：分为值类型、引用类型。</p>
+<ol start="3">
+<li>哪些情况会导致内存泄露？如何避免？</li>
+</ol>
+<p>答题思路：内存泄露是指你「用不到」（访问不到）的变量，依然占居着内存空间，不能被再次利用起来。</p>
+<ol start="4">
+<li><code>weakMap</code> <code>weakSet</code> 和 <code>Map</code> <code>Set</code> 有什么区别？</li>
+</ol>
+<p>答题思路：<code>WeakMap</code>、<code>WeakSet</code> 弱引用，解决了内存泄露问题。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+              <a href="/tags/V8/" rel="tag"># V8</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/05/webpack%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" rel="prev" title="webpack基础及易混淆的概念">
+                  <i class="fa fa-chevron-left"></i> webpack基础及易混淆的概念
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhsama</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
