@@ -8,7 +8,7 @@ env:
   GIT_EMAIL: a602693793@gmail.com
   DEPLOY_REPO: zhsama/zhsama.github.io
   DEPLOY_BRANCH: main
-  THEME_REPO: next-theme/hexo-theme-next
+  THEME_REPO: git@github.com:theme-next/hexo-theme-next.git
   THEME_BRANCH: master
 
 jobs:
