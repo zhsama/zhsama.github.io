@@ -4,8 +4,6 @@ date: 2021-10-26 01:20:01
 updated: 2021-10-26 01:20:04
 tags: ['koa', 'node', 'mvc']
 categories: koa
-description
-
 ---
 
 # 一. 文章背景
