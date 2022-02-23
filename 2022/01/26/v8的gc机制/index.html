@@ -297,13 +297,13 @@
 </ol>
 <h2 id="一、什么是垃圾数据"><a href="#一、什么是垃圾数据" class="headerlink" title="一、什么是垃圾数据?"></a>一、什么是垃圾数据?</h2><p>在一些变量不再被需要的时候，它就是垃圾数据，垃圾数据占用的内存就应该被回收。</p>
 <h3 id="变量的生命周期"><a href="#变量的生命周期" class="headerlink" title="变量的生命周期"></a>变量的生命周期</h3><p>比如这么一段代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="keyword">let</span> dog.a = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dog = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line"><span class="keyword">let</span> dog.<span class="property">a</span> = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
 <p>当 JavaScript 执行这段代码的时候，</p>
 <p>会先在全局作用域中添加一个<code>dog</code> 属性，并在堆中创建了一个空对象，将该对象的地址指向了 <code>dog</code>。</p>
 <p>随后又创建一个大小为 1 的数组，并将属性地址指向了 <code>dog.a</code>。此时的内存布局图如下所示:</p>
 <p><img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/9CB21A9D10A25B2CFCEF8A2693141818.jpg" alt="img">如果此时，我将另外一个对象赋给了 <code>a</code> 属性，代码如下所示:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dog.a = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dog.<span class="property">a</span> = <span class="keyword">new</span> <span class="title class_">Object</span>()</span><br></pre></td></tr></table></figure>
 
 <p>此时的内存布局图：<img src="https://image.z.itpub.net/zitpub.net/JPG/2020-11-16/2D88EADBC1C1C35E1005637CCE49D949.jpg" alt="img"></p>
 <p><code>a</code> 的指向改变了， 此时堆中的数组对象就成为了不被使用的数据，专业名词叫「不可达」的数据。</p>
