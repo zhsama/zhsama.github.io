@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zhsama.github.io/2022/02/28/Koa%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2022-03-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhsama.github.io/2022/02/24/Nodejs%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2022-03-06</lastmod>
+  </url>
+  <url>
     <loc>https://zhsama.github.io/2022/02/24/DIV%E5%85%83%E7%B4%A0%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC%E5%B1%85%E4%B8%AD/</loc>
     <lastmod>2022-02-23</lastmod>
   </url>
