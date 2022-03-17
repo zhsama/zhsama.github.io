@@ -52,6 +52,7 @@
 
 `Websocket`复用了`HTTP`的握手通道。指的是，客户端发送`HTTP`请求，并在请求头中带上`Connection: Upgrade` 、`Upgrade: websocket`，服务端识别该header之后，进行协议升级，使用`Websocket`协议进行数据通信。
 
+![image](https://user-images.githubusercontent.com/33454514/158773550-5db1c271-288f-425a-9904-787415abd912.png)
 ![在这里插入图片描述](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/6/169f1656159c8519~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ### 参数说明
