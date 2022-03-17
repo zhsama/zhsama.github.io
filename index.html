@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="generator" content="Hexo 6.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ayanami.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ayanami.png">
@@ -191,6 +191,261 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/16/%E5%B8%B8%E8%A7%81HTTP%E7%8A%B6%E6%80%81%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ayanami2.png">
+      <meta itemprop="name" content="zhsama">
+      <meta itemprop="description" content="我没有敌人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhsama's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/16/%E5%B8%B8%E8%A7%81HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" class="post-title-link" itemprop="url">常见 HTTP 状态码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-16 13:41:10" itemprop="dateCreated datePublished" datetime="2022-03-16T13:41:10+08:00">2022-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-17 18:41:14" itemprop="dateModified" datetime="2022-03-17T18:41:14+08:00">2022-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP/" itemprop="url" rel="index"><span itemprop="name">HTTP</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>状态码（Status Code）和原因短语（Reason Phrase）用于<strong>描述请求的结果</strong>。常见的比如：</p>
+<ul>
+<li>200 OK，表示请求成功；</li>
+<li>404 Not Found表示请求的资源未找到。</li>
+</ul>
+<p>原因短语（上面的ok 和Not Found）是对状态码的解释说明。</p>
+<p>形如<code>200</code>这样的状态码，这里的第1位数字，通常表示响应的类别，大致可以分成以下几类：</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td align="left">请求正被处理</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td align="left">请求成功处理</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td align="left">请求需要附加操作，常见的例子如重定向</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td align="left">客户端出错导致请求无法被处理</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td align="left">服务端处理出错</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/16/%E5%B8%B8%E8%A7%81HTTP%E7%8A%B6%E6%80%81%E7%A0%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ayanami2.png">
+      <meta itemprop="name" content="zhsama">
+      <meta itemprop="description" content="我没有敌人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhsama's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Android 12 刷入 Magisk 模块后无法开机的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-15 16:33:58" itemprop="dateCreated datePublished" datetime="2022-03-15T16:33:58+08:00">2022-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-16 16:33:52" itemprop="dateModified" datetime="2022-03-16T16:33:52+08:00">2022-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/" itemprop="url" rel="index"><span itemprop="name">Android 12</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/Color-OS/" itemprop="url" rel="index"><span itemprop="name">Color OS</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">刷机</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/%E9%85%B7%E5%AE%89/" itemprop="url" rel="index"><span itemprop="name">酷安</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/%E9%85%B7%E5%AE%89/%E4%B8%80%E5%8A%A0-description-%E4%B9%A0%E6%83%AF%E6%80%A7%E9%97%B7%E5%A3%B0%E4%BD%9C%E6%AD%BB%E7%9A%84%E6%88%91%EF%BC%8C%E8%BF%99%E6%AC%A1%E5%8F%88%E7%BB%99%E5%A4%A7%E4%BC%99%E6%95%B4%E4%BA%86%E4%BB%80%E4%B9%88%E6%96%B0%E6%B4%BB%E5%91%A2%EF%BC%9F%E6%95%AC%E8%AF%B7%E6%94%B6%E7%9C%8B%E3%80%8A%E5%8F%AF%E6%80%9C%E7%9A%84%E6%89%93%E5%B7%A5%E4%BA%BA%E6%89%8D%E4%B8%8D%E4%BC%9A%E5%9C%A8%E5%87%8C%E6%99%A8%E5%9B%9B%E7%82%B99008%E6%95%91%E7%A0%96%E8%BF%99%E7%82%B9%E4%BA%8B%E3%80%8B%E3%80%82/" itemprop="url" rel="index"><span itemprop="name">一加 description:习惯性闷声作死的我，这次又给大伙整了什么新活呢？敬请收看《可怜的打工人才不会在凌晨四点9008救砖这点事》。</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>笔者的机器是 OnePlus 8 T, 这几天更新了Color OS 12公测版（Based Android 12），作为一个酷安机佬，自然是忍不住刷机的冲动。</p>
+<p>本地升级之后使用体验比氢氧好得多，只是耗电量陡增。看酷安的机友说，从H2OS更新到颜色系统，最好是进行一次双清。俺寻思从小到大刷机这么七八年了，什么大风大浪没见过？数据备份完成之后就是一把梭直接重启到 REC 模式双清数据。</p>
+<p>然后就是大家喜闻乐见的环节：提取 boot.img 文件，写入 Magisk，进入 fastboot 模式刷入 boot.img 获取 root 权限。</p>
+<p>由于 Android 12 没有可用的 TWRP，这对于需要折腾 Magisk 和 Xposed 的机友来说实在是不太友好，一个失误操作直接卡第一屏，就可以准备后事哦不高通9008了。（<strong>比如我，闷声作大死，第二天要打工还刷机，直接给我整到凌晨四点。</strong>）</p>
+<p>由于 Magisk 只是修改了系统的 boot 分区，可以通过重新刷入官方 ROM 的 boot.img 重新开机，但是这样开机之后，是没有 root 权限的，也没有办法删除 Magisk 里面不兼容的 Module。之后如果然后手动重新给 boot.img 打上 root 补丁，又会陷入无法开机的死循环中。最后没办法只能双清重刷，非常难受。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>但是！但是！但是！可喜可贺的是，在 Android 12 下的 Magisk 更新了一个非常有用的功能（准确来说应该是在 Magisk 23 之后的版本引入的特性功能）：<strong>如果 Magisk 检测到手机进入安全模式之后，就会自动禁用所有模块（并不会删除）</strong>。这简直就是没有 TWRP 机友的福音！</p>
+<h2 id="安全模式救砖："><a href="#安全模式救砖：" class="headerlink" title="安全模式救砖："></a>安全模式救砖：</h2><p>具体来说，就是如果刷入了不兼容的 Module，然后开机卡第一屏，那么可以强制关机，然后在关机状态下，直接进入安全模式，Magisk 就会禁用所有的 Modules，然后再次重启机器进入正常模式，这个时候因为所有的 Modules 都是禁用状态，所以可以正常开机，开机之后机器还是 root 状态，这时候直接删掉不兼容的 Module 就行了。</p>
+<ol>
+<li>设备关机状态下，按电源键开机</li>
+<li>待出现 bootloader 已解锁的安全提示后，直接按住“音量减”键，直到进入桌面</li>
+<li>屏幕左下方显示“安全模式”即表示成功</li>
+</ol>
+<p>PS： 上面介绍的是 Android 官方的通用方式，如果你的设备比较特别的话，可能需要自己 Google 一下如何进入安全模式。</p>
+<p>PPS：另外再说一种有点暴力和局限性的方法，但是比上面这个更彻底，开机之后 Magisk 会删掉所有 Modules，当然也会丢失 root 权限，需要重新给 boot.img 打补丁来 root 设备，但是总比变砖或者线刷要好吧。</p>
+<h2 id="其他救砖方法"><a href="#其他救砖方法" class="headerlink" title="其他救砖方法"></a>其他救砖方法</h2><p>这个方法从是让 ADB 等待设备进入引导屏幕，然后 ADB 开始工作， ADB 会删除所有已安装的 Magisk Modules 来确保机器能够进入系统。</p>
+<ol>
+<li><p>确保设备在关机状态下</p>
+</li>
+<li><p>使用数据线将手机连接到已经安装了 ADB 的电脑上</p>
+</li>
+<li><p>电脑进入 ADB 文件夹，执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb wait-for-device shell magisk --remove-modules</span><br></pre></td></tr></table></figure></li>
+<li><p>按住电源键开机，并且不松开，直到进入桌面</p>
+</li>
+</ol>
+<p>如果上面这两种方法都无法拯救你的爱机的话，就只能9008了。具体见<a target="_blank" rel="noopener" href="https://yun.daxiaamu.com/OnePlus_Roms/">大侠阿木的博客</a>，另外，强推阿木大佬的一加全能盒子！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>新的一年没啥好祝福大🔥的，只好祝大家刷机必卡米，9008一路顺畅！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -936,184 +1191,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">面试八股文（一）—— 计算机网络</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-22 22:22:04 / 修改时间：23:24:11" itemprop="dateCreated datePublished" datetime="2021-09-22T22:22:04+08:00">2021-09-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%85%AB%E8%82%A1%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">八股文</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>8.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>根据我多（一）年复习备考408和春招的经验，总结出来的面试八股文第一篇，也是基础篇之一——计算机网络相关的常见问题。如果文章中有看不懂的知识点，强力推荐王道考研的计网相关课程，讲的巨清晰无比。如果觉得本文介绍内容过于浅显，大佬请移步机工出版社黑皮书之《计算机网络自顶向下》。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/22/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">LeetCode刷题指南</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-22 22:09:54 / 修改时间：22:09:56" itemprop="dateCreated datePublished" datetime="2021-09-22T22:09:54+08:00">2021-09-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>4.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本人LeetCode刷题近400道后，总结出来的算法小抄。包括了回溯、双指针，滑动窗口和动态规划等常见算法的做题思路和模板。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/22/LeetCode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1185,20 +1262,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

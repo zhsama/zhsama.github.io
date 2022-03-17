@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Android 12 刷入 Magisk 模块后无法开机的解决方法</title>
+    <url>/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>笔者的机器是 OnePlus 8 T, 这几天更新了Color OS 12公测版（Based Android 12），作为一个酷安机佬，自然是忍不住刷机的冲动。</p>
+<p>本地升级之后使用体验比氢氧好得多，只是耗电量陡增。看酷安的机友说，从H2OS更新到颜色系统，最好是进行一次双清。俺寻思从小到大刷机这么七八年了，什么大风大浪没见过？数据备份完成之后就是一把梭直接重启到 REC 模式双清数据。</p>
+<p>然后就是大家喜闻乐见的环节：提取 boot.img 文件，写入 Magisk，进入 fastboot 模式刷入 boot.img 获取 root 权限。</p>
+<p>由于 Android 12 没有可用的 TWRP，这对于需要折腾 Magisk 和 Xposed 的机友来说实在是不太友好，一个失误操作直接卡第一屏，就可以准备后事哦不高通9008了。（<strong>比如我，闷声作大死，第二天要打工还刷机，直接给我整到凌晨四点。</strong>）</p>
+<p>由于 Magisk 只是修改了系统的 boot 分区，可以通过重新刷入官方 ROM 的 boot.img 重新开机，但是这样开机之后，是没有 root 权限的，也没有办法删除 Magisk 里面不兼容的 Module。之后如果然后手动重新给 boot.img 打上 root 补丁，又会陷入无法开机的死循环中。最后没办法只能双清重刷，非常难受。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>但是！但是！但是！可喜可贺的是，在 Android 12 下的 Magisk 更新了一个非常有用的功能（准确来说应该是在 Magisk 23 之后的版本引入的特性功能）：<strong>如果 Magisk 检测到手机进入安全模式之后，就会自动禁用所有模块（并不会删除）</strong>。这简直就是没有 TWRP 机友的福音！</p>
+<h2 id="安全模式救砖："><a href="#安全模式救砖：" class="headerlink" title="安全模式救砖："></a>安全模式救砖：</h2><p>具体来说，就是如果刷入了不兼容的 Module，然后开机卡第一屏，那么可以强制关机，然后在关机状态下，直接进入安全模式，Magisk 就会禁用所有的 Modules，然后再次重启机器进入正常模式，这个时候因为所有的 Modules 都是禁用状态，所以可以正常开机，开机之后机器还是 root 状态，这时候直接删掉不兼容的 Module 就行了。</p>
+<ol>
+<li>设备关机状态下，按电源键开机</li>
+<li>待出现 bootloader 已解锁的安全提示后，直接按住“音量减”键，直到进入桌面</li>
+<li>屏幕左下方显示“安全模式”即表示成功</li>
+</ol>
+<p>PS： 上面介绍的是 Android 官方的通用方式，如果你的设备比较特别的话，可能需要自己 Google 一下如何进入安全模式。</p>
+<p>PPS：另外再说一种有点暴力和局限性的方法，但是比上面这个更彻底，开机之后 Magisk 会删掉所有 Modules，当然也会丢失 root 权限，需要重新给 boot.img 打补丁来 root 设备，但是总比变砖或者线刷要好吧。</p>
+<h2 id="其他救砖方法"><a href="#其他救砖方法" class="headerlink" title="其他救砖方法"></a>其他救砖方法</h2><p>这个方法从是让 ADB 等待设备进入引导屏幕，然后 ADB 开始工作， ADB 会删除所有已安装的 Magisk Modules 来确保机器能够进入系统。</p>
+<ol>
+<li><p>确保设备在关机状态下</p>
+</li>
+<li><p>使用数据线将手机连接到已经安装了 ADB 的电脑上</p>
+</li>
+<li><p>电脑进入 ADB 文件夹，执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb wait-for-device shell magisk --remove-modules</span><br></pre></td></tr></table></figure></li>
+<li><p>按住电源键开机，并且不松开，直到进入桌面</p>
+</li>
+</ol>
+<p>如果上面这两种方法都无法拯救你的爱机的话，就只能9008了。具体见<a href="https://yun.daxiaamu.com/OnePlus_Roms/">大侠阿木的博客</a>，另外，强推阿木大佬的一加全能盒子！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>新的一年没啥好祝福大🔥的，只好祝大家刷机必卡米，9008一路顺畅！</p>
+]]></content>
+      <categories>
+        <category>Android 12</category>
+        <category>Color OS</category>
+        <category>刷机</category>
+        <category>酷安</category>
+        <category>一加 description:习惯性闷声作死的我，这次又给大伙整了什么新活呢？敬请收看《可怜的打工人才不会在凌晨四点9008救砖这点事》。</category>
+      </categories>
+      <tags>
+        <tag>Android 12</tag>
+        <tag>Color OS</tag>
+        <tag>刷机</tag>
+        <tag>酷安</tag>
+        <tag>一加</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DIV元素中的文本居中</title>
     <url>/2022/02/24/DIV%E5%85%83%E7%B4%A0%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC%E5%B1%85%E4%B8%AD/</url>
     <content><![CDATA[<h1 id="DIV元素中的文本居中"><a href="#DIV元素中的文本居中" class="headerlink" title="DIV元素中的文本居中"></a>DIV元素中的文本居中</h1><p>在样式布局中，我们经常碰到需要将元素居中。</p>
@@ -518,15 +564,15 @@
 </ul>
 <p><strong>使用的是index1的执行流程</strong></p>
 <ul>
-<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#122;&#104;&#97;&#110;&#103;&#115;&#115;&#x78;&#x79;&#x7a;&#64;&#x78;&#120;&#x78;&#46;&#99;&#111;&#109;">&#122;&#104;&#97;&#110;&#103;&#115;&#115;&#x78;&#x79;&#x7a;&#64;&#x78;&#120;&#x78;&#46;&#99;&#111;&#109;</a>’的这条记录，取得ID2的值；</li>
+<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#x7a;&#104;&#x61;&#110;&#x67;&#115;&#x73;&#120;&#x79;&#122;&#64;&#x78;&#x78;&#x78;&#x2e;&#x63;&#111;&#x6d;">&#x7a;&#104;&#x61;&#110;&#x67;&#115;&#x73;&#120;&#x79;&#122;&#64;&#x78;&#x78;&#x78;&#x2e;&#x63;&#111;&#x6d;</a>’的这条记录，取得ID2的值；</li>
 <li>到主键上查到主键值是ID2的行，判断email的值是正确的，将这行记录加入结果集；</li>
-<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#x68;&#97;&#x6e;&#103;&#115;&#115;&#x78;&#121;&#x7a;&#x40;&#x78;&#120;&#x78;&#46;&#x63;&#x6f;&#x6d;">&#122;&#x68;&#97;&#x6e;&#103;&#115;&#115;&#x78;&#121;&#x7a;&#x40;&#x78;&#120;&#x78;&#46;&#x63;&#x6f;&#x6d;</a>’的条件了，循环结束</li>
+<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#104;&#x61;&#110;&#x67;&#x73;&#115;&#120;&#x79;&#122;&#x40;&#120;&#x78;&#120;&#x2e;&#99;&#111;&#109;">&#122;&#104;&#x61;&#110;&#x67;&#x73;&#115;&#120;&#x79;&#122;&#x40;&#120;&#x78;&#120;&#x2e;&#99;&#111;&#109;</a>’的条件了，循环结束</li>
 <li>这个过程中，只需要回主键索引取一次数据，所以系统认为只扫描了一行。</li>
 </ul>
 <p><strong>使用的是index2的执行流程</strong></p>
 <ul>
 <li>从<code>index2</code>索引树找到满足索引值是’zhangs’的记录，找到的第一个是ID1；</li>
-<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#122;&#x68;&#97;&#110;&#103;&#115;&#115;&#120;&#x79;&#122;&#x40;&#120;&#120;&#x78;&#46;&#x63;&#111;&#x6d;">&#122;&#x68;&#97;&#110;&#103;&#115;&#115;&#120;&#x79;&#122;&#x40;&#120;&#120;&#x78;&#46;&#x63;&#111;&#x6d;</a>’，这行记录丢弃；</li>
+<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#122;&#104;&#x61;&#x6e;&#x67;&#x73;&#115;&#x78;&#x79;&#x7a;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#x6d;">&#122;&#104;&#x61;&#x6e;&#x67;&#x73;&#115;&#x78;&#x79;&#x7a;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#x6d;</a>’，这行记录丢弃；</li>
 <li>取index2上刚刚查到的位置的下一条记录，发现仍然是’zhangs’，取出ID2，再到ID索引上取整行然后判断，这次值对了，将这行记录加入结果集；</li>
 <li>重复上一步，直到在idxe2上取到的值不是’zhangs’时，循环结束。</li>
 <li>在这个过程中，要回主键索引取4次数据，也就是扫描了4行。</li>
@@ -1579,6 +1625,104 @@
         <tag>CI</tag>
         <tag>Github Actions</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常见 HTTP 状态码</title>
+    <url>/2022/03/16/%E5%B8%B8%E8%A7%81HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+    <content><![CDATA[<h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>状态码（Status Code）和原因短语（Reason Phrase）用于<strong>描述请求的结果</strong>。常见的比如：</p>
+<ul>
+<li>200 OK，表示请求成功；</li>
+<li>404 Not Found表示请求的资源未找到。</li>
+</ul>
+<p>原因短语（上面的ok 和Not Found）是对状态码的解释说明。</p>
+<p>形如<code>200</code>这样的状态码，这里的第1位数字，通常表示响应的类别，大致可以分成以下几类：</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td align="left">请求正被处理</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td align="left">请求成功处理</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td align="left">请求需要附加操作，常见的例子如重定向</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td align="left">客户端出错导致请求无法被处理</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td align="left">服务端处理出错</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+<h1 id="2xx"><a href="#2xx" class="headerlink" title="2xx"></a>2xx</h1><h2 id="200-OK"><a href="#200-OK" class="headerlink" title="200 OK"></a>200 OK</h2><p>表示请求已经被正常处理，这个比较常见，就不在这赘述了。</p>
+<h2 id="204-NO-Content"><a href="#204-NO-Content" class="headerlink" title="204 NO Content"></a>204 NO Content</h2><blockquote>
+<p>表示请求成功，但是响应的报文中不含实体主体。通常用于只需要客户端向服务端发送信息，而不需要接受新信息的情况使用</p>
+</blockquote>
+<p>说话人就是：有一种常见的种请求类型<code>options</code>，通常被用来做正式请求的预请求，这个请求<strong>只需要确认后续的请求能不能通过，即只需要一个结果，而不需要返回其他内容</strong>，这类请求成功时就会返回204。</p>
+<h2 id="206-Partial-Content"><a href="#206-Partial-Content" class="headerlink" title="206 Partial Content"></a>206 Partial Content</h2><p>字面意思：客户端进行了范围请求，而服务器成功执行了这部分请求。这种情况必须提到提到一个请求头<code>Range</code>：在 http 的请求中，这个头部用来表示<strong>范围请求</strong>。例如：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;Range&#x27;</span>:byte=<span class="number">5001</span>-<span class="number">10000</span> <span class="regexp">//</span> 表示本次要请求资源的<span class="number">5001</span>-<span class="number">10000</span>字节的部分</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下，如果服务器接受范围请求并且成功处理，就会返回<code>206</code>,并且在响应的头部返回：</p>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;Content-Range&#x27;</span>:<span class="built_in">bytes</span> <span class="number">5001</span><span class="number">-10000</span>/<span class="number">10000</span> <span class="comment">// 表示整个资源有10000字节，本次返回的范围为 5001-10000字节</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="3xx"><a href="#3xx" class="headerlink" title="3xx"></a>3xx</h1><h2 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h2><p>字面意思：资源被<strong>永久</strong>重定向了。这种情况下响应的头部字段<code>Location</code>中一般还会返回一个地址，用来表示要新地址。例如：</p>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"><span class="number">301</span> Moved Permanently </span><br><span class="line"><span class="params">...</span></span><br><span class="line">Location:<span class="string">&#x27;b.com&#x27;</span></span><br><span class="line"><span class="params">...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端请求的资源已被永久转移，需对新地址 b.com 访问，以后的请求直接访问新地址</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="302-Found"><a href="#302-Found" class="headerlink" title="302 Found"></a>302 Found</h2><p>字面意思：资源<strong>临时</strong>重定向了。还是举上面的例子：</p>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"><span class="number">302</span> Found</span><br><span class="line"><span class="params">...</span></span><br><span class="line">Location: <span class="string">&#x27;b.com&#x27;</span></span><br><span class="line"><span class="params">...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//上述内容表示：客户端请求的资源被临时转移，后面也有可能再次转移，本次请求访问新地址 b.com，以后的请求还是先访问原来地址。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="303-See-Other"><a href="#303-See-Other" class="headerlink" title="303 See Other"></a>303 See Other</h2><p>这个和302很像，但是有个细微区别是，除了会提示客户端去请求<code>Location</code>以外，还会要求请求要使用<code>Location</code>时使用<code>GET</code>方法。 在这补充一下一个历史背景：</p>
+<blockquote>
+<p>请求返回301 302 303 时，几乎所有浏览器都会把原先的POST请求改为GET请求。虽然FRC1945和RFC2068规范中有规定：不允许客户端在重定向时修改方法。</p>
+</blockquote>
+<p>简单的说，实际的浏览器在处理301和302时，默认就会把原先的POST请求改为GET请求，所以实际上使用303的意义，单纯只是让语义化更清晰点。（303表示服务器<strong>明确告诉</strong>客户端，你要使用<code>GET</code>方法访问<code>location</code>。如果是302，就是仅仅告诉客户端要访问<code>location</code>，不限制方法，但是实际上客户端自己也会用<code>GET</code>方法访问。）</p>
+<blockquote>
+<p>注意：当301，302，303响应状态码返回时，几乎所有的浏览器会把POST改成GET，并删除请求报文内的主体，之后请求会自动再次发送</p>
+</blockquote>
+<h2 id="304-Not-Modified"><a href="#304-Not-Modified" class="headerlink" title="304 Not Modified"></a>304 Not Modified</h2><p> 服务器端资源未改变，可直接使用客户端未过期的缓存，不包含任何响应的主体部分。304是3xx里面的一个特例，因为它不算是一个重定向。</p>
+<p>这种响应一般是<code>GET</code>请求中带有<strong>附加条件</strong>，例如请求头中含有<code>if-Match</code>，<code>if-Modified-Since</code>等。</p>
+<p><code>if-Match</code>表示只请求带有特殊标记的资源，<code>if-Modified-Since</code>表示请求指定时间后未变更的资源。</p>
+<h1 id="4xx"><a href="#4xx" class="headerlink" title="4xx"></a>4xx</h1><p>4xx表示一般是客户端发生了错误。</p>
+<h2 id="400-Bad-Request"><a href="#400-Bad-Request" class="headerlink" title="400 Bad Request"></a>400 Bad Request</h2><p>400的含义简单粗暴：请求中有语法错误。那具体是什么语法错误呢?一般来说响应报文里会有一些提示，例如：</p>
+<ul>
+<li>多加了请求头</li>
+<li>请求地址错误导，该 uri 不存在</li>
+<li>请求方法错误，该 uri 之只能用 put 而不是 post</li>
+<li>…</li>
+</ul>
+<h2 id="401-Unauthorized"><a href="#401-Unauthorized" class="headerlink" title="401 Unauthorized"></a>401 Unauthorized</h2><p>字面意思：未经过认证。一般在后台系统之类的应用里，用户登录之后会获得一个身份认证信息，然后生成<code>mac</code>之类的信息，放在请求头的<code>Authorization</code>字段里，发送给服务端，如果这个认证信息有问题或者根本没发送，就会出现这个状态码。</p>
+<h2 id="403-Forbidden"><a href="#403-Forbidden" class="headerlink" title="403 Forbidden"></a>403 Forbidden</h2><p>这个就简单了：禁止访问也就是无权限访问。禁止原因一般由服务器在响应内中给出。</p>
+<h2 id="404-Not-Find"><a href="#404-Not-Find" class="headerlink" title="404 Not Find"></a>404 Not Find</h2><p>这个错误可以说是很常见了，表示服务端没有找到所请求的资源。（经验表明，一般这个错误是客户端的请求url写错了。）</p>
+<h1 id="499-Client-Has-Closed-Connection"><a href="#499-Client-Has-Closed-Connection" class="headerlink" title="499 Client Has Closed Connection"></a>499 Client Has Closed Connection</h1><p>服务器端处理的时间过长，客户端主动断开链接，nginx定义的状态码。</p>
+<h1 id="5xx"><a href="#5xx" class="headerlink" title="5xx"></a>5xx</h1><p>5xx表明服务端发生了错误。</p>
+<h2 id="500-Internal-Server-Error"><a href="#500-Internal-Server-Error" class="headerlink" title="500 Internal Server Error"></a>500 Internal Server Error</h2><p>简单粗暴，服务器故障了。啥？你问我什么故障？我哪知道，我只会熟练地把bug转给隔壁的服务端同学。</p>
+<p><em>评论区有读者提到漏掉了502和504，想想还是补上吧，虽然要说明这俩还得稍微解释下网关和代理（懒性暴露），但是平时开发的时候确实也经常出现，尤其是使用nginx进行调试的时候。顺便安利一下教程 <a href="https://segmentfault.com/a/1190000018151099">windows下使用nginx调试</a></em></p>
+<h2 id="502-Bad-Gateway"><a href="#502-Bad-Gateway" class="headerlink" title="502 Bad Gateway"></a>502 Bad Gateway</h2><p>作为<strong>网关</strong>或者<strong>代理</strong>工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。这里说明下网关和代理服务器的概念：前面我们举例子都是直接客户端向服务器发请求，实际上客户端有时候不是直接向服务器请求，这中间可能存在网关和代理：</p>
+<ul>
+<li><strong>代理</strong>连接的是两个或多个使用相同协议的应用程序。</li>
+<li><strong>网关</strong>连接的是两个或多个使用不同协议的端点，扮演“协议转换器”的角色。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/33454514/157812931-33161215-7936-431d-a6c0-215718fa6044.png" alt="image"></p>
+<h2 id="503-Service-Unavailable"><a href="#503-Service-Unavailable" class="headerlink" title="503 Service Unavailable"></a>503 Service Unavailable</h2><p>服务器暂时处于超负荷或正在进行停机维护，现在无法处理请求。</p>
+<h2 id="504-Gateway-Timeout"><a href="#504-Gateway-Timeout" class="headerlink" title="504 Gateway Timeout"></a>504 Gateway Timeout</h2><p>作为<strong>网关</strong>或者<strong>代理</strong>工作的服务器访问超时。</p>
+]]></content>
+      <categories>
+        <category>HTTP</category>
+      </categories>
+      <tags>
+        <tag>HTTP</tag>
       </tags>
   </entry>
   <entry>

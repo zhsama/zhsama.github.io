@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ayanami.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ayanami.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="起因笔者的机器是 OnePlus 8 T, 这几天更新了Color OS 12公测版（Based Android 12），作为一个酷安机佬，自然是忍不住刷机的冲动。 本地升级之后使用体验比氢氧好得多，只是耗电量陡增。看酷安的机友说，从H2OS更新到颜色系统，最好是进行一次双清。俺寻思从小到大刷机这么七八年了，什么大风大浪没见过？数据备份完成之后就是一把梭直接重启到 REC 模式双清数据。 然后就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 12 刷入 Magisk 模块后无法开机的解决方法">
+<meta property="og:url" content="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="zhsama&#39;s blog">
+<meta property="og:description" content="起因笔者的机器是 OnePlus 8 T, 这几天更新了Color OS 12公测版（Based Android 12），作为一个酷安机佬，自然是忍不住刷机的冲动。 本地升级之后使用体验比氢氧好得多，只是耗电量陡增。看酷安的机友说，从H2OS更新到颜色系统，最好是进行一次双清。俺寻思从小到大刷机这么七八年了，什么大风大浪没见过？数据备份完成之后就是一把梭直接重启到 REC 模式双清数据。 然后就是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-15T08:33:58.000Z">
+<meta property="article:modified_time" content="2022-03-16T08:33:52.000Z">
+<meta property="article:author" content="zhsama">
+<meta property="article:tag" content="Android 12">
+<meta property="article:tag" content="Color OS">
+<meta property="article:tag" content="刷机">
+<meta property="article:tag" content="酷安">
+<meta property="article:tag" content="一加">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Android 12 刷入 Magisk 模块后无法开机的解决方法 | zhsama's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zhsama's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ayanami2.png">
+      <meta itemprop="name" content="zhsama">
+      <meta itemprop="description" content="我没有敌人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhsama's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android 12 刷入 Magisk 模块后无法开机的解决方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-15 16:33:58" itemprop="dateCreated datePublished" datetime="2022-03-15T16:33:58+08:00">2022-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-16 16:33:52" itemprop="dateModified" datetime="2022-03-16T16:33:52+08:00">2022-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/" itemprop="url" rel="index"><span itemprop="name">Android 12</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/Color-OS/" itemprop="url" rel="index"><span itemprop="name">Color OS</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">刷机</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/%E9%85%B7%E5%AE%89/" itemprop="url" rel="index"><span itemprop="name">酷安</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/%E9%85%B7%E5%AE%89/%E4%B8%80%E5%8A%A0-description-%E4%B9%A0%E6%83%AF%E6%80%A7%E9%97%B7%E5%A3%B0%E4%BD%9C%E6%AD%BB%E7%9A%84%E6%88%91%EF%BC%8C%E8%BF%99%E6%AC%A1%E5%8F%88%E7%BB%99%E5%A4%A7%E4%BC%99%E6%95%B4%E4%BA%86%E4%BB%80%E4%B9%88%E6%96%B0%E6%B4%BB%E5%91%A2%EF%BC%9F%E6%95%AC%E8%AF%B7%E6%94%B6%E7%9C%8B%E3%80%8A%E5%8F%AF%E6%80%9C%E7%9A%84%E6%89%93%E5%B7%A5%E4%BA%BA%E6%89%8D%E4%B8%8D%E4%BC%9A%E5%9C%A8%E5%87%8C%E6%99%A8%E5%9B%9B%E7%82%B99008%E6%95%91%E7%A0%96%E8%BF%99%E7%82%B9%E4%BA%8B%E3%80%8B%E3%80%82/" itemprop="url" rel="index"><span itemprop="name">一加 description:习惯性闷声作死的我，这次又给大伙整了什么新活呢？敬请收看《可怜的打工人才不会在凌晨四点9008救砖这点事》。</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>笔者的机器是 OnePlus 8 T, 这几天更新了Color OS 12公测版（Based Android 12），作为一个酷安机佬，自然是忍不住刷机的冲动。</p>
+<p>本地升级之后使用体验比氢氧好得多，只是耗电量陡增。看酷安的机友说，从H2OS更新到颜色系统，最好是进行一次双清。俺寻思从小到大刷机这么七八年了，什么大风大浪没见过？数据备份完成之后就是一把梭直接重启到 REC 模式双清数据。</p>
+<p>然后就是大家喜闻乐见的环节：提取 boot.img 文件，写入 Magisk，进入 fastboot 模式刷入 boot.img 获取 root 权限。</p>
+<p>由于 Android 12 没有可用的 TWRP，这对于需要折腾 Magisk 和 Xposed 的机友来说实在是不太友好，一个失误操作直接卡第一屏，就可以准备后事哦不高通9008了。（<strong>比如我，闷声作大死，第二天要打工还刷机，直接给我整到凌晨四点。</strong>）</p>
+<p>由于 Magisk 只是修改了系统的 boot 分区，可以通过重新刷入官方 ROM 的 boot.img 重新开机，但是这样开机之后，是没有 root 权限的，也没有办法删除 Magisk 里面不兼容的 Module。之后如果然后手动重新给 boot.img 打上 root 补丁，又会陷入无法开机的死循环中。最后没办法只能双清重刷，非常难受。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>但是！但是！但是！可喜可贺的是，在 Android 12 下的 Magisk 更新了一个非常有用的功能（准确来说应该是在 Magisk 23 之后的版本引入的特性功能）：<strong>如果 Magisk 检测到手机进入安全模式之后，就会自动禁用所有模块（并不会删除）</strong>。这简直就是没有 TWRP 机友的福音！</p>
+<h2 id="安全模式救砖："><a href="#安全模式救砖：" class="headerlink" title="安全模式救砖："></a>安全模式救砖：</h2><p>具体来说，就是如果刷入了不兼容的 Module，然后开机卡第一屏，那么可以强制关机，然后在关机状态下，直接进入安全模式，Magisk 就会禁用所有的 Modules，然后再次重启机器进入正常模式，这个时候因为所有的 Modules 都是禁用状态，所以可以正常开机，开机之后机器还是 root 状态，这时候直接删掉不兼容的 Module 就行了。</p>
+<ol>
+<li>设备关机状态下，按电源键开机</li>
+<li>待出现 bootloader 已解锁的安全提示后，直接按住“音量减”键，直到进入桌面</li>
+<li>屏幕左下方显示“安全模式”即表示成功</li>
+</ol>
+<p>PS： 上面介绍的是 Android 官方的通用方式，如果你的设备比较特别的话，可能需要自己 Google 一下如何进入安全模式。</p>
+<p>PPS：另外再说一种有点暴力和局限性的方法，但是比上面这个更彻底，开机之后 Magisk 会删掉所有 Modules，当然也会丢失 root 权限，需要重新给 boot.img 打补丁来 root 设备，但是总比变砖或者线刷要好吧。</p>
+<h2 id="其他救砖方法"><a href="#其他救砖方法" class="headerlink" title="其他救砖方法"></a>其他救砖方法</h2><p>这个方法从是让 ADB 等待设备进入引导屏幕，然后 ADB 开始工作， ADB 会删除所有已安装的 Magisk Modules 来确保机器能够进入系统。</p>
+<ol>
+<li><p>确保设备在关机状态下</p>
+</li>
+<li><p>使用数据线将手机连接到已经安装了 ADB 的电脑上</p>
+</li>
+<li><p>电脑进入 ADB 文件夹，执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb wait-for-device shell magisk --remove-modules</span><br></pre></td></tr></table></figure></li>
+<li><p>按住电源键开机，并且不松开，直到进入桌面</p>
+</li>
+</ol>
+<p>如果上面这两种方法都无法拯救你的爱机的话，就只能9008了。具体见<a target="_blank" rel="noopener" href="https://yun.daxiaamu.com/OnePlus_Roms/">大侠阿木的博客</a>，另外，强推阿木大佬的一加全能盒子！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>新的一年没啥好祝福大🔥的，只好祝大家刷机必卡米，9008一路顺畅！</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>zhsama
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="Android 12 刷入 Magisk 模块后无法开机的解决方法">https://zhsama.github.io/2022/03/15/Android 12 刷入 Magisk 模块后无法开机的解决方法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android-12/" rel="tag"># Android 12</a>
+              <a href="/tags/Color-OS/" rel="tag"># Color OS</a>
+              <a href="/tags/%E5%88%B7%E6%9C%BA/" rel="tag"># 刷机</a>
+              <a href="/tags/%E9%85%B7%E5%AE%89/" rel="tag"># 酷安</a>
+              <a href="/tags/%E4%B8%80%E5%8A%A0/" rel="tag"># 一加</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/28/Koa%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86/" rel="prev" title="Koa中间件原理">
+      <i class="fa fa-chevron-left"></i> Koa中间件原理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/16/%E5%B8%B8%E8%A7%81HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" rel="next" title="常见 HTTP 状态码">
+      常见 HTTP 状态码 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F%E6%95%91%E7%A0%96%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">安全模式救砖：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%95%91%E7%A0%96%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">其他救砖方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zhsama"
+      src="/images/ayanami2.png">
+  <p class="site-author-name" itemprop="name">zhsama</p>
+  <div class="site-description" itemprop="description">我没有敌人</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhsama" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhsama" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:a602693793@gmail.com" title="E-Mail → mailto:a602693793@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhsama</span>
+</div>
+
+<br />
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("09/20/2021 10:54:40");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
