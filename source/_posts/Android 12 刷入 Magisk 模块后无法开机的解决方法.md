@@ -2,12 +2,11 @@
 title: Android 12 刷入 Magisk 模块后无法开机的解决方法
 date: 2022-03-15 16:33:58
 updated: 2022-03-16 16:33:52
-tags: ['Android 12','Color OS','刷机','酷安','一加']
+tags: ['Android 12','Color OS','刷机','一加']
 categories:
 - Android 12
 - Color OS
 - 刷机
-- 酷安
 - 一加
 description:习惯性闷声作死的我，这次又给大伙整了什么新活呢？敬请收看《可怜的打工人才不会在凌晨四点9008救砖这点事》。 
 ---
