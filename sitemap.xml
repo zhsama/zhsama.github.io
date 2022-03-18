@@ -29,6 +29,15 @@
   </url>
   
   <url>
+    <loc>https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2022-03-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zhsama.github.io/2022/03/16/%E5%B8%B8%E8%A7%81HTTP%E7%8A%B6%E6%80%81%E7%A0%81/</loc>
     
     <lastmod>2022-03-17</lastmod>
@@ -153,6 +162,34 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://zhsama.github.io/tags/Android-12/</loc>
+    <lastmod>2022-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhsama.github.io/tags/Color-OS/</loc>
+    <lastmod>2022-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhsama.github.io/tags/%E5%88%B7%E6%9C%BA/</loc>
+    <lastmod>2022-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhsama.github.io/tags/%E4%B8%80%E5%8A%A0/</loc>
+    <lastmod>2022-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://zhsama.github.io/tags/css/</loc>
@@ -311,6 +348,13 @@
 
   
   <url>
+    <loc>https://zhsama.github.io/categories/Android-12/</loc>
+    <lastmod>2022-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://zhsama.github.io/categories/css/</loc>
     <lastmod>2022-03-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -332,14 +376,21 @@
   </url>
   
   <url>
-    <loc>https://zhsama.github.io/categories/rabbitmq/</loc>
+    <loc>https://zhsama.github.io/categories/NodeJS/</loc>
     <lastmod>2022-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://zhsama.github.io/categories/NodeJS/</loc>
+    <loc>https://zhsama.github.io/categories/Android-12/Color-OS/</loc>
+    <lastmod>2022-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhsama.github.io/categories/rabbitmq/</loc>
     <lastmod>2022-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -360,6 +411,13 @@
   </url>
   
   <url>
+    <loc>https://zhsama.github.io/categories/HTTP/</loc>
+    <lastmod>2022-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://zhsama.github.io/categories/Koa/NodeJS/</loc>
     <lastmod>2022-03-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -367,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://zhsama.github.io/categories/HTTP/</loc>
+    <loc>https://zhsama.github.io/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/</loc>
     <lastmod>2022-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -382,6 +440,13 @@
   
   <url>
     <loc>https://zhsama.github.io/categories/CI/Hexo/</loc>
+    <lastmod>2022-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhsama.github.io/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/%E4%B8%80%E5%8A%A0/</loc>
     <lastmod>2022-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
