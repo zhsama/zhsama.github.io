@@ -1,7 +1,7 @@
 ---
-title: Android 12 刷入 Magisk 模块后无法开机的解决方法
-date: 2022-03-15 16:33:58
-updated: 2022-03-18 10:46:22
+title: Git 命令之 Reset 与 Revert
+date: 2022-03-18 10:46:22
+updated: 2022-03-25 14:21:32
 tags: ['git']
 categories:
 - git
