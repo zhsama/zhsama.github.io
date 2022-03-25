@@ -538,6 +538,50 @@
       </tags>
   </entry>
   <entry>
+    <title>Android 12 刷入 Magisk 模块后无法开机的解决方法</title>
+    <url>/2022/03/15/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/</url>
+    <content><![CDATA[<h1 id="Git-Reset"><a href="#Git-Reset" class="headerlink" title="Git Reset"></a>Git Reset</h1><p>git reset 命令可以将当前的<code>HEAD</code>重置到特定的状态。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>首先要搞清楚下面几个概念：</p>
+<ul>
+<li>HEAD：指向当前分支当前版本的游标</li>
+<li>Index：暂存区，当你修改了你的 git 仓库里的一个文件时，这些变化一开始是 <strong>unstaged</strong> 状态，为了提交这些修改，你需要使用<code>git add</code>把它加入到 index，使它成为 <strong>staged</strong> 状态。当提交一个 commit 时，index 里面的修改被提交</li>
+<li>working tree：当前的工作目录</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p><code>git reset</code>的命令为：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git reset [&lt;mode&gt;] [&lt;commit&gt;]</span><br></pre></td></tr></table></figure>
+
+<p> git reset 会将当前分支的 HEAD 指向给定的版本，并根据模式的不同决定是否修改 index 和 working tree<br>常用的<mode>有三种模式：<code>--soft</code>, <code>--mixed</code>, <code>--hard</code>，没有指定 <mode> 默认是<code>--mixed</code>模式</p>
+<h2 id="soft"><a href="#soft" class="headerlink" title="soft"></a>soft</h2><p>使用<code>--soft</code>参数将会仅仅重置 HEAD 到制定的版本，不会修改 index 和 working tree。例如当前分支现在有三次提交，执行<code>git reset --soft HEAD~</code>之后，查看git log：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160063514-924585e2-ff73-4d26-a7d3-21202d24a0bd.png" alt="image"></p>
+<p>而本地文件的内容并没有发生变化，而index中仍然有最近一次提交的修改，这时执行git status会显示这些修改已经在再暂存区中了，无需再一次执行git add</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160063524-adfbb0b1-3bf0-4276-8af2-ac9e8eb71ad9.png" alt="image"></p>
+<h2 id="mixed"><a href="#mixed" class="headerlink" title="mixed"></a>mixed</h2><p>使用<code>--mixed</code>参数与<code>--soft</code>的不同之处在于，**–mixed** 修改了 <strong>index</strong>，使其与第二个版本匹配。index 中给定 commit 之后的修改被<code>unstaged</code>。</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160063677-34caf47f-e0d8-453f-9e60-399bf17f848b.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160063683-48b2685d-524f-47f2-8768-025792865840.png" alt="image"></p>
+<p> 如果现在执行git commit 将不会发生任何事，因为暂存区中没有修改，在提交之前需要再次执行git add</p>
+<h2 id="hard"><a href="#hard" class="headerlink" title="hard"></a>hard</h2><p>使用<code>--hard</code>同时也会修改 working tree，也就是当前的工作目录，如果我们执行<code>git reset --hard HEAD~</code>，那么最后一次提交的修改，包括本地文件的修改都会被清除，彻底还原到上一次提交的状态且无法找回。所以在执行<code>reset --hard</code>之前一定要小心！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>soft：重置 HEAD 到指定版本，影响 working tree</li>
+<li>hard：会清除本地的修改文件，且无法找回</li>
+<li>mixed：修改 index，需要重新执行 git add</li>
+</ul>
+<h1 id="Git-Revert"><a href="#Git-Revert" class="headerlink" title="Git Revert"></a>Git Revert</h1><p>使用<code>git revert</code>也能起到回退版本的作用，不同之处在于：</p>
+<ul>
+<li><code>git revert &lt;commit&gt;</code>会回退到 <commit> 之前的那次提交。比如：<code>git revert HEAD~3</code>会回退到最近的第4个提交的状态，而不是第3个</li>
+<li><code>git revert</code>会产生一个新的commit，将这次回退作为一次修改记录提交，这样的好处是不修改历史提交记录</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/33454514/160064129-9af07499-5ddd-4f25-88e0-a3fc127a7ded.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160064132-faf553f3-d344-4aab-801c-97c37fdb2e0a.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160064136-d83d597a-9c75-4479-9665-d6f64c056ee8.png" alt="image"></p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>V8引擎的垃圾回收机制</title>
     <url>/2022/01/26/v8%E7%9A%84gc%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -2130,15 +2174,15 @@
 </ul>
 <p><strong>使用的是index1的执行流程</strong></p>
 <ul>
-<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#x7a;&#104;&#97;&#110;&#x67;&#x73;&#x73;&#120;&#x79;&#122;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#x6d;">&#x7a;&#104;&#97;&#110;&#x67;&#x73;&#x73;&#120;&#x79;&#122;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#x6d;</a>’的这条记录，取得ID2的值；</li>
+<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#122;&#104;&#97;&#x6e;&#x67;&#x73;&#115;&#x78;&#x79;&#x7a;&#64;&#120;&#x78;&#120;&#x2e;&#99;&#111;&#x6d;">&#122;&#104;&#97;&#x6e;&#x67;&#x73;&#115;&#x78;&#x79;&#x7a;&#64;&#120;&#x78;&#120;&#x2e;&#99;&#111;&#x6d;</a>’的这条记录，取得ID2的值；</li>
 <li>到主键上查到主键值是ID2的行，判断email的值是正确的，将这行记录加入结果集；</li>
-<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#104;&#97;&#110;&#x67;&#115;&#x73;&#120;&#x79;&#122;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;">&#122;&#104;&#97;&#110;&#x67;&#115;&#x73;&#120;&#x79;&#122;&#64;&#120;&#120;&#120;&#46;&#99;&#111;&#109;</a>’的条件了，循环结束</li>
+<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#104;&#x61;&#110;&#103;&#x73;&#115;&#x78;&#x79;&#122;&#64;&#x78;&#x78;&#x78;&#x2e;&#99;&#x6f;&#109;">&#122;&#104;&#x61;&#110;&#103;&#x73;&#115;&#x78;&#x79;&#122;&#64;&#x78;&#x78;&#x78;&#x2e;&#99;&#x6f;&#109;</a>’的条件了，循环结束</li>
 <li>这个过程中，只需要回主键索引取一次数据，所以系统认为只扫描了一行。</li>
 </ul>
 <p><strong>使用的是index2的执行流程</strong></p>
 <ul>
 <li>从<code>index2</code>索引树找到满足索引值是’zhangs’的记录，找到的第一个是ID1；</li>
-<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#x7a;&#104;&#97;&#x6e;&#x67;&#x73;&#x73;&#x78;&#x79;&#122;&#x40;&#x78;&#120;&#120;&#x2e;&#x63;&#x6f;&#109;">&#x7a;&#104;&#97;&#x6e;&#x67;&#x73;&#x73;&#x78;&#x79;&#122;&#x40;&#x78;&#120;&#120;&#x2e;&#x63;&#x6f;&#109;</a>’，这行记录丢弃；</li>
+<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#x7a;&#104;&#x61;&#x6e;&#x67;&#115;&#x73;&#120;&#x79;&#x7a;&#64;&#x78;&#x78;&#120;&#46;&#99;&#x6f;&#x6d;">&#x7a;&#104;&#x61;&#x6e;&#x67;&#115;&#x73;&#120;&#x79;&#x7a;&#64;&#x78;&#x78;&#120;&#46;&#99;&#x6f;&#x6d;</a>’，这行记录丢弃；</li>
 <li>取index2上刚刚查到的位置的下一条记录，发现仍然是’zhangs’，取出ID2，再到ID索引上取整行然后判断，这次值对了，将这行记录加入结果集；</li>
 <li>重复上一步，直到在idxe2上取到的值不是’zhangs’时，循环结束。</li>
 <li>在这个过程中，要回主键索引取4次数据，也就是扫描了4行。</li>

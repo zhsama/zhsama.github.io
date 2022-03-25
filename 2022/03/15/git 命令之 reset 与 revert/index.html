@@ -20,23 +20,28 @@
     var CONFIG = {"hostname":"zhsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="习惯性闷声作死的我，这次又给大伙整了什么新活呢？敬请收看《可怜的打工人才不会在凌晨四点9008救砖这点事》。">
+  <meta name="description" content="你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 12 刷入 Magisk 模块后无法开机的解决方法">
-<meta property="og:url" content="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:url" content="https://zhsama.github.io/2022/03/15/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/index.html">
 <meta property="og:site_name" content="zhsama&#39;s blog">
-<meta property="og:description" content="习惯性闷声作死的我，这次又给大伙整了什么新活呢？敬请收看《可怜的打工人才不会在凌晨四点9008救砖这点事》。">
+<meta property="og:description" content="你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/160063514-924585e2-ff73-4d26-a7d3-21202d24a0bd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/160063524-adfbb0b1-3bf0-4276-8af2-ac9e8eb71ad9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/160063677-34caf47f-e0d8-453f-9e60-399bf17f848b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/160063683-48b2685d-524f-47f2-8768-025792865840.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/160064129-9af07499-5ddd-4f25-88e0-a3fc127a7ded.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/160064132-faf553f3-d344-4aab-801c-97c37fdb2e0a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/160064136-d83d597a-9c75-4479-9665-d6f64c056ee8.png">
 <meta property="article:published_time" content="2022-03-15T08:33:58.000Z">
 <meta property="article:modified_time" content="2022-03-18T02:46:22.000Z">
 <meta property="article:author" content="zhsama">
-<meta property="article:tag" content="Android 12">
-<meta property="article:tag" content="Color OS">
-<meta property="article:tag" content="刷机">
-<meta property="article:tag" content="一加">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/33454514/160063514-924585e2-ff73-4d26-a7d3-21202d24a0bd.png">
 
-<link rel="canonical" href="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+<link rel="canonical" href="https://zhsama.github.io/2022/03/15/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/">
 
 
 <script id="page-configurations">
@@ -202,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/15/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ayanami2.png">
@@ -240,19 +245,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-12/" itemprop="url" rel="index"><span itemprop="name">Android 12</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-12/Color-OS/" itemprop="url" rel="index"><span itemprop="name">Color OS</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">刷机</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/%E4%B8%80%E5%8A%A0/" itemprop="url" rel="index"><span itemprop="name">一加</span></a>
+                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
                 </span>
             </span>
 
@@ -268,7 +261,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>1.4k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -276,7 +269,7 @@
               </span>
               <span>1 分钟</span>
             </span>
-            <div class="post-description">习惯性闷声作死的我，这次又给大伙整了什么新活呢？敬请收看《可怜的打工人才不会在凌晨四点9008救砖这点事》。</div>
+            <div class="post-description">你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。</div>
 
         </div>
       </header>
@@ -287,33 +280,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>笔者的机器是 OnePlus 8 T, 这几天更新了Color OS 12公测版（Based Android 12），作为一个酷安机佬，自然是忍不住刷机的冲动。</p>
-<p>本地升级之后使用体验比氢氧好得多，只是耗电量陡增。看酷安的机友说，从H2OS更新到颜色系统，最好是进行一次双清。俺寻思从小到大刷机这么七八年了，什么大风大浪没见过？数据备份完成之后就是一把梭直接重启到 REC 模式双清数据。</p>
-<p>然后就是大家喜闻乐见的环节：提取 boot.img 文件，写入 Magisk，进入 fastboot 模式刷入 boot.img 获取 root 权限。</p>
-<p>由于 Android 12 没有可用的 TWRP，这对于需要折腾 Magisk 和 Xposed 的机友来说实在是不太友好，一个失误操作直接卡第一屏，就可以准备后事哦不高通9008了。（<strong>比如我，闷声作大死，第二天要打工还刷机，直接给我整到凌晨四点。</strong>）</p>
-<p>由于 Magisk 只是修改了系统的 boot 分区，可以通过重新刷入官方 ROM 的 boot.img 重新开机，但是这样开机之后，是没有 root 权限的，也没有办法删除 Magisk 里面不兼容的 Module。之后如果然后手动重新给 boot.img 打上 root 补丁，又会陷入无法开机的死循环中。最后没办法只能双清重刷，非常难受。</p>
-<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>但是！但是！但是！可喜可贺的是，在 Android 12 下的 Magisk 更新了一个非常有用的功能（准确来说应该是在 Magisk 23 之后的版本引入的特性功能）：<strong>如果 Magisk 检测到手机进入安全模式之后，就会自动禁用所有模块（并不会删除）</strong>。这简直就是没有 TWRP 机友的福音！</p>
-<h2 id="安全模式救砖："><a href="#安全模式救砖：" class="headerlink" title="安全模式救砖："></a>安全模式救砖：</h2><p>具体来说，就是如果刷入了不兼容的 Module，然后开机卡第一屏，那么可以强制关机，然后在关机状态下，直接进入安全模式，Magisk 就会禁用所有的 Modules，然后再次重启机器进入正常模式，这个时候因为所有的 Modules 都是禁用状态，所以可以正常开机，开机之后机器还是 root 状态，这时候直接删掉不兼容的 Module 就行了。</p>
-<ol>
-<li>设备关机状态下，按电源键开机</li>
-<li>待出现 bootloader 已解锁的安全提示后，直接按住“音量减”键，直到进入桌面</li>
-<li>屏幕左下方显示“安全模式”即表示成功</li>
-</ol>
-<p>PS： 上面介绍的是 Android 官方的通用方式，如果你的设备比较特别的话，可能需要自己 Google 一下如何进入安全模式。</p>
-<p>PPS：另外再说一种有点暴力和局限性的方法，但是比上面这个更彻底，开机之后 Magisk 会删掉所有 Modules，当然也会丢失 root 权限，需要重新给 boot.img 打补丁来 root 设备，但是总比变砖或者线刷要好吧。</p>
-<h2 id="其他救砖方法"><a href="#其他救砖方法" class="headerlink" title="其他救砖方法"></a>其他救砖方法</h2><p>这个方法从是让 ADB 等待设备进入引导屏幕，然后 ADB 开始工作， ADB 会删除所有已安装的 Magisk Modules 来确保机器能够进入系统。</p>
-<ol>
-<li><p>确保设备在关机状态下</p>
-</li>
-<li><p>使用数据线将手机连接到已经安装了 ADB 的电脑上</p>
-</li>
-<li><p>电脑进入 ADB 文件夹，执行以下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb wait-for-device shell magisk --remove-modules</span><br></pre></td></tr></table></figure></li>
-<li><p>按住电源键开机，并且不松开，直到进入桌面</p>
-</li>
-</ol>
-<p>如果上面这两种方法都无法拯救你的爱机的话，就只能9008了。具体见<a target="_blank" rel="noopener" href="https://yun.daxiaamu.com/OnePlus_Roms/">大侠阿木的博客</a>，另外，强推阿木大佬的一加全能盒子！</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>新的一年没啥好祝福大🔥的，只好祝大家刷机必卡米，9008一路顺畅！</p>
+        <h1 id="Git-Reset"><a href="#Git-Reset" class="headerlink" title="Git Reset"></a>Git Reset</h1><p>git reset 命令可以将当前的<code>HEAD</code>重置到特定的状态。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>首先要搞清楚下面几个概念：</p>
+<ul>
+<li>HEAD：指向当前分支当前版本的游标</li>
+<li>Index：暂存区，当你修改了你的 git 仓库里的一个文件时，这些变化一开始是 <strong>unstaged</strong> 状态，为了提交这些修改，你需要使用<code>git add</code>把它加入到 index，使它成为 <strong>staged</strong> 状态。当提交一个 commit 时，index 里面的修改被提交</li>
+<li>working tree：当前的工作目录</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p><code>git reset</code>的命令为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset [&lt;mode&gt;] [&lt;commit&gt;]</span><br></pre></td></tr></table></figure>
+
+<p> git reset 会将当前分支的 HEAD 指向给定的版本，并根据模式的不同决定是否修改 index 和 working tree<br>常用的<mode>有三种模式：<code>--soft</code>, <code>--mixed</code>, <code>--hard</code>，没有指定 <mode> 默认是<code>--mixed</code>模式</p>
+<h2 id="soft"><a href="#soft" class="headerlink" title="soft"></a>soft</h2><p>使用<code>--soft</code>参数将会仅仅重置 HEAD 到制定的版本，不会修改 index 和 working tree。例如当前分支现在有三次提交，执行<code>git reset --soft HEAD~</code>之后，查看git log：</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160063514-924585e2-ff73-4d26-a7d3-21202d24a0bd.png" alt="image"></p>
+<p>而本地文件的内容并没有发生变化，而index中仍然有最近一次提交的修改，这时执行git status会显示这些修改已经在再暂存区中了，无需再一次执行git add</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160063524-adfbb0b1-3bf0-4276-8af2-ac9e8eb71ad9.png" alt="image"></p>
+<h2 id="mixed"><a href="#mixed" class="headerlink" title="mixed"></a>mixed</h2><p>使用<code>--mixed</code>参数与<code>--soft</code>的不同之处在于，**–mixed** 修改了 <strong>index</strong>，使其与第二个版本匹配。index 中给定 commit 之后的修改被<code>unstaged</code>。</p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160063677-34caf47f-e0d8-453f-9e60-399bf17f848b.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160063683-48b2685d-524f-47f2-8768-025792865840.png" alt="image"></p>
+<p> 如果现在执行git commit 将不会发生任何事，因为暂存区中没有修改，在提交之前需要再次执行git add</p>
+<h2 id="hard"><a href="#hard" class="headerlink" title="hard"></a>hard</h2><p>使用<code>--hard</code>同时也会修改 working tree，也就是当前的工作目录，如果我们执行<code>git reset --hard HEAD~</code>，那么最后一次提交的修改，包括本地文件的修改都会被清除，彻底还原到上一次提交的状态且无法找回。所以在执行<code>reset --hard</code>之前一定要小心！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>soft：重置 HEAD 到指定版本，影响 working tree</li>
+<li>hard：会清除本地的修改文件，且无法找回</li>
+<li>mixed：修改 index，需要重新执行 git add</li>
+</ul>
+<h1 id="Git-Revert"><a href="#Git-Revert" class="headerlink" title="Git Revert"></a>Git Revert</h1><p>使用<code>git revert</code>也能起到回退版本的作用，不同之处在于：</p>
+<ul>
+<li><code>git revert &lt;commit&gt;</code>会回退到 <commit> 之前的那次提交。比如：<code>git revert HEAD~3</code>会回退到最近的第4个提交的状态，而不是第3个</li>
+<li><code>git revert</code>会产生一个新的commit，将这次回退作为一次修改记录提交，这样的好处是不修改历史提交记录</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/33454514/160064129-9af07499-5ddd-4f25-88e0-a3fc127a7ded.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160064132-faf553f3-d344-4aab-801c-97c37fdb2e0a.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/160064136-d83d597a-9c75-4479-9665-d6f64c056ee8.png" alt="image"></p>
 
     </div>
 
@@ -329,7 +328,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://zhsama.github.io/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="Android 12 刷入 Magisk 模块后无法开机的解决方法">https://zhsama.github.io/2022/03/15/Android 12 刷入 Magisk 模块后无法开机的解决方法/</a>
+    <a href="https://zhsama.github.io/2022/03/15/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/" title="Android 12 刷入 Magisk 模块后无法开机的解决方法">https://zhsama.github.io/2022/03/15/git 命令之 reset 与 revert/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -340,10 +339,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Android-12/" rel="tag"># Android 12</a>
-              <a href="/tags/Color-OS/" rel="tag"># Color OS</a>
-              <a href="/tags/%E5%88%B7%E6%9C%BA/" rel="tag"># 刷机</a>
-              <a href="/tags/%E4%B8%80%E5%8A%A0/" rel="tag"># 一加</a>
+              <a href="/tags/git/" rel="tag"># git</a>
           </div>
 
         
@@ -352,12 +348,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/03/15/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/" rel="prev" title="Android 12 刷入 Magisk 模块后无法开机的解决方法">
-      <i class="fa fa-chevron-left"></i> Android 12 刷入 Magisk 模块后无法开机的解决方法
+    <a href="/2022/02/28/Koa%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86/" rel="prev" title="Koa中间件原理">
+      <i class="fa fa-chevron-left"></i> Koa中间件原理
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/03/16/%E5%B8%B8%E8%A7%81HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" rel="next" title="常见 HTTP 状态码">
-      常见 HTTP 状态码 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/03/15/Android%2012%20%E5%88%B7%E5%85%A5%20Magisk%20%E6%A8%A1%E5%9D%97%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" rel="next" title="Android 12 刷入 Magisk 模块后无法开机的解决方法">
+      Android 12 刷入 Magisk 模块后无法开机的解决方法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -417,7 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F%E6%95%91%E7%A0%96%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">安全模式救砖：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%95%91%E7%A0%96%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">其他救砖方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-Reset"><span class="nav-number">1.</span> <span class="nav-text">Git Reset</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#soft"><span class="nav-number">1.3.</span> <span class="nav-text">soft</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mixed"><span class="nav-number">1.4.</span> <span class="nav-text">mixed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hard"><span class="nav-number">1.5.</span> <span class="nav-text">hard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-Revert"><span class="nav-number">2.</span> <span class="nav-text">Git Revert</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
