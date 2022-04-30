@@ -97,6 +97,247 @@
       </tags>
   </entry>
   <entry>
+    <title>Flex 布局</title>
+    <url>/2022/04/30/Flex%20%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="Flex-布局是什么？"><a href="#Flex-布局是什么？" class="headerlink" title="Flex 布局是什么？"></a>Flex 布局是什么？</h1><p>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。</p>
+<p>任何一个容器都可以指定为 Flex 布局。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>行内元素也可以使用 Flex 布局。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>Webkit 内核的浏览器，必须加上<code>-webkit</code>前缀。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex; <span class="comment">/* Safari */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>注意，设为 Flex 布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效。</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071004.png" alt="img"></p>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做<code>main start</code>，结束位置叫做<code>main end</code>；交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。</p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。</p>
+<h1 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h1><p>以下6个属性设置在容器上。</p>
+<blockquote>
+<ul>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+<li>flex-flow</li>
+<li>justify-content</li>
+<li>align-items</li>
+<li>align-content</li>
+</ul>
+</blockquote>
+<h2 id="flex-direction属性"><a href="#flex-direction属性" class="headerlink" title="flex-direction属性"></a>flex-direction属性</h2><p><code>flex-direction</code>属性决定主轴的方向（即项目的排列方向）。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071005.png" alt="img"></p>
+<p>它可能有4个值。</p>
+<blockquote>
+<ul>
+<li><code>row</code>（默认值）：主轴为水平方向，起点在左端。</li>
+<li><code>row-reverse</code>：主轴为水平方向，起点在右端。</li>
+<li><code>column</code>：主轴为垂直方向，起点在上沿。</li>
+<li><code>column-reverse</code>：主轴为垂直方向，起点在下沿。</li>
+</ul>
+</blockquote>
+<h2 id="flex-wrap属性"><a href="#flex-wrap属性" class="headerlink" title="flex-wrap属性"></a>flex-wrap属性</h2><p>默认情况下，项目都排在一条线（又称”轴线”）上。<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071006.png" alt="img"></p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>它可能取三个值。</p>
+<p>（1）<code>nowrap</code>（默认）：不换行。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071007.png" alt="img"></p>
+<p>（2）<code>wrap</code>：换行，第一行在上方。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071008.jpg" alt="img"></p>
+<p>（3）<code>wrap-reverse</code>：换行，第一行在下方。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071009.jpg" alt="img"></p>
+<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p><code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="justify-content属性"><a href="#justify-content属性" class="headerlink" title="justify-content属性"></a>justify-content属性</h2><p><code>justify-content</code>属性定义了项目在主轴上的对齐方式。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071010.png" alt="img"></p>
+<p>它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。</p>
+<blockquote>
+<ul>
+<li><code>flex-start</code>（默认值）：左对齐</li>
+<li><code>flex-end</code>：右对齐</li>
+<li><code>center</code>： 居中</li>
+<li><code>space-between</code>：两端对齐，项目之间的间隔都相等。</li>
+<li><code>space-around</code>：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
+</ul>
+</blockquote>
+<h2 id="align-items属性"><a href="#align-items属性" class="headerlink" title="align-items属性"></a>align-items属性</h2><p><code>align-items</code>属性定义项目在交叉轴上如何对齐。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png" alt="img"></p>
+<p>它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。</p>
+<blockquote>
+<ul>
+<li><code>flex-start</code>：交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：交叉轴的终点对齐。</li>
+<li><code>center</code>：交叉轴的中点对齐。</li>
+<li><code>baseline</code>: 项目的第一行文字的基线对齐。</li>
+<li><code>stretch</code>（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+</ul>
+</blockquote>
+<h2 id="align-content属性"><a href="#align-content属性" class="headerlink" title="align-content属性"></a>align-content属性</h2><p><code>align-content</code>属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071012.png" alt="img"></p>
+<p>该属性可能取6个值。</p>
+<blockquote>
+<ul>
+<li><code>flex-start</code>：与交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：与交叉轴的终点对齐。</li>
+<li><code>center</code>：与交叉轴的中点对齐。</li>
+<li><code>space-between</code>：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li><code>space-around</code>：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+<li><code>stretch</code>（默认值）：轴线占满整个交叉轴。</li>
+</ul>
+</blockquote>
+<h1 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h1><p>以下6个属性设置在项目上。</p>
+<blockquote>
+<ul>
+<li><code>order</code></li>
+<li><code>flex-grow</code></li>
+<li><code>flex-shrink</code></li>
+<li><code>flex-basis</code></li>
+<li><code>flex</code></li>
+<li><code>align-self</code></li>
+</ul>
+</blockquote>
+<h2 id="order属性"><a href="#order属性" class="headerlink" title="order属性"></a>order属性</h2><p><code>order</code>属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071013.png" alt="img"></p>
+<h2 id="flex-grow属性"><a href="#flex-grow属性" class="headerlink" title="flex-grow属性"></a>flex-grow属性</h2><p><code>flex-grow</code>属性定义项目的放大比例，默认为<code>0</code>，即如果存在剩余空间，也不放大。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* default 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071014.png" alt="img"></p>
+<p>如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+<h2 id="flex-shrink属性"><a href="#flex-shrink属性" class="headerlink" title="flex-shrink属性"></a>flex-shrink属性</h2><p><code>flex-shrink</code>属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* default 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071015.jpg" alt="img"></p>
+<p>如果所有项目的<code>flex-shrink</code>属性都为1，当空间不足时，都将等比例缩小。如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+<p>负值对该属性无效。</p>
+<h2 id="flex-basis属性"><a href="#flex-basis属性" class="headerlink" title="flex-basis属性"></a>flex-basis属性</h2><p><code>flex-basis</code>属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为<code>auto</code>，即项目的本来大小。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>它可以设为跟<code>width</code>或<code>height</code>属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h2 id="flex属性"><a href="#flex属性" class="headerlink" title="flex属性"></a>flex属性</h2><p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code>。后两个属性可选。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt;<span class="string">&#x27;flex-grow&#x27;</span>&gt; &lt;<span class="string">&#x27;flex-shrink&#x27;</span>&gt;? || &lt;<span class="string">&#x27;flex-basis&#x27;</span>&gt; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>该属性有两个快捷值：<code>auto</code> (<code>1 1 auto</code>) 和 none (<code>0 0 auto</code>)。</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h2 id="align-self属性"><a href="#align-self属性" class="headerlink" title="align-self属性"></a>align-self属性</h2><p><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性。默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071016.png" alt="img"></p>
+<p>该属性可能取6个值，除了auto，其他都与align-items属性完全一致。</p>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript 模块的循环加载</title>
+    <url>/2022/03/18/JavaScript%20%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%8A%A0%E8%BD%BD/</url>
+    <content><![CDATA[<h1 id="JavaScript-模块的循环加载"><a href="#JavaScript-模块的循环加载" class="headerlink" title="JavaScript 模块的循环加载"></a>JavaScript 模块的循环加载</h1><p>“循环加载”（circular dependency）指的是，<code>a</code>脚本的执行依赖<code>b</code>脚本，而<code>b</code>脚本的执行又依赖<code>a</code>脚本。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通常，”循环加载”表示存在强耦合，如果处理不好，还可能导致递归加载，使得程序无法执行，因此应该避免出现。</p>
+<p>但是实际上，这是很难避免的，尤其是依赖关系复杂的大项目，很容易出现<code>a</code>依赖b，<code>b</code>依赖<code>c</code>，<code>c</code>又依赖<code>a</code>这样的情况。这意味着，模块加载机制必须考虑”循环加载”的情况。</p>
+<p>本文介绍JavaScript语言如何处理”循环加载”。目前，最常见的两种模块格式CommonJS和ES6，处理方法是不一样的，返回的结果也不一样。</p>
+<h1 id="CommonJS模块的加载原理"><a href="#CommonJS模块的加载原理" class="headerlink" title="CommonJS模块的加载原理"></a>CommonJS模块的加载原理</h1><p>介绍ES6如何处理”循环加载”之前，先介绍目前最流行的CommonJS模块格式的加载原理。</p>
+<p>CommonJS的一个模块，就是一个脚本文件。<code>require</code>命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">id</span>: <span class="string">&#x27;...&#x27;</span>,</span><br><span class="line">  <span class="attr">exports</span>: &#123; ... &#125;,</span><br><span class="line">  <span class="attr">loaded</span>: <span class="literal">true</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，该对象的<code>id</code>属性是模块名，<code>exports</code>属性是模块输出的各个接口，<code>loaded</code>属性是一个布尔值，表示该模块的脚本是否执行完毕。其他还有很多属性，这里都省略了。（详细介绍情参见<a href="https://www.ruanyifeng.com/blog/2015/05/require.html">《require() 源码解读》</a>。）</p>
+<p>以后需要用到这个模块的时候，就会到<code>exports</code>属性上面取值。即使再次执行<code>require</code>命令，也不会再次执行该模块，而是到缓存之中取值。</p>
+<h1 id="CommonJS模块的循环加载"><a href="#CommonJS模块的循环加载" class="headerlink" title="CommonJS模块的循环加载"></a>CommonJS模块的循环加载</h1><p>CommonJS模块的重要特性是加载时执行，即脚本代码在<code>require</code>的时候，就会全部执行。<strong>CommonJS的做法是，一旦出现某个模块被”循环加载”，就只输出已经执行的部分，还未执行的部分不会输出。</strong></p>
+<p>让我们来看，<a href="https://nodejs.org/api/modules.html#modules_cycles">官方文档</a>里面的例子。脚本文件<code>a.js</code>代码如下。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">&#x27;./b.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 a.js 之中，b.done = %j&#x27;</span>, b.<span class="property">done</span>);</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;a.js 执行完毕&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码之中，<code>a.js</code>脚本先输出一个<code>done</code>变量，然后加载另一个脚本文件<code>b.js</code>。注意，此时<code>a.js</code>代码就停在这里，等待<code>b.js</code>执行完毕，再往下执行。</p>
+<p>再看<code>b.js</code>的代码。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">&#x27;./a.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 b.js 之中，a.done = %j&#x27;</span>, a.<span class="property">done</span>);</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b.js 执行完毕&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码之中，<code>b.js</code>执行到第二行，就会去加载<code>a.js</code>，这时，就发生了”循环加载”。系统会去<code>a.js</code>模块对应对象的<code>exports</code>属性取值，可是因为<code>a.js</code>还没有执行完，从<code>exports</code>属性只能取回已经执行的部分，而不是最后的值。</p>
+<p><code>a.js</code>已经执行的部分，只有一行。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">exports.done = false;</span><br></pre></td></tr></table></figure>
+
+<p>因此，对于<code>b.js</code>来说，它从<code>a.js</code>只输入一个变量<code>done</code>，值为<code>false</code>。</p>
+<p>然后，<code>b.js</code>接着往下执行，等到全部执行完毕，再把执行权交还给<code>a.js</code>。于是，<code>a.js</code>接着往下执行，直到执行完毕。我们写一个脚本<code>main.js</code>，验证这个过程。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">&#x27;./a.js&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">&#x27;./b.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;在 main.js 之中, a.done=%j, b.done=%j&#x27;</span>, a.<span class="property">done</span>, b.<span class="property">done</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>执行<code>main.js</code>，运行结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node main.js</span><br><span class="line"></span><br><span class="line">在 b.js 之中，a.done = <span class="literal">false</span></span><br><span class="line">b.js 执行完毕</span><br><span class="line">在 a.js 之中，b.done = <span class="literal">true</span></span><br><span class="line">a.js 执行完毕</span><br><span class="line">在 main.js 之中, a.done=<span class="literal">true</span>, b.done=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的代码证明了两件事。一是，在<code>b.js</code>之中，<code>a.js</code>没有执行完毕，只执行了第一行。二是，<code>main.js</code>执行到第二行时，不会再次执行<code>b.js</code>，而是输出缓存的<code>b.js</code>的执行结果，即它的第四行。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exports</span>.<span class="property">done</span> = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ES6模块的循环加载"><a href="#ES6模块的循环加载" class="headerlink" title="ES6模块的循环加载"></a>ES6模块的循环加载</h1><p>ES6模块的运行机制与CommonJS不一样，它遇到模块加载命令<code>import</code>时，不会去执行模块，而是只生成一个引用。等到真的需要用到时，再到模块里面去取值。</p>
+<p>因此，ES6模块是动态引用，不存在缓存值的问题，而且模块里面的变量，绑定其所在的模块。请看下面的例子。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// m1.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> foo = <span class="string">&#x27;bar&#x27;</span>;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> foo = <span class="string">&#x27;baz&#x27;</span>, <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// m2.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;foo&#125; <span class="keyword">from</span> <span class="string">&#x27;./m1.js&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(foo), <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>m1.js</code>的变量<code>foo</code>，在刚加载时等于<code>bar</code>，过了500毫秒，又变为等于<code>baz</code>。</p>
+<p>让我们看看，<code>m2.js</code>能否正确读取这个变化。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ babel-node m2.js</span><br><span class="line"></span><br><span class="line">bar</span><br><span class="line">baz</span><br></pre></td></tr></table></figure>
+
+<p>上面代码表明，ES6模块不会缓存运行结果，而是动态地去被加载的模块取值，以及变量总是绑定其所在的模块。</p>
+<p>这导致ES6处理”循环加载”与CommonJS有本质的不同。<strong>ES6根本不会关心是否发生了”循环加载”，只是生成一个指向被加载模块的引用，需要开发者自己保证，真正取值的时候能够取到值。</strong></p>
+<p>请看下面的例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;bar&#125; <span class="keyword">from</span> <span class="string">&#x27;./b.js&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">bar</span>();  </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行完毕&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;foo&#125; <span class="keyword">from</span> <span class="string">&#x27;./a.js&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params"></span>) &#123;  </span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">random</span>() &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">    <span class="title function_">foo</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按照CommonJS规范，上面的代码是没法执行的。<code>a</code>先加载<code>b</code>，然后<code>b</code>又加载<code>a</code>，这时<code>a</code>还没有任何执行结果，所以输出结果为<code>null</code>，即对于<code>b.js</code>来说，变量<code>foo</code>的值等于<code>null</code>，后面的<code>foo()</code>就会报错。</p>
+<p>但是，ES6可以执行上面的代码。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ babel-node a.js</span><br><span class="line"></span><br><span class="line">执行完毕</span><br></pre></td></tr></table></figure>
+
+<p><code>a.js</code>之所以能够执行，原因就在于ES6加载的变量，都是动态引用其所在的模块。只要引用是存在的，代码就能执行。</p>
+<p>我们再来看ES6模块加载器<a href="https://github.com/ModuleLoader/es6-module-loader/blob/master/docs/circular-references-bindings.md">SystemJS</a>给出的一个例子。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// even.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; odd &#125; <span class="keyword">from</span> <span class="string">&#x27;./odd&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> counter = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">even</span>(<span class="params">n</span>) &#123;</span><br><span class="line">  counter++;</span><br><span class="line">  <span class="keyword">return</span> n == <span class="number">0</span> || <span class="title function_">odd</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// odd.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; even &#125; <span class="keyword">from</span> <span class="string">&#x27;./even&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">odd</span>(<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> n != <span class="number">0</span> &amp;&amp; <span class="title function_">even</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>even.js</code>里面的函数<code>foo</code>有一个参数<code>n</code>，只要不等于0，就会减去1，传入加载的<code>odd()</code>。<code>odd.js</code>也会做类似操作。</p>
+<p>运行上面这段代码，结果如下。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$ babel-node</span><br><span class="line">&gt; <span class="keyword">import</span> * <span class="keyword">as</span> m <span class="keyword">from</span> <span class="string">&#x27;./even.js&#x27;</span>;</span><br><span class="line">&gt; m.<span class="title function_">even</span>(<span class="number">10</span>);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; m.<span class="property">counter</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line">&gt; m.<span class="title function_">even</span>(<span class="number">20</span>)</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; m.<span class="property">counter</span></span><br><span class="line"><span class="number">17</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，参数<code>n</code>从10变为0的过程中，<code>foo()</code>一共会执行6次，所以变量<code>counter</code>等于6。第二次调用<code>even（）</code>时，参数<code>n</code>从20变为0，<code>foo()</code>一共会执行11次，加上前面的6次，所以变量<code>counter</code>等于17。</p>
+<p>这个例子要是改写成CommonJS，就根本无法执行，会报错。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// even.js</span></span><br><span class="line"><span class="keyword">var</span> odd = <span class="built_in">require</span>(<span class="string">&#x27;./odd&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">counter</span> = counter;</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">even</span> = <span class="keyword">function</span>(<span class="params">n</span>) &#123;</span><br><span class="line">  counter++;</span><br><span class="line">  <span class="keyword">return</span> n == <span class="number">0</span> || <span class="title function_">odd</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// odd.js</span></span><br><span class="line"><span class="keyword">var</span> even = <span class="built_in">require</span>(<span class="string">&#x27;./even&#x27;</span>).<span class="property">even</span>;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> n != <span class="number">0</span> &amp;&amp; <span class="title function_">even</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>even.js</code>加载<code>odd.js</code>，而<code>odd.js</code>又去加载<code>even.js</code>，形成”循环加载”。这时，执行引擎就会输出<code>even.js</code>已经执行的部分（不存在任何结果），所以在<code>odd.js</code>之中，变量<code>even</code>等于<code>null</code>，等到后面调用<code>even(n-1)</code>就会报错。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node</span><br><span class="line">&gt; var m = require(<span class="string">&#x27;./even&#x27;</span>);</span><br><span class="line">&gt; m.even(10)</span><br><span class="line">TypeError: even is not a <span class="keyword">function</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Koa中间件原理</title>
     <url>/2022/02/28/Koa%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h1 id="什么是中间件"><a href="#什么是中间件" class="headerlink" title="什么是中间件"></a>什么是中间件</h1><p>中间件是介于应用系统和系统软件之间的一类软件，它使用系统软件所提供的基础服务（功能），衔接网络上应用系统的各个部分或不同的应用，能够达到资源共享、功能共享的目的。</p>
@@ -535,6 +776,38 @@
         <tag>八股文</tag>
         <tag>rabbitmq</tag>
         <tag>mq</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅谈TS的接口和抽象类</title>
+    <url>/2022/03/25/Typescript%E4%B9%8B%E6%8E%A5%E5%8F%A3%EF%BC%88interface%EF%BC%89%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%88abstract%EF%BC%89/</url>
+    <content><![CDATA[<p>接口和抽象类的出现主要是为了添加参数的限制，来规范代码。</p>
+<span id="more"></span>
+
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>TypeScript的核心原则之一是对值所具有的结构进行类型检查。 它有时被称做“鸭式辨型法”或“结构性子类型化”。 在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。 </p>
+<p>关键词<code>interface</code> 和抽象类有一定的相似之处：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Eg</span> &#123;</span><br><span class="line">	<span class="attr">a</span>: <span class="built_in">number</span>; <span class="comment">// 必须参数</span></span><br><span class="line">	b?: <span class="built_in">string</span>; <span class="comment">// 可选参数</span></span><br><span class="line">    <span class="keyword">readonly</span> c?: <span class="built_in">string</span>; <span class="comment">// 只读的可选参数</span></span><br><span class="line">    [<span class="attr">prop</span>:<span class="built_in">number</span>]:<span class="built_in">boolean</span> <span class="comment">// 意思是索引值的类型要为number类型，值为布尔值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> <span class="attr">data</span>: <span class="title class_">Eg</span> = &#123; <span class="attr">a</span>: <span class="number">1</span> ,<span class="attr">b</span>:<span class="string">&quot;2&quot;</span>,<span class="attr">c</span>:<span class="string">&quot;3&quot;</span>,<span class="number">1</span>:<span class="literal">true</span>&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口中规定函数"><a href="#接口中规定函数" class="headerlink" title="接口中规定函数"></a>接口中规定函数</h2><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Eg</span> &#123;</span><br><span class="line">    (<span class="attr">x</span>:<span class="built_in">string</span>,<span class="attr">y</span>:<span class="built_in">string</span>): <span class="built_in">string</span> <span class="comment">// 规定函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">eg</span>: <span class="title class_">Eg</span>;</span><br><span class="line">eg = <span class="keyword">function</span> (<span class="params">x:<span class="built_in">string</span>,y:<span class="built_in">string</span></span>):<span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;eg&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口继承接口"><a href="#接口继承接口" class="headerlink" title="接口继承接口"></a>接口继承接口</h2><p>关键字：<code>extends</code></p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line">    <span class="attr">color</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">PenStroke</span> &#123;</span><br><span class="line">    <span class="attr">penWidth</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Square</span> <span class="keyword">extends</span> <span class="title class_">Shape</span>, <span class="title class_">PenStroke</span> &#123;</span><br><span class="line">    <span class="attr">sideLength</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> square = &lt;<span class="title class_">Square</span>&gt;&#123;&#125;; </span><br><span class="line"><span class="keyword">let</span> <span class="attr">square</span>:<span class="title class_">Square</span> = &#123;&#125; <span class="comment">// error </span></span><br></pre></td></tr></table></figure>
+
+<p>上述两者意思都是使用Square这个接口，区别是一个需要声明后立即赋值，另一个不需要。</p>
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>为了规定类中的一些属性和方法，写出来就是为了被继承的，也只能被继承。</p>
+<p>抽象类无法实列化，抽象类中也可以拥有一些抽象的属性和方法，和接口的主要区别是接口中无法实现方法，而抽象类的可以。 <strong>关键字</strong><code>abstract</code></p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Human</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="title function_">move</span>(<span class="attr">x</span>: <span class="built_in">number</span>): <span class="built_in">any</span>;</span><br><span class="line">    <span class="title function_">constructor</span> (<span class="keyword">readonly</span> <span class="attr">name</span>:<span class="built_in">string</span>) &#123;&#125;</span><br><span class="line">    <span class="title function_">eat</span>(<span class="params"></span>) &#123;</span><br><span class="line">         </span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Human</span> &#123;</span><br><span class="line">    <span class="title function_">move</span>(<span class="params">x:<span class="built_in">number</span></span>) &#123;</span><br><span class="line">        <span class="comment">// 从抽象类中继承来的抽象方法必须在派生类中实现</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">constructor</span> (<span class="attr">name</span>:<span class="built_in">string</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Human</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="title function_">move</span>(<span class="attr">x</span>: <span class="built_in">number</span>):T;</span><br><span class="line">    <span class="title function_">constructor</span> (<span class="keyword">readonly</span> <span class="attr">name</span>:<span class="built_in">string</span>) &#123;&#125;</span><br><span class="line">    <span class="title function_">eat</span>(<span class="params"></span>) &#123;</span><br><span class="line">         </span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="接口继承类："><a href="#接口继承类：" class="headerlink" title="接口继承类："></a>接口继承类：</h2><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Man</span> &#123;</span><br><span class="line">    <span class="attr">job</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="title function_">constructor</span> (<span class="keyword">readonly</span> <span class="attr">name</span>: <span class="built_in">string</span>) &#123;&#125;</span><br><span class="line">    earnMoney () &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`earning money`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">HumanRule</span> <span class="keyword">extends</span> <span class="title class_">Man</span>&#123;</span><br><span class="line">    <span class="attr">nose</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">mouth</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">ear</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">eye</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">eyebrow</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们要使用这个接口的时候也要继承Man否则就是确实一个name属性，类继承接口使用关键字<code>implements</code>。</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">a</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Man</span> <span class="keyword">implements</span> <span class="title class_">HumanRule</span>&#123;</span><br><span class="line">    <span class="attr">nose</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">mouth</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">ear</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">eye</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">eyebrow</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="title function_">constructor</span> (name) &#123;</span><br><span class="line">    	<span class="variable language_">super</span>(name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>implements</code>也可以实现类的多继承。意思是当一个接口继承了类的属性或者方法之后，使用这个接口是也要继承那个类。</p>
+<h2 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h2><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Counter</span> &#123;</span><br><span class="line">    (<span class="attr">start</span>: <span class="built_in">number</span>): <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">interval</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="title function_">reset</span>(): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getCounter</span>(<span class="params"></span>): <span class="title class_">Counter</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> counter = &lt;<span class="title class_">Counter</span>&gt;<span class="keyword">function</span> (<span class="params">start: <span class="built_in">number</span></span>) &#123; &#125;;</span><br><span class="line">    counter.<span class="property">interval</span> = <span class="number">123</span>;</span><br><span class="line">    counter.<span class="property">reset</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123; &#125;;</span><br><span class="line">    <span class="keyword">return</span> counter;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> c = <span class="title function_">getCounter</span>();</span><br><span class="line"><span class="title function_">c</span>(<span class="number">10</span>);</span><br><span class="line">c.<span class="title function_">reset</span>();</span><br><span class="line">c.<span class="property">interval</span> = <span class="number">5.0</span>;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>typescript</category>
+      </categories>
+      <tags>
+        <tag>typescript</tag>
       </tags>
   </entry>
   <entry>
@@ -1068,6 +1341,541 @@
       </categories>
       <tags>
         <tag>安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 常用命令</title>
+    <url>/2022/03/25/GIT/</url>
+    <content><![CDATA[<h1 id="提交（commit）"><a href="#提交（commit）" class="headerlink" title="提交（commit）"></a>提交（commit）</h1><h2 id="刚才提交了什么"><a href="#刚才提交了什么" class="headerlink" title="刚才提交了什么"></a>刚才提交了什么</h2><p>如果你用 <code>git commit -a</code> 提交了一次变化(changes)，而你又不确定到底这次提交了哪些内容。你就可以用下面的命令显示当前<code>HEAD</code>上的最近一次的提交(commit):</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git show</span>  </span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">log</span> -n1 -p</span>  </span><br></pre></td></tr></table></figure>
+
+<h2 id="提交信息-commit-message-写错了"><a href="#提交信息-commit-message-写错了" class="headerlink" title="提交信息(commit message)写错了"></a>提交信息(commit message)写错了</h2><p>如果你的提交信息(<code>commit message</code>)写错了且这次提交(commit)还没有推(push), 你可以通过下面的方法来修改提交信息(<code>commit message</code>):</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit --amend --only</span>  </span><br></pre></td></tr></table></figure>
+
+<p>这会打开你的默认编辑器, 在这里你可以编辑信息. 另一方面, 你也可以用一条命令一次完成:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit --amend --only -m <span class="string">&#x27;xxxxxxx&#x27;</span></span>  </span><br></pre></td></tr></table></figure>
+
+<p>如果你已经推(push)了这次提交(commit), 你可以修改这次提交(commit)然后强推(<code>force push</code>), 但是不推荐这么做。</p>
+<h2 id="提交-commit-里的用户名和邮箱不对"><a href="#提交-commit-里的用户名和邮箱不对" class="headerlink" title="提交(commit)里的用户名和邮箱不对"></a>提交(commit)里的用户名和邮箱不对</h2><p>如果这只是单个提交(commit)，修改它：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit --amend --author <span class="string">&quot;New Authorname &lt;email@gmail.com&gt;&quot;</span></span> </span><br></pre></td></tr></table></figure>
+
+<p>如果你需要修改所有历史, 参考 <code>git filter-branch</code> 的指南页.</p>
+<h2 id="从一个提交-commit-里移除一个文件"><a href="#从一个提交-commit-里移除一个文件" class="headerlink" title="从一个提交(commit)里移除一个文件"></a>从一个提交(commit)里移除一个文件</h2><p>通过下面的方法，从一个提交(commit)里移除一个文件:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout HEAD^ myfile</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add -A</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit --amend</span>  </span><br></pre></td></tr></table></figure>
+
+<p>这将非常有用，当你有一个开放的补丁(<code>open patch</code>)，你往上面提交了一个不必要的文件，你需要强推(<code>force push</code>)去更新这个远程补丁。</p>
+<h2 id="删除最后一次提交-commit"><a href="#删除最后一次提交-commit" class="headerlink" title="删除最后一次提交(commit)"></a>删除最后一次提交(commit)</h2><p>如果你需要删除推了的提交(<code>pushed commits</code>)，你可以使用下面的方法。可是，这会不可逆的改变你的历史，也会搞乱那些已经从该仓库拉取(pulled)了的人的历史。简而言之，如果你不是很确定，千万不要这么做。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset HEAD^ --hard</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git push -f [remote] [branch]</span>  </span><br></pre></td></tr></table></figure>
+
+<p>如果你还没有推到远程, 把Git重置(reset)到你最后一次提交前的状态就可以了(同时保存暂存的变化):</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">(my-branch*)$ git reset --soft HEAD@&#123;1&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>这只能在没有推送之前有用. 如果你已经推了, 唯一安全能做的是 <code>git revert SHAofBadCommit</code>， 那会创建一个新的提交(commit)用于撤消前一个提交的所有变化(changes)；或者, 如果你推的这个分支是rebase-safe的 (例如：其它开发者不会从这个分支拉), 只需要使用 <code>git push -f</code>。</p>
+<h2 id="删除任意提交-commit"><a href="#删除任意提交-commit" class="headerlink" title="删除任意提交(commit)"></a>删除任意提交(commit)</h2><p>同样的警告：不到万不得已的时候不要这么做.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git push -f [remote] [branch]</span>  </span><br></pre></td></tr></table></figure>
+
+<p>或者做一个 交互式rebase 删除那些你想要删除的提交(commit)里所对应的行。</p>
+<h2 id="我尝试推一个修正后的提交-amended-commit-到远程，但是报错"><a href="#我尝试推一个修正后的提交-amended-commit-到远程，但是报错" class="headerlink" title="我尝试推一个修正后的提交(amended commit)到远程，但是报错"></a>我尝试推一个修正后的提交(amended commit)到远程，但是报错</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">To https://github.com/yourusername/repo.git  </span><br><span class="line">! [rejected]        mybranch -&gt; mybranch (non-fast-forward)  </span><br><span class="line">error: failed to push some refs to &#x27;https://github.com/tanay1337/webmaker.org.git&#x27;  </span><br><span class="line">hint: Updates were rejected because the tip of your current branch is behind  </span><br><span class="line">hint: its remote counterpart. Integrate the remote changes (e.g.  </span><br><span class="line">hint: &#x27;git pull ...&#x27;) before pushing again.  </span><br><span class="line">hint: See the &#x27;Note about fast-forwards&#x27; in &#x27;git push --help&#x27; for details.  </span><br></pre></td></tr></table></figure>
+
+<p>注意, rebasing(见下面)和修正(amending)会用一个<strong>新的提交(commit)代替旧的</strong>, 所以如果之前你已经往远程仓库上推过一次修正前的提交(commit)，那你现在就必须强推(<code>force push</code>) (<code>-f</code>)。注意 – <em>总是</em> 确保你指明一个分支!</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git push origin mybranch -f</span>  </span><br></pre></td></tr></table></figure>
+
+<p>一般来说, <strong>要避免强推</strong>. 最好是创建和推(push)一个新的提交(commit)，而不是强推一个修正后的提交。后者会使那些与该分支或该分支的子分支工作的开发者，在源历史中产生冲突。</p>
+<h2 id="意外做了一次硬重置-hard-reset-，找回内容"><a href="#意外做了一次硬重置-hard-reset-，找回内容" class="headerlink" title="意外做了一次硬重置(hard reset)，找回内容"></a>意外做了一次硬重置(hard reset)，找回内容</h2><p>如果你意外的做了 <code>git reset --hard</code>, 你通常能找回你的提交(commit), 因为Git对每件事都会有日志，且都会保存几天。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reflog</span>  </span><br></pre></td></tr></table></figure>
+
+<p>你将会看到一个你过去提交(commit)的列表, 和一个重置的提交。选择你想要回到的提交(commit)的SHA，再重置一次：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard SHA1234</span>  </span><br></pre></td></tr></table></figure>
+
+<h1 id="暂存-Staging"><a href="#暂存-Staging" class="headerlink" title="暂存(Staging)"></a>暂存(Staging)</h1><h2 id="把暂存的内容添加到上一次的提交-commit"><a href="#把暂存的内容添加到上一次的提交-commit" class="headerlink" title="把暂存的内容添加到上一次的提交(commit)"></a>把暂存的内容添加到上一次的提交(commit)</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">(my-branch*)$ git commit --amend  </span><br></pre></td></tr></table></figure>
+
+<h2 id="暂存一个新文件的一部分，而不是这个文件的全部"><a href="#暂存一个新文件的一部分，而不是这个文件的全部" class="headerlink" title="暂存一个新文件的一部分，而不是这个文件的全部"></a>暂存一个新文件的一部分，而不是这个文件的全部</h2><p>一般来说, 如果你想暂存一个文件的一部分, 你可这样做:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add --patch filename.x</span>  </span><br></pre></td></tr></table></figure>
+
+<p><code>-p</code> 简写。这会打开交互模式， 你将能够用 <code>s</code> 选项来分隔提交(commit)；然而, 如果这个文件是新的, 会没有这个选择， 添加一个新文件时, 这样做:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add -N filename.x</span>  </span><br></pre></td></tr></table></figure>
+
+<p>然后, 你需要用 <code>e</code> 选项来手动选择需要添加的行，执行 <code>git diff --cached</code> 将会显示哪些行暂存了哪些行只是保存在本地了。</p>
+<h2 id="把在一个文件里的变化-changes-加到两个提交-commit-里"><a href="#把在一个文件里的变化-changes-加到两个提交-commit-里" class="headerlink" title="把在一个文件里的变化(changes)加到两个提交(commit)里"></a>把在一个文件里的变化(changes)加到两个提交(commit)里</h2><p><code>git add</code> 会把整个文件加入到一个提交</p>
+<p><code>git add -p</code> 允许交互式的选择你想要提交的部分</p>
+<h2 id="把暂存的内容变成未暂存，把未暂存的内容暂存起来"><a href="#把暂存的内容变成未暂存，把未暂存的内容暂存起来" class="headerlink" title="把暂存的内容变成未暂存，把未暂存的内容暂存起来"></a>把暂存的内容变成未暂存，把未暂存的内容暂存起来</h2><p>多数情况下，你应该将所有的内容变为未暂存，然后再选择你想要的内容进行commit。但假定你就是想要这么做，这里你可以创建一个临时的commit来保存你已暂存的内容，然后暂存你的未暂存的内容并进行stash。然后reset最后一个commit将原本暂存的内容变为未暂存，最后stash pop回来。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit -m <span class="string">&quot;WIP&quot;</span></span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add .</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git stash</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset HEAD^</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git stash pop --index 0</span>  </span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ol>
+<li><p>这里使用<code>pop</code>仅仅是因为想尽可能保持幂等。</p>
+</li>
+<li><p>假如你不加上<code>--index</code>你会把暂存的文件标记为为存储。</p>
+</li>
+</ol>
+<h1 id="未暂存-Unstaged-的内容"><a href="#未暂存-Unstaged-的内容" class="headerlink" title="未暂存(Unstaged)的内容"></a>未暂存(Unstaged)的内容</h1><h2 id="把未暂存的内容移动到一个新分支"><a href="#把未暂存的内容移动到一个新分支" class="headerlink" title="把未暂存的内容移动到一个新分支"></a>把未暂存的内容移动到一个新分支</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout -b my-branch</span>  </span><br></pre></td></tr></table></figure>
+
+<h2 id="把未暂存的内容移动到另一个已存在的分支"><a href="#把未暂存的内容移动到另一个已存在的分支" class="headerlink" title="把未暂存的内容移动到另一个已存在的分支"></a>把未暂存的内容移动到另一个已存在的分支</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git stash</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout my-branch</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git stash pop</span>  </span><br></pre></td></tr></table></figure>
+
+<h2 id="丢弃本地未提交的变化-uncommitted-changes"><a href="#丢弃本地未提交的变化-uncommitted-changes" class="headerlink" title="丢弃本地未提交的变化(uncommitted changes)"></a>丢弃本地未提交的变化(uncommitted changes)</h2><p>如果你只是想重置源(origin)和你本地(local)之间的一些提交(commit)，你可以：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">one commit</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard HEAD^</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">two commits</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard HEAD^^</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">four commits</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard HEAD~4</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">or</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout -f</span>  </span><br></pre></td></tr></table></figure>
+
+<p>重置某个特殊的文件, 你可以用文件名做为参数:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset filename</span>  </span><br></pre></td></tr></table></figure>
+
+<h2 id="丢弃某些未暂存的内容"><a href="#丢弃某些未暂存的内容" class="headerlink" title="丢弃某些未暂存的内容"></a>丢弃某些未暂存的内容</h2><p>如果你想丢弃工作拷贝中的一部分内容，而不是全部。</p>
+<p>签出(checkout)不需要的内容，保留需要的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git checkout -p  </span><br><span class="line"># Answer y to all of the snippets you want to drop  </span><br></pre></td></tr></table></figure>
+
+<p>另外一个方法是使用 <code>stash</code>， Stash所有要保留下的内容, 重置工作拷贝, 重新应用保留的部分。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash -p  </span><br><span class="line"># Select all of the snippets you want to save  </span><br><span class="line">$ git reset --hard  </span><br><span class="line">$ git stash pop  </span><br></pre></td></tr></table></figure>
+
+<p>或者, stash 你不需要的部分, 然后stash drop。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash -p  </span><br><span class="line"># Select all of the snippets you don&#x27;t want to save  </span><br><span class="line">$ git stash drop  </span><br></pre></td></tr></table></figure>
+
+<h1 id="分支-Branches"><a href="#分支-Branches" class="headerlink" title="分支(Branches)"></a>分支(Branches)</h1><h2 id="从错误的分支拉取了内容，或把内容拉取到了错误的分支"><a href="#从错误的分支拉取了内容，或把内容拉取到了错误的分支" class="headerlink" title="从错误的分支拉取了内容，或把内容拉取到了错误的分支"></a>从错误的分支拉取了内容，或把内容拉取到了错误的分支</h2><p>这是另外一种使用 <code>git reflog</code> 情况，找到在这次错误拉(pull) 之前HEAD的指向。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git reflog  </span><br><span class="line">ab7555f HEAD@&#123;0&#125;: pull origin wrong-branch: Fast-forward  </span><br><span class="line">c5bc55a HEAD@&#123;1&#125;: checkout: checkout message goes here  </span><br></pre></td></tr></table></figure>
+
+<p>重置分支到你所需的提交(desired commit):</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git reset --hard c5bc55a  </span><br></pre></td></tr></table></figure>
+
+<p>完成。</p>
+<h2 id="舍弃本地的提交-commit-，以便我的分支与远程的保持一致"><a href="#舍弃本地的提交-commit-，以便我的分支与远程的保持一致" class="headerlink" title="舍弃本地的提交(commit)，以便我的分支与远程的保持一致"></a>舍弃本地的提交(commit)，以便我的分支与远程的保持一致</h2><p>先确认你没有推(push)你的内容到远程。</p>
+<p><code>git status</code> 会显示你领先(ahead)源(origin)多少个提交:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git status</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">On branch my-branch</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Your branch is ahead of <span class="string">&#x27;origin/my-branch&#x27;</span> by 2 commits.</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">  (use <span class="string">&quot;git push&quot;</span> to publish your <span class="built_in">local</span> commits)</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"> </span></span><br></pre></td></tr></table></figure>
+
+<p>一种方法是:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard origin/my-branch</span>  </span><br></pre></td></tr></table></figure>
+
+<h2 id="需要提交到一个新分支，但错误的提交到了main"><a href="#需要提交到一个新分支，但错误的提交到了main" class="headerlink" title="需要提交到一个新分支，但错误的提交到了main"></a>需要提交到一个新分支，但错误的提交到了main</h2><p>在main下创建一个新分支，不切换到新分支,仍在main下:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git branch my-branch</span>  </span><br></pre></td></tr></table></figure>
+
+<p>把main分支重置到前一个提交:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard HEAD^</span></span><br></pre></td></tr></table></figure>
+
+<p><code>HEAD^</code> 是 <code>HEAD^1</code> 的简写，你可以通过指定要设置的<code>HEAD</code>来进一步重置。</p>
+<p>或者, 如果你不想使用 <code>HEAD^</code>, 找到你想重置到的提交(commit)的hash(<code>git log</code> 能够完成)， 然后重置到这个hash。使用<code>git push</code> 同步内容到远程。</p>
+<p>例如, main分支想重置到的提交的hash为<code>a13b85e</code>:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard a13b85e</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">HEAD is now at a13b85e</span>  </span><br></pre></td></tr></table></figure>
+
+<p>签出(checkout)刚才新建的分支继续工作:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout new-branch</span>  </span><br></pre></td></tr></table></figure>
+
+<h2 id="保留来自另外一个ref-ish的整个文件"><a href="#保留来自另外一个ref-ish的整个文件" class="headerlink" title="保留来自另外一个ref-ish的整个文件"></a>保留来自另外一个ref-ish的整个文件</h2><p>假设你正在做一个原型方案(原文为working spike (see note)), 有成百的内容，每个都工作得很好。现在, 你提交到了一个分支，保存工作内容:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add -A &amp;&amp; git commit -m <span class="string">&quot;Adding all changes from this spike into one big commit.&quot;</span></span>  </span><br></pre></td></tr></table></figure>
+
+<p>当你想要把它放到一个分支里 (可能是<code>feature</code>, 或者 <code>develop</code>), 你关心是保持整个文件的完整，你想要一个大的提交分隔成比较小。</p>
+<p>假设你有:</p>
+<ul>
+<li>分支 <code>solution</code>, 拥有原型方案， 领先 <code>develop</code> 分支。</li>
+<li>分支 <code>develop</code>, 在这里你应用原型方案的一些内容。</li>
+</ul>
+<p>我去可以通过把内容拿到你的分支里，来解决这个问题:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(develop)$ git checkout solution -- file1.txt  </span><br></pre></td></tr></table></figure>
+
+<p>这会把这个文件内容从分支 <code>solution</code> 拿到分支 <code>develop</code> 里来:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># On branch develop  </span><br><span class="line"># Your branch is up-to-date with &#x27;origin/develop&#x27;.  </span><br><span class="line"># Changes to be committed:  </span><br><span class="line">#  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)  </span><br><span class="line">#  </span><br><span class="line">#        modified:   file1.txt  </span><br></pre></td></tr></table></figure>
+
+<p>然后, 正常提交。</p>
+<blockquote>
+<p>Note: Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem.</p>
+</blockquote>
+<h2 id="把几个提交-commit-提交到了同一个分支，而这些提交应该分布在不同的分支里"><a href="#把几个提交-commit-提交到了同一个分支，而这些提交应该分布在不同的分支里" class="headerlink" title="把几个提交(commit)提交到了同一个分支，而这些提交应该分布在不同的分支里"></a>把几个提交(commit)提交到了同一个分支，而这些提交应该分布在不同的分支里</h2><p>假设你有一个<code>main</code>分支， 执行<code>git log</code>, 你看到你做过两次提交:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">(main)$ </span><span class="language-bash">git <span class="built_in">log</span></span>  </span><br><span class="line">  </span><br><span class="line">commit e3851e817c451cc36f2e6f3049db528415e3c114  </span><br><span class="line">Author: Alex Lee &lt;alexlee@example.com&gt;  </span><br><span class="line">Date:   Tue Jul 22 15:39:27 2014 -0400  </span><br><span class="line">  </span><br><span class="line">    Bug #21 - Added CSRF protection  </span><br><span class="line">  </span><br><span class="line">commit 5ea51731d150f7ddc4a365437931cd8be3bf3131  </span><br><span class="line">Author: Alex Lee &lt;alexlee@example.com&gt;  </span><br><span class="line">Date:   Tue Jul 22 15:39:12 2014 -0400  </span><br><span class="line">  </span><br><span class="line">    Bug #14 - Fixed spacing on title  </span><br><span class="line">  </span><br><span class="line">commit a13b85e984171c6e2a1729bb061994525f626d14  </span><br><span class="line">Author: Aki Rose &lt;akirose@example.com&gt;  </span><br><span class="line">Date:   Tue Jul 21 01:12:48 2014 -0400  </span><br><span class="line">  </span><br><span class="line">    First commit  </span><br></pre></td></tr></table></figure>
+
+<p>让我们用提交hash(commit hash)标记bug (<code>e3851e8</code> for #21, <code>5ea5173</code> for #14).</p>
+<p>首先, 我们把<code>main</code>分支重置到正确的提交(<code>a13b85e</code>):</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard a13b85e</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">HEAD is now at a13b85e</span>  </span><br></pre></td></tr></table></figure>
+
+<p>现在, 我们对 <code>bug #21</code> 创建一个新的分支:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git checkout -b 21  </span><br><span class="line">(21)$  </span><br></pre></td></tr></table></figure>
+
+<p>接着, 我们用<code>_cherry-pick_</code>把对<code>bug #21</code>的提交放入当前分支。这意味着我们将应用(apply)这个提交(commit)，仅仅这一个提交(commit)，直接在HEAD上面。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(21)$ git cherry-pick e3851e8  </span><br></pre></td></tr></table></figure>
+
+<p>这时候, 这里可能会产生冲突， 参见交互式 rebasing 章 <strong>冲突节</strong> 解决冲突.</p>
+<p>再者， 我们为bug #14 创建一个新的分支, 也基于<code>main</code>分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(21)$ git checkout main  </span><br><span class="line">(main)$ git checkout -b 14  </span><br><span class="line">(14)$  </span><br></pre></td></tr></table></figure>
+
+<p>最后, 为 bug #14 执行 <code>cherry-pick</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(14)$ git cherry-pick 5ea5173  </span><br></pre></td></tr></table></figure>
+
+<h2 id="想删除上游-upstream-分支被删除了的本地分支"><a href="#想删除上游-upstream-分支被删除了的本地分支" class="headerlink" title="想删除上游(upstream)分支被删除了的本地分支"></a>想删除上游(upstream)分支被删除了的本地分支</h2><p>一旦你在github 上面合并(merge)了一个<code>pull request</code>, 你就可以删除你fork里被合并的分支。如果你不准备继续在这个分支里工作, 删除这个分支的本地拷贝会更干净，使你不会陷入工作分支和一堆陈旧分支的混乱之中。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git fetch -p</span>  </span><br></pre></td></tr></table></figure>
+
+<h3 id="不小心删除了我的分支"><a href="#不小心删除了我的分支" class="headerlink" title="不小心删除了我的分支"></a>不小心删除了我的分支</h3><p>如果你定期推送到远程, 多数情况下应该是安全的，但有些时候还是可能删除了还没有推到远程的分支。让我们先创建一个分支和一个新的文件:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">(main)$ </span><span class="language-bash">git checkout -b my-branch</span>  </span><br><span class="line"><span class="meta prompt_">(my-branch)$ </span><span class="language-bash">git branch</span>  </span><br><span class="line"><span class="meta prompt_">(my-branch)$ </span><span class="language-bash"><span class="built_in">touch</span> foo.txt</span>  </span><br><span class="line"><span class="meta prompt_">(my-branch)$ </span><span class="language-bash"><span class="built_in">ls</span></span>  </span><br><span class="line">README.md foo.txt  </span><br></pre></td></tr></table></figure>
+
+<p>添加文件并做一次提交</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(my-branch)$ git add .  </span><br><span class="line">(my-branch)$ git commit -m &#x27;foo.txt added&#x27;  </span><br><span class="line">(my-branch)$ foo.txt added  </span><br><span class="line"> 1 files changed, 1 insertions(+)  </span><br><span class="line"> create mode 100644 foo.txt  </span><br><span class="line">(my-branch)$ git log  </span><br><span class="line">  </span><br><span class="line">commit 4e3cd85a670ced7cc17a2b5d8d3d809ac88d5012  </span><br><span class="line">Author: siemiatj &lt;siemiatj@example.com&gt;  </span><br><span class="line">Date:   Wed Jul 30 00:34:10 2014 +0200  </span><br><span class="line">  </span><br><span class="line">    foo.txt added  </span><br><span class="line">  </span><br><span class="line">commit 69204cdf0acbab201619d95ad8295928e7f411d5  </span><br><span class="line">Author: Kate Hudson &lt;katehudson@example.com&gt;  </span><br><span class="line">Date:   Tue Jul 29 13:14:46 2014 -0400  </span><br><span class="line">  </span><br><span class="line">    Fixes #6: Force pushing after amending commits  </span><br></pre></td></tr></table></figure>
+
+<p>现在我们切回到主(main)分支，‘不小心的’删除<code>my-branch</code>分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(my-branch)$ git checkout main  </span><br><span class="line">Switched to branch &#x27;main&#x27;  </span><br><span class="line">Your branch is up-to-date with &#x27;origin/main&#x27;.  </span><br><span class="line">(main)$ git branch -D my-branch  </span><br><span class="line">Deleted branch my-branch (was 4e3cd85).  </span><br><span class="line">(main)$ echo oh noes, deleted my branch!  </span><br><span class="line">oh noes, deleted my branch!  </span><br></pre></td></tr></table></figure>
+
+<p>在这时候你应该想起了<code>reflog</code>, 一个升级版的日志，它存储了仓库(repo)里面所有动作的历史。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git reflog  </span><br><span class="line">69204cd HEAD@&#123;0&#125;: checkout: moving from my-branch to main  </span><br><span class="line">4e3cd85 HEAD@&#123;1&#125;: commit: foo.txt added  </span><br><span class="line">69204cd HEAD@&#123;2&#125;: checkout: moving from main to my-branch  </span><br></pre></td></tr></table></figure>
+
+<p>正如你所见，我们有一个来自删除分支的提交hash(commit hash)，接下来看看是否能恢复删除了的分支。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git checkout -b my-branch-help  </span><br><span class="line">Switched to a new branch &#x27;my-branch-help&#x27;  </span><br><span class="line">(my-branch-help)$ git reset --hard 4e3cd85  </span><br><span class="line">HEAD is now at 4e3cd85 foo.txt added  </span><br><span class="line">(my-branch-help)$ ls  </span><br><span class="line">README.md foo.txt  </span><br></pre></td></tr></table></figure>
+
+<p>看! 我们把删除的文件找回来了。Git的 <code>reflog</code> 在rebasing出错的时候也是同样有用的。</p>
+<h3 id="我想删除一个分支"><a href="#我想删除一个分支" class="headerlink" title="我想删除一个分支"></a>我想删除一个分支</h3><p>删除一个远程分支:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git push origin --delete my-branch  </span><br></pre></td></tr></table></figure>
+
+<p>你也可以:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git push origin :my-branch  </span><br></pre></td></tr></table></figure>
+
+<p>删除一个本地分支:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git branch -D my-branch  </span><br></pre></td></tr></table></figure>
+
+<h3 id="我想从别人正在工作的远程分支签出-checkout-一个分支"><a href="#我想从别人正在工作的远程分支签出-checkout-一个分支" class="headerlink" title="我想从别人正在工作的远程分支签出(checkout)一个分支"></a>我想从别人正在工作的远程分支签出(checkout)一个分支</h3><p>首先, 从远程拉取(fetch) 所有分支:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git fetch --all  </span><br></pre></td></tr></table></figure>
+
+<p>假设你想要从远程的<code>daves</code>分支签出到本地的<code>daves</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git checkout --track origin/daves  </span><br><span class="line">Branch daves set up to track remote branch daves from origin.  </span><br><span class="line">Switched to a new branch &#x27;daves&#x27;  </span><br></pre></td></tr></table></figure>
+
+<p>(<code>--track</code> 是 <code>git checkout -b [branch] [remotename]/[branch]</code> 的简写)</p>
+<p>这样就得到了一个<code>daves</code>分支的本地拷贝, 任何推过(pushed)的更新，远程都能看到.</p>
+<h2 id="Rebasing-和合并-Merging"><a href="#Rebasing-和合并-Merging" class="headerlink" title="Rebasing 和合并(Merging)"></a>Rebasing 和合并(Merging)</h2><h3 id="我想撤销rebase-merge"><a href="#我想撤销rebase-merge" class="headerlink" title="我想撤销rebase/merge"></a>我想撤销rebase/merge</h3><p>你可以合并(merge)或rebase了一个错误的分支, 或者完成不了一个进行中的rebase/merge。Git 在进行危险操作的时候会把原始的HEAD保存在一个叫ORIG_HEAD的变量里, 所以要把分支恢复到rebase/merge前的状态是很容易的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(my-branch)$ git reset --hard ORIG_HEAD  </span><br></pre></td></tr></table></figure>
+
+<h3 id="我已经rebase过-但是我不想强推-force-push"><a href="#我已经rebase过-但是我不想强推-force-push" class="headerlink" title="我已经rebase过, 但是我不想强推(force push)"></a>我已经rebase过, 但是我不想强推(force push)</h3><p>不幸的是，如果你想把这些变化(changes)反应到远程分支上，你就必须得强推(<code>force push</code>)。是因你快进(<code>Fast forward</code>)了提交，改变了Git历史, 远程分支不会接受变化(changes)，除非强推(force push)。</p>
+<p>这就是许多人使用 merge 工作流, 而不是 rebasing 工作流的主要原因之一， 开发者的强推(force push)会使大的团队陷入麻烦。使用时需要注意，一种安全使用 rebase 的方法是，不要把你的变化(changes)反映到远程分支上, 而是按下面的做:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git checkout my-branch  </span><br><span class="line">(my-branch)$ git rebase -i main  </span><br><span class="line">(my-branch)$ git checkout main  </span><br><span class="line">(main)$ git merge --ff-only my-branch  </span><br></pre></td></tr></table></figure>
+
+<h3 id="我需要组合-combine-几个提交-commit"><a href="#我需要组合-combine-几个提交-commit" class="headerlink" title="我需要组合(combine)几个提交(commit)"></a>我需要组合(combine)几个提交(commit)</h3><p>假设你的工作分支将会做对于 <code>main</code> 的pull-request。一般情况下你不关心提交(commit)的时间戳，只想组合 <strong>所有</strong> 提交(commit) 到一个单独的里面, 然后重置(reset)重提交(recommit)。确保主(main)分支是最新的和你的变化都已经提交了, 然后:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(my-branch)$ git reset --soft main  </span><br><span class="line">(my-branch)$ git commit -am &quot;New awesome feature&quot;  </span><br></pre></td></tr></table></figure>
+
+<p>如果你想要更多的控制, 想要保留时间戳, 你需要做交互式rebase (interactive rebase):</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(my-branch)$ git rebase -i main  </span><br></pre></td></tr></table></figure>
+
+<p>如果没有相对的其它分支， 你将不得不相对自己的<code>HEAD</code> 进行 rebase。例如：你想组合最近的两次提交(commit), 你将相对于<code>HEAD~2</code> 进行rebase， 组合最近3次提交(commit), 相对于<code>HEAD~3</code>, 等等。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git rebase -i HEAD~2  </span><br></pre></td></tr></table></figure>
+
+<p>在你执行了交互式 rebase的命令(interactive rebase command)后, 你将在你的编辑器里看到类似下面的内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pick a9c8a1d Some refactoring  </span><br><span class="line">pick 01b2fd8 New awesome feature  </span><br><span class="line">pick b729ad5 fixup  </span><br><span class="line">pick e3851e8 another fix  </span><br><span class="line">  </span><br><span class="line"># Rebase 8074d12..b729ad5 onto 8074d12  </span><br><span class="line">#  </span><br><span class="line"># Commands:  </span><br><span class="line">#  p, pick = use commit  </span><br><span class="line">#  r, reword = use commit, but edit the commit message  </span><br><span class="line">#  e, edit = use commit, but stop for amending  </span><br><span class="line">#  s, squash = use commit, but meld into previous commit  </span><br><span class="line">#  f, fixup = like &quot;squash&quot;, but discard this commit&#x27;s log message  </span><br><span class="line">#  x, exec = run command (the rest of the line) using shell  </span><br><span class="line">#  </span><br><span class="line"># These lines can be re-ordered; they are executed from top to bottom.  </span><br><span class="line">#  </span><br><span class="line"># If you remove a line here THAT COMMIT WILL BE LOST.  </span><br><span class="line">#  </span><br><span class="line"># However, if you remove everything, the rebase will be aborted.  </span><br><span class="line">#  </span><br><span class="line"># Note that empty commits are commented out  </span><br></pre></td></tr></table></figure>
+
+<p>所有以 <code>#</code> 开头的行都是注释, 不会影响 rebase.</p>
+<p>然后，你可以用任何上面命令列表的命令替换 <code>pick</code>, 你也可以通过删除对应的行来删除一个提交(commit)。</p>
+<p>例如, 如果你想 <strong>单独保留最旧(first)的提交(commit),组合所有剩下的到第二个里面</strong>, 你就应该编辑第二个提交(commit)后面的每个提交(commit) 前的单词为 <code>f</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pick a9c8a1d Some refactoring  </span><br><span class="line">pick 01b2fd8 New awesome feature  </span><br><span class="line">f b729ad5 fixup  </span><br><span class="line">f e3851e8 another fix  </span><br></pre></td></tr></table></figure>
+
+<p>如果你想组合这些提交(commit) <strong>并重命名这个提交(commit)</strong>, 你应该在第二个提交(commit)旁边添加一个<code>r</code>，或者更简单的用<code>s</code> 替代 <code>f</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pick a9c8a1d Some refactoring  </span><br><span class="line">pick 01b2fd8 New awesome feature  </span><br><span class="line">s b729ad5 fixup  </span><br><span class="line">s e3851e8 another fix  </span><br></pre></td></tr></table></figure>
+
+<p>你可以在接下来弹出的文本提示框里重命名提交(commit)。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Newer, awesomer features  </span><br><span class="line">  </span><br><span class="line"># Please enter the commit message for your changes. Lines starting  </span><br><span class="line"># with &#x27;#&#x27; will be ignored, and an empty message aborts the commit.  </span><br><span class="line"># rebase in progress; onto 8074d12  </span><br><span class="line"># You are currently editing a commit while rebasing branch &#x27;main&#x27; on &#x27;8074d12&#x27;.  </span><br><span class="line">#  </span><br><span class="line"># Changes to be committed:  </span><br><span class="line"># modified:   README.md  </span><br><span class="line">#  </span><br></pre></td></tr></table></figure>
+
+<p>如果成功了, 你应该看到类似下面的内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ Successfully rebased and updated refs/heads/main.  </span><br></pre></td></tr></table></figure>
+
+<h4 id="安全合并-merging-策略"><a href="#安全合并-merging-策略" class="headerlink" title="安全合并(merging)策略"></a>安全合并(merging)策略</h4><p><code>--no-commit</code> 执行合并(merge)但不自动提交, 给用户在做提交前检查和修改的机会。<code>no-ff</code> 会为特性分支(feature branch)的存在过留下证据, 保持项目历史一致。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git merge --no-ff --no-commit my-branch  </span><br></pre></td></tr></table></figure>
+
+<h4 id="我需要将一个分支合并成一个提交-commit"><a href="#我需要将一个分支合并成一个提交-commit" class="headerlink" title="我需要将一个分支合并成一个提交(commit)"></a>我需要将一个分支合并成一个提交(commit)</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git merge --squash my-branch  </span><br></pre></td></tr></table></figure>
+
+<h4 id="我只想组合-combine-未推的提交-unpushed-commit"><a href="#我只想组合-combine-未推的提交-unpushed-commit" class="headerlink" title="我只想组合(combine)未推的提交(unpushed commit)"></a>我只想组合(combine)未推的提交(unpushed commit)</h4><p>有时候，在将数据推向上游之前，你有几个正在进行的工作提交(commit)。这时候不希望把已经推(push)过的组合进来，因为其他人可能已经有提交(commit)引用它们了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git rebase -i @&#123;u&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>这会产生一次交互式的rebase(interactive rebase), 只会列出没有推(push)的提交(commit)， 在这个列表时进行reorder/fix/squash 都是安全的。</p>
+<h3 id="检查是否分支上的所有提交-commit-都合并-merge-过了"><a href="#检查是否分支上的所有提交-commit-都合并-merge-过了" class="headerlink" title="检查是否分支上的所有提交(commit)都合并(merge)过了"></a>检查是否分支上的所有提交(commit)都合并(merge)过了</h3><p>检查一个分支上的所有提交(commit)是否都已经合并(merge)到了其它分支, 你应该在这些分支的head(或任何 commits)之间做一次diff:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll  </span><br></pre></td></tr></table></figure>
+
+<p>这会告诉你在一个分支里有而另一个分支没有的所有提交(commit), 和分支之间不共享的提交(commit)的列表。另一个做法可以是:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git log main ^feature/120-on-scroll --no-merges  </span><br></pre></td></tr></table></figure>
+
+<h3 id="交互式rebase-interactive-rebase-可能出现的问题"><a href="#交互式rebase-interactive-rebase-可能出现的问题" class="headerlink" title="交互式rebase(interactive rebase)可能出现的问题"></a>交互式rebase(interactive rebase)可能出现的问题</h3><h4 id="这个rebase-编辑屏幕出现’noop’"><a href="#这个rebase-编辑屏幕出现’noop’" class="headerlink" title="这个rebase 编辑屏幕出现’noop’"></a>这个rebase 编辑屏幕出现’noop’</h4><p>如果你看到的是这样:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">noop  </span><br></pre></td></tr></table></figure>
+
+<p>这意味着你rebase的分支和当前分支在同一个提交(commit)上, 或者 <em>领先(ahead)</em> 当前分支。你可以尝试:</p>
+<ul>
+<li>检查确保主(main)分支没有问题</li>
+<li>rebase  <code>HEAD~2</code> 或者更早</li>
+</ul>
+<h4 id="有冲突的情况"><a href="#有冲突的情况" class="headerlink" title="有冲突的情况"></a>有冲突的情况</h4><p>如果你不能成功的完成rebase, 你可能必须要解决冲突。</p>
+<p>首先执行 <code>git status</code> 找出哪些文件有冲突:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(my-branch)$ git status  </span><br><span class="line">On branch my-branch  </span><br><span class="line">Changes not staged for commit:  </span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)  </span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)  </span><br><span class="line">  </span><br><span class="line"> modified:   README.md  </span><br></pre></td></tr></table></figure>
+
+<p>在这个例子里面, <code>README.md</code> 有冲突。打开这个文件找到类似下面的内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD  </span><br><span class="line">  some code  </span><br><span class="line">  =========  </span><br><span class="line">  some code  </span><br><span class="line">  &gt;&gt;&gt;&gt;&gt;&gt;&gt; new-commit</span><br></pre></td></tr></table></figure>
+
+<p>你需要解决新提交的代码(示例里, 从中间<code>==</code>线到<code>new-commit</code>的地方)与<code>HEAD</code> 之间不一样的地方.</p>
+<p>有时候这些合并非常复杂，你应该使用可视化的差异编辑器(visual diff editor):</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main*)$ git mergetool -t opendiff  </span><br></pre></td></tr></table></figure>
+
+<p>在你解决完所有冲突和测试过后, <code>git add</code> 变化了的(changed)文件, 然后用<code>git rebase --continue</code> 继续rebase。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(my-branch)$ git add README.md  </span><br><span class="line">(my-branch)$ git rebase --continue  </span><br></pre></td></tr></table></figure>
+
+<p>如果在解决完所有的冲突过后，得到了与提交前一样的结果, 可以执行<code>git rebase --skip</code>。</p>
+<p>任何时候你想结束整个rebase 过程，回来rebase前的分支状态, 你可以做:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(my-branch)$ git rebase --abort  </span><br></pre></td></tr></table></figure>
+
+<h2 id="Stash"><a href="#Stash" class="headerlink" title="Stash"></a>Stash</h2><h3 id="暂存所有改动"><a href="#暂存所有改动" class="headerlink" title="暂存所有改动"></a>暂存所有改动</h3><p>暂存你工作目录下的所有改动</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash  </span><br></pre></td></tr></table></figure>
+
+<p>你可以使用<code>-u</code>来排除一些文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash -u  </span><br></pre></td></tr></table></figure>
+
+<h3 id="暂存指定文件"><a href="#暂存指定文件" class="headerlink" title="暂存指定文件"></a>暂存指定文件</h3><p>假设你只想暂存某一个文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash push working-directory-path/filename.ext  </span><br></pre></td></tr></table></figure>
+
+<p>假设你想暂存多个文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext  </span><br></pre></td></tr></table></figure>
+
+<h3 id="暂存时记录消息"><a href="#暂存时记录消息" class="headerlink" title="暂存时记录消息"></a>暂存时记录消息</h3><p>这样你可以在<code>list</code>时看到它</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash save &lt;message&gt;  </span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash push -m &lt;message&gt;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="使用某个指定暂存"><a href="#使用某个指定暂存" class="headerlink" title="使用某个指定暂存"></a>使用某个指定暂存</h3><p>首先你可以查看你的<code>stash</code>记录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash list  </span><br></pre></td></tr></table></figure>
+
+<p>然后你可以<code>apply</code>某个<code>stash</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash apply &quot;stash@&#123;n&#125;&quot;  </span><br></pre></td></tr></table></figure>
+
+<p>此处， ‘n’是<code>stash</code>在栈中的位置，最上层的<code>stash</code>会是0</p>
+<p>除此之外，也可以使用时间标记(假如你能记得的话)。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash apply &quot;stash@&#123;2.hours.ago&#125;&quot;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="暂存时保留未暂存的内容"><a href="#暂存时保留未暂存的内容" class="headerlink" title="暂存时保留未暂存的内容"></a>暂存时保留未暂存的内容</h3><p>你需要手动create一个<code>stash commit</code>， 然后使用<code>git stash store</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git stash create  </span><br><span class="line">$ git stash store -m &quot;commit-message&quot; CREATED_SHA1  </span><br></pre></td></tr></table></figure>
+
+<h2 id="杂项-Miscellaneous-Objects"><a href="#杂项-Miscellaneous-Objects" class="headerlink" title="杂项(Miscellaneous Objects)"></a>杂项(Miscellaneous Objects)</h2><h3 id="克隆所有子模块"><a href="#克隆所有子模块" class="headerlink" title="克隆所有子模块"></a>克隆所有子模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git clone --recursive git://github.com/foo/bar.git  </span><br></pre></td></tr></table></figure>
+
+<p>如果已经克隆了:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git submodule update --init --recursive  </span><br></pre></td></tr></table></figure>
+
+<h3 id="删除标签-tag"><a href="#删除标签-tag" class="headerlink" title="删除标签(tag)"></a>删除标签(tag)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git tag -d &lt;tag_name&gt;  </span><br><span class="line">$ git push &lt;remote&gt; :refs/tags/&lt;tag_name&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="恢复已删除标签-tag"><a href="#恢复已删除标签-tag" class="headerlink" title="恢复已删除标签(tag)"></a>恢复已删除标签(tag)</h3><p>如果你想恢复一个已删除标签(tag), 可以按照下面的步骤: 首先, 需要找到无法访问的标签(unreachable tag):</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git fsck --unreachable | grep tag  </span><br></pre></td></tr></table></figure>
+
+<p>记下这个标签(tag)的hash，然后用Git的 update-ref</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git update-ref refs/tags/&lt;tag_name&gt; &lt;hash&gt;  </span><br></pre></td></tr></table></figure>
+
+<p>这时你的标签(tag)应该已经恢复了。</p>
+<h3 id="已删除补丁-patch"><a href="#已删除补丁-patch" class="headerlink" title="已删除补丁(patch)"></a>已删除补丁(patch)</h3><p>如果某人在 GitHub 上给你发了一个<code>pull request</code>, 但是然后他删除了他自己的原始 fork, 你将没法克隆他们的提交(commit)或使用 <code>git am</code>。在这种情况下, 最好手动的查看他们的提交(commit)，并把它们拷贝到一个本地新分支，然后做提交。</p>
+<p>做完提交后, 再修改作者，参见变更作者。然后, 应用变化, 再发起一个新的<code>pull request</code>。</p>
+<h2 id="跟踪文件-Tracking-Files"><a href="#跟踪文件-Tracking-Files" class="headerlink" title="跟踪文件(Tracking Files)"></a>跟踪文件(Tracking Files)</h2><h3 id="我只想改变一个文件名字的大小写，而不修改内容"><a href="#我只想改变一个文件名字的大小写，而不修改内容" class="headerlink" title="我只想改变一个文件名字的大小写，而不修改内容"></a>我只想改变一个文件名字的大小写，而不修改内容</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git mv --force myfile MyFile  </span><br></pre></td></tr></table></figure>
+
+<h3 id="我想从Git删除一个文件，但保留该文件"><a href="#我想从Git删除一个文件，但保留该文件" class="headerlink" title="我想从Git删除一个文件，但保留该文件"></a>我想从Git删除一个文件，但保留该文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git rm --cached log.txt  </span><br></pre></td></tr></table></figure>
+
+<h2 id="配置-Configuration"><a href="#配置-Configuration" class="headerlink" title="配置(Configuration)"></a>配置(Configuration)</h2><h3 id="我想给一些Git命令添加别名-alias"><a href="#我想给一些Git命令添加别名-alias" class="headerlink" title="我想给一些Git命令添加别名(alias)"></a>我想给一些Git命令添加别名(alias)</h3><p>在 OS X 和 Linux 下, 你的 Git的配置文件储存在 <code>~/.gitconfig</code>。我在<code>[alias]</code> 部分添加了一些快捷别名(和一些我容易拼写错误的)，如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[alias]  </span><br><span class="line">    a = add  </span><br><span class="line">    amend = commit --amend  </span><br><span class="line">    c = commit  </span><br><span class="line">    ca = commit --amend  </span><br><span class="line">    ci = commit -a  </span><br><span class="line">    co = checkout  </span><br><span class="line">    d = diff  </span><br><span class="line">    dc = diff --changed  </span><br><span class="line">    ds = diff --staged  </span><br><span class="line">    f = fetch  </span><br><span class="line">    loll = log --graph --decorate --pretty=oneline --abbrev-commit  </span><br><span class="line">    m = merge  </span><br><span class="line">    one = log --pretty=oneline  </span><br><span class="line">    outstanding = rebase -i @&#123;u&#125;  </span><br><span class="line">    s = status  </span><br><span class="line">    unpushed = log @&#123;u&#125;  </span><br><span class="line">    wc = whatchanged  </span><br><span class="line">    wip = rebase -i @&#123;u&#125;  </span><br><span class="line">    zap = fetch -p  </span><br></pre></td></tr></table></figure>
+
+<h3 id="我想缓存一个仓库-repository-的用户名和密码"><a href="#我想缓存一个仓库-repository-的用户名和密码" class="headerlink" title="我想缓存一个仓库(repository)的用户名和密码"></a>我想缓存一个仓库(repository)的用户名和密码</h3><p>你可能有一个仓库需要授权，这时你可以缓存用户名和密码，而不用每次推/拉(push/pull)的时候都输入，Credential helper能帮你。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git config --global credential.helper cache  </span><br><span class="line"># Set git to use the credential memory cache  </span><br><span class="line">$ git config --global credential.helper &#x27;cache --timeout=3600&#x27;  </span><br><span class="line"># Set the cache to timeout after 1 hour (setting is in seconds)  </span><br></pre></td></tr></table></figure>
+
+<h3 id="我不知道我做错了些什么"><a href="#我不知道我做错了些什么" class="headerlink" title="我不知道我做错了些什么"></a>我不知道我做错了些什么</h3><p>你把事情搞砸了：你 <code>重置(reset)</code> 了一些东西, 或者你合并了错误的分支, 亦或你强推了后找不到你自己的提交(commit)了。有些时候, 你一直都做得很好, 但你想回到以前的某个状态。</p>
+<p>这就是 <code>git reflog</code> 的目的， <code>reflog</code> 记录对分支顶端(the tip of a branch)的任何改变, 即使那个顶端没有被任何分支或标签引用。基本上, 每次HEAD的改变, 一条新的记录就会增加到<code>reflog</code>。遗憾的是，这只对本地分支起作用，且它只跟踪动作 (例如，不会跟踪一个没有被记录的文件的任何改变)。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(main)$ git reflog  </span><br><span class="line">0a2e358 HEAD@&#123;0&#125;: reset: moving to HEAD~2  </span><br><span class="line">0254ea7 HEAD@&#123;1&#125;: checkout: moving from 2.2 to main  </span><br><span class="line">c10f740 HEAD@&#123;2&#125;: checkout: moving from main to 2.2  </span><br></pre></td></tr></table></figure>
+
+<p>上面的reflog展示了从main分支签出(checkout)到2.2 分支，然后再签回。那里，还有一个硬重置(hard reset)到一个较旧的提交。最新的动作出现在最上面以 <code>HEAD@&#123;0&#125;</code>标识.</p>
+<p>如果事实证明你不小心回移(move back)了提交(commit), reflog 会包含你不小心回移前main上指向的提交(0254ea7)。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git reset --hard 0254ea7  </span><br></pre></td></tr></table></figure>
+
+<p>然后使用<code>git reset</code>就可以把main改回到之前的commit，这提供了一个在历史被意外更改情况下的安全网。</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WebSocket 原理及简单应用</title>
+    <url>/2022/03/18/WebSocket/</url>
+    <content><![CDATA[<h1 id="WebSocket-简介"><a href="#WebSocket-简介" class="headerlink" title="WebSocket 简介"></a>WebSocket 简介</h1><p><code>Websocket 定义</code>  <a href="https://link.juejin.cn/?target=https://tools.ietf.org/html/rfc6455">参考规范 rfc6455</a></p>
+<p><strong>规范解释</strong> <code>Websocket</code> 是一种提供客户端(提供不可靠秘钥)与服务端(校验通过该秘钥)进行<strong>双向通信</strong>的协议。</p>
+<p>在没有<code>websocket</code>协议之前，要提供客户端与服务端实时<strong>双向推送</strong>消息，就会使用<code>polling</code>技术，客户端通过<code>xhr</code>或<code>jsonp</code> <strong>发送</strong>消息给服务端，并通过事件回调来<strong>接收</strong>服务端消息。</p>
+<p>这种技术虽然也能保证双向通信，但是有一个不可避免的问题，就是<strong>性能问题</strong>。客户端不断向服务端发送请求，如果客户端并发数过大，无疑导致服务端压力剧增。因此，<code>websocket</code>就是解决这一痛点而诞生的。</p>
+<span id="more"></span>
+
+<p>这里再延伸一些名词:</p>
+<ul>
+<li><strong>长轮询</strong> 客户端向服务端发送<code>xhr</code>请求,服务端接收并<code>hold</code>该请求，直到有新消息<code>push</code>到客户端，才会主动断开该连接。然后，客户端处理该<code>response</code>后再向服务端发起新的请求。以此类推。</li>
+</ul>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HTTP1.1`默认使用长连接，使用长连接的`HTTP`协议，会在响应头中加入下面这行信息: `Connection:keep-alive</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><strong>短轮询</strong>:</li>
+</ul>
+<p>客户端不管是否收到服务端的<code>response</code>数据，都会定时想服务端发送请求，查询是否有数据更新。</p>
+<ul>
+<li><strong>长连接</strong> 指在一个<code>TCP</code>连接上可以发送多个数据包，在<code>TCP</code>连接保持期间，如果没有数据包发送，则双方就需要发送<code>心跳包</code>来维持此连接。</li>
+</ul>
+<blockquote>
+<p>连接过程: 建立连接——数据传输——…——(发送心跳包，维持连接)——…——数据传输——关闭连接</p>
+</blockquote>
+<ul>
+<li><strong>短连接</strong> 指通信双方有数据交互时，建立一个<code>TCP</code>连接，数据发送完成之后，则断开此连接。</li>
+</ul>
+<blockquote>
+<p>连接过程: 建立连接——数据传输——断开连接——…——建立连接——数据传输——断开连接</p>
+</blockquote>
+<p><strong>Tips</strong></p>
+<blockquote>
+<p>这里有一个<strong>误解</strong>，长连接和短连接的概念本质上指的是传输层的<code>TCP</code>连接，因为<code>HTTP1.1</code>协议以后，连接默认都是长连接。没有短连接说法(<code>HTTP1.0</code>默认使用短连接)，网上大多数指的长短连接实质上说的就是<code>TCP</code>连接。 <code>http</code>使用长连接的好处: 当我们请求一个网页资源的时候，会带有很多<code>js</code>、<code>css</code>等资源文件，如果使用的时短连接的话，就会打开很多<code>tcp</code>连接，如果客户端请求数过大，导致<code>tcp</code>连接数量过多，对服务端造成压力也就可想而知了。</p>
+</blockquote>
+<ul>
+<li><strong>单工</strong> 数据传输的方向唯一，只能由发送方向接收方的单一固定方向传输数据。</li>
+<li><strong>半双工</strong> 即通信双方既是接收方也是发送方，不过，在某一时刻只能允许向一个方向传输数据。</li>
+<li><strong>全双工</strong>: 即通信双方既是接收方也是发送方，两端设备可以同时发送和接收数据。</li>
+</ul>
+<p><strong>Tips</strong></p>
+<blockquote>
+<p><strong>单工</strong>、<strong>半双工</strong>和<strong>全双工</strong> 这三者都是建立在    <code>TCP</code>协议(传输层上)的概念，不要与应用层进行混淆。</p>
+</blockquote>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>支持浏览器/Nodejs环境</li>
+<li>支持双向通信</li>
+<li>API简单易用</li>
+<li>支持二进制传输</li>
+<li>减少传输数据量</li>
+</ul>
+<h2 id="建立连接过程"><a href="#建立连接过程" class="headerlink" title="建立连接过程"></a>建立连接过程</h2><p><code>Websocket</code>复用了<code>HTTP</code>的握手通道。指的是，客户端发送<code>HTTP</code>请求，并在请求头中带上<code>Connection: Upgrade</code> 、<code>Upgrade: websocket</code>，服务端识别该header之后，进行协议升级，使用<code>Websocket</code>协议进行数据通信。</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/6/169f1656159c8519~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp" alt="在这里插入图片描述"></p>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
+<li><code>Request URL</code> 请求服务端地址</li>
+<li><code>Request Method</code> 请求方式 (支持get/post/option)</li>
+<li><code>Status Code</code> 101 Switching Protocols</li>
+</ul>
+<p><a href="https://link.juejin.cn/?target=https://tools.ietf.org/html/rfc7231%23section-6.2.2">RFC 7231 规范定义</a></p>
+<blockquote>
+<p>规范解释: 当收到101请求状态码时，表明服务端理解并同意客户端请求，更改<code>Upgrade</code> header字段。服务端也必须在<code>response</code>中，生成对应的<code>Upgrade</code>值。</p>
+</blockquote>
+<ul>
+<li><code>Connection</code> 设置<code>upgrade</code> header,通知服务端，该<code>request</code>类型需要进行升级为<code>websocket</code>。 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism">upgrade_mechanism 规范</a></li>
+<li><code>Host</code> 服务端 hostname</li>
+<li><code>Origin</code> 客户端 hostname:port</li>
+<li><code>Sec-WebSocket-Extensions</code> 客户端向服务端发起请求扩展列表(list)，供服务端选择并在响应中返回</li>
+<li><code>Sec-WebSocket-Key</code> 秘钥的值是通过规范中定义的算法进行计算得出，因此是不安全的，但是可以阻止一些误操作的websocket请求。</li>
+<li><code>Sec-WebSocket-Accept</code> 计算公式:       1. 获取客户端请求header的值: <code>Sec-WebSocket-Key</code> 2. 使用魔数magic = ‘258EAFA5-E914-47DA-95CA-C5AB0DC85B11’ 3. 通过<code>SHA1</code>进行加密计算, sha1(Sec-WebSocket-Key + magic) 4. 将值转换为base64</li>
+<li><code>Sec-WebSocket-Protocol</code>  指定有限使用的Websocket协议，可以是一个协议列表(list)。服务端在<code>response</code>中返回列表中支持的第一个值。</li>
+<li><code>Sec-WebSocket-Version</code>  指定通信时使用的Websocket协议版本。最新版本:13,<a href="https://link.juejin.cn/?target=https://www.iana.org/assignments/websocket/websocket.xml%23version-number">历史版本</a></li>
+<li><code>Upgrade</code> 通知服务端，指定升级协议类型为<code>websocket</code></li>
+</ul>
+<h3 id="数据帧格式"><a href="#数据帧格式" class="headerlink" title="数据帧格式"></a>数据帧格式</h3><p>数据格式定义参考：<a href="https://link.juejin.cn/?target=https://tools.ietf.org/html/rfc6455%23section-5.2">规范 RFC6455</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  0                   1                   2                   3</span><br><span class="line">  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</span><br><span class="line"> +-+-+-+-+-------+-+-------------+-------------------------------+</span><br><span class="line"> |F|R|R|R| opcode|M| Payload len |    Extended payload length    |</span><br><span class="line"> |I|S|S|S|  (4)  |A|     (7)     |             (16/64)           |</span><br><span class="line"> |N|V|V|V|       |S|             |   (if payload len==126/127)   |</span><br><span class="line"> | |1|2|3|       |K|             |                               |</span><br><span class="line"> +-+-+-+-+-------+-+-------------+ - - - - - - - - - - - - - - - +</span><br><span class="line"> |     Extended payload length continued, if payload len == 127  |</span><br><span class="line"> + - - - - - - - - - - - - - - - +-------------------------------+</span><br><span class="line"> |                               |Masking-key, if MASK set to 1  |</span><br><span class="line"> +-------------------------------+-------------------------------+</span><br><span class="line"> | Masking-key (continued)       |          Payload Data         |</span><br><span class="line"> +-------------------------------- - - - - - - - - - - - - - - - +</span><br><span class="line"> :                     Payload Data continued ...                :</span><br><span class="line"> + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +</span><br><span class="line"> |                     Payload Data continued ...                |</span><br><span class="line"> +---------------------------------------------------------------+</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>FIN</code>: 1 bit 如果该位值为1，表示这是<code>message</code>的最终片段(<code>fragment</code>)，如果为0，表示这是一个<code>message</code>的第一个片段。</li>
+<li><code>RSV1, RSV2, RSV3</code>: 各占1 bit 一般默认值是0，除非协商扩展，为非零值进行定义，否则收到非零值，并且没有进行协商扩展定义，则<code>websocket</code>连接失败。</li>
+<li><code>Opcode</code>: 4 bits 根据操作码(<code>Opcode</code>),解析有效载荷数据(<code>Payload data</code>).如果接受到未定义操作码，则应该断开<code>websocket</code>连接。</li>
+<li><code>Mask</code>: 1 bit 定义是否需要的载荷数据(``Payload data)，进行掩码操作。如果设置值为1，那么在<code>Masking-key</code>中会定义一个掩码key,并用这个key对载荷数据进行反掩码(<code>unmask</code>)操作。所有从客户端发送到服务端的数据帧(<code>frame</code>),mask都被设置为1.</li>
+<li><code>Payload length</code>: 7 bits, 7+16 bits, or 7+64 bits 载荷数据的长度。</li>
+<li><code>Masking-key</code>: 0 or 4 bytes 所有从客户端传送到服务端的数据帧，数据载荷都进行了掩码操作，Mask为1，且携带了4字节的Masking-key。如果Mask为0，则没有Masking-key。</li>
+<li><code>Payload data</code>:  (x+y) bytes</li>
+</ul>
+<h2 id="心跳检测"><a href="#心跳检测" class="headerlink" title="心跳检测"></a>心跳检测</h2><p>为了确保客户端与服务端的长连接正常，有时即使客户端连接中断，但是服务端未触发<code>onclose</code>事件，这就有可能导致无效连接占用。所以需要一种机制，确保两端的连接处于正常状态，<strong>心跳检测</strong>就是这种机制。客户端每隔一段时间，会向服务端发送<strong>心跳</strong>(数据包)，服务端也会返回<code>response</code>进行反馈连接正常。</p>
+<h1 id="WebSocket-优点"><a href="#WebSocket-优点" class="headerlink" title="WebSocket 优点"></a>WebSocket 优点</h1><p>比起传统的轮询方式，WebSocket 可以更好的节省服务器资源和带宽，并且能够进行更加实时地通讯，优势如下：</p>
+<ul>
+<li><strong>减小带宽开销</strong>。服务器和客户端在连接建立后，相比起 HTTP 请求，交换数据时用于协议控制的数据包头部相对较小，一般只有 2 字节；</li>
+<li><strong>增强实时性</strong>。服务器可以随时主动给客户端下发数据，相对于 HTTP 请求需要等待客户端发起请求服务端才能响应，延迟明显更少，和传统的轮询比较，WebSocket 也可以在短时间内更有效率地传递数据；</li>
+<li><strong>维持连接状态</strong>。在一些需要身份认证的场景下， HTTP 请求可能需要在每个请求都携带状态信息（服务器不记录每次的请求和响应信息），而 WebSocket 一次连接建立后就会保持住会话状态，这就使其成为一种有状态的协议，后续通信时就可以省略部分状态信息；</li>
+<li><strong>更灵活的扩展支持</strong>。根据 RFC6455 协议[2]，开发者可以对 WebSocket 自定义二进制帧，相对 HTTP，可以更轻松地处理二进制内容，此外开发者也自行扩展协议、实现部分自定义的子协议。</li>
+<li><strong>更好的压缩效果</strong>。WebSocket 在适当的扩展支持下，可以沿用之前内容的上下文，在传递类似的数据时，可以显著地提高压缩率。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/33454514/158771990-2812e406-c716-434f-ad24-07e0764550b7.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/33454514/158772037-7758c2d6-5751-4708-a02d-6d0df60062ef.png" alt="image"></p>
+<h1 id="WebSocket-使用场景"><a href="#WebSocket-使用场景" class="headerlink" title="WebSocket 使用场景"></a>WebSocket 使用场景</h1><p>WebSocket 有这么多优势，那么它适用于哪些场景呢？下面来简单了解下：</p>
+<ul>
+<li><strong>需要及时响应的场景</strong>。当客户端需要对服务端发生的改变做出快速响应（尤其是客户端无法预测的响应）时，WebSocket 是非常适合的。例如开发一个客服系统，这往往要求实现多个用户实时沟通。如果使用 WebSocket，则每个对话都可以实时发送和接收消息。与 HTTP 相比，WebSocket 不需要考虑发送和接收的每个消息的 HTTP 请求/响应导致的开销，从而会有更高的执行效率。</li>
+<li><strong>需要实时查询的场景</strong>。例如一名篮球迷想要查询比赛结果，如果比赛是上周结束的，那么比赛结果是固定的，HTTP 在这种情况下就非常适合。但是，如果是当前正在进行的比赛，得分会不断变化，并且更新频繁，在这种情况下，WebSocket 就是更好的选择。</li>
+<li><strong>小负载的高频消息传递</strong>。如今越来越多的开发人员正在通过移动设备的 GPS 功能来记录 Web 应用程序的方位感知。如果我们需要记录一段时间内用户的位置信息，高频率发送更加细粒度的位置数据，从而起到实时分享功能（例如运动类 APP），WebSocket 所使用的 TCP 连接会让数据交换飞起来。</li>
+<li><strong>多人协同的场景</strong>。例如近几年发展迅速的在线教育，学生可以足不出户，即可与老师以及其他同学一起进行实时沟通与交流，诸如布置作业、师生互动、问题讨论等等强实时交互类的场景都可交由 WebSocket 协议支撑完成，从而满足低延迟，高及时的场景要求。</li>
+</ul>
+<h1 id="WebSocket-API"><a href="#WebSocket-API" class="headerlink" title="WebSocket API"></a>WebSocket API</h1><h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket#%E5%B8%B8%E9%87%8F">常量</a></h2><table>
+<thead>
+<tr>
+<th><strong>Constant</strong></th>
+<th><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>WebSocket.CONNECTING</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>WebSocket.OPEN</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>WebSocket.CLOSING</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>WebSocket.CLOSED</code></td>
+<td><code>3</code></td>
+</tr>
+</tbody></table>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket#%E5%B1%9E%E6%80%A7">属性</a></h2><ul>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/binaryType"><code>WebSocket.binaryType</code></a></p>
+<p>使用二进制的数据类型连接。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/bufferedAmount"><code>WebSocket.bufferedAmount</code></a> 只读</p>
+<p>未发送至服务器的字节数。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/extensions"><code>WebSocket.extensions</code></a> 只读</p>
+<p>服务器选择的扩展。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/close_event"><code>WebSocket.onclose</code></a></p>
+<p>用于指定连接关闭后的回调函数。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/conflicting/Web/API/WebSocket/error_event"><code>WebSocket.onerror</code></a></p>
+<p>用于指定连接失败后的回调函数。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/conflicting/Web/API/WebSocket/message_event"><code>WebSocket.onmessage</code></a></p>
+<p>用于指定当从服务器接受到信息时的回调函数。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/open_event"><code>WebSocket.onopen</code></a></p>
+<p>用于指定连接成功后的回调函数。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/protocol"><code>WebSocket.protocol</code></a> 只读</p>
+<p>服务器选择的下属协议。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/readyState"><code>WebSocket.readyState</code></a> 只读</p>
+<p>当前的链接状态。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/url"><code>WebSocket.url</code></a> 只读</p>
+<p>WebSocket 的绝对路径。</p>
+</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket#method_overview">方法</a></h2><ul>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/close"><code>WebSocket.close([code[, reason]])</code></a></p>
+<p>关闭当前链接。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/send"><code>WebSocket.send(data)</code></a></p>
+<p>对要传输的数据进行排队。</p>
+</li>
+</ul>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket#%E4%BA%8B%E4%BB%B6">事件</a></h2><p>使用 <code>addEventListener()</code> 或将一个事件监听器赋值给本接口的 <code>on*eventname*</code> 属性，来监听下面的事件。</p>
+<ul>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/close_event"><code>close</code></a></p>
+<p>当一个 <code>WebSocket</code> 连接被关闭时触发。 也可以通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/close_event"><code>onclose</code></a> 属性来设置。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/error_event"><code>error</code></a></p>
+<p>当一个 <code>WebSocket</code> 连接因错误而关闭时触发，例如无法发送数据时。 也可以通过 <a href="https://developer.mozilla.org/zh-CN/docs/conflicting/Web/API/WebSocket/error_event"><code>onerror</code></a> 属性来设置.</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/message_event"><code>message</code></a></p>
+<p>当通过 <code>WebSocket</code> 收到数据时触发。 也可以通过 <a href="https://developer.mozilla.org/zh-CN/docs/conflicting/Web/API/WebSocket/message_event"><code>onmessage</code></a> 属性来设置。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/open_event"><code>open</code></a></p>
+<p>当一个 <code>WebSocket</code> 连接成功时触发。 也可以通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket/open_event"><code>onopen</code></a> 属性来设置。</p>
+</li>
+</ul>
+<h2 id="WebSocket-API-兼容性"><a href="#WebSocket-API-兼容性" class="headerlink" title="WebSocket API 兼容性"></a>WebSocket API 兼容性</h2><p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/12/3/16ecac45c6f6fec3~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp" alt="在这里插入图片描述"></p>
+<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><h2 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> net = <span class="built_in">require</span>(<span class="string">&#x27;net&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> heartbeat = <span class="string">&#x27;HEARTBEAT&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> net.<span class="title class_">Socket</span>();</span><br><span class="line">client.<span class="title function_">connect</span>(<span class="number">9000</span>, <span class="string">&#x27;localhost&#x27;</span>, <span class="function">() =&gt;</span> &#123;&#125;);</span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> content = chunk.<span class="title function_">toString</span>();</span><br><span class="line">  <span class="keyword">if</span> (content === heartbeat) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到心跳包：&#x27;</span>, content);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到数据：&#x27;</span>, content);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 定时发送数据</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;发送数据&#x27;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toUTCString</span>());</span><br><span class="line">  client.<span class="title function_">write</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toUTCString</span>());</span><br><span class="line">&#125;, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="comment">// 定时发送心跳包</span></span><br><span class="line">  client.<span class="title function_">write</span>(heartbeat);</span><br><span class="line">&#125;, <span class="number">10000</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> net = <span class="built_in">require</span>(<span class="string">&#x27;net&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> clientList = [];</span><br><span class="line"><span class="keyword">const</span> heartBeat = <span class="string">&#x27;HEART&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = net.<span class="title function_">createServer</span>();</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&#x27;connect&#x27;</span>, <span class="function">(<span class="params">client</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;client connect:&#x27;</span>, client.<span class="property">remoteAddress</span> + <span class="string">&#x27;:&#x27;</span> + client.<span class="property">remotePort</span>);</span><br><span class="line">  clientList.<span class="title function_">push</span>(client);</span><br><span class="line">  client.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="function">(<span class="params">pack</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> content = pack.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">if</span> (content === heartBeat) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;get heartBeat from client&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;get data from client&#x27;</span>, content);</span><br><span class="line">      client.<span class="title function_">write</span>(<span class="string">&#x27;server:&#x27;</span> + content);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  client.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;client end&#x27;</span>);</span><br><span class="line">    clientList.<span class="title function_">splice</span>(clientList.<span class="title function_">indexOf</span>(client), <span class="number">1</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  client.<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> index = clientList.<span class="title function_">indexOf</span>(client);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;client&#x27;</span> + index + <span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">    clientList.<span class="title function_">splice</span>(index, <span class="number">1</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">9000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">broadcast</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;broadcast heartbeat&#x27;</span>, clientList.<span class="property">length</span>);</span><br><span class="line">  <span class="keyword">const</span> cleanup = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; clientList.<span class="property">length</span>; i += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (clientList[i].<span class="property">writable</span>) &#123; <span class="comment">// 先检查 sockets 是否可写</span></span><br><span class="line">      clientList[i].<span class="title function_">write</span>(heartBeat);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;一个无效的客户端&#x27;</span>);</span><br><span class="line">      cleanup.<span class="title function_">push</span>(clientList[i]); <span class="comment">// 如果不可写，收集起来销毁。销毁之前要 Socket.destroy() 用 API 的方法销毁。</span></span><br><span class="line">      clientList[i].<span class="title function_">destroy</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Remove dead Nodes out of write loop to avoid trashing loop index</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; cleanup.<span class="property">length</span>; i += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;删除无效的客户端:&#x27;</span>, cleanup[i].<span class="property">name</span>);</span><br><span class="line">    clientList.<span class="title function_">splice</span>(clientList.<span class="title function_">indexOf</span>(cleanup[i]), <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(broadcast, <span class="number">10000</span>); <span class="comment">// 定时发送心跳包</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -2297,15 +3105,15 @@
 </ul>
 <p><strong>使用的是index1的执行流程</strong></p>
 <ul>
-<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#x7a;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#x78;&#x79;&#122;&#x40;&#x78;&#x78;&#x78;&#x2e;&#x63;&#111;&#x6d;">&#x7a;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#x78;&#x79;&#122;&#x40;&#x78;&#x78;&#x78;&#x2e;&#x63;&#111;&#x6d;</a>’的这条记录，取得ID2的值；</li>
+<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#122;&#x68;&#97;&#110;&#103;&#x73;&#115;&#x78;&#121;&#x7a;&#x40;&#x78;&#x78;&#120;&#46;&#x63;&#111;&#x6d;">&#122;&#x68;&#97;&#110;&#103;&#x73;&#115;&#x78;&#121;&#x7a;&#x40;&#x78;&#x78;&#120;&#46;&#x63;&#111;&#x6d;</a>’的这条记录，取得ID2的值；</li>
 <li>到主键上查到主键值是ID2的行，判断email的值是正确的，将这行记录加入结果集；</li>
-<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#x7a;&#x68;&#x61;&#110;&#103;&#115;&#x73;&#120;&#x79;&#x7a;&#x40;&#120;&#x78;&#120;&#x2e;&#99;&#x6f;&#x6d;">&#x7a;&#x68;&#x61;&#110;&#103;&#115;&#x73;&#120;&#x79;&#x7a;&#x40;&#120;&#x78;&#120;&#x2e;&#99;&#x6f;&#x6d;</a>’的条件了，循环结束</li>
+<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#x68;&#x61;&#110;&#103;&#115;&#x73;&#120;&#x79;&#122;&#x40;&#120;&#x78;&#x78;&#x2e;&#99;&#111;&#x6d;">&#122;&#x68;&#x61;&#110;&#103;&#115;&#x73;&#120;&#x79;&#122;&#x40;&#120;&#x78;&#x78;&#x2e;&#99;&#111;&#x6d;</a>’的条件了，循环结束</li>
 <li>这个过程中，只需要回主键索引取一次数据，所以系统认为只扫描了一行。</li>
 </ul>
 <p><strong>使用的是index2的执行流程</strong></p>
 <ul>
 <li>从<code>index2</code>索引树找到满足索引值是’zhangs’的记录，找到的第一个是ID1；</li>
-<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#x7a;&#104;&#97;&#x6e;&#103;&#x73;&#x73;&#120;&#121;&#x7a;&#64;&#120;&#x78;&#120;&#46;&#x63;&#x6f;&#x6d;">&#x7a;&#104;&#97;&#x6e;&#103;&#x73;&#x73;&#120;&#121;&#x7a;&#64;&#120;&#x78;&#120;&#46;&#x63;&#x6f;&#x6d;</a>’，这行记录丢弃；</li>
+<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#122;&#x68;&#97;&#x6e;&#103;&#115;&#115;&#120;&#121;&#x7a;&#x40;&#x78;&#120;&#120;&#x2e;&#x63;&#111;&#x6d;">&#122;&#x68;&#97;&#x6e;&#103;&#115;&#115;&#120;&#121;&#x7a;&#x40;&#x78;&#120;&#120;&#x2e;&#x63;&#111;&#x6d;</a>’，这行记录丢弃；</li>
 <li>取index2上刚刚查到的位置的下一条记录，发现仍然是’zhangs’，取出ID2，再到ID索引上取整行然后判断，这次值对了，将这行记录加入结果集；</li>
 <li>重复上一步，直到在idxe2上取到的值不是’zhangs’时，循环结束。</li>
 <li>在这个过程中，要回主键索引取4次数据，也就是扫描了4行。</li>
