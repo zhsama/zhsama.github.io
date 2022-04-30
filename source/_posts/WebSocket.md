@@ -1,3 +1,13 @@
+---
+title: WebSocket 原理及简单应用
+date: 2022-03-18 10:46:22
+updated: 2022-04-30 17:43:34
+tags: ['git']
+categories:
+- git
+description: 你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。
+---
+
 # WebSocket 简介
 
 `Websocket 定义`  [参考规范 rfc6455](https://link.juejin.cn?target=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc6455)
@@ -7,6 +17,8 @@
 在没有`websocket`协议之前，要提供客户端与服务端实时**双向推送**消息，就会使用`polling`技术，客户端通过`xhr`或`jsonp` **发送**消息给服务端，并通过事件回调来**接收**服务端消息。
 
 这种技术虽然也能保证双向通信，但是有一个不可避免的问题，就是**性能问题**。客户端不断向服务端发送请求，如果客户端并发数过大，无疑导致服务端压力剧增。因此，`websocket`就是解决这一痛点而诞生的。
+
+<!--more-->
 
 这里再延伸一些名词:
 
@@ -52,7 +64,6 @@
 
 `Websocket`复用了`HTTP`的握手通道。指的是，客户端发送`HTTP`请求，并在请求头中带上`Connection: Upgrade` 、`Upgrade: websocket`，服务端识别该header之后，进行协议升级，使用`Websocket`协议进行数据通信。
 
-![image](https://user-images.githubusercontent.com/33454514/158773550-5db1c271-288f-425a-9904-787415abd912.png)
 ![在这里插入图片描述](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/6/169f1656159c8519~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ### 参数说明
