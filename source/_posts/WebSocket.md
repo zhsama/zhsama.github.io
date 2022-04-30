@@ -2,10 +2,9 @@
 title: WebSocket 原理及简单应用
 date: 2022-03-18 10:46:22
 updated: 2022-04-30 17:43:34
-tags: ['git']
+tags: ['socket']
 categories:
-- git
-description: 你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。
+- socket
 ---
 
 # WebSocket 简介
