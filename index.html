@@ -234,7 +234,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+                  <a href="/categories/socket/" itemprop="url" rel="index"><span itemprop="name">socket</span></a>
                 </span>
             </span>
 
@@ -261,10 +261,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。</p>
+          <h1 id="WebSocket-简介"><a href="#WebSocket-简介" class="headerlink" title="WebSocket 简介"></a>WebSocket 简介</h1><p><code>Websocket 定义</code>  <a href="https://link.juejin.cn/?target=https://tools.ietf.org/html/rfc6455">参考规范 rfc6455</a></p>
+<p><strong>规范解释</strong> <code>Websocket</code> 是一种提供客户端(提供不可靠秘钥)与服务端(校验通过该秘钥)进行<strong>双向通信</strong>的协议。</p>
+<p>在没有<code>websocket</code>协议之前，要提供客户端与服务端实时<strong>双向推送</strong>消息，就会使用<code>polling</code>技术，客户端通过<code>xhr</code>或<code>jsonp</code> <strong>发送</strong>消息给服务端，并通过事件回调来<strong>接收</strong>服务端消息。</p>
+<p>这种技术虽然也能保证双向通信，但是有一个不可避免的问题，就是<strong>性能问题</strong>。客户端不断向服务端发送请求，如果客户端并发数过大，无疑导致服务端压力剧增。因此，<code>websocket</code>就是解决这一痛点而诞生的。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/03/18/WebSocket/">
+              <a class="btn" href="/2022/03/18/WebSocket/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1199,13 +1202,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

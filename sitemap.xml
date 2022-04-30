@@ -406,6 +406,13 @@
   </url>
   
   <url>
+    <loc>https://zhsama.github.io/tags/socket/</loc>
+    <lastmod>2022-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://zhsama.github.io/tags/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2022-04-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -598,6 +605,13 @@
   
   <url>
     <loc>https://zhsama.github.io/categories/Android-12/Color-OS/%E5%88%B7%E6%9C%BA/%E4%B8%80%E5%8A%A0/</loc>
+    <lastmod>2022-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhsama.github.io/categories/socket/</loc>
     <lastmod>2022-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

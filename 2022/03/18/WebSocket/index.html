@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"zhsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。">
+  <meta name="description" content="WebSocket 简介Websocket 定义  参考规范 rfc6455 规范解释 Websocket 是一种提供客户端(提供不可靠秘钥)与服务端(校验通过该秘钥)进行双向通信的协议。 在没有websocket协议之前，要提供客户端与服务端实时双向推送消息，就会使用polling技术，客户端通过xhr或jsonp 发送消息给服务端，并通过事件回调来接收服务端消息。 这种技术虽然也能保证双向通信">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebSocket 原理及简单应用">
 <meta property="og:url" content="https://zhsama.github.io/2022/03/18/WebSocket/index.html">
 <meta property="og:site_name" content="zhsama&#39;s blog">
-<meta property="og:description" content="你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。">
+<meta property="og:description" content="WebSocket 简介Websocket 定义  参考规范 rfc6455 规范解释 Websocket 是一种提供客户端(提供不可靠秘钥)与服务端(校验通过该秘钥)进行双向通信的协议。 在没有websocket协议之前，要提供客户端与服务端实时双向推送消息，就会使用polling技术，客户端通过xhr或jsonp 发送消息给服务端，并通过事件回调来接收服务端消息。 这种技术虽然也能保证双向通信">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/6/169f1656159c8519~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp">
 <meta property="og:image" content="https://user-images.githubusercontent.com/33454514/158771990-2812e406-c716-434f-ad24-07e0764550b7.png">
@@ -34,7 +34,7 @@
 <meta property="article:published_time" content="2022-03-18T02:46:22.000Z">
 <meta property="article:modified_time" content="2022-04-30T09:43:34.000Z">
 <meta property="article:author" content="zhsama">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="socket">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/6/169f1656159c8519~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp">
 
@@ -242,7 +242,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+                  <a href="/categories/socket/" itemprop="url" rel="index"><span itemprop="name">socket</span></a>
                 </span>
             </span>
 
@@ -266,7 +266,6 @@
               </span>
               <span>7 分钟</span>
             </span>
-            <div class="post-description">你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。</div>
 
         </div>
       </header>
@@ -488,7 +487,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/git/" rel="tag"># git</a>
+              <a href="/tags/socket/" rel="tag"># socket</a>
           </div>
 
         
@@ -585,13 +584,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
