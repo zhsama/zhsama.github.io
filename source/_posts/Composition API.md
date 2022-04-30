@@ -29,6 +29,8 @@ export default {
 </script>
 ```
 
+<!--more-->
+
 ## 响应式数据
 
 简而言之，reactive负责复杂数据结构，ref可以把基本的数据结构包装成响应式：
