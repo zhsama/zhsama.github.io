@@ -279,6 +279,8 @@
 <p>setup返回一个对象。则对象的所有属性（<strong>它是响应式的数据</strong>）都可以直接在模板中使用。相当于vue2.0中data函数返回的对象。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  setup () &#123;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <h2 id="响应式数据"><a href="#响应式数据" class="headerlink" title="响应式数据"></a>响应式数据</h2><p>简而言之，reactive负责复杂数据结构，ref可以把基本的数据结构包装成响应式：</p>
 <ul>
 <li>ref：可传入任意类型的值并返回一个响应式且可改变的ref对象。ref对象拥有一个指向内部值的单一属性<code>.value</code>，改变值的时候必须使用其value属性</li>
