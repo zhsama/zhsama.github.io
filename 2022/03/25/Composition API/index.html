@@ -20,30 +20,35 @@
     var CONFIG = {"hostname":"zhsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="我没有敌人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhsama&#39;s blog">
-<meta property="og:url" content="https://zhsama.github.io/index.html">
+  <meta name="description" content="Composition API官方网站 setupsetup函数是一个新的组件选项。作为组件内使用Composition API的入口点 创建组件实例，然后初始化props，紧接着调用setup函数。它会在beforeCreate钩子之前调用。 setup返回一个对象。则对象的所有属性（它是响应式的数据）都可以直接在模板中使用。相当于vue2.0中data函数返回的对象。 1234567&lt;s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Composition API">
+<meta property="og:url" content="https://zhsama.github.io/2022/03/25/Composition%20API/index.html">
 <meta property="og:site_name" content="zhsama&#39;s blog">
-<meta property="og:description" content="我没有敌人">
+<meta property="og:description" content="Composition API官方网站 setupsetup函数是一个新的组件选项。作为组件内使用Composition API的入口点 创建组件实例，然后初始化props，紧接着调用setup函数。它会在beforeCreate钩子之前调用。 setup返回一个对象。则对象的所有属性（它是响应式的数据）都可以直接在模板中使用。相当于vue2.0中data函数返回的对象。 1234567&lt;s">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/33454514/166104036-60b9ff1b-e0bc-4537-bb5e-bc92011e84a7.png">
+<meta property="article:published_time" content="2022-03-25T06:21:32.000Z">
+<meta property="article:modified_time" content="2022-04-30T09:31:21.000Z">
 <meta property="article:author" content="zhsama">
+<meta property="article:tag" content="vue3">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/33454514/166104036-60b9ff1b-e0bc-4537-bb5e-bc92011e84a7.png">
 
-<link rel="canonical" href="https://zhsama.github.io/">
+<link rel="canonical" href="https://zhsama.github.io/2022/03/25/Composition%20API/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>zhsama's blog</title>
+  <title>Composition API | zhsama's blog</title>
   
 
 
@@ -189,102 +194,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/18/WebSocket/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/18/WebSocket/" class="post-title-link" itemprop="url">WebSocket 原理及简单应用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-18 10:46:22" itemprop="dateCreated datePublished" datetime="2022-03-18T10:46:22+08:00">2022-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 17:43:34" itemprop="dateModified" datetime="2022-04-30T17:43:34+08:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>7.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/18/WebSocket/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -300,10 +213,9 @@
       <meta itemprop="name" content="zhsama's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/25/Composition%20API/" class="post-title-link" itemprop="url">Composition API</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Composition API
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -332,6 +244,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -354,7 +273,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h1><p><a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/composition-api-introduction.html">官方网站</a></p>
+        <h1 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h1><p><a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/composition-api-introduction.html">官方网站</a></p>
 <h2 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h2><p>setup函数是一个新的组件选项。作为组件内使用Composition API的入口点</p>
 <p>创建组件实例，然后初始化props，紧接着调用<code>setup</code>函数。它会在<code>beforeCreate</code>钩子之前调用。</p>
 <p>setup返回一个对象。则对象的所有属性（<strong>它是响应式的数据</strong>）都可以直接在模板中使用。相当于vue2.0中data函数返回的对象。</p>
@@ -514,765 +433,54 @@
 
 <h3 id="emit"><a href="#emit" class="headerlink" title="$emit"></a>$emit</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// Child.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click=&quot;$emit(&#x27;myClick&#x27;,123)&quot;&gt;按钮&lt;/buttom&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt; </span><br><span class="line"> export default &#123;</span><br><span class="line">   emits:[&#x27;myClick&#x27;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">// Parent.vue </span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;child @myClick=&quot;onMyClick&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import child from &quot;./child.vue&quot;</span><br><span class="line"></span><br><span class="line">const onMyClick = (msg) =&gt; &#123;</span><br><span class="line">  console.log(msg)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
     
     
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/25/Typescript%E4%B9%8B%E6%8E%A5%E5%8F%A3%EF%BC%88interface%EF%BC%89%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%88abstract%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/25/Typescript%E4%B9%8B%E6%8E%A5%E5%8F%A3%EF%BC%88interface%EF%BC%89%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%88abstract%EF%BC%89/" class="post-title-link" itemprop="url">浅谈TS的接口和抽象类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-25 14:21:32" itemprop="dateCreated datePublished" datetime="2022-03-25T14:21:32+08:00">2022-03-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 17:31:21" itemprop="dateModified" datetime="2022-04-30T17:31:21+08:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>接口和抽象类的出现主要是为了添加参数的限制，来规范代码。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/25/Typescript%E4%B9%8B%E6%8E%A5%E5%8F%A3%EF%BC%88interface%EF%BC%89%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%88abstract%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>zhsama
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zhsama.github.io/2022/03/25/Composition%20API/" title="Composition API">https://zhsama.github.io/2022/03/25/Composition API/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/vue3/" rel="tag"># vue3</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/25/ref%E5%92%8Creactive/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/25/ref%E5%92%8Creactive/" class="post-title-link" itemprop="url">浅谈vue3中的ref和reactive</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-25 14:21:32" itemprop="dateCreated datePublished" datetime="2022-03-25T14:21:32+08:00">2022-03-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 17:31:21" itemprop="dateModified" datetime="2022-04-30T17:31:21+08:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue3/" itemprop="url" rel="index"><span itemprop="name">vue3</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ref和reactive"><a href="#ref和reactive" class="headerlink" title="ref和reactive"></a>ref和reactive</h1><p><code>ref</code>本质也是<code>reactive</code>，<code>ref(obj)</code>等价于<code>reactive(&#123;value: obj&#125;)</code>：</p>
-<ul>
-<li><p>vue3中实现响应式数据的方法是就是使用<code>ref</code>和<code>reactive</code>，所谓响应式就是界面和数据同步，能实现实时更新</p>
-</li>
-<li><p>vue2中响应式是通过<code>defineProperty</code>实现的，vue3中是通过ES6的<code>Proxy</code>来实现的</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/25/ref%E5%92%8Creactive/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/25/GIT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/25/GIT/" class="post-title-link" itemprop="url">Git 常用命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-25 14:21:32" itemprop="dateCreated datePublished" datetime="2022-03-25T14:21:32+08:00">2022-03-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 17:31:21" itemprop="dateModified" datetime="2022-04-30T17:31:21+08:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>15k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>14 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>整理了部分常用的git操作场景，基本能够覆盖工作中的需求~</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/25/GIT/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/25/Typescript%E4%B9%8B%E6%8E%A5%E5%8F%A3%EF%BC%88interface%EF%BC%89%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%88abstract%EF%BC%89/" rel="prev" title="浅谈TS的接口和抽象类">
+      <i class="fa fa-chevron-left"></i> 浅谈TS的接口和抽象类
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/30/%E6%B5%85%E8%B0%88%20XSS%20%E5%92%8C%20CRFS%20%E6%94%BB%E5%87%BB/" rel="next" title="浅谈 XSS 和 CRFS 攻击">
+      浅谈 XSS 和 CRFS 攻击 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/04/30/Flex%20%E5%B8%83%E5%B1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/30/Flex%20%E5%B8%83%E5%B1%80/" class="post-title-link" itemprop="url">Flex 布局</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-30 17:28:16 / 修改时间：17:28:13" itemprop="dateCreated datePublished" datetime="2022-04-30T17:28:16+08:00">2022-04-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>3.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>简简单单的 Flex 布局。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/30/Flex%20%E5%B8%83%E5%B1%80/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/30/%E6%B5%85%E8%B0%88%20XSS%20%E5%92%8C%20CRFS%20%E6%94%BB%E5%87%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/30/%E6%B5%85%E8%B0%88%20XSS%20%E5%92%8C%20CRFS%20%E6%94%BB%E5%87%BB/" class="post-title-link" itemprop="url">浅谈 XSS 和 CRFS 攻击</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-30 17:23:21 / 修改时间：17:23:41" itemprop="dateCreated datePublished" datetime="2022-03-30T17:23:21+08:00">2022-03-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>5.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>随着互联网的高速发展，信息安全问题已经成为企业最为关注的焦点之一，而前端又是引发企业安全问题的高危据点。在移动互联网时代，前端人员除了传统的 XSS、CSRF 等安全问题之外，又时常遭遇网络劫持、非法调用 Hybrid API 等新型安全问题。当然，浏览器自身也在不断在进化和发展，不断引入 CSP、Same-Site Cookies 等新技术来增强安全性，但是仍存在很多潜在的威胁，这需要前端技术人员不断进行“查漏补缺”。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/30/%E6%B5%85%E8%B0%88%20XSS%20%E5%92%8C%20CRFS%20%E6%94%BB%E5%87%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/01/26/v8%E7%9A%84gc%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/26/v8%E7%9A%84gc%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">V8引擎的垃圾回收机制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-26 18:21:51" itemprop="dateCreated datePublished" datetime="2022-01-26T18:21:51+08:00">2022-01-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-29 15:43:27" itemprop="dateModified" datetime="2022-03-29T15:43:27+08:00">2022-03-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/V8/" itemprop="url" rel="index"><span itemprop="name">V8</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>3.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>好久没有更新博客了，其实文章一直有在写，只是都没发表（拖延症晚期），没有能逼着自己发文的理由，文章写的也慢，经常一个月写一两篇，属实是人快废了。正在最近拜读了朴灵大大的《深入浅出Node.js》，是一个不错的发文理由，就把这篇磨洋工的文章发了吧~希望大🔥在新的一年里人均不摆烂！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/26/v8%E7%9A%84gc%E6%9C%BA%E5%88%B6/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/18/JavaScript%20%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%8A%A0%E8%BD%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/18/JavaScript%20%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%8A%A0%E8%BD%BD/" class="post-title-link" itemprop="url">JavaScript 模块的循环加载</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-18 10:46:22" itemprop="dateCreated datePublished" datetime="2022-03-18T10:46:22+08:00">2022-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-25 14:21:32" itemprop="dateModified" datetime="2022-03-25T14:21:32+08:00">2022-03-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>4.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/18/JavaScript%20%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%8A%A0%E8%BD%BD/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/18/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/18/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/" class="post-title-link" itemprop="url">Git 命令之 Reset 与 Revert</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-18 10:46:22" itemprop="dateCreated datePublished" datetime="2022-03-18T10:46:22+08:00">2022-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-25 14:21:32" itemprop="dateModified" datetime="2022-03-25T14:21:32+08:00">2022-03-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/18/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1324,6 +532,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Composition-API"><span class="nav-number">1.</span> <span class="nav-text">Composition API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#setup"><span class="nav-number">1.1.</span> <span class="nav-text">setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.</span> <span class="nav-text">响应式数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ref"><span class="nav-number">1.2.1.</span> <span class="nav-text">ref</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reactive"><span class="nav-number">1.2.2.</span> <span class="nav-text">reactive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toRefs"><span class="nav-number">1.2.3.</span> <span class="nav-text">toRefs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed"><span class="nav-number">1.2.4.</span> <span class="nav-text">computed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#watchEffect"><span class="nav-number">1.2.5.</span> <span class="nav-text">watchEffect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#watch"><span class="nav-number">1.2.6.</span> <span class="nav-text">watch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="nav-number">1.3.</span> <span class="nav-text">生命周期钩子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="nav-number">1.4.</span> <span class="nav-text">依赖注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%BC%95%E7%94%A8refs"><span class="nav-number">1.5.</span> <span class="nav-text">模板引用refs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1"><span class="nav-number">1.6.</span> <span class="nav-text">组件通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#props"><span class="nav-number">1.6.1.</span> <span class="nav-text">props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#emit"><span class="nav-number">1.6.2.</span> <span class="nav-text">$emit</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
