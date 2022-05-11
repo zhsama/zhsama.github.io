@@ -195,6 +195,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/05/07/Node.js%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%8C%E5%AE%9A%E6%97%B6%E5%99%A8%E5%92%8C%20process.nextTick/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ayanami2.png">
+      <meta itemprop="name" content="zhsama">
+      <meta itemprop="description" content="我没有敌人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhsama's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/07/Node.js%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%8C%E5%AE%9A%E6%97%B6%E5%99%A8%E5%92%8C%20process.nextTick/" class="post-title-link" itemprop="url">Node.js 事件循环，定时器和 process.nextTick</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-07 23:45:33" itemprop="dateCreated datePublished" datetime="2022-05-07T23:45:33+08:00">2022-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-11 15:08:10" itemprop="dateModified" datetime="2022-05-11T15:08:10+08:00">2022-05-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NodeJS/" itemprop="url" rel="index"><span itemprop="name">NodeJS</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="什么是事件循环"><a href="#什么是事件循环" class="headerlink" title="什么是事件循环"></a>什么是事件循环</h1><p>事件循环是 Node.js 处理非阻塞 I/O 操作的机制——尽管 JavaScript 是单线程处理的——当有可能的时候，它们会把操作转移到系统内核中去。</p>
+<p>既然目前大多数内核都是多线程的，它们可在后台处理多种操作。当其中的一个操作完成的时候，内核通知 Node.js 将适合的回调函数添加到 轮询 队列中等待时机执行。我们在本文后面会进行详细介绍。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/05/07/Node.js%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%8C%E5%AE%9A%E6%97%B6%E5%99%A8%E5%92%8C%20process.nextTick/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/18/WebSocket/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1031,99 +1125,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhsama.github.io/2022/03/18/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ayanami2.png">
-      <meta itemprop="name" content="zhsama">
-      <meta itemprop="description" content="我没有敌人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhsama's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/18/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/" class="post-title-link" itemprop="url">Git 命令之 Reset 与 Revert</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-18 10:46:22" itemprop="dateCreated datePublished" datetime="2022-03-18T10:46:22+08:00">2022-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-25 14:21:32" itemprop="dateModified" datetime="2022-03-25T14:21:32+08:00">2022-03-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/18/git%20%E5%91%BD%E4%BB%A4%E4%B9%8B%20reset%20%E4%B8%8E%20revert/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1195,7 +1196,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
