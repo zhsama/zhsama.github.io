@@ -434,6 +434,8 @@
     <title>JavaScript 模块的循环加载</title>
     <url>/2022/03/18/JavaScript%20%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%8A%A0%E8%BD%BD/</url>
     <content><![CDATA[<h1 id="JavaScript-模块的循环加载"><a href="#JavaScript-模块的循环加载" class="headerlink" title="JavaScript 模块的循环加载"></a>JavaScript 模块的循环加载</h1><p>“循环加载”（circular dependency）指的是，<code>a</code>脚本的执行依赖<code>b</code>脚本，而<code>b</code>脚本的执行又依赖<code>a</code>脚本。</p>
+<span id="more"></span>
+
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>通常，”循环加载”表示存在强耦合，如果处理不好，还可能导致递归加载，使得程序无法执行，因此应该避免出现。</p>
@@ -3450,15 +3452,15 @@
 </ul>
 <p><strong>使用的是index1的执行流程</strong></p>
 <ul>
-<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#122;&#104;&#97;&#110;&#103;&#115;&#x73;&#120;&#121;&#122;&#64;&#120;&#120;&#x78;&#x2e;&#99;&#x6f;&#x6d;">&#122;&#104;&#97;&#110;&#103;&#115;&#x73;&#120;&#121;&#122;&#64;&#120;&#120;&#x78;&#x2e;&#99;&#x6f;&#x6d;</a>’的这条记录，取得ID2的值；</li>
+<li>从<code>index1</code>索引树找到满足索引值是’<a href="mailto:&#122;&#x68;&#97;&#x6e;&#103;&#115;&#115;&#120;&#x79;&#122;&#64;&#120;&#120;&#x78;&#46;&#x63;&#111;&#109;">&#122;&#x68;&#97;&#x6e;&#103;&#115;&#115;&#120;&#x79;&#122;&#64;&#120;&#120;&#x78;&#46;&#x63;&#111;&#109;</a>’的这条记录，取得ID2的值；</li>
 <li>到主键上查到主键值是ID2的行，判断email的值是正确的，将这行记录加入结果集；</li>
-<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#x7a;&#104;&#x61;&#110;&#x67;&#x73;&#x73;&#x78;&#121;&#122;&#x40;&#120;&#120;&#120;&#x2e;&#x63;&#x6f;&#109;">&#x7a;&#104;&#x61;&#110;&#x67;&#x73;&#x73;&#x78;&#121;&#122;&#x40;&#120;&#120;&#120;&#x2e;&#x63;&#x6f;&#109;</a>’的条件了，循环结束</li>
+<li>取index1索引树上刚刚查到的位置的下一条记录，发现已经不满足email=‘<a href="mailto:&#122;&#104;&#97;&#x6e;&#103;&#x73;&#115;&#120;&#x79;&#122;&#64;&#120;&#x78;&#120;&#x2e;&#99;&#111;&#x6d;">&#122;&#104;&#97;&#x6e;&#103;&#x73;&#115;&#120;&#x79;&#122;&#64;&#120;&#x78;&#120;&#x2e;&#99;&#111;&#x6d;</a>’的条件了，循环结束</li>
 <li>这个过程中，只需要回主键索引取一次数据，所以系统认为只扫描了一行。</li>
 </ul>
 <p><strong>使用的是index2的执行流程</strong></p>
 <ul>
 <li>从<code>index2</code>索引树找到满足索引值是’zhangs’的记录，找到的第一个是ID1；</li>
-<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#122;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#x78;&#121;&#x7a;&#64;&#x78;&#120;&#x78;&#x2e;&#99;&#111;&#109;">&#122;&#104;&#x61;&#x6e;&#103;&#115;&#115;&#x78;&#121;&#x7a;&#64;&#x78;&#120;&#x78;&#x2e;&#99;&#111;&#109;</a>’，这行记录丢弃；</li>
+<li>到主键上查到主键值是ID1的行，判断出email的值不是’<a href="mailto:&#x7a;&#104;&#97;&#110;&#x67;&#x73;&#115;&#120;&#x79;&#122;&#x40;&#x78;&#120;&#x78;&#x2e;&#x63;&#x6f;&#x6d;">&#x7a;&#104;&#97;&#110;&#x67;&#x73;&#115;&#120;&#x79;&#122;&#x40;&#x78;&#120;&#x78;&#x2e;&#x63;&#x6f;&#x6d;</a>’，这行记录丢弃；</li>
 <li>取index2上刚刚查到的位置的下一条记录，发现仍然是’zhangs’，取出ID2，再到ID索引上取整行然后判断，这次值对了，将这行记录加入结果集；</li>
 <li>重复上一步，直到在idxe2上取到的值不是’zhangs’时，循环结束。</li>
 <li>在这个过程中，要回主键索引取4次数据，也就是扫描了4行。</li>
