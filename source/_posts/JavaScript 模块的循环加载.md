@@ -4,13 +4,13 @@ date: 2022-03-18 10:46:22
 updated: 2022-03-25 14:21:32
 tags: ['Javascript']
 categories:
-- Javascript 
-description: 你是否跟笔者一样，有时在git commit时提交错文件，要撤销提交却不知道该如何合理操作的困惑？希望这篇讲解git reset命令的文章可以帮助到你。
+- Javascript
 ---
 
 # JavaScript 模块的循环加载
 
 "循环加载"（circular dependency）指的是，`a`脚本的执行依赖`b`脚本，而`b`脚本的执行又依赖`a`脚本。
+<!-- more -->
 
 ```js
 // a.js
