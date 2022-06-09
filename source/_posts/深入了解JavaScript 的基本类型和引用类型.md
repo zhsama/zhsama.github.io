@@ -4,7 +4,7 @@ date: 2022-05-15 14:21:32
 updated: 2022-06-09 16:08:33
 tags: ['JavaScript']
 categories:
-- JavaScript
+ - JavaScript
 ---
 
 # 浅谈JavaScript 的基本类型和引用类型
@@ -12,7 +12,9 @@ categories:
 一个变量可以存放两种类型的值，基本类型的值（primitive values）和引用类型的值（reference values）。
 
 ES6 引入了一种新的原始数据类型 **Symbol**，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。
+
 <!--more-->
+
 # 基本类型
 
 JavaScript 中共有 6 种基本数据类型：`Undefined`、`Null`、`Boolean`、`Number`、`String`、`Symbol (new in ES 6)` ！

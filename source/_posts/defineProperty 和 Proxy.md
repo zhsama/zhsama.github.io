@@ -2,10 +2,10 @@
 title: defineProperty 和 Proxy
 date: 2022-05-19 14:21:32
 updated: 2022-06-01 16:08:33
-tags: ['JavaScript','Vue']
+tags: ['JavaScript', 'Vue']
 categories:
-- JavaScript
-- Vue
+ - JavaScript
+ - Vue
 ---
 
 # 前言
@@ -21,7 +21,9 @@ categories:
 可以实现双向绑定的方法有很多，常见的为**数据劫持**的双向绑定。基于数据劫持的双向绑定有两种实现,一个是目前Vue在用的`Object.defineProperty`,另一个是ES2015中新增的`Proxy`,而Vue的作者宣称将在Vue3.0版本后加入`Proxy`从而代替`Object.defineProperty`，通过本文你也可以知道为什么Vue未来会选择`Proxy`。
 
 严格来讲Proxy应该被称为『代理』而非『劫持』,不过由于作用有很多相似之处,我们在下文中就不再做区分,统一叫『劫持』。
+
 <!--more-->
+
 # 基于数据劫持实现的双向绑定的特点
 
 ## 什么是数据劫持

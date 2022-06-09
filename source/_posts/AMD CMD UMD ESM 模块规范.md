@@ -4,7 +4,7 @@ date: 2022-05-15 14:21:32
 updated: 2022-06-09 16:08:33
 tags: ['JavaScript']
 categories:
-- JavaScript
+ - JavaScript
 ---
 
 # CommonJS
@@ -16,7 +16,9 @@ categories:
 - 同步加载执行模块
 - 通过 `module.exports`导出模块
 - 通过 `require` 函数导入模块（导入的即 exports 导出的）
-<!--more-->
+
+<!-- more -->
+
 范例：
 
 ```js
