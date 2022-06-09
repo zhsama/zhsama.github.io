@@ -277,9 +277,11 @@
 <li>模块间作用域隔离</li>
 <li>同步加载执行模块</li>
 <li>通过 <code>module.exports</code>导出模块</li>
-<li>通过 <code>require</code> 函数导入模块（导入的即 exports 导出的）<span id="more"></span>
-范例：</li>
+<li>通过 <code>require</code> 函数导入模块（导入的即 exports 导出的）</li>
 </ul>
+<span id="more"></span>
+
+<p>范例：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义模块math.js</span></span><br><span class="line"><span class="keyword">var</span> basicNum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123; <span class="comment">//在这里写上需要向外暴露的函数、变量</span></span><br><span class="line">  <span class="attr">add</span>: add,</span><br><span class="line">  <span class="attr">basicNum</span>: basicNum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用自定义的模块时，参数包含路径，可省略.js</span></span><br><span class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">&#x27;./math&#x27;</span>);</span><br><span class="line">math.<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用核心模块时，不需要带路径</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line">http.<span class="title function_">createService</span>(...).<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
 
 <p>CommonJS用同步的方式加载模块。在服务端，模块文件都存在本地磁盘，读取非常快，所以这样做不会有问题。但是在浏览器端，限于网络原因，更合理的方案是使用异步加载。</p>
