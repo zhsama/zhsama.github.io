@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zhsama.github.io/2022/05/15/AMD%20CMD%20UMD%20ESM%20%E6%A8%A1%E5%9D%97%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2022-06-09</lastmod>
+  </url>
+  <url>
+    <loc>https://zhsama.github.io/2022/05/15/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3JavaScript%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2022-06-09</lastmod>
+  </url>
+  <url>
+    <loc>https://zhsama.github.io/2022/05/19/defineProperty%20%E5%92%8C%20Proxy/</loc>
+    <lastmod>2022-06-01</lastmod>
+  </url>
+  <url>
+    <loc>https://zhsama.github.io/2022/05/20/%E6%B5%85%E8%B0%88Cookie,%20LocalStorage%20%E4%B8%8E%20SessionStorage/</loc>
+    <lastmod>2022-05-21</lastmod>
+  </url>
+  <url>
     <loc>https://zhsama.github.io/2022/05/07/Node.js%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%8C%E5%AE%9A%E6%97%B6%E5%99%A8%E5%92%8C%20process.nextTick/</loc>
     <lastmod>2022-05-11</lastmod>
   </url>
