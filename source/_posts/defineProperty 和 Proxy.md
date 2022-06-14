@@ -1,5 +1,5 @@
 ---
-title: defineProperty 和 Proxy
+title: 浅谈 Vue 中的双向绑定
 date: 2022-05-19 14:21:32
 updated: 2022-06-01 16:08:33
 tags: ['JavaScript', 'Vue']
