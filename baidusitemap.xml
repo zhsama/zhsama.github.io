@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zhsama.github.io/2022/06/11/Vue3%20%E4%B8%AD%20diff%20%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2022-06-19</lastmod>
+  </url>
+  <url>
+    <loc>https://zhsama.github.io/2022/05/25/co%20%E5%87%BD%E6%95%B0%E5%BA%93%E7%9A%84%E5%90%AB%E4%B9%89%E5%92%8C%E7%94%A8%E6%B3%95/</loc>
+    <lastmod>2022-06-19</lastmod>
+  </url>
+  <url>
+    <loc>https://zhsama.github.io/2022/05/31/%E5%BD%93%20asyncawait%20%E9%81%87%E4%B8%8A%20forEach/</loc>
+    <lastmod>2022-06-17</lastmod>
+  </url>
+  <url>
+    <loc>https://zhsama.github.io/2022/05/29/%E6%B5%85%E8%B0%88%20async%20/</loc>
+    <lastmod>2022-06-09</lastmod>
+  </url>
+  <url>
     <loc>https://zhsama.github.io/2022/05/15/AMD%20CMD%20UMD%20ESM%20%E6%A8%A1%E5%9D%97%E8%A7%84%E8%8C%83/</loc>
     <lastmod>2022-06-09</lastmod>
   </url>
