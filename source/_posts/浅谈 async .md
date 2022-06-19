@@ -237,5 +237,5 @@ await 命令只能用在 async 函数之中，如果用在普通函数，就会�
 >     results.push(await promise);
 >   }
 >   console.log(results);
-> }mailto:yifeng.ruan@gmail.com)
+> }
 > ```
